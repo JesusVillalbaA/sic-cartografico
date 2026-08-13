@@ -551,12 +551,9 @@ export const useMapbox = (
         const props = clicked.properties;
         const id = props?.id || props?.id_punto || props?.id_incidencia || props?.id_persona_interes || props?.cuadrante || props?.nombre || props?.adm2_name || props?.NAME;
         setSelectedFeatures(prev => {
-          const exists = prev.some(sf => (sf.properties?.id || sf.properties?.id_punto || sf.properties?.id_incidencia || sf.properties?.id_persona_interes || sf.properties?.cuadrante || sf.properties?.nombre || sf.properties?.adm2_name || sf.properties?.NAME) === id);
-          toggleState(m, clicked, !exists);
-          const next = exists
-            ? prev.filter(p => (p.properties?.id || p.properties?.id_punto || p.properties?.id_incidencia || p.properties?.id_persona_interes || p.properties?.cuadrante || p.properties?.nombre || p.properties?.adm2_name || p.properties?.NAME) !== id)
-            : [...prev, clicked];
-          if (next.length === 0) clearAndReset(m, next, setSelectedFeatures);
+          toggleState(m, clicked, true);
+          const filtered = prev.filter(p => (p.properties?.id || p.properties?.id_punto || p.properties?.id_incidencia || p.properties?.id_persona_interes || p.properties?.cuadrante || p.properties?.nombre || p.properties?.adm2_name || p.properties?.NAME) !== id);
+          const next = [clicked, ...filtered];
           return next;
         });
         if (onFeatureClick) onFeatureClick(clicked);

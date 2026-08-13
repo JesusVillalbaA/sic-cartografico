@@ -80,12 +80,9 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
     const id = feature.properties?.id || feature.properties?.id_punto || feature.properties?.id_incidencia || feature.properties?.id_persona_interes || feature.properties?.cuadrante || feature.properties?.nombre || feature.properties?.adm2_name || feature.properties?.NAME;
     
     setSelectedFeatures(prev => {
-      const exists = prev.some(sf => (sf.properties?.id || sf.properties?.id_punto || sf.properties?.id_incidencia || sf.properties?.id_persona_interes || sf.properties?.cuadrante || sf.properties?.nombre || sf.properties?.adm2_name || sf.properties?.NAME) === id);
       toggleState(m, feature, true);
-      if (!exists) {
-        return [...prev, feature];
-      }
-      return prev;
+      const filtered = prev.filter(sf => (sf.properties?.id || sf.properties?.id_punto || sf.properties?.id_incidencia || sf.properties?.id_persona_interes || sf.properties?.cuadrante || sf.properties?.nombre || sf.properties?.adm2_name || sf.properties?.NAME) !== id);
+      return [feature, ...filtered];
     });
   };
 

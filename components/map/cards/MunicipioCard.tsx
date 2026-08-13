@@ -14,7 +14,9 @@ import {
   Layers, 
   Users, 
   ShieldAlert, 
-  HeartPulse 
+  HeartPulse,
+  Minimize2,
+  Maximize2
 } from 'lucide-react';
 
 interface MunicipioCardProps {
@@ -65,6 +67,9 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
   onClose
 }) => {
   
+  // Estado de Minimización
+  const [isMinimized, setIsMinimized] = useState<boolean>(false);
+
   // Estados para datos de infraestructura
   const [escuelasData, setEscuelasData] = useState<any[]>([]);
   const [electricosData, setElectricosData] = useState<any[]>([]);
@@ -193,9 +198,11 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       p.address,
       p.ubicacion,
       p.sector,
+      p.SECTOR,
       p.parroquia,
       p.PARROQUIA,
       p.DESCRIPCION,
+      p.DIRECCION,
       p.NAME,
       p.nombre,
       p.name,
@@ -357,296 +364,393 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
   }, [modalCategory, modalSearch, infraItems]);
 
   return (
-    <div className="bg-slate-900/95 text-slate-100 rounded-3xl shadow-2xl overflow-hidden border border-white/10 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-500 flex flex-col relative">
+    <div className="bg-slate-900/95 text-slate-100 rounded-3xl shadow-2xl overflow-hidden border border-white/10 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-500 flex flex-col relative transition-all">
       
-      {/* HEADER TÁCTICO */}
-      <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/80 p-6 relative overflow-hidden border-b border-white/10 shrink-0">
-        <div className="absolute top-0 right-0 p-4 opacity-15 pointer-events-none">
-          <img src="/Municipios.png" className="w-24 h-24 object-contain" alt="Fondo" />
-        </div>
-        
-        <div className="flex items-center justify-between relative z-10 mb-3">
-          <div className="flex items-center gap-2 bg-cyan-500/20 border border-cyan-500/40 px-3 py-1 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-            <img src="/Municipios.png" alt="Municipio" className="w-4 h-4 object-contain" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">
-              FICHA DE INTELIGENCIA TERRITORIAL
-            </span>
-          </div>
-
-          {onClose && (
-            <button 
-              onClick={onClose}
-              className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors cursor-pointer"
-              title="Cerrar Ficha"
-            >
-              <X size={16} />
-            </button>
-          )}
-        </div>
-
-        <h2 className="text-3xl font-black text-white uppercase tracking-tight italic leading-tight">
-          MUNICIPIO {stats.nombre}
-        </h2>
-        <p className="text-[11px] font-mono text-cyan-400/80 mt-0.5">
-          Estado Nueva Esparta • Centro de Comando y Control Geointeligente
-        </p>
-      </div>
-
-      {/* CONTENIDO PRINCIPAL SCROLLEABLE */}
-      <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(85vh-140px)] custom-scrollbar">
-        
-        {/* =========================================================================
-            SECCIÓN: INFRAESTRUCTURA ESTRATÉGICA Y SERVICIOS CON CLICK INTERACTIVO
-            ========================================================================= */}
-        <div className="bg-slate-950/80 p-5 rounded-2xl border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.1)] space-y-3">
+      {/* ── MODO MINIMIZADO ── */}
+      {isMinimized ? (
+        <div className="p-4 bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/90 flex flex-col gap-2.5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Layers size={16} className="text-cyan-400" />
-              <span className="text-[11px] font-black uppercase tracking-widest text-cyan-300">
-                Infraestructura Estratégica
-              </span>
+            <div className="flex items-center gap-2.5">
+              <img src="/Municipios.png" alt="Municipio" className="w-5 h-5 object-contain" />
+              <div>
+                <h3 className="text-sm font-black text-white uppercase tracking-tight italic leading-none">
+                  MUNICIPIO {stats.nombre}
+                </h3>
+                <span className="text-[9px] font-mono text-cyan-400/80">Ficha Minimizada</span>
+              </div>
             </div>
-            <span className="text-[9px] font-bold text-slate-400 bg-white/5 px-2 py-0.5 rounded-md border border-white/10">
-              Toca un número para desglose
-            </span>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => setIsMinimized(false)}
+                className="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 transition-all cursor-pointer shadow-sm"
+                title="Expandir Ficha Completa"
+              >
+                <Maximize2 size={12} />
+                <span>Expandir</span>
+              </button>
+              {onClose && (
+                <button
+                  onClick={onClose}
+                  className="p-1.5 rounded-lg bg-white/10 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 transition-all border border-white/10 cursor-pointer"
+                  title="Cerrar Ficha"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 pt-1">
+          {/* Resumen táctico rápido en píldoras */}
+          <div className="grid grid-cols-4 gap-1.5 pt-1.5 border-t border-white/10">
+            <div className="bg-slate-900/80 p-1.5 rounded-lg border border-white/5 text-center">
+              <span className="text-[8px] font-bold text-slate-400 block uppercase">Cuadrantes</span>
+              <span className="text-xs font-black text-white">{stats.cuadrantes}</span>
+            </div>
+            <div className="bg-slate-900/80 p-1.5 rounded-lg border border-blue-500/20 text-center">
+              <span className="text-[8px] font-bold text-blue-400 block uppercase">Escuelas</span>
+              <span className="text-xs font-black text-blue-400">{infraItems.escuelas.length}</span>
+            </div>
+            <div className="bg-slate-900/80 p-1.5 rounded-lg border border-amber-500/20 text-center">
+              <span className="text-[8px] font-bold text-amber-400 block uppercase">Eléctrico</span>
+              <span className="text-xs font-black text-amber-400">{infraItems.subestaciones.length}</span>
+            </div>
+            <div className="bg-slate-900/80 p-1.5 rounded-lg border border-rose-500/20 text-center">
+              <span className="text-[8px] font-bold text-rose-400 block uppercase">Antenas</span>
+              <span className="text-xs font-black text-rose-400">{infraItems.antenas.length}</span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* HEADER TÁCTICO EXPANDIDO */}
+          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/80 p-6 relative overflow-hidden border-b border-white/10 shrink-0">
+            <div className="absolute top-0 right-0 p-4 opacity-15 pointer-events-none">
+              <img src="/Municipios.png" className="w-24 h-24 object-contain" alt="Fondo" />
+            </div>
             
-            {/* 1. ESCUELAS */}
-            <button
-              onClick={() => { setModalCategory('escuelas'); setModalSearch(''); }}
-              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-blue-950/70 border border-blue-500/30 hover:border-blue-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
-            >
-              <div className="flex items-center justify-between w-full mb-1">
-                <span className="text-[10px] font-bold text-slate-300 group-hover:text-blue-300 transition-colors uppercase">Escuelas</span>
-                <Building2 size={15} className="text-blue-400 group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="flex items-baseline justify-between mt-auto">
-                <span className="text-2xl font-black text-blue-400 group-hover:text-blue-300">
-                  {infraItems.escuelas.length}
+            <div className="flex items-center justify-between relative z-10 mb-3">
+              <div className="flex items-center gap-2 bg-cyan-500/20 border border-cyan-500/40 px-3 py-1 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                <img src="/Municipios.png" alt="Municipio" className="w-4 h-4 object-contain" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">
+                  FICHA DE INTELIGENCIA TERRITORIAL
                 </span>
-                <span className="text-[9px] font-mono text-slate-500 group-hover:text-blue-400/80">Ver detalle &rarr;</span>
               </div>
-            </button>
 
-            {/* 2. SUBESTACIONES */}
-            <button
-              onClick={() => { setModalCategory('subestaciones'); setModalSearch(''); }}
-              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-amber-950/70 border border-amber-500/30 hover:border-amber-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
-            >
-              <div className="flex items-center justify-between w-full mb-1">
-                <span className="text-[10px] font-bold text-slate-300 group-hover:text-amber-300 transition-colors uppercase">Subestaciones</span>
-                <Zap size={15} className="text-amber-400 group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="flex items-baseline justify-between mt-auto">
-                <span className="text-2xl font-black text-amber-400 group-hover:text-amber-300">
-                  {infraItems.subestaciones.length}
-                </span>
-                <span className="text-[9px] font-mono text-slate-500 group-hover:text-amber-400/80">Ver detalle &rarr;</span>
-              </div>
-            </button>
+              {/* Botones de Minimizar y Cerrar */}
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => setIsMinimized(true)}
+                  className="p-1.5 rounded-full bg-white/10 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 transition-all border border-white/10 hover:border-cyan-500/40 cursor-pointer"
+                  title="Minimizar Ficha"
+                >
+                  <Minimize2 size={15} />
+                </button>
 
-            {/* 3. ESTACIONES DE GAS */}
-            <button
-              onClick={() => { setModalCategory('gas'); setModalSearch(''); }}
-              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-orange-950/70 border border-orange-500/30 hover:border-orange-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
-            >
-              <div className="flex items-center justify-between w-full mb-1">
-                <span className="text-[10px] font-bold text-slate-300 group-hover:text-orange-300 transition-colors uppercase">Est. de Gas</span>
-                <Flame size={15} className="text-orange-400 group-hover:scale-110 transition-transform" />
+                {onClose && (
+                  <button 
+                    onClick={onClose}
+                    className="p-1.5 rounded-full bg-white/10 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 transition-all border border-white/10 hover:border-rose-500/40 cursor-pointer"
+                    title="Cerrar Ficha"
+                  >
+                    <X size={15} />
+                  </button>
+                )}
               </div>
-              <div className="flex items-baseline justify-between mt-auto">
-                <span className="text-2xl font-black text-orange-400 group-hover:text-orange-300">
-                  {infraItems.estacionesGas.length}
-                </span>
-                <span className="text-[9px] font-mono text-slate-500 group-hover:text-orange-400/80">Ver detalle &rarr;</span>
-              </div>
-            </button>
+            </div>
 
-            {/* 4. SERVICIOS DE AGUA */}
-            <button
-              onClick={() => { setModalCategory('agua'); setModalSearch(''); }}
-              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-cyan-950/70 border border-cyan-500/30 hover:border-cyan-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
-            >
-              <div className="flex items-center justify-between w-full mb-1">
-                <span className="text-[10px] font-bold text-slate-300 group-hover:text-cyan-300 transition-colors uppercase">Servicios Agua</span>
-                <Droplets size={15} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="flex items-baseline justify-between mt-auto">
-                <span className="text-2xl font-black text-cyan-400 group-hover:text-cyan-300">
-                  {infraItems.serviciosAgua.length}
-                </span>
-                <span className="text-[9px] font-mono text-slate-500 group-hover:text-cyan-400/80">Ver detalle &rarr;</span>
-              </div>
-            </button>
-
-            {/* 5. PARADAS / TRANSPORTE */}
-            <button
-              onClick={() => { setModalCategory('transporte'); setModalSearch(''); }}
-              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-purple-950/70 border border-purple-500/30 hover:border-purple-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
-            >
-              <div className="flex items-center justify-between w-full mb-1">
-                <span className="text-[10px] font-bold text-slate-300 group-hover:text-purple-300 transition-colors uppercase">Paradas / Rutas</span>
-                <Bus size={15} className="text-purple-400 group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="flex items-baseline justify-between mt-auto">
-                <span className="text-2xl font-black text-purple-400 group-hover:text-purple-300">
-                  {infraItems.paradas.length}
-                </span>
-                <span className="text-[9px] font-mono text-slate-500 group-hover:text-purple-400/80">Ver detalle &rarr;</span>
-              </div>
-            </button>
-
-            {/* 6. ESTACIONES DE SERVICIO */}
-            <button
-              onClick={() => { setModalCategory('estacionesServicio'); setModalSearch(''); }}
-              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-emerald-950/70 border border-emerald-500/30 hover:border-emerald-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
-            >
-              <div className="flex items-center justify-between w-full mb-1">
-                <span className="text-[10px] font-bold text-slate-300 group-hover:text-emerald-300 transition-colors uppercase">E/S Combustible</span>
-                <Fuel size={15} className="text-emerald-400 group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="flex items-baseline justify-between mt-auto">
-                <span className="text-2xl font-black text-emerald-400 group-hover:text-emerald-300">
-                  {infraItems.estacionesServicio.length}
-                </span>
-                <span className="text-[9px] font-mono text-slate-500 group-hover:text-emerald-400/80">Ver detalle &rarr;</span>
-              </div>
-            </button>
-
-            {/* 7. ANTENAS */}
-            <button
-              onClick={() => { setModalCategory('antenas'); setModalSearch(''); }}
-              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-rose-950/70 border border-rose-500/30 hover:border-rose-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md col-span-2 sm:col-span-1"
-            >
-              <div className="flex items-center justify-between w-full mb-1">
-                <span className="text-[10px] font-bold text-slate-300 group-hover:text-rose-300 transition-colors uppercase">Antenas Telecom</span>
-                <Radio size={15} className="text-rose-400 group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="flex items-baseline justify-between mt-auto">
-                <span className="text-2xl font-black text-rose-400 group-hover:text-rose-300">
-                  {infraItems.antenas.length}
-                </span>
-                <span className="text-[9px] font-mono text-slate-500 group-hover:text-rose-400/80">Ver detalle &rarr;</span>
-              </div>
-            </button>
-
+            <h2 className="text-3xl font-black text-white uppercase tracking-tight italic leading-tight">
+              MUNICIPIO {stats.nombre}
+            </h2>
+            <p className="text-[11px] font-mono text-cyan-400/80 mt-0.5">
+              Estado Nueva Esparta • Centro de Comando y Control Geointeligente
+            </p>
           </div>
-        </div>
 
-        {/* OPERACIONES Y SEGURIDAD */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-white/5 text-center">
-            <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block mb-1">Cuadrantes</span>
-            <p className="text-2xl font-black text-white">{stats.cuadrantes}</p>
-          </div>
-          <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-rose-500/20 text-center">
-            <span className="text-[9px] font-black text-rose-400 uppercase tracking-wider block mb-1">Incidencias</span>
-            <p className="text-2xl font-black text-rose-500">{stats.incidencias}</p>
-          </div>
-          <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-amber-500/20 text-center">
-            <span className="text-[9px] font-black text-amber-400 uppercase tracking-wider block mb-1">Tráfico Droga</span>
-            <p className="text-2xl font-black text-amber-400">{stats.trafico}</p>
-          </div>
-        </div>
-
-        {/* VEHÍCULOS DE RESPUESTA */}
-        <div className="bg-slate-950/90 text-white p-4 rounded-2xl border border-cyan-500/20 shadow-md">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-[9px] font-black text-cyan-400 uppercase tracking-widest mb-1.5">Fuerza Desplegada</p>
-              <div className="flex gap-4">
-                <div>
-                  <span className="text-xl font-black text-white">{stats.fuerza.m}</span>
-                  <span className="text-[9px] font-bold text-slate-400 ml-1 uppercase">Motos</span>
+          {/* CONTENIDO PRINCIPAL SCROLLEABLE */}
+          <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(85vh-140px)] custom-scrollbar">
+            
+            {/* =========================================================================
+                SECCIÓN: INFRAESTRUCTURA ESTRATÉGICA Y SERVICIOS CON CLICK INTERACTIVO
+                ========================================================================= */}
+            <div className="bg-slate-950/80 p-5 rounded-2xl border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.1)] space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Layers size={16} className="text-cyan-400" />
+                  <span className="text-[11px] font-black uppercase tracking-widest text-cyan-300">
+                    Infraestructura Estratégica
+                  </span>
                 </div>
+                <span className="text-[9px] font-bold text-slate-400 bg-white/5 px-2.5 py-0.5 rounded-md border border-white/10">
+                  Toca un cuadro para ver desglose
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 pt-1">
+                
+                {/* 1. ESCUELAS */}
+                <button
+                  onClick={() => { setModalCategory('escuelas'); setModalSearch(''); }}
+                  className="group flex flex-col justify-between p-3 rounded-xl bg-slate-900/90 hover:bg-blue-950/70 border border-blue-500/30 hover:border-blue-400/70 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-blue-500/10 min-h-[95px]"
+                >
+                  <div className="flex items-start justify-between w-full">
+                    <span className="text-[10px] font-black text-slate-300 group-hover:text-blue-300 transition-colors uppercase tracking-tight">Escuelas</span>
+                    <div className="p-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 group-hover:bg-blue-500/20 group-hover:border-blue-400/50 transition-colors">
+                      <Building2 size={14} className="text-blue-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </div>
+                  <div className="flex items-end justify-between w-full mt-2 pt-1.5 border-t border-white/5">
+                    <span className="text-2xl font-black text-blue-400 group-hover:text-blue-300 leading-none">
+                      {infraItems.escuelas.length}
+                    </span>
+                    <span className="text-[9px] font-bold text-slate-400 group-hover:text-blue-300 flex items-center gap-1 transition-all bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover:border-blue-500/40">
+                      Ver detalle <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+                    </span>
+                  </div>
+                </button>
+
+                {/* 2. SUBESTACIONES */}
+                <button
+                  onClick={() => { setModalCategory('subestaciones'); setModalSearch(''); }}
+                  className="group flex flex-col justify-between p-3 rounded-xl bg-slate-900/90 hover:bg-amber-950/70 border border-amber-500/30 hover:border-amber-400/70 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-amber-500/10 min-h-[95px]"
+                >
+                  <div className="flex items-start justify-between w-full">
+                    <span className="text-[10px] font-black text-slate-300 group-hover:text-amber-300 transition-colors uppercase tracking-tight">Subestaciones</span>
+                    <div className="p-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 group-hover:bg-amber-500/20 group-hover:border-amber-400/50 transition-colors">
+                      <Zap size={14} className="text-amber-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </div>
+                  <div className="flex items-end justify-between w-full mt-2 pt-1.5 border-t border-white/5">
+                    <span className="text-2xl font-black text-amber-400 group-hover:text-amber-300 leading-none">
+                      {infraItems.subestaciones.length}
+                    </span>
+                    <span className="text-[9px] font-bold text-slate-400 group-hover:text-amber-300 flex items-center gap-1 transition-all bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover:border-amber-500/40">
+                      Ver detalle <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+                    </span>
+                  </div>
+                </button>
+
+                {/* 3. ESTACIONES DE GAS */}
+                <button
+                  onClick={() => { setModalCategory('gas'); setModalSearch(''); }}
+                  className="group flex flex-col justify-between p-3 rounded-xl bg-slate-900/90 hover:bg-orange-950/70 border border-orange-500/30 hover:border-orange-400/70 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-orange-500/10 min-h-[95px]"
+                >
+                  <div className="flex items-start justify-between w-full">
+                    <span className="text-[10px] font-black text-slate-300 group-hover:text-orange-300 transition-colors uppercase tracking-tight">Est. de Gas</span>
+                    <div className="p-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 group-hover:bg-orange-500/20 group-hover:border-orange-400/50 transition-colors">
+                      <Flame size={14} className="text-orange-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </div>
+                  <div className="flex items-end justify-between w-full mt-2 pt-1.5 border-t border-white/5">
+                    <span className="text-2xl font-black text-orange-400 group-hover:text-orange-300 leading-none">
+                      {infraItems.estacionesGas.length}
+                    </span>
+                    <span className="text-[9px] font-bold text-slate-400 group-hover:text-orange-300 flex items-center gap-1 transition-all bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover:border-orange-500/40">
+                      Ver detalle <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+                    </span>
+                  </div>
+                </button>
+
+                {/* 4. SERVICIOS DE AGUA */}
+                <button
+                  onClick={() => { setModalCategory('agua'); setModalSearch(''); }}
+                  className="group flex flex-col justify-between p-3 rounded-xl bg-slate-900/90 hover:bg-cyan-950/70 border border-cyan-500/30 hover:border-cyan-400/70 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-cyan-500/10 min-h-[95px]"
+                >
+                  <div className="flex items-start justify-between w-full">
+                    <span className="text-[10px] font-black text-slate-300 group-hover:text-cyan-300 transition-colors uppercase tracking-tight">Servicios Agua</span>
+                    <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 group-hover:bg-cyan-500/20 group-hover:border-cyan-400/50 transition-colors">
+                      <Droplets size={14} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </div>
+                  <div className="flex items-end justify-between w-full mt-2 pt-1.5 border-t border-white/5">
+                    <span className="text-2xl font-black text-cyan-400 group-hover:text-cyan-300 leading-none">
+                      {infraItems.serviciosAgua.length}
+                    </span>
+                    <span className="text-[9px] font-bold text-slate-400 group-hover:text-cyan-300 flex items-center gap-1 transition-all bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover:border-cyan-500/40">
+                      Ver detalle <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+                    </span>
+                  </div>
+                </button>
+
+                {/* 5. PARADAS / TRANSPORTE */}
+                <button
+                  onClick={() => { setModalCategory('transporte'); setModalSearch(''); }}
+                  className="group flex flex-col justify-between p-3 rounded-xl bg-slate-900/90 hover:bg-purple-950/70 border border-purple-500/30 hover:border-purple-400/70 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-purple-500/10 min-h-[95px]"
+                >
+                  <div className="flex items-start justify-between w-full">
+                    <span className="text-[10px] font-black text-slate-300 group-hover:text-purple-300 transition-colors uppercase tracking-tight">Paradas / Rutas</span>
+                    <div className="p-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 group-hover:bg-purple-500/20 group-hover:border-purple-400/50 transition-colors">
+                      <Bus size={14} className="text-purple-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </div>
+                  <div className="flex items-end justify-between w-full mt-2 pt-1.5 border-t border-white/5">
+                    <span className="text-2xl font-black text-purple-400 group-hover:text-purple-300 leading-none">
+                      {infraItems.paradas.length}
+                    </span>
+                    <span className="text-[9px] font-bold text-slate-400 group-hover:text-purple-300 flex items-center gap-1 transition-all bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover:border-purple-500/40">
+                      Ver detalle <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+                    </span>
+                  </div>
+                </button>
+
+                {/* 6. ESTACIONES DE SERVICIO */}
+                <button
+                  onClick={() => { setModalCategory('estacionesServicio'); setModalSearch(''); }}
+                  className="group flex flex-col justify-between p-3 rounded-xl bg-slate-900/90 hover:bg-emerald-950/70 border border-emerald-500/30 hover:border-emerald-400/70 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-emerald-500/10 min-h-[95px]"
+                >
+                  <div className="flex items-start justify-between w-full">
+                    <span className="text-[10px] font-black text-slate-300 group-hover:text-emerald-300 transition-colors uppercase tracking-tight">E/S Combustible</span>
+                    <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 group-hover:bg-emerald-500/20 group-hover:border-emerald-400/50 transition-colors">
+                      <Fuel size={14} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </div>
+                  <div className="flex items-end justify-between w-full mt-2 pt-1.5 border-t border-white/5">
+                    <span className="text-2xl font-black text-emerald-400 group-hover:text-emerald-300 leading-none">
+                      {infraItems.estacionesServicio.length}
+                    </span>
+                    <span className="text-[9px] font-bold text-slate-400 group-hover:text-emerald-300 flex items-center gap-1 transition-all bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover:border-emerald-500/40">
+                      Ver detalle <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+                    </span>
+                  </div>
+                </button>
+
+                {/* 7. ANTENAS */}
+                <button
+                  onClick={() => { setModalCategory('antenas'); setModalSearch(''); }}
+                  className="group flex flex-col justify-between p-3 rounded-xl bg-slate-900/90 hover:bg-rose-950/70 border border-rose-500/30 hover:border-rose-400/70 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-rose-500/10 min-h-[95px] col-span-2 sm:col-span-1"
+                >
+                  <div className="flex items-start justify-between w-full">
+                    <span className="text-[10px] font-black text-slate-300 group-hover:text-rose-300 transition-colors uppercase tracking-tight">Antenas Telecom</span>
+                    <div className="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 group-hover:bg-rose-500/20 group-hover:border-rose-400/50 transition-colors">
+                      <Radio size={14} className="text-rose-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </div>
+                  <div className="flex items-end justify-between w-full mt-2 pt-1.5 border-t border-white/5">
+                    <span className="text-2xl font-black text-rose-400 group-hover:text-rose-300 leading-none">
+                      {infraItems.antenas.length}
+                    </span>
+                    <span className="text-[9px] font-bold text-slate-400 group-hover:text-rose-300 flex items-center gap-1 transition-all bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover:border-rose-500/40">
+                      Ver detalle <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+                    </span>
+                  </div>
+                </button>
+
+              </div>
+            </div>
+
+            {/* OPERACIONES Y SEGURIDAD */}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-white/5 text-center">
+                <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block mb-1">Cuadrantes</span>
+                <p className="text-2xl font-black text-white">{stats.cuadrantes}</p>
+              </div>
+              <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-rose-500/20 text-center">
+                <span className="text-[9px] font-black text-rose-400 uppercase tracking-wider block mb-1">Incidencias</span>
+                <p className="text-2xl font-black text-rose-500">{stats.incidencias}</p>
+              </div>
+              <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-amber-500/20 text-center">
+                <span className="text-[9px] font-black text-amber-400 uppercase tracking-wider block mb-1">Tráfico Droga</span>
+                <p className="text-2xl font-black text-amber-400">{stats.trafico}</p>
+              </div>
+            </div>
+
+            {/* VEHÍCULOS DE RESPUESTA */}
+            <div className="bg-slate-950/90 text-white p-4 rounded-2xl border border-cyan-500/20 shadow-md">
+              <div className="flex justify-between items-center">
                 <div>
-                  <span className="text-xl font-black text-white">{stats.fuerza.p}</span>
-                  <span className="text-[9px] font-bold text-slate-400 ml-1 uppercase">Patrullas</span>
+                  <p className="text-[9px] font-black text-cyan-400 uppercase tracking-widest mb-1.5">Fuerza Desplegada</p>
+                  <div className="flex gap-4">
+                    <div>
+                      <span className="text-xl font-black text-white">{stats.fuerza.m}</span>
+                      <span className="text-[9px] font-bold text-slate-400 ml-1 uppercase">Motos</span>
+                    </div>
+                    <div>
+                      <span className="text-xl font-black text-white">{stats.fuerza.p}</span>
+                      <span className="text-[9px] font-bold text-slate-400 ml-1 uppercase">Patrullas</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-2xl font-black text-cyan-300">{stats.fuerza.total}</p>
+                  <p className="text-[8px] font-bold text-slate-400 uppercase leading-none">Unidades Totales</p>
                 </div>
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-2xl font-black text-cyan-300">{stats.fuerza.total}</p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase leading-none">Unidades Totales</p>
-            </div>
-          </div>
-        </div>
 
-        {/* CENSO POBLACIONAL */}
-        <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5">
-          <div className="flex items-center gap-2 mb-3">
-            <Users size={14} className="text-cyan-400" />
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Censo Poblacional</p>
-          </div>
-          <div className="flex justify-around items-center">
-            <div className="text-center">
-              <p className="text-lg font-bold text-blue-400">{stats.pob.h.toLocaleString()}</p>
-              <p className="text-[9px] font-black text-slate-400 uppercase">Hombres</p>
-            </div>
-            <div className="text-center bg-slate-900 px-5 py-2.5 rounded-2xl border border-white/10 shadow-inner">
-              <p className="text-2xl font-black text-white leading-none">{stats.pob.total.toLocaleString()}</p>
-              <p className="text-[8px] font-black text-cyan-400 uppercase mt-1">Población Total</p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-bold text-pink-400">{stats.pob.m.toLocaleString()}</p>
-              <p className="text-[9px] font-black text-slate-400 uppercase">Mujeres</p>
-            </div>
-          </div>
-        </div>
-
-        {/* RED DE SALUD */}
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 px-1">
-            <HeartPulse size={14} className="text-rose-400" />
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Red Asistencial de Salud</p>
-          </div>
-          <div className="grid grid-cols-4 gap-2">
-            {[
-              { label: 'Hospitales', val: stats.salud.hosp, bg: 'bg-rose-500/20 text-rose-400 border-rose-500/30' },
-              { label: 'Clínicas', val: stats.salud.clin, bg: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
-              { label: 'CDI', val: stats.salud.cdi, bg: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' },
-              { label: 'Ambulatorio', val: stats.salud.amb, bg: 'bg-blue-500/20 text-blue-400 border-blue-500/30' }
-            ].map((item, i) => (
-              <div key={i} className={`${item.bg} border p-2.5 rounded-xl text-center shadow-sm`}>
-                <p className="text-xl font-black">{item.val}</p>
-                <p className="text-[8px] font-black uppercase leading-none opacity-80 mt-0.5">{item.label}</p>
+            {/* CENSO POBLACIONAL */}
+            <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5">
+              <div className="flex items-center gap-2 mb-3">
+                <Users size={14} className="text-cyan-400" />
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Censo Poblacional</p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* BASE DE INTELIGENCIA */}
-        <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5">
-          <div className="flex items-center gap-2 mb-3">
-            <ShieldAlert size={14} className="text-amber-400" />
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Registro de Inteligencia</p>
-          </div>
-          <div className="grid grid-cols-3 gap-2 text-center">
-            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
-              <p className="text-xl font-black text-amber-400">{stats.inteligencia.puntos.length}</p>
-              <p className="text-[8px] font-black text-slate-400 uppercase">Puntos Interés</p>
+              <div className="flex justify-around items-center">
+                <div className="text-center">
+                  <p className="text-lg font-bold text-blue-400">{stats.pob.h.toLocaleString()}</p>
+                  <p className="text-[9px] font-black text-slate-400 uppercase">Hombres</p>
+                </div>
+                <div className="text-center bg-slate-900 px-5 py-2.5 rounded-2xl border border-white/10 shadow-inner">
+                  <p className="text-2xl font-black text-white leading-none">{stats.pob.total.toLocaleString()}</p>
+                  <p className="text-[8px] font-black text-cyan-400 uppercase mt-1">Población Total</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-bold text-pink-400">{stats.pob.m.toLocaleString()}</p>
+                  <p className="text-[9px] font-black text-slate-400 uppercase">Mujeres</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
-              <p className="text-xl font-black text-sky-400">{stats.inteligencia.personas.length}</p>
-              <p className="text-[8px] font-black text-slate-400 uppercase">Sujetos</p>
+
+            {/* RED DE SALUD */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 px-1">
+                <HeartPulse size={14} className="text-rose-400" />
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Red Asistencial de Salud</p>
+              </div>
+              <div className="grid grid-cols-4 gap-2">
+                {[
+                  { label: 'Hospitales', val: stats.salud.hosp, bg: 'bg-rose-500/20 text-rose-400 border-rose-500/30' },
+                  { label: 'Clínicas', val: stats.salud.clin, bg: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
+                  { label: 'CDI', val: stats.salud.cdi, bg: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' },
+                  { label: 'Ambulatorio', val: stats.salud.amb, bg: 'bg-blue-500/20 text-blue-400 border-blue-500/30' }
+                ].map((item, i) => (
+                  <div key={i} className={`${item.bg} border p-2.5 rounded-xl text-center shadow-sm`}>
+                    <p className="text-xl font-black">{item.val}</p>
+                    <p className="text-[8px] font-black uppercase leading-none opacity-80 mt-0.5">{item.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
-              <p className="text-xl font-black text-rose-400">{stats.inteligencia.bandas.length}</p>
-              <p className="text-[8px] font-black text-slate-400 uppercase">Grupos Delictivos</p>
+
+            {/* BASE DE INTELIGENCIA */}
+            <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5">
+              <div className="flex items-center gap-2 mb-3">
+                <ShieldAlert size={14} className="text-amber-400" />
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Registro de Inteligencia</p>
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
+                  <p className="text-xl font-black text-amber-400">{stats.inteligencia.puntos.length}</p>
+                  <p className="text-[8px] font-black text-slate-400 uppercase">Puntos Interés</p>
+                </div>
+                <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
+                  <p className="text-xl font-black text-sky-400">{stats.inteligencia.personas.length}</p>
+                  <p className="text-[8px] font-black text-slate-400 uppercase">Sujetos</p>
+                </div>
+                <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
+                  <p className="text-xl font-black text-rose-400">{stats.inteligencia.bandas.length}</p>
+                  <p className="text-[8px] font-black text-slate-400 uppercase">Grupos Delictivos</p>
+                </div>
+              </div>
             </div>
+
           </div>
-        </div>
 
-      </div>
-
-      {/* FOOTER */}
-      <div className="bg-slate-950/90 p-3.5 text-center border-t border-white/10 shrink-0">
-        <p className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">
-          SOGNE • REDIMAIN • SISTEMA DE ORIENTACIÓN GEOINTELIGENTE
-        </p>
-      </div>
+          {/* FOOTER */}
+          <div className="bg-slate-950/90 p-3.5 text-center border-t border-white/10 shrink-0">
+            <p className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">
+              SOGNE • REDIMAIN • SISTEMA DE ORIENTACIÓN GEOINTELIGENTE
+            </p>
+          </div>
+        </>
+      )}
 
       {/* =========================================================================
           MINI-MODAL INTERACTIVO DE DESGLOSE TÁCTICO

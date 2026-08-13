@@ -118,29 +118,28 @@ async function loadKey(key: keyof DataNeeds): Promise<void> {
   try {
     switch (key) {
       case 'cuadrantesGeoData': {
-        const r = await fetch('/cuadrantes.geojson');
-        dataCache.cuadrantesGeoData = r.ok ? await r.json() : null;
+        const r = await fetch('/cuadrantePoligono.geojson');
+        dataCache.cuadrantesGeoData = await r.json();
         break;
       }
       case 'densidadData': {
         const r = await fetch('/densidadpersonas.json');
-        dataCache.densidadData = r.ok ? await r.json() : [];
+        dataCache.densidadData = await r.json();
         break;
       }
       case 'redSaludMaster': {
-        const files = [
-          fetch('/hospitales.geojson').then(r => r.ok ? r.json() : null),
-          fetch('/clinicas.geojson').then(r => r.ok ? r.json() : null),
-          fetch('/ambulatorios.geojson').then(r => r.ok ? r.json() : null),
-          fetch('/cdi.geojson').then(r => r.ok ? r.json() : null),
+        const [h, c, d, a] = await Promise.all([
+          fetch('/hospitales.geojson').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/clinicas.geojson').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/cdi.geojson').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/ambulatorios.geojson').then(r => r.json()).catch(() => ({ features: [] })),
+        ]);
+        dataCache.redSaludMaster = [
+          ...(h.features || []).map((f: any) => ({ ...f, tipo_red: 'Hospital' })),
+          ...(c.features || []).map((f: any) => ({ ...f, tipo_red: 'Clínica' })),
+          ...(d.features || []).map((f: any) => ({ ...f, tipo_red: 'CDI' })),
+          ...(a.features || []).map((f: any) => ({ ...f, tipo_red: 'Ambulatorio' })),
         ];
-        const [hosp, clin, amb, cdi] = await Promise.all(files);
-        const salud: any[] = [];
-        if (hosp?.features) salud.push(...hosp.features.map((f: any) => ({ ...f, tipo: 'hospital' })));
-        if (clin?.features) salud.push(...clin.features.map((f: any) => ({ ...f, tipo: 'clinica' })));
-        if (amb?.features) salud.push(...amb.features.map((f: any) => ({ ...f, tipo: 'ambulatorio' })));
-        if (cdi?.features) salud.push(...cdi.features.map((f: any) => ({ ...f, tipo: 'cdi' })));
-        dataCache.redSaludMaster = salud;
         break;
       }
       case 'incidentesDB': {
@@ -153,26 +152,6 @@ async function loadKey(key: keyof DataNeeds): Promise<void> {
         dataCache.traficoDB = data || [];
         break;
       }
-      case 'zonasDB': {
-        const { data } = await supabase.from('zonas_influencia').select('*');
-        dataCache.zonasDB = data || [];
-        break;
-      }
-      case 'bandasOrganizadasMaster': {
-        const { data } = await supabase.from('grupos_delictivos').select('*');
-        dataCache.bandasOrganizadasMaster = data || [];
-        break;
-      }
-      case 'sujetosDB': {
-        const { data } = await supabase.from('sujetos_incidencia').select('*, personas_interes(*)');
-        dataCache.sujetosDB = data || [];
-        break;
-      }
-      case 'usuariosDB': {
-        const { data } = await supabase.from('usuarios_maestra').select('*');
-        dataCache.usuariosDB = data || [];
-        break;
-      }
       case 'puntosDB': {
         const { data } = await supabase.from('puntos_interes').select('*');
         dataCache.puntosDB = data || [];
@@ -183,21 +162,48 @@ async function loadKey(key: keyof DataNeeds): Promise<void> {
         dataCache.personasDB = data || [];
         break;
       }
+      case 'zonasDB': {
+        const { data } = await supabase.from('zonas_influencia_banda').select('*');
+        dataCache.zonasDB = data || [];
+        break;
+      }
+      case 'bandasOrganizadasMaster': {
+        const { data } = await supabase.from('grupos_delictivos').select('*');
+        dataCache.bandasOrganizadasMaster = data || [];
+        break;
+      }
+      case 'sujetosDB': {
+        const { data } = await supabase.from('personas_interes').select('*');
+        dataCache.sujetosDB = data || [];
+        break;
+      }
+      case 'usuariosDB': {
+        const { data } = await supabase.from('usuarios_maestra').select('*');
+        dataCache.usuariosDB = data || [];
+        break;
+      }
     }
   } catch (e) {
-    console.warn(`Error loading ${key}:`, e);
-    (dataCache as any)[key] = Array.isArray(dataCache[key]) ? [] : null;
+    console.warn(`[AnalysisPanel] Error cargando ${key}:`, e);
   } finally {
     loadingKeys.delete(key);
   }
 }
 
-// ─── Componente principal ─────────────────────────────────────────────────────
+// ─── Componente Principal ─────────────────────────────────────────────────────
 export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOpenDiagrama }: any) => {
-  const [loadedData, setLoadedData] = useState<DataNeeds>({});
+  const [loadedData, setLoadedData] = useState<Partial<DataNeeds>>({});
   const [loadingItems, setLoadingItems] = useState<Set<string>>(new Set());
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // Calcula qué datos necesitan las features actuales
+  // Auto-scroll al inicio cuando cambia o se añade un nuevo panel
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [features]);
+
+  // Determinar qué claves de datos se necesitan para las features actualmente visibles
   const requiredKeys = useMemo(() => {
     const keys = new Set<keyof DataNeeds>();
     features.forEach((f: any) => {
@@ -207,12 +213,10 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
     return Array.from(keys);
   }, [features]);
 
-  // Carga sólo los datos necesarios (con caché)
+  // Cargar sólo lo que falta bajo demanda
   useEffect(() => {
-    if (requiredKeys.length === 0) return;
     const missing = requiredKeys.filter(k => dataCache[k] === undefined);
     if (missing.length === 0) {
-      // Ya están en caché → actualizar estado inmediatamente
       const snap: DataNeeds = {};
       requiredKeys.forEach(k => { (snap as any)[k] = dataCache[k]; });
       setLoadedData(snap);
@@ -261,36 +265,46 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
   if (features.length === 0) return null;
 
   const isLoadingAny = loadingItems.size > 0;
-
   const hasMunicipio = features.some((f: any) => detectType(f) === 'municipio');
 
   return (
     <div className={`fixed bottom-0 left-0 right-0 w-full max-h-[85vh] rounded-t-3xl md:absolute md:top-16 md:bottom-4 md:right-6 ${
-      hasMunicipio ? 'md:w-[32rem] lg:w-[36rem]' : 'md:w-[26rem]'
+      hasMunicipio ? 'md:w-[32rem] lg:w-[37rem]' : 'md:w-[26rem]'
     } md:rounded-[2.5rem] md:left-auto md:max-h-[90vh] shadow-2xl overflow-hidden flex flex-col z-40 transition-all duration-500 border ${
       theme === 'light' ? 'bg-white/95 border-slate-300 light-theme' : 'bg-slate-950/95 border-white/10 backdrop-blur-2xl'
     }`}>
 
-      {/* Header */}
-      <div className="p-5 border-b border-white/5 flex justify-between items-center bg-slate-900/50 shrink-0">
+      {/* Header Táctico */}
+      <div className="p-4 sm:p-5 border-b border-white/5 flex justify-between items-center bg-slate-900/60 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_10px_cyan]" />
-          <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">SOGNE — CONTROL TERRITORIAL</h3>
+          <div className="w-2.5 h-2.5 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_12px_cyan]" />
+          <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">
+            SOGNE — CONTROL TERRITORIAL
+          </h3>
+          {features.length > 1 && (
+            <span className="text-[9px] font-black text-cyan-300 bg-cyan-500/20 border border-cyan-500/40 px-2.5 py-0.5 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+              {features.length} PANELES
+            </span>
+          )}
         </div>
         {isLoadingAny && (
           <div className="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
         )}
       </div>
 
-      {/* Cards */}
-      <div id="analysis-panel-content" className="p-4 space-y-4 overflow-y-auto flex-1 custom-scrollbar">
+      {/* Contenedor de Tarjetas con Scroll Mejorado */}
+      <div 
+        ref={scrollContainerRef}
+        id="analysis-panel-content" 
+        className="p-4 space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth"
+      >
         {features.map((f: any, i: number) => {
           const p = f.properties || {};
           const type = detectType(f);
           const nombreRaw = p.nombre || p.sector || p.name || p.adm2_name || p.NAME || "Elemento";
 
           return (
-            <div key={`${i}-${type}-${nombreRaw}`} className="pdf-capture-card animate-in fade-in slide-in-from-right-4 duration-300">
+            <div key={`${i}-${type}-${nombreRaw}`} className="pdf-capture-card animate-in fade-in slide-in-from-top-4 duration-300">
               {type === 'sistemasElectricos' ? (
                 <ElectricoCard f={f} onRemove={onRemove} onOpenDiagrama={onOpenDiagrama} />
               ) : type === 'estacionesAgua' ? (
@@ -393,18 +407,31 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       </div>
 
       {/* Footer */}
-      <div className="p-5 bg-slate-900/30 border-t border-white/5 shrink-0">
+      <div className="p-4 bg-slate-900/40 border-t border-white/5 shrink-0 flex items-center gap-3">
         <button
           onClick={onClear}
-          className="w-full py-4 bg-rose-500/10 hover:bg-rose-600 text-rose-500 hover:text-white text-[10px] font-black rounded-2xl uppercase tracking-[0.2em] transition-all border border-rose-500/20"
+          className="w-full py-3.5 bg-rose-500/10 hover:bg-rose-600 text-rose-400 hover:text-white text-[10px] font-black rounded-2xl uppercase tracking-[0.2em] transition-all border border-rose-500/20 shadow-md cursor-pointer"
         >
-          Limpiar Análisis Actual
+          Limpiar Todos los Paneles
         </button>
       </div>
 
       <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar { 
+          width: 6px; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-track { 
+          background: rgba(15, 23, 42, 0.5); 
+          border-radius: 9999px; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb { 
+          background: rgba(6, 182, 212, 0.35); 
+          border-radius: 9999px; 
+          border: 1px solid rgba(6, 182, 212, 0.2); 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { 
+          background: rgba(6, 182, 212, 0.7); 
+        }
       `}</style>
     </div>
   );
