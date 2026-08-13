@@ -83,7 +83,11 @@ const gasGeoJSON = {
         empresa: "PDVSA Gas",
         estatus: "Operativa",
         organismo: "CEO - Dirección Conjunta de Protección de Instalaciones Críticas",
-        descripcion: "Estación de Medición y Regulación (EMR) BM-30 para control y suministro del sistema de distribución de gas en el Municipio Mariño."
+        descripcion: "Estación de Medición y Regulación (EMR) BM-30 para control y suministro del sistema de distribución de gas en el Municipio Mariño.",
+        fotos: [
+          "/gas/bm30_1.png",
+          "/gas/bm30_2.png"
+        ]
       }
     },
     {
@@ -112,7 +116,11 @@ const gasGeoJSON = {
         empresa: "PDVSA Gas",
         estatus: "Operativa",
         organismo: "CEO - Dirección Conjunta de Protección de Instalaciones Críticas",
-        descripcion: "Estación de Medición y Regulación (EMR) BM-50 encargada de la regulación de gasoducto hacia las instalaciones y complejo del Sector El Guamache."
+        descripcion: "Estación de Medición y Regulación (EMR) BM-50 encargada de la regulación de gasoducto hacia las instalaciones y complejo del Sector El Guamache.",
+        fotos: [
+          "/gas/bm50_1.png",
+          "/gas/bm50_2.png"
+        ]
       }
     },
     {

@@ -40,7 +40,7 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
     }
   };
 
-  const { mapContainer, map, mapReady } = useMapbox(safeLayersVisible, fetchZonasDeRiesgo, setSelectedFeatures, selectedFeatures, theme);
+  const { mapContainer, map, mapReady, loadingStage } = useMapbox(safeLayersVisible, fetchZonasDeRiesgo, setSelectedFeatures, selectedFeatures, theme);
 
   const exportPDF = () => exportPDFUtil(isExporting, setIsExporting);
   useImperativeHandle(ref, () => ({ exportToPDF: exportPDF }));
@@ -92,8 +92,13 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
 
   return (
     <div id="map-export-container" className="relative w-full h-full overflow-hidden">
-      {/* Animación Táctica de Carga Inicial */}
-      <TacticalMapLoader isLoading={!mapReady} theme={theme} />
+      {/* Animación Táctica de Carga Inicial con Progreso Real en Vivo */}
+      <TacticalMapLoader 
+        isLoading={!mapReady} 
+        theme={theme} 
+        progress={loadingStage?.progress}
+        statusMessage={loadingStage?.message}
+      />
 
       <div ref={mapContainer} className="w-full h-full" />
       

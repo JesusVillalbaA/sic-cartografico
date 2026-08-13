@@ -50,9 +50,13 @@ export const EstacionGasCard = ({ f, onRemove }: any) => {
   if (fotos.length === 0 && p.imagen && p.imagen !== 'N/A') fotos = [p.imagen];
   if (fotos.length === 0 && p.foto_evidencia_url && p.foto_evidencia_url !== 'N/A') fotos = [p.foto_evidencia_url];
 
-  // Fallback garantizado para Estación BM-22
+  // Fallback garantizado para Estaciones de Gas
   if (fotos.length === 0 && (p.id === 'emr_bm22' || String(p.nombre || p.instalacion || '').toUpperCase().includes('BM-22'))) {
     fotos = ['/gas/bm22_1.png', '/gas/bm22_2.png'];
+  } else if (fotos.length === 0 && (p.id === 'emr_bm30' || String(p.nombre || p.instalacion || '').toUpperCase().includes('BM-30'))) {
+    fotos = ['/gas/bm30_1.png', '/gas/bm30_2.png'];
+  } else if (fotos.length === 0 && (p.id === 'emr_bm50' || String(p.nombre || p.instalacion || '').toUpperCase().includes('BM-50'))) {
+    fotos = ['/gas/bm50_1.png', '/gas/bm50_2.png'];
   }
 
   const openLightbox = (index: number = 0) => {

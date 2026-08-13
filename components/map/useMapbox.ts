@@ -35,8 +35,11 @@ export const useMapbox = (
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const mapInitialized = useRef(false);
-  // Usamos un state para que el useEffect de visibilidad se dispare DESPUÉS de que el mapa cargue
   const [mapReady, setMapReady] = useState(false);
+  const [loadingStage, setLoadingStage] = useState<{ progress: number; message: string }>({
+    progress: 20,
+    message: 'Iniciando motor cartográfico vectorial...'
+  });
 
   // ──────────────────────────────────────────────────────────────────────────
   // INICIALIZACIÓN DEL MAPA (solo una vez)
@@ -57,8 +60,13 @@ export const useMapbox = (
       preserveDrawingBuffer: true
     });
 
+    m.on('style.load', () => {
+      setLoadingStage({ progress: 55, message: 'Cargando cartografía satelital y simbología táctica...' });
+    });
+
     m.on('load', async () => {
       map.current = m;
+      setLoadingStage({ progress: 80, message: 'Montando 68 Cuadrantes de Paz y división territorial...' });
 
       // Ocultar capas de salud del basemap
       m.getStyle().layers.forEach(layer => {
@@ -566,6 +574,7 @@ export const useMapbox = (
       });
 
       // ✅ AVISAR que el mapa está listo — esto dispara el useEffect de visibilidad
+      setLoadingStage({ progress: 100, message: '¡Geointeligencia SOGNE lista y operativa!' });
       setMapReady(true);
     });
 
@@ -696,5 +705,5 @@ export const useMapbox = (
     return () => ro.disconnect();
   }, []);
 
-  return { mapContainer, map, mapReady };
+  return { mapContainer, map, mapReady, loadingStage };
 };
