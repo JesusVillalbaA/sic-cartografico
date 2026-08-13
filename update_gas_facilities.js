@@ -149,7 +149,11 @@ const gasGeoJSON = {
         empresa: "PDVSA",
         estatus: "Operativa",
         organismo: "CEO - Dirección Conjunta de Protección de Instalaciones Críticas",
-        descripcion: "Infraestructura estratégica de almacenamiento y distribución masiva de hidrocarburos, combustible líquido y GLP para el Estado Nueva Esparta."
+        descripcion: "Infraestructura estratégica de almacenamiento y distribución masiva de hidrocarburos, combustible líquido y GLP para el Estado Nueva Esparta.",
+        fotos: [
+          "/gas/guamache_1.png",
+          "/gas/guamache_2.png"
+        ]
       }
     },
     {

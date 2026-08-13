@@ -57,6 +57,8 @@ export const EstacionGasCard = ({ f, onRemove }: any) => {
     fotos = ['/gas/bm30_1.png', '/gas/bm30_2.png'];
   } else if (fotos.length === 0 && (p.id === 'emr_bm50' || String(p.nombre || p.instalacion || '').toUpperCase().includes('BM-50'))) {
     fotos = ['/gas/bm50_1.png', '/gas/bm50_2.png'];
+  } else if (fotos.length === 0 && (p.id === 'planta_pdvsa_guamache' || String(p.nombre || p.instalacion || '').toUpperCase().includes('GUAMACHE'))) {
+    fotos = ['/gas/guamache_1.png', '/gas/guamache_2.png'];
   }
 
   const openLightbox = (index: number = 0) => {
