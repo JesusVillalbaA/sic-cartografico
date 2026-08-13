@@ -503,7 +503,20 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                 </span>
               </div>
 
-              {/* GRID DE 7 TARJETAS DE INFRAESTRUCTURA */}
+              {/* GRID DE 7 TARJETAS DE INFRAESTRUCTURA O MENSAJE DE CARGA */}
+              {isLoadingInfra ? (
+                <div className="py-8 px-4 flex flex-col items-center justify-center gap-3 bg-slate-900/60 rounded-2xl border border-cyan-500/20 text-center animate-in fade-in duration-300">
+                  <div className="w-7 h-7 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] font-mono text-cyan-300 font-bold uppercase tracking-wider block">
+                      Sincronizando Capas de Infraestructura...
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400 block">
+                      Consultando escuelas, subestaciones, gas, agua, transporte y antenas de {stats.nombre}...
+                    </span>
+                  </div>
+                </div>
+              ) : (
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 pt-1">
                 
                 {/* 1. ESCUELAS */}
@@ -696,6 +709,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                 </button>
 
               </div>
+              )}
             </div>
 
             {/* OPERACIONES Y SEGURIDAD (CON CLICK INTERACTIVO A CUADRANTES) */}

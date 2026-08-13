@@ -50,7 +50,11 @@ const gasGeoJSON = {
         empresa: "PDVSA Gas",
         estatus: "Operativa",
         organismo: "CEO - Dirección Conjunta de Protección de Instalaciones Críticas",
-        descripcion: "Estación de Medición y Regulación (EMR) BM-22 para control, medición de flujo y regulación de presión de la red de gasoducto en la Isla de Coche."
+        descripcion: "Estación de Medición y Regulación (EMR) BM-22 para control, medición de flujo y regulación de presión de la red de gasoducto en la Isla de Coche.",
+        fotos: [
+          "/gas/bm22_1.png",
+          "/gas/bm22_2.png"
+        ]
       }
     },
     {

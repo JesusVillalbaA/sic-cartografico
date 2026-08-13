@@ -9,10 +9,22 @@ const MapaCentral = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full flex items-center justify-center bg-slate-950 text-cyan-400 font-mono text-xs">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
-          <span className="tracking-widest uppercase text-slate-400">INICIALIZANDO MOTOR CARTOGRÁFICO SOGNE...</span>
+      <div className="w-full h-full flex items-center justify-center bg-[#030712] text-cyan-400 font-mono text-xs">
+        <div className="flex flex-col items-center gap-4 text-center px-4">
+          <div className="w-14 h-14 rounded-full border-2 border-cyan-500/30 flex items-center justify-center relative overflow-hidden shadow-[0_0_25px_rgba(6,182,212,0.3)]">
+            <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(6,182,212,0.6)_360deg)] animate-spin" />
+            <div className="w-10 h-10 rounded-full bg-slate-950 flex items-center justify-center z-10">
+              <img src="/Municipios.png" alt="SOGNE" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_cyan]" />
+            </div>
+          </div>
+          <div className="space-y-1">
+            <span className="text-xs font-black tracking-[0.25em] uppercase text-cyan-300 block">
+              SISTEMA SOGNE • REDIMAIN
+            </span>
+            <span className="text-[10px] text-slate-400 font-mono block animate-pulse">
+              Iniciando motor de Geointeligencia... Por favor espere...
+            </span>
+          </div>
         </div>
       </div>
     ),

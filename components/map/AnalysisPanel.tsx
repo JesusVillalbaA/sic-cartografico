@@ -375,6 +375,25 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
         id="analysis-panel-content" 
         className="p-4 sm:p-5 space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth"
       >
+        {/* Banner Táctico Informativo durante Cargas */}
+        {isLoadingAny && (
+          <div className="p-3.5 bg-cyan-950/40 border border-cyan-500/30 rounded-2xl flex items-center justify-between shadow-[0_0_20px_rgba(6,182,212,0.15)] animate-in fade-in duration-300">
+            <div className="flex items-center gap-2.5">
+              <div className="w-4 h-4 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin shrink-0" />
+              <div>
+                <span className="text-[10px] font-mono text-cyan-300 font-bold uppercase tracking-wider block leading-none">
+                  Sincronizando Inteligencia Territorial
+                </span>
+                <span className="text-[9px] font-mono text-slate-400">
+                  Por favor espere mientras se cargan los registros...
+                </span>
+              </div>
+            </div>
+            <span className="text-[8px] font-black uppercase text-cyan-400 bg-cyan-500/20 px-2 py-0.5 rounded-full border border-cyan-500/40 animate-pulse">
+              En Vivo
+            </span>
+          </div>
+        )}
         {features.map((f: any, i: number) => {
           const p = f.properties || {};
           const type = detectType(f);

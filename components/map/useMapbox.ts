@@ -696,5 +696,5 @@ export const useMapbox = (
     return () => ro.disconnect();
   }, []);
 
-  return { mapContainer, map };
+  return { mapContainer, map, mapReady };
 };

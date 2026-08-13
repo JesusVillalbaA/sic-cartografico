@@ -8,6 +8,7 @@ import { BuscadorGlobal } from './BuscadorGlobal';
 import { ModalDiagramaElectrico } from './ModalDiagramaElectrico';
 import { TacticalToolbar } from './TacticalToolbar';
 import { ZoomControls } from './ZoomControls';
+import { TacticalMapLoader } from './TacticalMapLoader';
 import { exportPDF as exportPDFUtil, toggleState, clearAndReset } from './mapUtils';
 import { supabase } from './supabaseClient';
 
@@ -39,7 +40,7 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
     }
   };
 
-  const { mapContainer, map } = useMapbox(safeLayersVisible, fetchZonasDeRiesgo, setSelectedFeatures, selectedFeatures, theme);
+  const { mapContainer, map, mapReady } = useMapbox(safeLayersVisible, fetchZonasDeRiesgo, setSelectedFeatures, selectedFeatures, theme);
 
   const exportPDF = () => exportPDFUtil(isExporting, setIsExporting);
   useImperativeHandle(ref, () => ({ exportToPDF: exportPDF }));
@@ -91,6 +92,9 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
 
   return (
     <div id="map-export-container" className="relative w-full h-full overflow-hidden">
+      {/* Animación Táctica de Carga Inicial */}
+      <TacticalMapLoader isLoading={!mapReady} theme={theme} />
+
       <div ref={mapContainer} className="w-full h-full" />
       
       {/* Opción flotante pequeña al tocar/activar electricidad */}
