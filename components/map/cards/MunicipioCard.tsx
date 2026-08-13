@@ -1,5 +1,6 @@
 "use client";
 import React, { useMemo, useState, useEffect } from 'react';
+import * as turf from '@turf/turf';
 import { 
   Building2, 
   Zap, 
@@ -10,16 +11,15 @@ import {
   Radio, 
   X, 
   Search, 
-  ExternalLink, 
   Layers, 
   Users, 
   ShieldAlert, 
-  HeartPulse, 
-  Navigation 
+  HeartPulse 
 } from 'lucide-react';
 
 interface MunicipioCardProps {
   nombre: string;
+  feature?: any;
   cuadrantesMaster?: any[];
   densidadMaster?: any[];
   redSaludMaster?: any[];
@@ -33,8 +33,25 @@ interface MunicipioCardProps {
   onClose?: () => void;
 }
 
+// Diccionario de localidades y palabras clave por municipio en Nueva Esparta
+const LOCALIDADES_NE: Record<string, string[]> = {
+  'ARISMENDI': ['ASUNCION', 'SALAMANCA', 'GUAYATAMO', 'CAMORUCO', 'SIERRA', 'ATAMO', 'MATASIETE', 'FORTIN', 'CATALAN', 'PORTACHUELO'],
+  'MARINO': ['PORLAMAR', 'BELLA VISTA', 'CONUCO', 'GENOVES', 'LLANO', 'COSTA AZUL', 'LOS COCOS', 'PALGUERITO', 'ACHIPANO', 'CAMPANERO', 'SANTIAGO MARINO'],
+  'MANEIRO': ['PAMPATAR', 'ROBLES', 'AGUIRRE', 'PLAYA EL ANGEL', 'JORGE COLL', 'CARANTA', 'APOLINAR', 'MORENO'],
+  'GARCIA': ['VALLE', 'SAN ANTONIO', 'VILLA ROSA', 'CONEJEROS', 'PIEDRAS NEGRAS', 'ISNOBIL', 'PEDRO LUIS', 'ESPIRITU SANTO'],
+  'GOMEZ': ['SANTA ANA', 'ALTAGRACIA', 'TACARIGUA', 'GUAYACAN', 'PEDREGALES', 'VECINDAD', 'EL MACAPO'],
+  'DIAZ': ['SAN JUAN', 'ESPINAL', 'BARRANCAS', 'ZAPATO', 'DATIL', 'COTUPIZA', 'AEROPUERTO', 'BOQUERON', 'LAS BARRANCAS'],
+  'MARCANO': ['JUAN GRIEGO', 'MILLANES', 'PEDREGALES', 'TETILLAS', 'LONJA', 'LOS MILLANES', 'TAGUANTAR'],
+  'TUBORES': ['PUNTA DE PIEDRAS', 'GUAMACHE', 'BARALES', 'CHACACHACARE', 'GUAYACANCITO', 'ISLA DE CUBAGUA', 'LAS CUATAS', 'EL GUAMACHE'],
+  'ANTOLIN DEL CAMPO': ['PARAGUACHI', 'TIRANO', 'MANZANILLO', 'PLAYA EL AGUA', 'CARDON', 'PATO', 'GUARAME', 'LA PLAZA', 'EL SALADO', 'ANTOLIN'],
+  'PENINSULA DE MACANAO': ['BOCA DE RIO', 'BOCA DE POZO', 'SAN FRANCISCO', 'ROBLEDO', 'MANGLILLO', 'GUAYACANCITO', 'MACANAO', 'EL TUNAL'],
+  'MACANAO': ['BOCA DE RIO', 'BOCA DE POZO', 'SAN FRANCISCO', 'ROBLEDO', 'MANGLILLO', 'GUAYACANCITO', 'MACANAO', 'EL TUNAL'],
+  'VILLALBA': ['COCHE', 'SAN PEDRO', 'GUINCHO', 'EL BICHAR', 'ZULICA', 'AMOR', 'ISLA DE COCHE']
+};
+
 export const MunicipioCard: React.FC<MunicipioCardProps> = ({ 
   nombre, 
+  feature,
   cuadrantesMaster = [], 
   densidadMaster = [], 
   redSaludMaster = [], 
@@ -74,11 +91,18 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
     "MARCANO": { m: 12, p: 2 },
     "GARCIA": { m: 12, p: 2 },
     "MARINO": { m: 26, p: 3 },
-    "MACANAO": { m: 10, p: 2 }
+    "MACANAO": { m: 10, p: 2 },
+    "PENINSULA DE MACANAO": { m: 10, p: 2 }
   };
 
   const nomNorm = useMemo(() => {
-    return (nombre || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    return (nombre || "")
+      .toUpperCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/MP\./g, "")
+      .replace(/MUNICIPIO/g, "")
+      .trim();
   }, [nombre]);
 
   // Carga de todas las capas de infraestructura desde la API en memoria
@@ -126,62 +150,96 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
     return () => { isMounted = false; };
   }, []);
 
-  // Función de coincidencia flexible de texto con el municipio
-  const matchesMun = (val?: string) => {
-    if (!val) return false;
-    const clean = val.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/MP\./g, "").replace(/MUNICIPIO/g, "").trim();
-    return clean.includes(nomNorm) || nomNorm.includes(clean);
+  // Función híbrida de comprobación (Polígono Espacial + Atributos y Localidades)
+  const isInsideMunicipality = (item: any): boolean => {
+    if (!item) return false;
+
+    // 1. Coincidencia espacial mediante Turf (Punto dentro del Polígono del Municipio)
+    if (feature?.geometry && (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon') && item.geometry?.coordinates) {
+      try {
+        if (item.geometry.type === 'Point') {
+          const isInside = turf.booleanPointInPolygon(item, feature);
+          if (isInside) return true;
+        }
+      } catch (e) {
+        // Fallback to text matching
+      }
+    }
+
+    // 2. Coincidencia por texto en las propiedades del elemento
+    const p = item.properties || {};
+    const textValues = [
+      p.municipio,
+      p.MUNICIPIO,
+      p.CityName,
+      p.address,
+      p.ubicacion,
+      p.sector,
+      p.parroquia,
+      p.PARROQUIA,
+      p.DESCRIPCION,
+      p.NAME,
+      p.nombre,
+      p.name,
+      p.adm2_name
+    ].filter(Boolean).map(v => String(v).toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/MP\./g, "").trim());
+
+    // Coincidencia directa del nombre del municipio
+    const directMatch = textValues.some(t => t.includes(nomNorm) || nomNorm.includes(t));
+    if (directMatch) return true;
+
+    // Coincidencia con palabras clave de localidades del municipio
+    const keywords = LOCALIDADES_NE[nomNorm] || [];
+    const keywordMatch = textValues.some(t => keywords.some(k => t.includes(k)));
+    if (keywordMatch) return true;
+
+    return false;
   };
 
   // Filtrado y agregación de infraestructura para este municipio
   const infraItems = useMemo(() => {
-    const escuelas = escuelasData.filter(f => matchesMun(f.properties?.municipio || f.properties?.MUNICIPIO || f.properties?.address));
-    const subestaciones = electricosData.filter(f => matchesMun(f.properties?.MUNICIPIO || f.properties?.municipio || f.properties?.DESCRIPCION));
-    const estacionesGas = gasData.filter(f => matchesMun(f.properties?.municipio || f.properties?.MUNICIPIO || f.properties?.sector));
-    const serviciosAgua = aguaData.filter(f => matchesMun(f.properties?.municipio || f.properties?.MUNICIPIO || f.properties?.address || f.properties?.NAME));
-    const paradas = transporteData.filter(f => matchesMun(f.properties?.municipio || f.properties?.ubicacion || f.properties?.descripcion));
-    const estacionesServicio = estacionesData.filter(f => matchesMun(f.properties?.CityName || f.properties?.municipio || f.properties?.NAME));
-    const antenas = antenasData.filter(f => matchesMun(f.properties?.MUNICIPIO || f.properties?.municipio || f.properties?.PARROQUIA || f.properties?.LOCALIDAD));
-
     return {
-      escuelas,
-      subestaciones,
-      estacionesGas,
-      serviciosAgua,
-      paradas,
-      estacionesServicio,
-      antenas
+      escuelas: escuelasData.filter(isInsideMunicipality),
+      subestaciones: electricosData.filter(isInsideMunicipality),
+      estacionesGas: gasData.filter(isInsideMunicipality),
+      serviciosAgua: aguaData.filter(isInsideMunicipality),
+      paradas: transporteData.filter(isInsideMunicipality),
+      estacionesServicio: estacionesData.filter(isInsideMunicipality),
+      antenas: antenasData.filter(isInsideMunicipality)
     };
-  }, [nomNorm, escuelasData, electricosData, gasData, aguaData, transporteData, estacionesData, antenasData]);
+  }, [nomNorm, feature, escuelasData, electricosData, gasData, aguaData, transporteData, estacionesData, antenasData]);
 
   const stats = useMemo(() => {
     // Cuadrantes
-    const misCuadrantes = cuadrantesMaster.filter((c: any) => 
-      matchesMun(c.properties?.municipio || c.properties?.MUNICIPIO)
-    );
+    const misCuadrantes = cuadrantesMaster.filter(isInsideMunicipality);
 
     // Vehículos
     const vehiculos = fuerzaDesplegada[nomNorm] || { m: 0, p: 0 };
 
     // Población
-    const rawPob = densidadMaster?.find((d: any) => 
-      matchesMun(d.municipio)
-    ) || {};
+    const rawPob = densidadMaster?.find((d: any) => {
+      const mName = (d.municipio || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+      return mName.includes(nomNorm) || nomNorm.includes(mName);
+    }) || {};
     const h = Number(rawPob.hombres) || 0;
     const m = Number(rawPob.women || rawPob.mujeres) || 0;
 
     // Salud
-    const saludMun = redSaludMaster.filter((f: any) => 
-      matchesMun(f.properties?.municipio || f.properties?.adm2_name || f.properties?.municipality)
-    );
+    const saludMun = redSaludMaster.filter(isInsideMunicipality);
 
     // Incidencias
-    const keyInc = Object.keys(incidentesDB).find(k => matchesMun(k));
-    const keyTraf = Object.keys(traficoDB).find(k => matchesMun(k));
+    const keyInc = Object.keys(incidentesDB).find(k => {
+      const clean = k.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+      return clean.includes(nomNorm) || nomNorm.includes(clean);
+    });
+    const keyTraf = Object.keys(traficoDB).find(k => {
+      const clean = k.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+      return clean.includes(nomNorm) || nomNorm.includes(clean);
+    });
 
     // Puntos de Interés
-    const puntosLocales = puntosDB.filter((pt: any) => matchesMun(pt.municipio));
-    const personasLocales = personasDB.filter((pe: any) => matchesMun(pe.municipio));
+    const puntosLocales = puntosDB.filter((pt: any) => isInsideMunicipality(pt));
+    const personasLocales = personasDB.filter((pe: any) => isInsideMunicipality(pe));
 
     // Bandas
     const normalizedSectores = sectoresAPI.map((s: string) => s.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim());
@@ -201,10 +259,10 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       pob: { h, m, total: h + m },
       fuerza: { m: vehiculos.m, p: vehiculos.p, total: vehiculos.m + vehiculos.p },
       salud: {
-        hosp: saludMun.filter((f: any) => (f.tipo === 'hospital' || f.tipo_red === 'Hospital')).length,
-        clin: saludMun.filter((f: any) => (f.tipo === 'clinica' || f.tipo_red === 'Clínica')).length,
-        cdi: saludMun.filter((f: any) => (f.tipo === 'cdi' || f.tipo_red === 'CDI')).length,
-        amb: saludMun.filter((f: any) => (f.tipo === 'ambulatorio' || f.tipo_red === 'Ambulatorio')).length,
+        hosp: saludMun.filter((f: any) => (f.tipo === 'hospital' || f.tipo_red === 'Hospital' || (f.properties?.tipo || '').toLowerCase().includes('hosp'))).length,
+        clin: saludMun.filter((f: any) => (f.tipo === 'clinica' || f.tipo_red === 'Clínica' || (f.properties?.tipo || '').toLowerCase().includes('clin'))).length,
+        cdi: saludMun.filter((f: any) => (f.tipo === 'cdi' || f.tipo_red === 'CDI' || (f.properties?.tipo || '').toLowerCase().includes('cdi'))).length,
+        amb: saludMun.filter((f: any) => (f.tipo === 'ambulatorio' || f.tipo_red === 'Ambulatorio' || (f.properties?.tipo || '').toLowerCase().includes('amb'))).length,
       },
       inteligencia: {
         puntos: puntosLocales,
@@ -212,7 +270,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
         bandas: bandasLocales
       }
     };
-  }, [nomNorm, cuadrantesMaster, densidadMaster, redSaludMaster, incidentesDB, traficoDB, puntosDB, personasDB, bandasDB, bandasOrganizadas, sectoresAPI, nombre]);
+  }, [nomNorm, feature, cuadrantesMaster, densidadMaster, redSaludMaster, incidentesDB, traficoDB, puntosDB, personasDB, bandasDB, bandasOrganizadas, sectoresAPI, nombre]);
 
   // Lista activa para el modal según la categoría clickeada
   const activeModalData = useMemo(() => {
@@ -320,7 +378,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(85vh-140px)] custom-scrollbar">
         
         {/* =========================================================================
-            NUEVA SECCIÓN: INFRAESTRUCTURA ESTRATÉGICA Y SERVICIOS CON CLICK INTERACTIVO
+            SECCIÓN: INFRAESTRUCTURA ESTRATÉGICA Y SERVICIOS CON CLICK INTERACTIVO
             ========================================================================= */}
         <div className="bg-slate-950/80 p-5 rounded-2xl border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.1)] space-y-3">
           <div className="flex items-center justify-between">

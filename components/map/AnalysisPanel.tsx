@@ -311,6 +311,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
                 />
               ) : type === 'municipio' ? (
                 <MunicipioCard
+                  feature={f}
                   nombre={nombreRaw}
                   cuadrantesMaster={loadedData.cuadrantesGeoData?.features || []}
                   densidadMaster={loadedData.densidadData || []}
