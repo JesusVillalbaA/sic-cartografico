@@ -36,17 +36,17 @@ interface MunicipioCardProps {
 // Diccionario de localidades y palabras clave por municipio en Nueva Esparta
 const LOCALIDADES_NE: Record<string, string[]> = {
   'ARISMENDI': ['ASUNCION', 'SALAMANCA', 'GUAYATAMO', 'CAMORUCO', 'SIERRA', 'ATAMO', 'MATASIETE', 'FORTIN', 'CATALAN', 'PORTACHUELO'],
-  'MARINO': ['PORLAMAR', 'BELLA VISTA', 'CONUCO', 'GENOVES', 'LLANO', 'COSTA AZUL', 'LOS COCOS', 'PALGUERITO', 'ACHIPANO', 'CAMPANERO', 'SANTIAGO MARINO'],
+  'MARINO': ['PORLAMAR', 'BELLA VISTA', 'CONUCO', 'GENOVES', 'LLANO', 'COSTA AZUL', 'LOS COCOS', 'PALGUERITO', 'ACHIPANO', 'CAMPANERO', 'SANTIAGO MARINO', 'MACHO MUERTO', 'ISLETA', 'LUISA CACERES'],
   'MANEIRO': ['PAMPATAR', 'ROBLES', 'AGUIRRE', 'PLAYA EL ANGEL', 'JORGE COLL', 'CARANTA', 'APOLINAR', 'MORENO'],
   'GARCIA': ['VALLE', 'SAN ANTONIO', 'VILLA ROSA', 'CONEJEROS', 'PIEDRAS NEGRAS', 'ISNOBIL', 'PEDRO LUIS', 'ESPIRITU SANTO'],
   'GOMEZ': ['SANTA ANA', 'ALTAGRACIA', 'TACARIGUA', 'GUAYACAN', 'PEDREGALES', 'VECINDAD', 'EL MACAPO'],
-  'DIAZ': ['SAN JUAN', 'ESPINAL', 'BARRANCAS', 'ZAPATO', 'DATIL', 'COTUPIZA', 'AEROPUERTO', 'BOQUERON', 'LAS BARRANCAS'],
+  'DIAZ': ['SAN JUAN', 'ESPINAL', 'BARRANCAS', 'ZAPATO', 'DATIL', 'COTUPIZA', 'AEROPUERTO', 'BOQUERON', 'LAS BARRANCAS', 'SAN JUAN BAUTISTA', 'ENCRUCIJADA'],
   'MARCANO': ['JUAN GRIEGO', 'MILLANES', 'PEDREGALES', 'TETILLAS', 'LONJA', 'LOS MILLANES', 'TAGUANTAR'],
-  'TUBORES': ['PUNTA DE PIEDRAS', 'GUAMACHE', 'BARALES', 'CHACACHACARE', 'GUAYACANCITO', 'ISLA DE CUBAGUA', 'LAS CUATAS', 'EL GUAMACHE'],
+  'TUBORES': ['PUNTA DE PIEDRAS', 'GUAMACHE', 'BARALES', 'LOS BARALES', 'CHACACHACARE', 'GUAYACANCITO', 'ISLA DE CUBAGUA', 'LAS CUATAS', 'EL GUAMACHE'],
   'ANTOLIN DEL CAMPO': ['PARAGUACHI', 'TIRANO', 'MANZANILLO', 'PLAYA EL AGUA', 'CARDON', 'PATO', 'GUARAME', 'LA PLAZA', 'EL SALADO', 'ANTOLIN'],
-  'PENINSULA DE MACANAO': ['BOCA DE RIO', 'BOCA DE POZO', 'SAN FRANCISCO', 'ROBLEDO', 'MANGLILLO', 'GUAYACANCITO', 'MACANAO', 'EL TUNAL'],
-  'MACANAO': ['BOCA DE RIO', 'BOCA DE POZO', 'SAN FRANCISCO', 'ROBLEDO', 'MANGLILLO', 'GUAYACANCITO', 'MACANAO', 'EL TUNAL'],
-  'VILLALBA': ['COCHE', 'SAN PEDRO', 'GUINCHO', 'EL BICHAR', 'ZULICA', 'AMOR', 'ISLA DE COCHE']
+  'PENINSULA DE MACANAO': ['BOCA DE RIO', 'BOCA DEL RIO', 'BOCA DE POZO', 'SAN FRANCISCO', 'ROBLEDO', 'MANGLILLO', 'GUAYACANCITO', 'MACANAO', 'EL TUNAL', 'LA YEGUA', 'INDIO MACANAO'],
+  'MACANAO': ['BOCA DE RIO', 'BOCA DEL RIO', 'BOCA DE POZO', 'SAN FRANCISCO', 'ROBLEDO', 'MANGLILLO', 'GUAYACANCITO', 'MACANAO', 'EL TUNAL', 'LA YEGUA', 'INDIO MACANAO'],
+  'VILLALBA': ['COCHE', 'SAN PEDRO', 'GUINCHO', 'EL BICHAR', 'ZULICA', 'AMOR', 'ISLA DE COCHE', 'SAN PEDRO DE COCHE', 'BM-22']
 };
 
 export const MunicipioCard: React.FC<MunicipioCardProps> = ({ 
@@ -119,7 +119,9 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           aguaRes,
           transporteRes,
           estacionesRes,
-          antenasRes
+          movilnetRes,
+          movistarRes,
+          digitelRes
         ] = await Promise.all([
           fetch('/api/map/capas?nombre=escuelas').then(r => r.json()).catch(() => ({ features: [] })),
           fetch('/api/map/capas?nombre=SISTEMAELECTRICONE').then(r => r.json()).catch(() => ({ features: [] })),
@@ -127,7 +129,9 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           fetch('/api/map/capas?nombre=estacionagua').then(r => r.json()).catch(() => ({ features: [] })),
           fetch('/api/map/capas?nombre=transporte').then(r => r.json()).catch(() => ({ features: [] })),
           fetch('/api/map/capas?nombre=estacionservicio').then(r => r.json()).catch(() => ({ features: [] })),
-          fetch('/api/map/capas?nombre=ANTENAS').then(r => r.json()).catch(() => ({ features: [] }))
+          fetch('/api/map/capas?nombre=movilnet').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/api/map/capas?nombre=movistar').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/api/map/capas?nombre=digitel').then(r => r.json()).catch(() => ({ features: [] }))
         ]);
 
         if (isMounted) {
@@ -137,7 +141,21 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           setAguaData(aguaRes.features || []);
           setTransporteData(transporteRes.features || []);
           setEstacionesData(estacionesRes.features || []);
-          setAntenasData(antenasRes.features || []);
+
+          const movilnetFeats = (movilnetRes.features || []).map((f: any) => ({
+            ...f,
+            properties: { ...(f.properties || {}), operadora: 'MOVILNET', operator: 'Movilnet' }
+          }));
+          const movistarFeats = (movistarRes.features || []).map((f: any) => ({
+            ...f,
+            properties: { ...(f.properties || {}), operadora: 'MOVISTAR', operator: 'Movistar' }
+          }));
+          const digitelFeats = (digitelRes.features || []).map((f: any) => ({
+            ...f,
+            properties: { ...(f.properties || {}), operadora: 'DIGITEL', operator: 'Digitel' }
+          }));
+
+          setAntenasData([...movilnetFeats, ...movistarFeats, ...digitelFeats]);
           setIsLoadingInfra(false);
         }
       } catch (e) {
@@ -744,6 +762,13 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                       <div className="flex items-center gap-1.5 text-[9px] font-mono text-slate-400 mt-0.5">
                         <span className="text-slate-500">Info:</span>
                         <span className="text-slate-300 font-semibold">{itemExtra}</span>
+                      </div>
+                    )}
+
+                    {p.responsable && (
+                      <div className="flex items-center gap-1.5 text-[9px] font-mono mt-0.5">
+                        <span className="text-orange-400/80 font-bold">Resp:</span>
+                        <span className="text-orange-300 font-bold">{p.responsable} {p.telefono ? `(${p.telefono})` : ''}</span>
                       </div>
                     )}
 

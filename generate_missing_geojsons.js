@@ -78,39 +78,9 @@ const escuelasFC = {
 fs.writeFileSync(path.join(publicDir, 'escuelas.geojson'), JSON.stringify(escuelasFC, null, 2));
 console.log('Created escuelas.geojson');
 
-// 4. ESTACIONES DE GAS (create estaciongasNE.geojson)
-const gasFC = {
-    type: "FeatureCollection",
-    features: [
-        {
-            type: "Feature",
-            geometry: { type: "Point", coordinates: [-63.8420, 10.9960] },
-            properties: { id: "gas_1", nombre: "Planta de Llenado PDVSA Gas Comunal San Lorenzo", empresa: "PDVSA Gas Comunal", municipio: "Maneiro", estatus: "Operativo", tipo: "Llenadero de GLP" }
-        },
-        {
-            type: "Feature",
-            geometry: { type: "Point", coordinates: [-64.0330, 10.8780] },
-            properties: { id: "gas_2", nombre: "Planta de Gas PDVSA El Guamache", empresa: "PDVSA Gas", municipio: "Tubores", estatus: "Operativo", tipo: "Planta Fraccionamiento / Almacenamiento" }
-        },
-        {
-            type: "Feature",
-            geometry: { type: "Point", coordinates: [-63.8690, 10.9610] },
-            properties: { id: "gas_3", nombre: "Centro de Acopio Gas Comunal Porlamar (Conejeros)", empresa: "Gas Comunal", municipio: "Mariño", estatus: "Operativo", tipo: "Centro de Distribución" }
-        },
-        {
-            type: "Feature",
-            geometry: { type: "Point", coordinates: [-63.9510, 11.0630] },
-            properties: { id: "gas_4", nombre: "Llenadero de Gas Los Millanes", empresa: "Gas Lara / Comunal", municipio: "Marcano", estatus: "Operativo", tipo: "Llenadero GLP" }
-        },
-        {
-            type: "Feature",
-            geometry: { type: "Point", coordinates: [-63.8560, 11.0380] },
-            properties: { id: "gas_5", nombre: "Estación de Gas Comunal La Asunción", empresa: "PDVSA Gas Comunal", municipio: "Arismendi", estatus: "Operativo", tipo: "Distribución" }
-        }
-    ]
-};
-fs.writeFileSync(path.join(publicDir, 'estaciongasNE.geojson'), JSON.stringify(gasFC, null, 2));
-console.log('Created estaciongasNE.geojson');
+// 4. ESTACIONES DE GAS E HIDROCARBUROS (create estaciongasNE.geojson)
+const gasFC = JSON.parse(fs.readFileSync(path.join(publicDir, 'estaciongasNE.geojson'), 'utf8'));
+console.log('Verified estaciongasNE.geojson (' + gasFC.features.length + ' features)');
 
 // 5. SERVICIO DE AGUA (create estacionagua.geojson)
 const aguaFC = {
