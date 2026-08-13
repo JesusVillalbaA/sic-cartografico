@@ -698,18 +698,42 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                 const itemUbicacion = p.sector || p.address || p.ubicacion || p.CityName || p.PARROQUIA || p.DESCRIPCION || p.parroquia || (p.NAME ? p.NAME.replace(/ANTENA\s+/i, '') : 'Nueva Esparta');
                 const itemExtra = p.OPERADOR || p.empresa || p.institution || p.circuito || p.CUSTODIA || p.status || p.estatus || p.OPERADORA || p.region_tipo || p.sym || p.LAYER;
 
+                // Detección de Operadora para Antenas
+                let opBadge = null;
+                if (modalCategory === 'antenas') {
+                  const rawOp = (p.operadora || p.operator || p.OPERADORA || p.gpxx_Categ || p.NAME || '').toUpperCase();
+                  if (rawOp.includes('DIGITEL')) {
+                    opBadge = { name: 'Digitel', color: 'text-purple-400 border-purple-500/30 bg-purple-500/10', icon: '/digitel.png' };
+                  } else if (rawOp.includes('MOVISTAR')) {
+                    opBadge = { name: 'Movistar', color: 'text-sky-400 border-sky-500/30 bg-sky-500/10', icon: '/movistar.png' };
+                  } else {
+                    opBadge = { name: 'Movilnet', color: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10', icon: '/movilnet.png' };
+                  }
+                }
+
                 return (
                   <div
                     key={idx}
                     className="p-3 bg-slate-900/80 hover:bg-slate-850 rounded-xl border border-white/10 hover:border-cyan-500/40 transition-all shadow-sm flex flex-col gap-1.5"
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <h5 className="text-xs font-bold text-white uppercase tracking-tight leading-snug">
-                        {itemNombre}
-                      </h5>
-                      <span className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-cyan-300 shrink-0">
-                        {itemTipo}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        {opBadge && (
+                          <img src={opBadge.icon} alt={opBadge.name} className="w-4 h-4 object-contain rounded-full bg-white/10 shrink-0" onError={(e) => { (e.target as any).src = '/antena.png'; }} />
+                        )}
+                        <h5 className="text-xs font-bold text-white uppercase tracking-tight leading-snug">
+                          {itemNombre}
+                        </h5>
+                      </div>
+                      {opBadge ? (
+                        <span className={`text-[9px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${opBadge.color}`}>
+                          {opBadge.name}
+                        </span>
+                      ) : (
+                        <span className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-cyan-300 shrink-0">
+                          {itemTipo}
+                        </span>
+                      )}
                     </div>
 
                     <p className="text-[10px] text-slate-400 leading-tight">
