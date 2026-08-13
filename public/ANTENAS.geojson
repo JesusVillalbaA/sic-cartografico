@@ -1,0 +1,617 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.3736361111111,
+          11.0106472222222
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA BOCA DE POZO",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9646222222222,
+          11.0828166666667
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA JUAN GRIEGO",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9000138888889,
+          10.7460027777778
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA GUINIMA",
+        "link": "files\\wifi.png",
+        "time": "2017-12-10T01:31:20Z",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92595,
+          10.9505444444444
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA VILLA ROSA",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8101944444444,
+          10.9847638888889
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA PLAYA EL ANGEL",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9511055555556,
+          11.0991972222222
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA ALTAGRACIA",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8443694444444,
+          10.96015
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA PORLAMAR",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8466611111111,
+          11.0779916666667
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA PUNTA DE GUARAME",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9722833333333,
+          10.7734666666667
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENAS SAN PEDRO",
+        "link": "files\\wifi.png",
+        "time": "2017-12-10T01:30:33Z",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8654388888889,
+          10.9682861111111
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA CONEJEROS",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8192444444445,
+          11.0477583333333
+        ]
+      },
+      "properties": {
+        "cmt": "09-12-2017 19:26:15",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "PLAYA GUACUCO",
+        "link": "files\\wifi.png",
+        "time": "1899-12-30T13:00:00Z",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.896875,
+          11.008775
+        ]
+      },
+      "properties": {
+        "cmt": "09-12-2017 17:33:18",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA PALMA REAL",
+        "link": "files\\wifi.png",
+        "time": "1899-12-30T13:00:00Z",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8181527777778,
+          11.0223527777778
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA AGUA DE VACA",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.1008805555555,
+          10.9011555555556
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA PUNTA DE PIEDRAS",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9279333333333,
+          11.0705361111111
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA SANTA ANA",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8851583333333,
+          11.1567055555556
+        ]
+      },
+      "properties": {
+        "cmt": "",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA MANZANILLO",
+        "link": "files\\wifi.png",
+        "time": "",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8553555555556,
+          11.0864416666667
+        ]
+      },
+      "properties": {
+        "cmt": "09-12-2017 19:21:53",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "EL SALADO (PARAGUACH�)",
+        "link": "files\\wifi.png",
+        "time": "1899-12-30T13:00:00Z",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.1806027777778,
+          10.9635055555556
+        ]
+      },
+      "properties": {
+        "cmt": "09-12-2017 18:39:34",
+        "fix": "2d",
+        "sym": "Flag, Blue",
+        "NAME": "ANTENA BOCA DE RIO",
+        "link": "files\\wifi.png",
+        "time": "1899-12-30T13:00:00Z",
+        "LAYER": "Waypoint",
+        "FONT_SIZE": "14",
+        "FONT_CHARS": "0",
+        "FONT_COLOR": "RGB(0,0,0)",
+        "POINT_SYMB": "Dot",
+        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
+        "gpxx_Displ": "SymbolOnly",
+        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
+        "wptx1_Disp": "SymbolOnly",
+        "id": "ANTENAS_17"
+      }
+    }
+  ]
+}

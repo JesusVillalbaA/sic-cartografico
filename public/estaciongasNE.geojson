@@ -1,0 +1,109 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91633046588983,
+          10.948005527049162
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "tipo": "Centro de Distribución Comunal GLP",
+        "nombre": "CDT Manuela Sáenz - PDVSA Gas Comunal",
+        "sector": "Avenida Juan Bautista Arismendi, Sector San Antonio",
+        "empresa": "PDVSA Gas Comunal",
+        "estatus": "Operativa",
+        "municipio": "García",
+        "descripcion": "Centro de Distribución Directa (CDT) para el llenado y despacho de bombonas residenciales."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97290620898234,
+          10.955834131820337
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "tipo": "Planta de Llenado Privada / Comercial GLP",
+        "nombre": "Planta de Llenado Tricada Gas",
+        "sector": "Avenida Juan Bautista Arismendi, San Juan Bautista",
+        "empresa": "Tricada Gas",
+        "estatus": "Operativa",
+        "municipio": "Díaz",
+        "descripcion": "Planta de llenado física de cilindros y despacho de Tricada Gas."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.19334691662947,
+          10.960462343150414
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "tipo": "Planta de llenado y distribución de gas",
+        "nombre": "Planta de llenado Indio de Macanao",
+        "sector": "Autopista Juan Bautista Arismendi, Las Cuatas",
+        "empresa": "PDVSA Gas Comunal",
+        "estatus": "Operativa",
+        "municipio": "Tubores",
+        "descripcion": "Planta principal de llenado y distribución de gas GLP en el Estado Nueva Esparta."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.849853478185224,
+          10.969549109354878
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "tipo": "Oficina Administrativa / Comercial GLP",
+        "nombre": "PDVSA Gas - Oficina de la Administración",
+        "sector": "Av. Llano Adentro, C.C. Terranova Plaza, Local Nº B23, Porlamar",
+        "empresa": "PDVSA Gas Comunal",
+        "estatus": "Operativa",
+        "municipio": "Mariño",
+        "descripcion": "Oficina de la administración para gestiones, contratos y atención comercial de gas comunal."
+      }
+    }
+  ]
+}

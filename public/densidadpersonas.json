@@ -1,0 +1,68 @@
+[
+  {
+    "municipio": "Antolín del Campo",
+    "total": 40773,
+    "hombres": 20239,
+    "mujeres": 20534
+  },
+  {
+    "municipio": "Arismendi",
+    "total": 41772,
+    "hombres": 20173,
+    "mujeres": 21599
+  },
+  {
+    "municipio": "Díaz",
+    "total": 103115,
+    "hombres": 50610,
+    "mujeres": 52505
+  },
+  {
+    "municipio": "García",
+    "total": 98118,
+    "hombres": 48290,
+    "mujeres": 49828
+  },
+  {
+    "municipio": "Gómez",
+    "total": 59640,
+    "hombres": 29896,
+    "mujeres": 29744
+  },
+  {
+    "municipio": "Maneiro",
+    "total": 74546,
+    "hombres": 36268,
+    "mujeres": 38278
+  },
+  {
+    "municipio": "Marcano",
+    "total": 52884,
+    "hombres": 25795,
+    "mujeres": 27089
+  },
+  {
+    "municipio": "Mariño",
+    "total": 149643,
+    "hombres": 73783,
+    "mujeres": 75860
+  },
+  {
+    "municipio": "Macanao",
+    "total": 38265,
+    "hombres": 19415,
+    "mujeres": 18850
+  },
+  {
+    "municipio": "Tubores",
+    "total": 53659,
+    "hombres": 26588,
+    "mujeres": 27071
+  },
+  {
+    "municipio": "Villalba",
+    "total": 13115,
+    "hombres": 6711,
+    "mujeres": 6404
+  }
+]

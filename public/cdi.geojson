@@ -1,0 +1,266 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.18064048583378,
+          10.969651429787591
+        ]
+      },
+      "properties": {
+        "name": "CDI Dr. Che Guevara (Boca del Río)",
+        "camas": "10 (Hospitalización y Trauma)",
+        "funcion": "Funciona como el hospital de la Península. Posee Quirófano para emergencias menores, sala de Rayos X y laboratorio.",
+        "municipio": "Macanao",
+        "ubicacion": "Sector El Túnel, entrada a Boca del Río.",
+        "ambulancias": "1 (Operativa para traslados hacia el Hospital Luis Ortega)",
+        "id": "cdi_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97635299957168,
+          11.089113601409533
+        ]
+      },
+      "properties": {
+        "name": "CDI Camilo Torres (Juan Griego)",
+        "camas": "6",
+        "funcion": "Refuerzo diagnóstico para el norte. Laboratorio, Rayos X y Sala de Rehabilitación Integral anexa.",
+        "municipio": "Marcano",
+        "ubicacion": "Sector La Galera, Juan Griego.",
+        "ambulancias": "Apoyo de Protección Civil Marcano",
+        "id": "cdi_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85994994561344,
+          10.951719967842951
+        ]
+      },
+      "properties": {
+        "name": "CDI Dinastía (Los Cocos / Porlamar)",
+        "camas": "6",
+        "funcion": "Apoyo directo a la zona popular de Porlamar. Cuenta con servicios de endoscopia y laboratorio clínico avanzado.",
+        "municipio": "Mariño",
+        "ubicacion": "Calle principal de Los Cocos, Porlamar.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "cdi_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.791580649712444,
+          11.001062401420992
+        ]
+      },
+      "properties": {
+        "name": "CDI Alvarez Sotillo (Pampatar)",
+        "camas": "4",
+        "funcion": "Centro de diagnóstico para el municipio Maneiro. Posee servicios de oftalmología, odontología y Rayos X.",
+        "municipio": "Maneiro",
+        "ubicacion": "Sector Los Basabales, Pampatar.",
+        "ambulancias": "Apoyo Externo (VEN 911 / PC Maneiro)",
+        "id": "cdi_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88569427098581,
+          10.990496810415847
+        ]
+      },
+      "properties": {
+        "name": "CDI Valle del Espíritu Santo",
+        "camas": "4",
+        "funcion": "Medicina general, cardiología básica (electrocardiogramas) y apoyo a la comunidad del Valle.",
+        "municipio": "García",
+        "ubicacion": "Sector El Valle, detrás de la Basílica de la Virgen del Valle.",
+        "ambulancias": "Apoyo Externo",
+        "id": "cdi_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98353096751474,
+          10.965083739999306
+        ]
+      },
+      "properties": {
+        "name": "CDI Martha de Díaz (El Espinal / San Juan)",
+        "camas": "6",
+        "funcion": "Centro estratégico por su ubicación en la autopista. Especializado en estabilización de traumas viales y diagnóstico rápido.",
+        "municipio": "Díaz",
+        "ubicacion": "Sector El Espinal, Av. Juan Bautista Arismendi.",
+        "ambulancias": "1 (Suele estar en el punto de control vial cercano)",
+        "id": "cdi_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9480264932779,
+          10.9427784618395
+        ]
+      },
+      "properties": {
+        "name": "CDI de Valle Verde",
+        "camas": "0 (Solo camillas de examen clínico; los pacientes que requieren observación son referidos al CDI de Villa Rosa).",
+        "funcion": "Urbano I. Centro de atención primaria para una de las zonas con mayor densidad poblacional y flujo de incidencias del municipio. Se encarga de triaje preventivo, programas de inmunización y estabilización inicial de pacientes.",
+        "municipio": "García",
+        "ubicacion": "Sector Valle Verde, Calle principal, adyacente a la zona comercial, Municipio García.",
+        "ambulancias": "Apoyo Externo (Base VEN 911 / Protección Civil García).",
+        "id": "cdi_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.93184010535761,
+          10.952951540405305
+        ]
+      },
+      "properties": {
+        "name": "CDI Comandante Hugo Chávez (Villa Rosa)",
+        "camas": "10 (Hospitalización corta y cuidados intermedios)",
+        "funcion": "Centro de alta complejidad con Terapia Intensiva Intermedia, Rayos X, Laboratorio y Ecografía. Es el punto de apoyo principal para el área metropolitana de la zona sur.",
+        "municipio": "García",
+        "ubicacion": "Sector Villa Rosa, Av. Juan Bautista Arismendi.",
+        "ambulancias": "1 (Asignada, apoyo VEN 911)",
+        "id": "cdi_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92365519085312,
+          11.070013222769422
+        ]
+      },
+      "properties": {
+        "name": "CDI Dr. Ramón Rojas Salazar (Santa Ana)",
+        "camas": "8 (Observación y hospitalización breve)",
+        "funcion": "Recientemente rehabilitado. Especializado en ginecobstetricia básica, pediatría y medicina interna.",
+        "municipio": "Gómez",
+        "ubicacion": "Casco central de Santa Ana, calle principal.",
+        "ambulancias": "Apoyo de Protección Civil Gómez",
+        "id": "cdi_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.849492581950116,
+          11.029351061908292
+        ]
+      },
+      "properties": {
+        "name": "CDI Juan Bautista Rosas Marcano",
+        "camas": "0 (Sin capacidad de hospitalización ni pernocta).",
+        "funcion": "Urbano I. Punto de enlace de salud para los sectores populares de La Asunción. Realiza medicina preventiva, control de niños sanos y atención primaria de baja complejidad.",
+        "municipio": "Arismendi",
+        "ubicacion": "Sector Camaruco, Calle principal, frente al sector deportivo, La Asunción.",
+        "ambulancias": "Apoyo Externo (Protección Civil Arismendi / VEN 911).",
+        "id": "arismendi_cdi_juan_bautista",
+        "tipo": "cdi",
+        "tipo_nivel": "CDI",
+        "address": "Calle San Onofre, Camoruco, La Asunción, Municipio Arismendi",
+        "director": "Kuanlin Guitens",
+        "phone": "+58 426-2279617",
+        "cuadrante": "Agroturistica Guayatamo (Jhonatan González)",
+        "coordinates": [
+          -63.8588,
+          11.0256
+        ],
+        "description": "Centro de Diagnóstico Integral que brinda servicios de medicina preventiva y atención primaria."
+      }
+    }
+  ]
+}

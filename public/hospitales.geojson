@@ -1,0 +1,247 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98495301548727,
+          10.964941547126218
+        ]
+      },
+      "properties": {
+        "beds": 100,
+        "name": "Hospital Tipo III \"Virgen del Valle\"",
+        "tipo": "III",
+        "address": "Sector San Lorenzo, al lado de la clinica del espinal (cerca del VEN 911).",
+        "municipio": "Díaz",
+        "ambulances": 1,
+        "description": "Originalmente fue concebido como un hospital de especialidades oncológicas y de apoyo, pero ha ido integrando más servicios para ayudar al Luis Ortega. Se enfoca en consultas especializadas de alto nivel, hemodiálisis y cirugías programadas. Es un centro clave para el tratamiento de enfermedades crónicas y descongestión de quirófanos del hospital central.",
+        "id": "hospitales_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86721903851905,
+          11.023706370955114
+        ]
+      },
+      "properties": {
+        "beds": 140,
+        "name": "Hospital Dr. Manuel Antonio Narváez Silva",
+        "tipo": "III",
+        "address": "Calle Virgen del Valle, Sector La Portada, La Asunción, Municipio Arismendi.",
+        "municipio": "Arismendi",
+        "ambulances": 1,
+        "description": "Su función principal es descongestionar al Hospital Luis Ortega. Se enfoca en la atención secundaria, realizando cirugías programadas de mediana complejidad (hernias, vesículas, traumatología básica) y medicina interna. Es el punto de estabilización clave para la zona central de la isla antes de remitir a Porlamar si el caso lo requiere.",
+        "id": "hospitales_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.847708621533776,
+          11.033824682428854
+        ]
+      },
+      "properties": {
+        "beds": 60,
+        "name": "Hospital Militar Cnel. GNB Nelson Sayago Mora",
+        "tipo": "hospital",
+        "address": "Calle Morillo, Sector Guatamare, La Asunción, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "ambulances": 2,
+        "description": "Hospital militar con servicio odontológico, traumatología y quirófano de respaldo.",
+        "id": "arismendi_hosp_nelson_sayago",
+        "tipo_nivel": "Hospital Militar",
+        "director": "Chitty Marcano",
+        "phone": "04121591075",
+        "cuadrante": "Batalla de Matasiete (Alexander Hernández)",
+        "coordinates": [
+          -63.847708,
+          11.033824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85337508104899,
+          11.050981732841297
+        ]
+      },
+      "properties": {
+        "beds": 70,
+        "name": "Hospital Dr. David Espinoza Rojas",
+        "tipo": "II",
+        "address": "Avenida 31 de Julio, Sector Salamanca, Municipio Arismendi.",
+        "municipio": "Arismendi",
+        "ambulances": 1,
+        "description": "Se ha especializado recientemente en la red de diagnóstico y maternidad. Posee equipos de radiología y laboratorio que sirven a las comunidades de Arismendi y Antolín del Campo. Es fundamental para el control prenatal y la atención de enfermedades crónicas (diabetes, hipertensión) a través de sus consultas externas especializadas.",
+        "id": "hospitales_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96288403871876,
+          11.076287255774671
+        ]
+      },
+      "properties": {
+        "beds": 80,
+        "name": "Hospital Dr. Agustín Rafael Hernández",
+        "tipo": "II",
+        "address": "Calle El Sol, cruce con Calle Marina, Juan Griego, Municipio Marcano.",
+        "municipio": "Marcano",
+        "ambulances": 1,
+        "description": "Actúa como el centro de respuesta inmediata para todo el eje norte (Juan Griego y zonas aledañas). Su fuerte es la ginecobstetricia y pediatría; la mayoría de los nacimientos del norte de la isla ocurren aquí. También atiende emergencias por accidentes de tránsito y traumas menores típicos de la zona pesquera.",
+        "id": "hospitales_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.99562227075356,
+          10.782765715419679
+        ]
+      },
+      "properties": {
+        "beds": 25,
+        "name": "Centro de Salud San Pedro de Coche",
+        "tipo": "I",
+        "address": "Calle principal de San Pedro de Coche, Municipio Villalba.",
+        "municipio": "Villalba",
+        "ambulances": 1,
+        "description": "Es el único centro con capacidad de hospitalización y quirófano en la Isla de Coche. Su función es crítica: estabiliza pacientes y realiza cirugías de emergencia antes de que el paciente deba ser trasladado por mar hacia Margarita.",
+        "id": "hospitales_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.10055568750026,
+          10.907023827950791
+        ]
+      },
+      "properties": {
+        "beds": 35,
+        "name": "Hospital Dr. Armando Mata Sánchez",
+        "tipo": "I",
+        "address": "Calle Nueva, Sector Las Mercedes, Punta de Piedras, Municipio Tubores.",
+        "municipio": "Tubores",
+        "ambulances": 1,
+        "description": "Su rol es de atención primaria hospitalaria. Al estar cerca del terminal de ferrys, es el punto de triaje (clasificación de pacientes) para quienes entran o salen de la isla con alguna emergencia médica. Se encarga de la estabilización inicial de pacientes y la resolución de patologías ambulatorias que no requieren quirófanos de alta tecnología.",
+        "id": "hospitales_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84777106425054,
+          10.960511043597583
+        ]
+      },
+      "properties": {
+        "beds": 320,
+        "name": "Hospital Central Dr. Luis Ortega",
+        "tipo": "IV",
+        "address": "Avenida 4 de Mayo con Calle Igualdad, Porlamar, Municipio Mariño.",
+        "municipio": "Mariño",
+        "ambulances": 2,
+        "description": "Es el corazón del sistema de salud de la isla. Al ser de Nivel IV, es el único que maneja todas las subespecialidades médicas y quirúrgicas. Aquí se resuelven los casos más críticos: desde neurocirugías y cardiología hasta cuidados intensivos neonatales. Funciona como hospital escuela para postgrados y posee el banco de sangre principal que surte al resto del estado.",
+        "id": "hospitales_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.853375,
+          11.050981
+        ]
+      },
+      "properties": {
+        "id": "arismendi_hosp_manuel_narvaez",
+        "name": "Hospital Tipo 1 Dr. Manuel Antonio Narváez",
+        "tipo": "hospital",
+        "tipo_nivel": "Tipo I",
+        "address": "Vía La Sierra, La Portada, La Asunción, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Jairo Luna",
+        "phone": "+58 424-8485217",
+        "cuadrante": "Valle de Santa Lucía (Angel Monasterio)",
+        "coordinates": [
+          -63.867219,
+          11.023706
+        ],
+        "description": "Hospital Tipo 1 dedicado a atención secundaria y estabilización de pacientes."
+      }
+    }
+  ]
+}

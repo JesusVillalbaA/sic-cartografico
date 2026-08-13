@@ -1,0 +1,1085 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97824,
+          10.98493
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Taguantar",
+        "CityName": "EL ESPINAL",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92258,
+          10.94758
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Villa Rosa",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85852,
+          11.10336
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Yaguarin",
+        "CityName": "PARAGUACHI",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84623,
+          10.96062
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Genoves",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.37505038888888,
+          11.028805555555556
+        ]
+      },
+      "properties": {
+        "NAME": "E/S MP Robledal",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Marítima",
+        "id": "estacionservicio_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.0409,
+          10.9438
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Tubores",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86236,
+          11.09525
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Paraguachi",
+        "CityName": "PARAGUACHI",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84237,
+          10.98562
+        ]
+      },
+      "properties": {
+        "NAME": "E/S De Sario",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.80978,
+          10.994912277777777
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Maneiro",
+        "CityName": "Pampatar",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.18314152777778,
+          10.95179886111111
+        ]
+      },
+      "properties": {
+        "NAME": "E/S MP Boca de Rio",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Marítima",
+        "id": "estacionservicio_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84919444444445,
+          10.948367222222222
+        ]
+      },
+      "properties": {
+        "NAME": "E/S MP Marina El Faro",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Marítima",
+        "id": "estacionservicio_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85953,
+          10.953
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Nueva Cadiz",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82966,
+          10.96124
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Emeral",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85805,
+          11.01233
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Mata Siete",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.02214,
+          10.99731
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Mi Pueblo",
+        "CityName": "LA GUARDIA",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.89983333333333,
+          10.73961111111111
+        ]
+      },
+      "properties": {
+        "NAME": "E/S MP Guamache",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Marítima",
+        "id": "estacionservicio_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95069,
+          11.09126
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Asuncion",
+        "CityName": "ALTAGRACIA",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84108,
+          10.97137
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Terranova",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97175,
+          10.91635
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Pdvsa  Aeropuerto",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82535,
+          11.01706
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Agua Eñ Vaca",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85219,
+          10.95766
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Miranda",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83529,
+          10.97783
+        ]
+      },
+      "properties": {
+        "NAME": "E/S 4 de Mayo",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.09450277777778,
+          10.898597222222222
+        ]
+      },
+      "properties": {
+        "NAME": "E/S MP Marina Pta. de Piedra",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Marítima",
+        "id": "estacionservicio_22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98094,
+          10.97054
+        ]
+      },
+      "properties": {
+        "NAME": "E/S El espinal",
+        "CityName": "EL ESPINAL",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9603,
+          11.07542
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Punta Galera",
+        "CityName": "Juangriego",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86363,
+          10.97624
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Guatamare",
+        "CityName": "GUATAMARE",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86239,
+          11.02869
+        ]
+      },
+      "properties": {
+        "NAME": "E/S La Asuncion",
+        "CityName": "La Asuncion",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97631027777778,
+          11.085455083333335
+        ]
+      },
+      "properties": {
+        "NAME": "E/S MP Lonjamar",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Marítima",
+        "id": "estacionservicio_27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96721,
+          10.95474
+        ]
+      },
+      "properties": {
+        "NAME": "E/S El Datil",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98987,
+          10.79063
+        ]
+      },
+      "properties": {
+        "NAME": "E/S San Pedro de Coche",
+        "CityName": "SAN PEDRO DE COCHE",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8272,
+          10.99281
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Rattan Plaza",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.89051988888889,
+          11.15836111111111
+        ]
+      },
+      "properties": {
+        "NAME": "E/S MP Manzanillo",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Marítima",
+        "id": "estacionservicio_31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98281,
+          10.94228
+        ]
+      },
+      "properties": {
+        "NAME": "E/S El Yaque",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_32"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.93974,
+          11.0701
+        ]
+      },
+      "properties": {
+        "NAME": "E/S La Estrella",
+        "CityName": "LA VECINDAD",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85666,
+          10.9623
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Fajardo",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_34"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86174,
+          10.96848
+        ]
+      },
+      "properties": {
+        "NAME": "E/S La Paralela",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.02397,
+          10.87928
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Pdvsa Llenadero",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_36"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92444,
+          11.06905
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Santa Ana",
+        "CityName": "SANTA ANA",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_37"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86747,
+          10.98154
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Virgen del Valle",
+        "CityName": "GUATAMARE",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_38"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.89715,
+          10.94667
+        ]
+      },
+      "properties": {
+        "NAME": "E/S El Encanto",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_39"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83861,
+          10.96034
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Aziza",
+        "CityName": "Porlamar",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.1634,
+          10.97382
+        ]
+      },
+      "properties": {
+        "NAME": "E/S La Restinga",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_41"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91708,
+          10.9465
+        ]
+      },
+      "properties": {
+        "NAME": "E/S San Antonio",
+        "CityName": "",
+        "CountryNam": "Venezuela",
+        "RegionName": "NUEVA ESPARTA",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_42"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83846,
+          10.98983
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Los Robles",
+        "CityName": "LOS ROBLES",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_43"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85773,
+          11.04079
+        ]
+      },
+      "properties": {
+        "NAME": "E/S Cocheima",
+        "CityName": "La Asuncion",
+        "CountryNam": "Venezuela",
+        "RegionName": "Nueva Esparta",
+        "TIPO_SERVICIO": "Terrestre",
+        "id": "estacionservicio_44"
+      }
+    }
+  ]
+}

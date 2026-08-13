@@ -1,0 +1,330 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9472,
+          11.0124
+        ]
+      },
+      "properties": {
+        "info": "Emergencias 24h.",
+        "tipo": "Ambulatorio",
+        "nombre": "Ambulatorio San Juan",
+        "municipio": "Díaz",
+        "ubicacion": "Casco central de San Juan.",
+        "ambulancias": "1 unidad",
+        "id": "centrossalud_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8324,
+          10.9735
+        ]
+      },
+      "properties": {
+        "info": "Clínica privada con alta capacidad quirúrgica.",
+        "tipo": "Clínica Privada",
+        "nombre": "Centro Clínico del Caribe",
+        "municipio": "Mariño",
+        "ubicacion": "Av. Fco. Esteban Gómez.",
+        "ambulancias": "1 propia",
+        "id": "centrossalud_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9652,
+          11.0831
+        ]
+      },
+      "properties": {
+        "info": "Juan Griego.",
+        "tipo": "Hospital Público",
+        "nombre": "Hosp. Agustín Hernández",
+        "municipio": "Marcano",
+        "ubicacion": "Calle El Sol.",
+        "ambulancias": "1 operativa",
+        "id": "centrossalud_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8835,
+          11.0258
+        ]
+      },
+      "properties": {
+        "info": "Sector Salamanca.",
+        "tipo": "Hospital Público",
+        "nombre": "Hosp. David Espinoza",
+        "municipio": "Arismendi",
+        "ubicacion": "Vía Juan Griego.",
+        "ambulancias": "1 unidad",
+        "id": "centrossalud_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9435,
+          10.7772
+        ]
+      },
+      "properties": {
+        "info": "Isla de Coche.",
+        "tipo": "Hospital Público",
+        "nombre": "Hosp. San Pedro",
+        "municipio": "Villalba (Coche)",
+        "ubicacion": "San Pedro.",
+        "ambulancias": "1 terr. / 1 mar.",
+        "id": "centrossalud_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8654,
+          10.9568
+        ]
+      },
+      "properties": {
+        "info": "Consultas y urgencias de baja complejidad.",
+        "tipo": "Ambulatorio",
+        "nombre": "Ambulatorio de Conejeros",
+        "municipio": "Mariño",
+        "ubicacion": "Av. J.B. Arismendi, cerca del Mercado.",
+        "ambulancias": "Gestión Ven 911",
+        "id": "centrossalud_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.986038,
+          10.964746
+        ]
+      },
+      "properties": {
+        "info": "Atención primaria y urgencias.",
+        "tipo": "Hospital Público",
+        "nombre": "Clínica Popular El Espinal",
+        "municipio": "Díaz",
+        "ubicacion": "El Espinal, Calle Velásquez.",
+        "ambulancias": "1 operativa",
+        "id": "centrossalud_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98467,
+          10.964918
+        ]
+      },
+      "properties": {
+        "info": "Centro de hospitalización.",
+        "tipo": "Hospital Público",
+        "nombre": "Hosp. Virgen del Valle",
+        "municipio": "Díaz",
+        "ubicacion": "El Espinal, Calle El Seguro.",
+        "ambulancias": "1 operativa",
+        "id": "centrossalud_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.985267,
+          10.964877
+        ]
+      },
+      "properties": {
+        "info": "Sede principal administrativa y médica.",
+        "tipo": "Hospital Público",
+        "nombre": "Hospital Tipo III Virgen del Valle",
+        "municipio": "Díaz",
+        "ubicacion": "El Espinal, Calle El Seguro (Central).",
+        "ambulancias": "2 operativas",
+        "id": "centrossalud_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.983663,
+          10.965079
+        ]
+      },
+      "properties": {
+        "info": "Laboratorio y Rayos X.",
+        "tipo": "CDI",
+        "nombre": "Centro de Diagnóstico Integral (CDI)",
+        "municipio": "Díaz",
+        "ubicacion": "El Espinal, extremo este del complejo.",
+        "ambulancias": "1 unidad",
+        "id": "centrossalud_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.0882,
+          10.9025
+        ]
+      },
+      "properties": {
+        "info": "Punta de Piedras.",
+        "tipo": "Hospital Público",
+        "nombre": "Hosp. Armando Mata",
+        "municipio": "Tubores",
+        "ubicacion": "Terminal de Ferris.",
+        "ambulancias": "1 operativa",
+        "id": "centrossalud_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8228,
+          10.9951
+        ]
+      },
+      "properties": {
+        "info": "Alta gama tecnológica.",
+        "tipo": "Clínica Privada",
+        "nombre": "Centro Médico La Fe",
+        "municipio": "Maneiro",
+        "ubicacion": "Av. Jovito Villalba.",
+        "ambulancias": "2 propias",
+        "id": "centrossalud_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8495,
+          10.9612
+        ]
+      },
+      "properties": {
+        "info": "Principal centro de traumas y cirugías.",
+        "tipo": "Hospital Público",
+        "nombre": "Hosp. Dr. Luis Ortega (IVSS)",
+        "municipio": "Mariño",
+        "ubicacion": "Av. 4 de Mayo con Calle Llano Adentro.",
+        "ambulancias": "2 operativas",
+        "id": "centrossalud_12"
+      }
+    }
+  ]
+}

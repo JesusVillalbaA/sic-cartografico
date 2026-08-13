@@ -1,0 +1,838 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.861871976092566,
+          10.946333161883983
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Los Cocos (Dr. José \"Cheo\" Herrera)",
+        "camas": "4 (Observación)",
+        "funcion": "Urbano II. Vital por la densidad poblacional; es de los pocos con emergencia real 24h fuera del hospital.",
+        "municipio": "Mariño",
+        "ubicacion": "Calle principal de Los Cocos, Porlamar.",
+        "ambulancias": "Apoyo Externo",
+        "id": "ambulatorios_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.15819799420386,
+          10.833939700317917
+        ]
+      },
+      "properties": {
+        "name": "Consultorio Popular Tipo II Punta de Charagato",
+        "camas": "1 (Observación básica)",
+        "funcion": "Rural I. Atención primaria, medicina general y control de programas básicos para la comunidad local y visitantes.",
+        "municipio": "Tubores",
+        "ubicacion": "Sector Punta de Charagato, Isla de Cubagua.",
+        "ambulancias": "Apoyo Externo (Traslado marítimo hacia Punta de Piedras / VEN 911)",
+        "id": "ambulatorios_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88540780007845,
+          11.153466008341063
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Manzanillo",
+        "camas": "1",
+        "funcion": "Rural II. El punto de salud más al norte de la isla; fundamental para pescadores.",
+        "municipio": "Antolín del Campo",
+        "ubicacion": "Calle principal de Manzanillo.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.966076900855846,
+          11.079211827870274
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de San Sebastián",
+        "camas": "0",
+        "funcion": "Urbano I. Apoyo al Hospital de Juan Griego en el control de enfermedades crónicas.",
+        "municipio": "Marcano",
+        "ubicacion": "Sector San Sebastián, Juan Griego.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94446130249765,
+          11.014510927276453
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de San Juan Bautista",
+        "camas": "3 (Observación)",
+        "funcion": "Urbano II. Medicina interna y atención de urgencias 24h.",
+        "municipio": "Díaz",
+        "ubicacion": "Casco central de San Juan Bautista.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "ambulatorios_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98758581228364,
+          10.777398565826283
+        ]
+      },
+      "properties": {
+        "name": "Consultorio Popular Tipo 2 El Cardón",
+        "camas": "1 (Observación básica)",
+        "funcion": "CPT 2. Atención primaria, control de niños sanos y programas de salud comunitaria para el sector noreste de la isla.",
+        "municipio": "Villalba",
+        "ubicacion": "Sector El Cardón, Calle principal.",
+        "ambulancias": "Apoyo Externo (VEN 911 / Traslado al Ambulatorio de San Pedro)",
+        "id": "ambulatorios_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.37997513687431,
+          11.006994444471141
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Boca de Pozo",
+        "camas": "2 (Observación)",
+        "funcion": "Rural II. Centro de salud para el extremo oeste de la península.",
+        "municipio": "Macanao",
+        "ubicacion": "Sector Boca de Pozo.",
+        "ambulancias": "1 (A veces operativa por la lejanía)",
+        "id": "ambulatorios_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.924619887970714,
+          10.896053185617324
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de La Isleta I",
+        "camas": "2 (Observación)",
+        "funcion": "Rural II. Punto de control para quienes viajan a Coche y residentes de la costa sur.",
+        "municipio": "García",
+        "ubicacion": "Sector La Isleta I, vía el muelle.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8830030590399,
+          10.991385333478675
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Las Valientes",
+        "camas": "0",
+        "funcion": "Urbano I. Control de salud para el eje vial de la Av. Juan Bautista Arismendi.",
+        "municipio": "Díaz",
+        "ubicacion": "Sector Las Valientes, cerca de Cotoperiz.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92432300619328,
+          11.068647110944317
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Santa Ana",
+        "camas": "3 (Observación)",
+        "funcion": "Urbano II. Referencia municipal, vacunación y control prenatal.",
+        "municipio": "Gómez",
+        "ubicacion": "Calle principal de Santa Ana.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "ambulatorios_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.20828969873837,
+          11.045983391911898
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de San Francisco",
+        "camas": "2 (Observación)",
+        "funcion": "Rural II. Medicina general y salud comunitaria.",
+        "municipio": "Península de Macanao",
+        "ubicacion": "Poblado de San Francisco de Macanao.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "ambulatorios_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94771533778163,
+          11.091494704611906
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Altagracia",
+        "camas": "0",
+        "funcion": "Urbano I. Famoso por su programa de medicina familiar en la zona artesanal.",
+        "municipio": "Gómez",
+        "ubicacion": "Poblado de Altagracia.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85323524552314,
+          10.977560542041807
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Achipano",
+        "camas": "0 (Solo consulta)",
+        "funcion": "Urbano I. Consultas de medicina familiar e inmunización.",
+        "municipio": "Mariño",
+        "ubicacion": "Sector Achipano, Porlamar.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92569324690188,
+          10.961625650155456
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de San Antonio",
+        "camas": "0 (Solo consulta)",
+        "funcion": "Urbano I. Consultas sucesivas y programas de salud.",
+        "municipio": "García",
+        "ubicacion": "Sector San Antonio.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92785165145958,
+          10.948619158806016
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Villa Rosa",
+        "camas": "6 (Observación)",
+        "funcion": "Urbano III. Centro de alta afluencia, especialistas, rayos X y laboratorio.",
+        "municipio": "García",
+        "ubicacion": "Sector Villa Rosa, Av. Juan Bautista Arismendi.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "ambulatorios_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.965710237483684,
+          10.898403632704884
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de El Yaque",
+        "camas": "1 (Observación rápida)",
+        "funcion": "Rural I. Primeros auxilios y atención básica.",
+        "municipio": "Díaz",
+        "ubicacion": "Entrada al pueblo de El Yaque.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83680588289508,
+          10.991015462048107
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Los Robles",
+        "camas": "4 (Observación)",
+        "funcion": "Urbano II. Estabilización de pacientes y emergencias 24h.",
+        "municipio": "Maneiro",
+        "ubicacion": "Av. Jóvito Villalba, Sector Los Robles.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "ambulatorios_16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84910677980158,
+          11.118047760587844
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de El Tirano",
+        "camas": "2 (Observación)",
+        "funcion": "Rural II. Atención primaria para comunidades pesqueras y turísticas.",
+        "municipio": "Antolín del Campo",
+        "ubicacion": "Sector El Tirano, Av. 31 de Julio.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "ambulatorios_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.802656049199214,
+          10.99326828117027
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Pampatar",
+        "camas": "0 (Solo consulta)",
+        "funcion": "Urbano I. Control de niños sanos y adultos mayores.",
+        "municipio": "Maneiro",
+        "ubicacion": "Calle principal de Pampatar.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96169966201817,
+          11.053372727567785
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio de Vicuña",
+        "camas": "0 (Solo consulta)",
+        "funcion": "Urbano I. Atención primaria sector norte de Juan Griego.",
+        "municipio": "Marcano",
+        "ubicacion": "Sector Vicuña, Juan Griego.",
+        "ambulancias": "No posee",
+        "id": "ambulatorios_19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95738383397932,
+          10.769841923911239
+        ]
+      },
+      "properties": {
+        "name": "Consultorio Popular El Bichar I",
+        "camas": "1 (Observación básica)",
+        "funcion": "CPT 2. Atención de medicina general y preventiva para la comunidad pesquera de El Bichar.",
+        "municipio": "Villalba",
+        "ubicacion": "Sector El Bichar, cerca de la zona costera.",
+        "ambulancias": "Apoyo Externo (VEN 911 / Ambulancia marítima \"Salomón Marín\")",
+        "id": "ambulatorios_20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.99673214817095,
+          10.782808400992236
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio Dr. José Francisco Marval",
+        "camas": "6 (Observación y Sala de Partos)",
+        "funcion": "Urbano II. Centro de referencia de la isla, atención de emergencias, vacunación y programas de salud pública.",
+        "municipio": "Villalba",
+        "ubicacion": "Sector San Pedro de Coche, frente a la Plaza Bolívar.",
+        "ambulancias": "1 (Apoyo de Protección Civil Municipal / VEN 911)",
+        "id": "ambulatorios_21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92090033478073,
+          10.739434862989171
+        ]
+      },
+      "properties": {
+        "name": "Consultorio Popular Tipo 2 Guinima",
+        "camas": "1 (Observación básica)",
+        "funcion": "CPT 2. Salud integral, vacunación y control de crónicos (hipertensión/diabetes) para la comunidad de Guinima.",
+        "municipio": "Villalba",
+        "ubicacion": "Sector Guinima, parte sur de la isla.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "ambulatorios_22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.89839123701356,
+          10.74183818274766
+        ]
+      },
+      "properties": {
+        "name": "Consultorio Popular Tipo 2 El Guamache",
+        "camas": "1 (Observación básica)",
+        "funcion": "CPT 2. Atención primaria y medicina general. Recientemente rehabilitado para atender también a los sectores de El Amparo y Zulica.",
+        "municipio": "Villalba",
+        "ubicacion": "Sector El Guamache, Isla de Coche.",
+        "ambulancias": "Apoyo Externo (VEN 911)",
+        "id": "ambulatorios_23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.880209569210905,
+          11.009118670357637
+        ]
+      },
+      "properties": {
+        "name": "Ambulatorio Rural La Sierra",
+        "camas": "2 (Camillas de observación transitoria)",
+        "funcion": "Rural II. Atención primaria de salud para la comunidad de la montaña, control de niños sanos, programas de vacunación e inmunización, y estabilización inicial de pacientes antes de traslados a La Asunción.",
+        "municipio": "Arismendi",
+        "ubicacion": "Sector La Sierra, calle principal bajando hacia el dique, La Asunción.",
+        "ambulancias": "Apoyo Externo (Protección Civil Arismendi / VEN 911)",
+        "id": "ambulatorios_24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8631,
+          11.0336
+        ]
+      },
+      "properties": {
+        "id": "arismendi_cpt3_enrique_albornoz",
+        "name": "CPT3 Dr. Enrique Albornoz Larez",
+        "tipo": "ambulatorio",
+        "tipo_nivel": "CPT3",
+        "address": "Casco Central, La Asunción, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Marielba Lunar",
+        "phone": "Sin teléfono registrado",
+        "cuadrante": "Valle de Santa Lucía (Angel Monasterio)",
+        "coordinates": [
+          -63.8631,
+          11.0336
+        ],
+        "description": "Consultorio Popular Tipo 3 en el Casco Central de La Asunción."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8525,
+          11.0289
+        ]
+      },
+      "properties": {
+        "id": "arismendi_cp3_otra_banda",
+        "name": "CP3 Casitas de la Otra Banda",
+        "tipo": "ambulatorio",
+        "tipo_nivel": "CP3",
+        "address": "San Martín de Porres, Las Casitas, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Mónica Dorante",
+        "phone": "04120586642",
+        "cuadrante": "Fortín de la Libertad (Luis Marcano)",
+        "coordinates": [
+          -63.8525,
+          11.0289
+        ],
+        "description": "Centro Asistencial CP3 en el sector Las Casitas."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8685,
+          11.036
+        ]
+      },
+      "properties": {
+        "id": "arismendi_cp3_santa_isabel",
+        "name": "CP3 Santa Isabel",
+        "tipo": "ambulatorio",
+        "tipo_nivel": "CP3",
+        "address": "Calle Santa Isabel, La Asunción, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Miguel Silva",
+        "phone": "04120938537",
+        "cuadrante": "Fortín de la Libertad (Luis Marcano)",
+        "coordinates": [
+          -63.8685,
+          11.036
+        ],
+        "description": "Centro Asistencial CP3 en el sector Santa Isabel."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8242,
+          11.0375
+        ]
+      },
+      "properties": {
+        "id": "arismendi_cp3_sabana_guacuco",
+        "name": "CP3 Sabana de Guacuco",
+        "tipo": "ambulatorio",
+        "tipo_nivel": "CP3",
+        "address": "Sabana de Guacuco, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Jesús Chacon",
+        "phone": "04248332489",
+        "cuadrante": "Batalla de Matasiete (Alexander Hernández)",
+        "coordinates": [
+          -63.8242,
+          11.0375
+        ],
+        "description": "Centro de salud CP3 para la comunidad de Sabana de Guacuco."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.834,
+          11.018
+        ]
+      },
+      "properties": {
+        "id": "arismendi_cp2_atamo_norte",
+        "name": "CP2 Átamo Norte",
+        "tipo": "ambulatorio",
+        "tipo_nivel": "CP2",
+        "address": "Callejón Villalba, sótano norte, Átamo Norte, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Elvismer Figueroa",
+        "phone": "Sin teléfono",
+        "cuadrante": "Batalla de Matasiete (Alexander Hernández)",
+        "coordinates": [
+          -63.834,
+          11.018
+        ],
+        "description": "Consultorio Popular Tipo 2 en Átamo Norte."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8745,
+          11.002
+        ]
+      },
+      "properties": {
+        "id": "arismendi_cp2_la_aguada",
+        "name": "CP2 La Aguada",
+        "tipo": "ambulatorio",
+        "tipo_nivel": "CP2",
+        "address": "Av. Fucho Tovar, La Aguada, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Francis Quijada",
+        "phone": "04121322570",
+        "cuadrante": "Manantial de la Resistencia (IAPOLEBNE y PNB)",
+        "coordinates": [
+          -63.8745,
+          11.002
+        ],
+        "description": "Consultorio Popular Tipo 2 en el corredor de La Aguada."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.839,
+          11.009
+        ]
+      },
+      "properties": {
+        "id": "arismendi_cp2_atamo_sur",
+        "name": "CP2 Átamo Sur",
+        "tipo": "ambulatorio",
+        "tipo_nivel": "CP2",
+        "address": "Sacopana (1) Átamo Sur, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Yunilde Rojas",
+        "phone": "04140808530",
+        "cuadrante": "Agroturistica Guayatamo (Jhonatan González)",
+        "coordinates": [
+          -63.839,
+          11.009
+        ],
+        "description": "Consultorio Popular Tipo 2 en Átamo Sur."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.861,
+          11.029
+        ]
+      },
+      "properties": {
+        "id": "arismendi_ipasme",
+        "name": "IPASME La Asunción",
+        "tipo": "ambulatorio",
+        "tipo_nivel": "IPASME",
+        "address": "Av. Simón Bolívar, La Asunción, Municipio Arismendi",
+        "municipio": "Arismendi",
+        "director": "Adennys Zabala",
+        "phone": "04121165724",
+        "cuadrante": "Valle de Santa Lucía (Angel Monasterio)",
+        "coordinates": [
+          -63.861,
+          11.029
+        ],
+        "description": "Unidad médica asistencial de atención primaria del IPASME."
+      }
+    }
+  ]
+}

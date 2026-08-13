@@ -1,0 +1,305 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.987944444444445,
+          10.790583333333334
+        ]
+      },
+      "properties": {
+        "id": "subestacion_0",
+        "nombre": "SAN PEDRO DE COCHE",
+        "TENSION_ASOCIADA": "13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la población de Coche, Municipio Villalba",
+        "CUSTODIA": "Protección y Prevención. Compañía de Seguridad CORPOSERVICA",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Villalba",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0325,
+          10.879722222222222
+        ]
+      },
+      "properties": {
+        "id": "subestacion_1",
+        "nombre": "JUAN BAUTISTA ARISMENDI",
+        "TENSION_ASOCIADA": "115/34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en el sector El Guamache, vía principal a la planta de PDVSA-Guamache, municipio Tubores.",
+        "CUSTODIA": "Guardia Nacional Bolivariana de Venezuela. Protección y Prevención. Compañía de Seguridad CORPOSERVICA",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Tubores",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88805555555555,
+          10.939444444444444
+        ]
+      },
+      "properties": {
+        "id": "subestacion_2",
+        "nombre": "LUISA CACERES DE ARISMENDI",
+        "TENSION_ASOCIADA": "115/34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en el sector Macho Muerto, vía principal la Isleta, municipio Mariño.",
+        "CUSTODIA": "Guardia Nacional Bolivariana de Venezuela. Protección y Prevención. Compañía de Seguridad CORPOSERVICA",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Mariño",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.849444444444444,
+          10.965833333333332
+        ]
+      },
+      "properties": {
+        "id": "subestacion_3",
+        "nombre": "PORLAMAR",
+        "TENSION_ASOCIADA": "115/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la calle Charaima del sector Genovés, a 75 metros de la Cámara de Comercio, municipio Mariño.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA.",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Mariño",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.84166666666667,
+          10.987499999999999
+        ]
+      },
+      "properties": {
+        "id": "subestacion_4",
+        "nombre": "LOS ROBLES",
+        "TENSION_ASOCIADA": "115/34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la entrada del centro profesional Vector Verde, Sector los Olivos, a 250 mts de la Avenida Jóvito Villalba, Municipio Maneiro.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Villalba",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.809444444444445,
+          10.996388888888887
+        ]
+      },
+      "properties": {
+        "id": "subestacion_5",
+        "nombre": "PAMPATAR",
+        "TENSION_ASOCIADA": "115/34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en el sector Pampatar, calle principal, San Lorenzo a 250 mts del centro comercial SAMBIL, Municipio Maneiro.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Maneiro",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.85777777777778,
+          11.039444444444444
+        ]
+      },
+      "properties": {
+        "id": "subestacion_6",
+        "nombre": "LA ASUNCION",
+        "TENSION_ASOCIADA": "115/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la avenida 31 de Julio, sector Cocheima, a 150 mts de la E/S PDV, Municipio Arismendi.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Arismendi",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.95111111111111,
+          11.063611111111111
+        ]
+      },
+      "properties": {
+        "id": "subestacion_7",
+        "nombre": "LOS MILLANES",
+        "TENSION_ASOCIADA": "115/34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la calle Santa Rita, sector Los Millanes, a 300 mts del estadio de Los Millanes, municipio Marcano.",
+        "CUSTODIA": "Guardia Nacional Bolivariana",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Marcano",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.87391,
+          10.960009999999999
+        ]
+      },
+      "properties": {
+        "id": "subestacion_8",
+        "nombre": "CONEJERO",
+        "TENSION_ASOCIADA": "34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en el sector El Piache, carretera principal El Piache, a 800 mts del antiguo vertedero de basura, municipio García.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA.",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "García",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.82643,
+          10.97216
+        ]
+      },
+      "properties": {
+        "id": "subestacion_9",
+        "nombre": "MORROPO",
+        "TENSION_ASOCIADA": "34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en el sector Costa Azul, avenida Francisco Esteban Gómez, a 500 mts de la avenida Bolívar, municipio Mariño.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Mariño",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.85195,
+          11.11505
+        ]
+      },
+      "properties": {
+        "id": "subestacion_10",
+        "nombre": "ARICAGUA",
+        "TENSION_ASOCIADA": "34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la avenida 31 de Julio, Sector Aricagua, a 50 mts del Supermercado Del Campo, municipio Antolín del Campo.",
+        "CUSTODIA": "No se encuentra custodiada",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Antolín del Campo",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.9711,
+          10.91794
+        ]
+      },
+      "properties": {
+        "id": "subestacion_11",
+        "nombre": "AEROPUERTO",
+        "TENSION_ASOCIADA": "34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la entrada principal del Aeropuerto Santiago Mariño, a 100 mts de la E/S PDVSA Aeropuerto, sector El Yaque, municipio Díaz.",
+        "CUSTODIA": "No se encuentra custodiada",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Mariño",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.05923,
+          10.93023
+        ]
+      },
+      "properties": {
+        "id": "subestacion_12",
+        "nombre": "LAS HERNANDEZ",
+        "TENSION_ASOCIADA": "34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la avenida Juan Bautista Arismendi, sector Las Hernández, a 200 mts del cruce de Boca de Río, municipio Tubores.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA.",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Tubores",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.18012,
+          10.976140000000001
+        ]
+      },
+      "properties": {
+        "id": "subestacion_13",
+        "nombre": "BOCA DE RIO",
+        "TENSION_ASOCIADA": "34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la avenida Juan Bautista Arismendi, sector Las Hernández, a 200 mts del cruce de Boca de Río, municipio Tubores.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA.",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Tubores",
+        "OPERADOR": "CORPOELEC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.32957999999999,
+          10.96002
+        ]
+      },
+      "properties": {
+        "id": "subestacion_14",
+        "nombre": "EL MANGLILLO",
+        "TENSION_ASOCIADA": "34.5/13.8 Kv",
+        "DESCRIPCION": "Se encuentra ubicada en la vía principal a Punta Arenas, a 2 km del sector El Manglillo, municipio Península de Macanao.",
+        "CUSTODIA": "Compañía de Seguridad CORPOSERVICA",
+        "categoria": "INFRAESTRUCTURA ELÉCTRICA",
+        "MUNICIPIO": "Península de Macanao",
+        "OPERADOR": "CORPOELEC"
+      }
+    }
+  ]
+}

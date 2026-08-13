@@ -1,0 +1,1793 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92374045461125,
+          11.068770670983753
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Villa Santa Ana del Norte",
+        "telefono": "0416-6133226",
+        "cuadrante": "6",
+        "municipio": "GÓMEZ",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "SM3 GNB Oscar Alexander Gómez Marín",
+        "ubicacion_descripcion": "Plaza de Santa Ana, CDI de Santa Ana, Cementerio de Santa Ana, Las Gamboas, PDVAL, Estadio de Santa Ana",
+        "id": "cuadrantes_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.0614860934482,
+          10.8647697206577
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Batalla de los Barales",
+        "telefono": "0416-6122059",
+        "cuadrante": "2",
+        "municipio": "TUBORES",
+        "vehiculos": "6 Motos / 1 Patrulla",
+        "responsable": "Inspector CPNB Bianky del Jesús Cordero Parejo",
+        "ubicacion_descripcion": "Barrio Simón Marval, Punta de Mangle y Guamache Sector Pueblo Nuevo, Bolipuertos",
+        "id": "cuadrantes_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95266353193623,
+          11.053226226104762
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Las Vicuñas",
+        "telefono": "0416-6122119",
+        "cuadrante": "6",
+        "municipio": "MARCANO",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "SM2 GNB El José Guzmán Medina",
+        "ubicacion_descripcion": "Las Vicuñas Cancha Vizcuña, Comercial Zenasca, Pizzería Costa Brava, Los Conucos de Vicuña, CEI Simoncito Vicuña",
+        "id": "cuadrantes_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83382979881192,
+          11.094153744137603
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Socialista y Productiva Entre Montañas Soberana",
+        "telefono": "0416-6122025",
+        "cuadrante": "1",
+        "municipio": "ANTOLÍN DEL CAMPO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "Primer Inspector CPNB Hildemar José Colina Romero",
+        "ubicacion_descripcion": "Ranchos de Chana, Escuela de la Fuente, U.E. José Ramón Luna, Areperas Moya, Sector El Flande",
+        "id": "cuadrantes_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.856169479715554,
+          11.030166446998434
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Socialista Agro-Turística Guayatamo",
+        "telefono": "0416-6122032",
+        "cuadrante": "3",
+        "municipio": "ARISMENDI",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Comisario IAPOLEBNE González Medina Jonnathan Jesús",
+        "ubicacion_descripcion": "Comuna Socialista Agro-Turística Guayatamo (Crucero de Guacuco, CDI de Camoruco, Restaurant La Conga, Laberinto Tropical, Bodequero)",
+        "id": "cuadrantes_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.99810095119022,
+          10.956242044707562
+        ]
+      },
+      "properties": {
+        "comuna": "Unión Las Guevaras",
+        "telefono": "0416-6122044",
+        "cuadrante": "5",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Inspector CPNB Jean Carlos Rengel",
+        "ubicacion_descripcion": "CPT2 Maduro Moros, CPT2 Guevara Norte, U.E.E. Prof. Ascanio José Velásquez, Panadería Las Guevaras, Ferretería Ferreterito",
+        "id": "cuadrantes_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86963548473973,
+          11.041459049590324
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna El Fortín de la Libertad",
+        "telefono": "0416-6122029",
+        "cuadrante": "1",
+        "municipio": "ARISMENDI",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Inspector Jefe CPNB Marcano Lugo Luis José",
+        "ubicacion_descripcion": "U.E. Divino Niño, U.E. Ramona Caraballo, SAIME de La Asunción, Estación de Servicio Cocheima, Ministerio de Ambiente, Hospital Tipo I Salamanca, Farmatodo, Mi Queso, Zona Educativa",
+        "id": "cuadrantes_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.04040548105016,
+          10.94408079836021
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Coronel José Celedonio Tubores",
+        "telefono": "0416-6122061",
+        "cuadrante": "1",
+        "municipio": "TUBORES",
+        "vehiculos": "6 Motos / 1 Patrulla",
+        "responsable": "Oficial Jefe IAPOLEBNE Jesús Alberto Fermín Velásquez",
+        "ubicacion_descripcion": "Estación de Servicio Tubores, Sector Los Gonzalos y Las Marvales",
+        "id": "cuadrantes_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.867363779189894,
+          11.029635856263482
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito #8 Valle de Santa Lucía",
+        "telefono": "0416-6122031",
+        "cuadrante": "Circuito #8",
+        "municipio": "ARISMENDI",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Inspector CPNB Hernández Monasterios Ángel Rafael",
+        "ubicacion_descripcion": "Catedral Nuestra Señora de La Asunción, Biblioteca Pública Nacional Loreto Prieto Higuerey, Castillo Santa Rosa, Gobernación del Estado Nueva Esparta, Gimnasio Ciudad de La Asunción, La Sierra",
+        "id": "cuadrantes_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84836628988139,
+          11.032697308290329
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito #09 Batalla de Matasiete",
+        "telefono": "0416-6122034",
+        "cuadrante": "Circuito #09",
+        "municipio": "ARISMENDI",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Comisario IAPOLEBNE Hernández Rivas Alexander José",
+        "ubicacion_descripcion": "Ambulatorio de Guacuco, Playa Guacuco, Hotel Perlamar, Cerro Matasiete, Hospital Militar, Colegio Guayamurí",
+        "id": "cuadrantes_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98470361415348,
+          10.975435841133404
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Nuestra Palma Datilera",
+        "telefono": "0422-1741896",
+        "cuadrante": "4",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Inspector CPNB Rauso José Rodríguez Velásquez",
+        "ubicacion_descripcion": "E/S El Espinal, La U.N.E.S., Cancha techada El Espinal, Iglesia Católica El Espinal, Fercho Bodegón, Parrillera Pedro Ortega",
+        "id": "cuadrantes_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96761961784425,
+          10.95697202104599
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Socio Productiva El Dátil",
+        "telefono": "0422-1741897",
+        "cuadrante": "7",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Inspector IAPOLEBNE Jesús Ernesto Guevara Méndez",
+        "ubicacion_descripcion": "CPT3 El Dátil, U.E.E. Joaquina Velásquez de Romero, Base de Misiones Carcanapiral",
+        "id": "cuadrantes_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97711024794519,
+          11.075387430664522
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Las Salinas de Juan Griego",
+        "telefono": "0416-6122095",
+        "cuadrante": "2",
+        "municipio": "MARCANO",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Primer Inspector IAPOLEBNE Roxana Teresa Farias Miranda",
+        "ubicacion_descripcion": "Urb. Bicentenario, Planta de Bombeo Bicentenario, U.E. Francisco Salazar Sabino, Autorepuestos Guamachito",
+        "id": "cuadrantes_12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94941709363684,
+          11.091031614379926
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Socialista Brisas del Caribe",
+        "telefono": "0414-4661672",
+        "cuadrante": "2",
+        "municipio": "GÓMEZ",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Lidice José Guevara Guevara",
+        "ubicacion_descripcion": "Plaza de Altagracia, Cementerio de Altagracia, Playa Caribe, Bahía de Plata",
+        "id": "cuadrantes_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96617400434816,
+          11.066375365137144
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Las Heroínas de la Sabaneta",
+        "telefono": "0416-6122114",
+        "cuadrante": "4",
+        "municipio": "MARCANO",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Inspector Jefe CPNB Ángel José Valerio Rodríguez",
+        "ubicacion_descripcion": "Simoncito Los Tucanes, Cancha La Sabaneta, C.E.I. La Sabaneta, Escuela Básica María Luisa Coello, Kiosko y Víveres Icha",
+        "id": "cuadrantes_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84583931357364,
+          11.119083837914532
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Pesquera Agro-Turística El Tirano",
+        "telefono": "0416-6122026",
+        "cuadrante": "3",
+        "municipio": "ANTOLÍN DEL CAMPO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Jesús Eduardo Millán Velásquez",
+        "ubicacion_descripcion": "Parque El Agua, Terrazas de Cimarrón Suites, Playa Parguito, Playa El Tirano, Playa El Cardón, Estadio Ángel Brito, Pollos Nyco, Estación de Servicio El Tirano",
+        "id": "cuadrantes_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96798064610128,
+          10.944434166594611
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Sur de Díaz",
+        "telefono": "0416-6122048",
+        "cuadrante": "6",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Inspector CPNB Anais de la Chiquinquirá Pérez Blanco",
+        "ubicacion_descripcion": "CPT2 Cotoperiz, Base de Misiones, CPT3 Los Bagres, U.E.E. Prof. Ovidio Valerio, C.E.I. María Guevara, L.N.B. Francisco de Miranda, U.E.E. Feliciano Hernández, E/S El Yaque, Planta de Tratamiento, Multirepuestos Negro Primero, Iglesia Católica Virgen de Fátima",
+        "id": "cuadrantes_16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.941503620267525,
+          10.945081830139271
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Laguna Las Marites",
+        "telefono": "0416-6122051",
+        "cuadrante": "3",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Javier Antonio Acosta Higuerey",
+        "ubicacion_descripcion": "Comuna Laguna Las Marites (Barrio Adentro, CDI Dr. Ángel López Rondón, C.E.I. Santiago Mariño, Ambulatorio Rural Cruz del Pastel, C.E.I. Luis Beltrán Prieto Figueroa)",
+        "id": "cuadrantes_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91833901019583,
+          10.956738833601051
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Socialista San Antonio",
+        "telefono": "0422-1783227",
+        "cuadrante": "5",
+        "municipio": "GARCÍA",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Primer Inspector IAPOLEBNE Ranndy Waner Reyes Rodríguez",
+        "ubicacion_descripcion": "Comando de la GNB, U.E. María Elvira de Figueroa, Centro de Reclusión San Antonio, CDT Manuela Sáenz (PDVSA)",
+        "id": "cuadrantes_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.829669245196136,
+          10.981364869467168
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito La Auyama",
+        "telefono": "0422-1741903",
+        "cuadrante": "12",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Inspector CPNB Mairelys Emilia Juárez Guerra",
+        "ubicacion_descripcion": "La Arboleda, Clínica del Caribe, Colegio Arcoíris, Plaza Hugo Chávez, CC La Vela, Playa Bayside, Urbanismo Luisa Cáceres de Arismendi, Muro de Piedra",
+        "id": "cuadrantes_19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84793902182367,
+          10.968473134783395
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Ciudad Marinera",
+        "telefono": "0416-6122146",
+        "cuadrante": "7",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Oficial Jefe POLIMARIÑO Pedro Felipe Acacio Velásquez",
+        "ubicacion_descripcion": "Restauran El Remo, Hospital Luis Ortega, Alcaldía de Mariño, IOTaltop Margarita, Estación de Servicio Terranova, Bingo Charaima, Casa Amarilla, Residencias 4 de Mayo",
+        "id": "cuadrantes_20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.860141562708776,
+          10.952832121844361
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Producción Brisas del Mar",
+        "telefono": "0416-6122129",
+        "cuadrante": "4",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "SM3 Teodulo José Fernández Salazar",
+        "ubicacion_descripcion": "Escuela José Joaquín de León, Estación de Servicio Nueva Cádiz, CDI de Los Cocos, Ince Los Cocos, Estadio de Beisbol José Joche Rodríguez",
+        "id": "cuadrantes_21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.87425365874975,
+          11.0972901714481
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Al Pie del Guayamurí",
+        "telefono": "0422-1741895",
+        "cuadrante": "2",
+        "municipio": "ANTOLÍN DEL CAMPO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "Inspector CPNB Henderson José Sánchez Romero",
+        "ubicacion_descripcion": "Estadio de La Rinconada, Alcaldía de Antolín del Campo, Cementerio de Paraguachí, Posada 3TJA",
+        "id": "cuadrantes_22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88593630943074,
+          11.154331887787498
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Agro-Turística y Pesquera Manzanillo",
+        "telefono": "0416-6122028",
+        "cuadrante": "5",
+        "municipio": "ANTOLÍN DEL CAMPO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Antonio Enrique Medina Arismendi",
+        "ubicacion_descripcion": "Cancha de usos múltiples de Manzanillo, Estadio Freddy Subero, Playa Manzanillo, Calle Nueva, Playa Care Care, Cabo Negro, Conjunto Residencial Puerto Real, Cerro El Cacao",
+        "id": "cuadrantes_23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.793933921685266,
+          11.005253230575633
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Anacleta Laborí",
+        "source": "original",
+        "telefono": "0416-6122087",
+        "cuadrante": "2",
+        "municipio": "MANEIRO",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Inspector IAPOLEBNE José Ramón Hernández Larez",
+        "ubicacion_descripcion": "Urb. Jovito Villalba, Liceo Ángel Noriega Pérez, Playa Juventud, Salinas de Pampatar, Castillo San Carlos de Borromeo, Farmatodo entrada de Pampatar, Rancherías de Puerto Moreno, Hotel Tibisay",
+        "id": "cuadrantes_24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.93763669548974,
+          11.070534098858088
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito La Vecindad 2",
+        "telefono": "0416-6122295",
+        "cuadrante": "Circuito La Vecindad 2",
+        "municipio": "GÓMEZ",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Inspector CPNB Greymary del Valle Alfonzo Cedeño",
+        "ubicacion_descripcion": "Los Peñeros, Las Casas Platícas de La Vecindad, La Firestone, ADI 711 Guaiquerí, Cementerio de La Vecindad",
+        "id": "cuadrantes_25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85541185069583,
+          10.969052145764207
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Waikerí Charaima",
+        "telefono": "0416-6122139",
+        "cuadrante": "6",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Inspector POLIMARIÑO Edailys del Valle Pereira Martínez",
+        "ubicacion_descripcion": "El Poblado, Cruz Grande, Oficina INTT, Supermercados Nova, Mercado La Isla, Palguarime",
+        "id": "cuadrantes_26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92814183884379,
+          10.894681779999823
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Rosa Inés",
+        "telefono": "0416-6122123",
+        "cuadrante": "1",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Inspector POLIMARIÑO Jhonathan José Caraballo Hernández",
+        "ubicacion_descripcion": "Planta Eléctrica Luisa Cáceres de Arismendi, Sector El Silguero, Entrada La Isleta",
+        "id": "cuadrantes_27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.78683195301519,
+          11.003527241658078
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Anacleta Labori",
+        "source": "Contactos de Seguridad",
+        "telefono": "0416-6122087",
+        "cuadrante": "2",
+        "municipio": "MANEIRO",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Inspector (IAPOLEBNE) Jose Ramon Hernandez Larez",
+        "ubicacion_descripcion": "Urb. Jovito Villalba, Liceo Ángel Noriega Pérez, Playa Juventud, Salinas de Pampatar, Castillo San Carlos de Borromeo, Farmatodo Pampatar, Rancherías de Puerto Moreno, Hotel Tibisay",
+        "id": "cuadrantes_28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86502243104781,
+          11.144749663077567
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Socialista, Agroturística y Productiva Entre Aricagua, El Agua y La Mira Jamás Será Vencida",
+        "telefono": "0416-6122027",
+        "cuadrante": "4",
+        "municipio": "ANTOLÍN DEL CAMPO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "SM3 GNB Oscar Eduardo Marcano Frontado",
+        "ubicacion_descripcion": "Hotel Hesperia Playa El Agua, Hotel Miragua Playa El Agua, Agua Dulce Beach Club, Punta Varadero, Campo de Fútbol de Aricagua",
+        "id": "cuadrantes_29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.02510451995057,
+          10.984432159760646
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Bufadero",
+        "telefono": "0416-6122056",
+        "cuadrante": "9",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Sargento Mayor de Tercera GNB Juan Carlos Moreno Reyes",
+        "ubicacion_descripcion": "Estadio de La Guardia, Caney de Diana, Iglesia Católica El Palotal, Consultorio Barrio Unión, Bases de Misiones Piedras Negras",
+        "id": "cuadrantes_30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.812734398805524,
+          11.002208718599924
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Sembrando Patria",
+        "source": "original",
+        "telefono": "0416-6122078",
+        "cuadrante": "1",
+        "municipio": "MANEIRO",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Primer Inspector POLIMANEIRO Alí Francisco Flores",
+        "ubicacion_descripcion": "Cruz de Agua de Vaca, Barrio Ajuro, Ambulatorio de Agua de Vaca, Parada de Autobús de Apostadero, U.E.N.B. Petra Suárez de Piñerua, Planta de Tratamiento de Aguas Servidas \"Dos Cerritos\"",
+        "id": "cuadrantes_31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.908844333216216,
+          11.051354087212436
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito Comunal Tacarigua",
+        "telefono": "0416-6122299",
+        "cuadrante": "Circuito Comunal",
+        "municipio": "GÓMEZ",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Primer Inspector IAPOLEBNE Alberto Josue Moya López",
+        "ubicacion_descripcion": "Prefectura de Tacarigua, Iglesia de San Sebastián, Iglesia Corazón de Jesús, Portachuelo, Cementerio",
+        "id": "cuadrantes_32"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94899711576627,
+          10.943972783964096
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito 6 Valle Verde",
+        "telefono": "0416-6122252",
+        "cuadrante": "2",
+        "municipio": "GARCÍA",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Primer Inspector CPNB Yolicarmen del Valle Cardona García",
+        "ubicacion_descripcion": "Circuito 6 Valle Verde (EPM García (CPNB), Cancha Techada de Valle Verde)",
+        "id": "cuadrantes_33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.1802943119528,
+          10.969026033726431
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna San Francisco de Asís",
+        "telefono": "0422-1741902",
+        "cuadrante": "5",
+        "municipio": "MACANAO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "SM3 Juan Alberto Lunar Rodríguez",
+        "ubicacion_descripcion": "Estadium de Beisbol Luis Aparicio El Grande, Museo Marino CDI Toribio García, Panadería El Museo, Cancha Deportiva La Figa, Mercal",
+        "id": "cuadrantes_34"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.99519055221712,
+          10.782955819753603
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Batalla de los Barales",
+        "telefono": "0416-6122077",
+        "cuadrante": "2",
+        "municipio": "VILLALBA",
+        "vehiculos": "4 Motos / 1 Patrulla",
+        "responsable": "Inspector IAPOLEBNE Hernán del Valle Villarroel Millán",
+        "ubicacion_descripcion": "Comuna Turística y Pesquera Comandante Felipe Villalba",
+        "id": "cuadrantes_35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -75.11571750403989,
+          4.19789078279272
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna El Valle de San Juan",
+        "telefono": "0416-6122038",
+        "cuadrante": "1",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Jonnattan Enrique Beltrán",
+        "ubicacion_descripcion": "Chicharronera de Boquerón, Capilla de Colinas de Boquerón, El Dique Los Fermines, Cancha de Fuentidueño, Plaza Punta Cují, U.E. Gaspar Marcano, Plaza Antonio Díaz, Iglesia Católica San Juan, Casa de la Cultura, Centro Cívico, Plaza El Gallo, Cruce de María Arocha, Tuergo Ranch, Escuela La Granja, Iglesia de Carapacho, Cancha de Carapacho, E.B. Francisco Boadas Díaz",
+        "id": "cuadrantes_36"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82963311394665,
+          11.019542424856315
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna La Cayena",
+        "source": "original",
+        "telefono": "0416-6122091",
+        "cuadrante": "4",
+        "municipio": "MANEIRO",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Comisario POLIMANEIRO Jean José Gil Semeco",
+        "ubicacion_descripcion": "Centro Comercial Milenium, Urb. Fundación Margarita, Urb. Hugo Chávez, Sector Curiepe, Sector Los Cerritos",
+        "id": "cuadrantes_37"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95579341401557,
+          11.060694629383091
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Renacer Socialista Los Millanes",
+        "telefono": "0416-6122116",
+        "cuadrante": "5",
+        "municipio": "MARCANO",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Inspector IAPOLEBNE Jesús Alberto Marcano Villarroel",
+        "ubicacion_descripcion": "Parque 5 de Julio, Plaza Belmont, Mini Market La Becerra, Mis Ojitos de Gatos Clínica Juan Griego, Capilla Santa Eduviges, Construmateriales, Estadio Orangel Millán",
+        "id": "cuadrantes_38"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95218848334094,
+          10.943951363782563
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Cruz del Pastel",
+        "telefono": "0416-6122289",
+        "cuadrante": "1",
+        "municipio": "GARCÍA",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Andy David Reyes Rojas",
+        "ubicacion_descripcion": "Hotel Costa Dorada, UE Sagrada Familia, Bodegón El Gran Toro, Mercal Conuco Viejo",
+        "id": "cuadrantes_39"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.883394850054586,
+          10.98275724929492
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Charaguaray",
+        "telefono": "0416-6122290",
+        "cuadrante": "6",
+        "municipio": "GARCÍA",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Eliso Abraham Marcano Gómez",
+        "ubicacion_descripcion": "Comuna Charaguaray (Basílica Menor Nuestra Señora del Valle, UNIMAR, Clínica El Valle, Embalse de Guatamare, Bus Margarita)",
+        "id": "cuadrantes_40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.81969815545885,
+          11.022522442419545
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Sembrando Patria",
+        "source": "Contactos de Seguridad",
+        "telefono": "0416-6122078",
+        "cuadrante": "1",
+        "municipio": "MANEIRO",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Primer Inspector (Polimaneiro) Ali Francisco Flores",
+        "ubicacion_descripcion": "Cruz de Agua de Vaca, Barrio Ajuro, Ambulatorio de Agua de Vaca, Parada de Autobús de Apostadero, U.E.N.B Petra Suárez de Piñerúa, Planta de tratamiento \"Dos Cerritos\"",
+        "id": "cuadrantes_41"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.89688835035501,
+          10.743939342102584
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Vicente Fuentes",
+        "telefono": "0416-6122068",
+        "cuadrante": "1",
+        "municipio": "VILLALBA",
+        "vehiculos": "4 Motos / 1 Patrulla",
+        "responsable": "Sargento Mayor de Segunda GNB Félix José Marcano",
+        "ubicacion_descripcion": "Campo de Béisbol El Guamache, Muelle de Pesca Artesanal, CPT2 El Guamache",
+        "id": "cuadrantes_42"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.01183146940022,
+          10.987844964427602
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna María Auxiliadora",
+        "telefono": "0416-6122056",
+        "cuadrante": "10",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Sargento Mayor de Tercera GNB Carlos José Toledo Ugas",
+        "ubicacion_descripcion": "Comuna María Auxiliadora (Imagen de la Virgen María Auxiliadora, Base de Misiones María Auxiliadora)",
+        "id": "cuadrantes_43"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8322716086051,
+          10.984748261855053
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna El Guanaguanare",
+        "source": "original",
+        "telefono": "0416-6122090",
+        "cuadrante": "3",
+        "municipio": "MANEIRO",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Inspector Jefe POLIMANEIRO Yandueth Felipe Cova Narváez",
+        "ubicacion_descripcion": "Supermercado Mas x Menos, Farmatodo Playa El Ángel, Rattan Plaza, Orquesta Sinfónica Nueva Esparta, Universidad Santiago Mariño, Subestación Eléctrica El Roble (Los Olivos), Plaza de Los Robles",
+        "id": "cuadrantes_44"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97474131705835,
+          10.993841613071876
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Cerro Purulú",
+        "telefono": "0416-6122040",
+        "cuadrante": "2",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Zenaida Mercedes Celaya Gerder",
+        "ubicacion_descripcion": "Capilla José Gregorio Hernández, Parque de Las Barrancas, Pista de Atletismo, La Cruz de Las Barrancas, Cancha de Las Villarroeles, U.E.E. María Auxiliadora Zabala, CPT2 Las Barrancas",
+        "id": "cuadrantes_45"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92548972774463,
+          10.951819012778488
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito 1 Villa Rosa",
+        "telefono": "0416-6122255",
+        "cuadrante": "4",
+        "municipio": "GARCÍA",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Primer Inspector IAPOLEBNE Diana Carolina Vasquez Salazar",
+        "ubicacion_descripcion": "Bloques de Villa Rosa, Estación Policial (IAPOLEBNE), Ambulatorio José María Vargas, UE Argelia Laya",
+        "id": "cuadrantes_46"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.18305801784426,
+          10.954844589152806
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito Comunal Simón Bolívar",
+        "telefono": "0422-1784371",
+        "cuadrante": "4",
+        "municipio": "MACANAO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "Primer Inspector IAPOLEBNE Marín Quijada Jhoan Manuel",
+        "ubicacion_descripcion": "Estadio de Beisbol Antonio Armas, Ambulatorio Domenico del Grosso, Alcaldía de Macanao, Panadería Caracas, Bases de Misiones Hugo Chávez",
+        "id": "cuadrantes_47"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.869447008039955,
+          10.94980892589515
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna María León La Leona de Chávez",
+        "telefono": "0416-6122126",
+        "cuadrante": "2",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Inspector POLIMARIÑO Mario Enrique Hernández Vasquez",
+        "ubicacion_descripcion": "Estadio Tomas Romero, Hotel I Love You, Cancha Techada de Cerro Colorado",
+        "id": "cuadrantes_48"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.149879580789,
+          10.984031972103233
+        ]
+      },
+      "properties": {
+        "comuna": "Jefeco-Comuna La Restinga",
+        "telefono": "0422-1741898",
+        "cuadrante": "3",
+        "municipio": "TUBORES",
+        "vehiculos": "6 Motos / 1 Patrulla",
+        "responsable": "Inspector Jefe IAPOLEBNE Yoel José González Carreño",
+        "ubicacion_descripcion": "Iglesia y Plaza de Chacachacare, Parque Nacional Laguna de la Restinga",
+        "id": "cuadrantes_49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.01405893290688,
+          10.994069902939462
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Mar Bendito",
+        "telefono": "0416-6122053",
+        "cuadrante": "8",
+        "municipio": "DÍAZ",
+        "vehiculos": "20 Motos / 3 Patrullas",
+        "responsable": "Sargento Mayor de Tercera GNB Luis Manuel Bermúdez González",
+        "ubicacion_descripcion": "CPT3 La Guardia, Bodegón Cristina, Iglesia Católica La Guardia, Plaza de La Guardia, Cancha Usos Múltiples La Guardia",
+        "id": "cuadrantes_50"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92333512281563,
+          11.12065004561434
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito #10 Pedro González",
+        "telefono": "0416-6122294",
+        "cuadrante": "Circuito #10",
+        "municipio": "GÓMEZ",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Primer Inspector IAPOLEBNE Ronald Alexander Rosa Rodríguez",
+        "ubicacion_descripcion": "Plaza de Pedro González, Playa Zaragoza, Hotel Hesperia Margarita, Guayacán Norte, Academia de Beisbol Roberto Vahlis",
+        "id": "cuadrantes_51"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.966079152343795,
+          11.094023834397326
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Los Héroes de la Laguna de los Mártires",
+        "telefono": "0416-6122098",
+        "cuadrante": "3",
+        "municipio": "MARCANO",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Primer Comisario CPNB Reidaniel Ramón Rodríguez Fernández",
+        "ubicacion_descripcion": "El Fortín de la Galera, Lonja Pesquera, Bodegón El Bajo, Iglesia Santo Cristo de la Galera, Planta de Tratamiento de Aguas Residuales",
+        "id": "cuadrantes_52"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.859547373669116,
+          10.956652354344781
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Cacique Isabel",
+        "telefono": "0416-6122130",
+        "cuadrante": "8",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Inspector CPNB Paul Maylon Hall Castillo",
+        "ubicacion_descripcion": "Cementerio de Porlamar, Plaza Alí Primera, Tubosmas, Sector Conejeros",
+        "id": "cuadrantes_53"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.35226359991468,
+          10.964332697207546
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Roblepozo",
+        "telefono": "0416-6122062",
+        "cuadrante": "2",
+        "municipio": "MACANAO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "Inspector CPNB Camejo Gamboa Fran Alexander",
+        "ubicacion_descripcion": "Ambulatorio Tipo I David Guendsedchadze, Las Antenas de Comunicaciones Digitel y Movistar, Laguna de Boca Chica, Playa Punta Arena",
+        "id": "cuadrantes_54"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94779506017269,
+          11.072456041249902
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito #3 La Vecindad",
+        "telefono": "0416-6122296",
+        "cuadrante": "Circuito #3",
+        "municipio": "GÓMEZ",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Inspector CPNB Silmarys Gabriela Cabrera Rodríguez",
+        "ubicacion_descripcion": "Estadio de La Vecindad, Plaza de La Vecindad, E/S de Servicio La Vecindad, Base de Misiones José Larez, Simoncito Comunitario Los Periquitos, El Tamarindo, Sector El Sabilar, Piedra del Gato, Cancha Techada",
+        "id": "cuadrantes_55"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85384698658581,
+          10.965941636261617
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Forjadores de la Patria",
+        "telefono": "0416-6122138",
+        "cuadrante": "9",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Oficial Jefe POLIMARIÑO Claudia del Valle Brito Marcano",
+        "ubicacion_descripcion": "Fundación Santiago Mariño, Simoncito Azul Viento, Plaza del Periodista, Estación de Servicio Fajardo, Clínica Libertad, Colegio de Monjas, UE Antonio María Martínez",
+        "id": "cuadrantes_56"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            -63.933043819499304,
+            11.126428081787589
+          ],
+          [
+            -63.97126469318281,
+            11.06665532434764
+          ]
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Alberto Lovera",
+        "telefono": "0416-6122093",
+        "cuadrante": "1",
+        "municipio": "MARCANO",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Alberto Rafael Camejo Rodríguez",
+        "ubicacion_descripcion": "CDI Pozo Blanco, UE Rafael Valeri Maza, Simoncito El Turpial, UE Lourdes Rodríguez, CDI Rosalía Mata, Iglesia Nuestra Señora del Carmen, Iglesia de Las Cabreras, Cancha de Usos Múltiples Chorochoro, Casa de la Comuna Alberto Lovera, Posada Campestre Ferggy’s",
+        "id": "cuadrantes_57"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84010834794632,
+          10.965797782123078
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Pesquera Guaikeri",
+        "telefono": "0416-6122162",
+        "cuadrante": "11",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Inspector CPNB Anyelith Maria Aguilera Noguera",
+        "ubicacion_descripcion": "Centro Comercial Jumbo, Casa de la Cultura Ramón Vásquez Brito, Hotel Costa Brava, Hidrocaribe, Campo de Futbol Bella Vista, Escuela Cándido Sánchez, Estación de Servicio Aziza",
+        "id": "cuadrantes_58"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.853106704719025,
+          10.956883516351866
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna General en Jefe Santiago Mariño",
+        "telefono": "0416-6122157",
+        "cuadrante": "10",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Inspector CPNB Abel Antonio Catalán León",
+        "ubicacion_descripcion": "Mercado Pesquero de Punda, Terminal de Porlamar, UBV, Faro de la Puntilla, Plaza Bolívar, Iglesia Epifanía del Señor, Panadería Vivaldi, Paseo del Mar, Hotel Bella Vista, Restaurante La Casa de Rubén, CCPE Nueva Esparta",
+        "id": "cuadrantes_59"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.880654035295734,
+          10.954906129498552
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Camarada Roberto Cabello",
+        "telefono": "0416-6122127",
+        "cuadrante": "3",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Oficial Jefe POLIMARIÑO José Antonio Acosta Mata",
+        "ubicacion_descripcion": "Zona Industrial El Piache, Chevrolet, Campo Santo, Almacenadora Caracas, Estación de Cloración Hidrocaribe",
+        "id": "cuadrantes_60"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82844594096635,
+          10.963865938086457
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Vista Al Mar, Perla del Caribe",
+        "telefono": "0416-6122172",
+        "cuadrante": "13",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Inspector CICPC Miguel Ángel Larez Rodríguez",
+        "ubicacion_descripcion": "Registro Público Mariño y García, CICPC MDelegación Porlamar, Sede Tránsito Terrestre, Hotel Margarita Village, Mas x Menos La Caracola, Playa La Caracola, Muelle El Morro Hotel Wyndham, Sede VEN 9-1-1, Estación de Servicio VP Av Bolívar",
+        "id": "cuadrantes_61"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            -64.17868690861765,
+            10.975933208195068
+          ],
+          [
+            -64.29251790656977,
+            11.018881956401412
+          ]
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Socialista Agro-Pesquera Virgen del Coromoto",
+        "telefono": "0422-1741899",
+        "cuadrante": "1",
+        "municipio": "MACANAO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "Inspector CPNB Rojas Cova Wilmer José",
+        "ubicacion_descripcion": "Playa El Tunal, Población de San Francisco, Playa Arenita, Playa La Pared, Cruce de Puerto Escondido, Sub Estación Eléctrica Boca de Río",
+        "id": "cuadrantes_62"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8544437712587,
+          10.980689958788112
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Chotomaymu Tierra Fértil",
+        "telefono": "0416-6669739",
+        "cuadrante": "5",
+        "municipio": "MARIÑO",
+        "vehiculos": "26 Motos / 3 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Ángel Nicolás Velásquez Cedeño",
+        "ubicacion_descripcion": "Vicente Marcano, Polígono de Tiro Achipano, Escuela José Jesús García",
+        "id": "cuadrantes_63"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.929944738954106,
+          10.950562245576494
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna Socialista Villa Juana",
+        "telefono": "0422-1783224",
+        "cuadrante": "3",
+        "municipio": "GARCÍA",
+        "vehiculos": "12 Motos / 2 Patrullas",
+        "responsable": "Inspector IAPOLEBNE Yoselis Yasmira Carreño Cedeño",
+        "ubicacion_descripcion": "Comuna Socialista Villa Juana (Jardines de Margarita, Estadio de Villa Juana, Calle Principal de Villa Juana)",
+        "id": "cuadrantes_64"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.21343095441527,
+          10.940292814696146
+        ]
+      },
+      "properties": {
+        "comuna": "Circuito Comunal Guayacancito",
+        "telefono": "0422-1741900",
+        "cuadrante": "3",
+        "municipio": "MACANAO",
+        "vehiculos": "10 Motos / 2 Patrullas",
+        "responsable": "Comisario IAPOLEBNE Marín Venales Ángel Alberto",
+        "ubicacion_descripcion": "Centro Cultural Licenciado Ismael González Ríos, Estadium de Beisbol Ramón Millán, Playa Guayacancito",
+        "id": "cuadrantes_65"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82580311968871,
+          11.016271175965105
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna La Cayena",
+        "source": "Contactos de Seguridad",
+        "telefono": "0416-6122091",
+        "cuadrante": "4",
+        "municipio": "MANEIRO",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Comisario (Polimaneiro) Jean Jose Gil Semeco",
+        "ubicacion_descripcion": "C.C. Milenium, Urb. Fundación Margarita, Urb. Hugo Chávez, Sector Curiepe, Sector Los Cerritos",
+        "id": "cuadrantes_66"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83333006017368,
+          10.994710846512747
+        ]
+      },
+      "properties": {
+        "comuna": "Comuna El Guanaguanare",
+        "source": "Contactos de Seguridad",
+        "telefono": "0416-6122090",
+        "cuadrante": "3",
+        "municipio": "MANEIRO",
+        "vehiculos": "8 Motos / 1 Patrulla",
+        "responsable": "Inspector Jefe (Polimaneiro) Yandueth Felipe Cova Narvaez",
+        "ubicacion_descripcion": "Supermercado Mas x Menos, Farmatodo Playa El Ángel, Rattan Plaza, Orquesta Sinfónica, Universidad Santiago Mariño, Subestación Eléctrica El Roble, Plaza de Los Robles",
+        "id": "cuadrantes_67"
+      }
+    }
+  ]
+}

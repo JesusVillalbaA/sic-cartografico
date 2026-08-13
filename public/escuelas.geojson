@@ -1,0 +1,5975 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.79319,
+          11.00403
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Profesor Bernardo Acosta",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "CM. PAMPATAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83413,
+          10.99102
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Maria Auxiliadora I",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95003,
+          11.09254
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Jose Cortes De Madariaga",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. SUCRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82552,
+          11.04592
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Juan Cancio Rodríguez",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_3",
+        "circuito": "Batalla de Matasiete",
+        "circuito_educativo": "Batalla de Matasiete",
+        "maps_url": "https://maps.app.goo.gl/zZpotZCMQBey8xLX6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86731,
+          11.0317
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Luisa Cáceres De Arismendi",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_4",
+        "circuito": "Castillo Santa Rosa",
+        "circuito_educativo": "Castillo Santa Rosa",
+        "maps_url": "https://maps.app.goo.gl/MyFWoRnkbwZw8ZTAA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88047,
+          11.00851
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Encarnación Rodríguez De Rojas",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9784,
+          10.97279
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Anibal Larez",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95449,
+          11.02457
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Simon Jose Arismendi",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98093,
+          10.98193
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Cerromar",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86499,
+          11.03387
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Universidad Nacional Abierta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98047,
+          10.94584
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Escolar Feliciano Hernandez",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98522,
+          10.97496
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial La Lagunita",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.01934,
+          10.99629
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Miguel Suniaga",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95159,
+          11.03225
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Presbitero Monseñor José Antonio Cónstenla Garrido",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.01962,
+          10.99673
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Miguel Suniaga",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.02938,
+          10.98765
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Socialista Piedras Negras",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.942,
+          11.06926
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Maestro Jesus Manuel Marin",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "CM. SANTA ANA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.93193,
+          11.01335
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Doña Emilia De Velasquez",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.00755,
+          10.95989
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa  Guevara Norte",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.01207,
+          10.9876
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Maria Auxiliadora",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9206,
+          11.11335
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Arcelia Moreno De Gonzalez",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. MATASIETE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94288,
+          11.07011
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Primaria Bolivariana Bachiller Juan Jose Fernandez",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "CM. SANTA ANA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9257,
+          11.06742
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Ricardo Marquez Moreno",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "CM. SANTA ANA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94325,
+          11.04734
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Apolinar Figueroa Coronado",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. BOLIVAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92581,
+          11.06848
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Matasiete",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "CM. SANTA ANA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.90248,
+          11.11498
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Concentrada El Salado",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. MATASIETE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94164,
+          11.09952
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Sol Y Arena",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. SUCRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8135,
+          11.00141
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Petra Suárez De Piñerua",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "CM. PAMPATAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.81568,
+          10.98857
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa El Angel",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.90523,
+          11.05243
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Napoleon Narvaez",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. GUEVARA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96961,
+          11.07689
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Doñana",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85551,
+          11.03002
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Doctor Andrés Eloy Blanco",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_31",
+        "circuito": "Batalla de Matasiete",
+        "circuito_educativo": "Batalla de Matasiete",
+        "maps_url": "https://maps.app.goo.gl/WnoecE9XAwmrmAEj8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98644,
+          10.9881
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Esthela Zabala De Soto",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_32"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94496,
+          11.07901
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Consuelo De Natera",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "CM. SANTA ANA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.81959,
+          11.02503
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Casta Josefina Salazar De Lopez",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "CM. PAMPATAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_34"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82295,
+          11.00196
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Suramericano Libre Aprendizaje (Isla)",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95035,
+          11.09213
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Maestra Maria Gertrudis Gonzalez",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. SUCRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_36"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.87201,
+          11.04026
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Ramona Caraballo Guzmán",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_37",
+        "circuito": "Fortín La Libertad",
+        "circuito_educativo": "Fortín La Libertad",
+        "maps_url": "https://maps.app.goo.gl/H2P65esjvtLcFxN7A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94195,
+          11.01102
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Francisco Fajardo",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_38"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96794,
+          10.94351
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Maria Guevara",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_39"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.01916,
+          11.00404
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Guiri Guire",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.90653,
+          11.04763
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Cruz Millan Garcia",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. GUEVARA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_41"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96441,
+          11.07003
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Simoncito Comunitario Los Tucanes",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_42"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86369,
+          11.02902
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Francisco Esteban Gómez",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_43",
+        "circuito": "Hugo Chávez",
+        "circuito_educativo": "Hugo Chávez",
+        "maps_url": "https://maps.app.goo.gl/cBiVMvVXdxMvC1ue8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.79872,
+          10.9991
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Jose Joaquin De Olmedo",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "CM. PAMPATAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_44"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82338,
+          11.00045
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Colegio Madre Guadalupe",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_45"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8229,
+          11.00234
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Maria Auxiliadora Ii",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_46"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9688,
+          11.08509
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Estadal Antonia Matilde Mata",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_47"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96681,
+          11.0791
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa San Judas Tadeo",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_48"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95815,
+          11.07276
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Juan De Castellanos",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86661,
+          11.03009
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Poeta Jesús Rosas Marcano",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_50",
+        "circuito": "Castillo Santa Rosa",
+        "circuito_educativo": "Castillo Santa Rosa",
+        "maps_url": "https://maps.app.goo.gl/FmRUeG9BV1FcujKD6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85387,
+          11.02652
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Bolivariana Para La Diversidad Funcional Auditiva Luisa Cáceres De Arismendi",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_51"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96067,
+          11.00891
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Juana Salazar De Moreno",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_52"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96516,
+          10.89844
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Concentrada Numero 69",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_53"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.93146,
+          11.05815
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Jose Ramon Lopez Velasquez",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "CM. SANTA ANA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_54"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91269,
+          11.13616
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Concentrada Numero 24",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. MATASIETE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_55"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.79263,
+          11.00095
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Cristo Del Buen Viaje",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "CM. PAMPATAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_56"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.80337,
+          11.00348
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Ana Cleta Labori",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "CM. PAMPATAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_57"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96471,
+          11.0677
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial La Sabaneta",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_58"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97918,
+          11.06208
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Lourdes Rodriguez",
+        "municipio": "MP. MARCANO",
+        "parroquia": "PQ. ADRIAN",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_59"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8466,
+          10.95238
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Formacion Socialista Inces Turismo Guaraguao",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_60"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85972,
+          10.95988
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Antonio Maria Martínez",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_61"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86441,
+          10.94791
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Luisa Cáceres De Arismendi",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_62"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85549,
+          10.96175
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Educativo Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_63",
+        "circuito": "Castillo Santa Rosa",
+        "circuito_educativo": "Castillo Santa Rosa",
+        "maps_url": "https://maps.app.goo.gl/VCdZDXevNpsLPZz89"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86456,
+          11.02654
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Bolivariana Para La Diversidad Funcional Intelectual Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_64"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9373,
+          11.01115
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Gaspar Marcano",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_65"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.01024,
+          10.99271
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Estadal Las Casas",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_66"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.00571,
+          10.95375
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Brisas Del Valle",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_67"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9408,
+          11.06731
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Valeriano Larez",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "CM. SANTA ANA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_68"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94779,
+          11.09427
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Nuestra Señora De Altagracia",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. SUCRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_69"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82899,
+          11.01893
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Jose Concepcion Salcedo Avila",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "CM. PAMPATAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_70"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.81123,
+          10.98331
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Profesor  Jesus Manuel Subero",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_71"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97709,
+          11.07506
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Francisco Salazar Sabino",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_72"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95378,
+          11.0619
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Los Millanes",
+        "municipio": "MP. MARCANO",
+        "parroquia": "PQ. ADRIAN",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_73"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86165,
+          11.04623
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Profesor Julio Villarroel",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_74",
+        "circuito": "Batalla de Matasiete",
+        "circuito_educativo": "Batalla de Matasiete",
+        "maps_url": "https://maps.app.goo.gl/n1QDHvnWzGY3VyLc6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96098,
+          11.01822
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Cesar Diaz De Herrera",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_75"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.98352,
+          10.97064
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Ynes Mercedes Salazar De Rondon",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_76"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.02542,
+          10.99385
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Maria Rosario Larez",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_77"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.01038,
+          10.95299
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Brisa Del Valle",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_78"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.79376,
+          11.00404
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Luisa Rosas De Velasquez",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "CM. PAMPATAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_79"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83693,
+          10.98904
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Victor Cedeno",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_80"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97601,
+          11.08877
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Rural Concentrada Numero 50",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_81"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96818,
+          11.05171
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Juana Mendez Penoth",
+        "municipio": "MP. MARCANO",
+        "parroquia": "PQ. ADRIAN",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_82"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88782,
+          10.94333
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Doctor Raúl Leoni",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_83"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8576,
+          11.02363
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Liceo Nacional Bolivariano Doctor Francisco Antonio Risquez",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_84"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85618,
+          11.02382
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Espacio Cultural Comunitario Luis Beltrán Prieto Figueroa",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_85"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97843,
+          10.9908
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Maria Auxiliadora Zabala De Millan",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_86"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.99457,
+          10.95707
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Profesor  Ascanio J. Velasquez",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_87"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.99772,
+          10.95182
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Guevara Sur",
+        "municipio": "MP. DIAZ",
+        "parroquia": "PQ. ZABALA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_88"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91981,
+          11.11475
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Juan Bautista Arismendi",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. MATASIETE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_89"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95865,
+          11.09858
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Brisas De Altagracia",
+        "municipio": "MP. GOMEZ",
+        "parroquia": "PQ. SUCRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_90"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83637,
+          10.98879
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Jose Augusto De Leon",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_91"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96693,
+          11.07769
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Antonio Diaz",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_92"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95495,
+          11.0619
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Doctor Francisco Antonio Risquez",
+        "municipio": "MP. MARCANO",
+        "parroquia": "PQ. ADRIAN",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_93"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86158,
+          10.95747
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Simoncito Virgen Del Valle",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_94"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85089,
+          10.96023
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Maneiro",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_95"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86255,
+          10.97345
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Rafael Salazar Brito",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_96"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.87465,
+          10.95238
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Petronila Mata",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_97"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.29199,
+          11.01986
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Doctor Jose Maria Vargas",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_98"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.37728,
+          11.006
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Doctor Horacio Nelson Garcia Marin",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84087,
+          11.02377
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Profesor José Inocente Alfaro",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_100",
+        "circuito": "Luis Beltrán Prieto Figueroa",
+        "circuito_educativo": "Luis Beltrán Prieto Figueroa",
+        "maps_url": "https://maps.app.goo.gl/bCBoH2YP56V8Smvy7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95936,
+          11.00255
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Bolivariana Francisco Boadas Diaz",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_101"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96825,
+          10.95659
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Joaquina Velasquez De Romero",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_102"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96811,
+          10.94419
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Profesor Ovidio Valerio",
+        "municipio": "MP. DIAZ",
+        "parroquia": "SAN JUAN BAUTISTA",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_103"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96884,
+          11.08039
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Integral Inicial Juan Griego",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_104"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95407,
+          11.06173
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Doctor Francisco Antonio Risquez",
+        "municipio": "MP. MARCANO",
+        "parroquia": "PQ. ADRIAN",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_105"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83511,
+          10.97639
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Municipal Maestro Gregorio Romero",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_106"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84114,
+          10.96926
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Municipal Bachiller Eleuterio Rosario Campos",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_107"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.847,
+          10.96459
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa San Martín De Porres",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_108"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83528,
+          10.96179
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Candido Sánchez",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_109"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.18385,
+          10.96768
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Monsenor Nicolas Eugenio Navarro",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "CM. BOCA DEL RIO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_110"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.993,
+          10.78548
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro Bolivariano De Informatica Y Telematica San Pedro De Coche",
+        "municipio": "MP.VILLALBA(I.COCHE)",
+        "parroquia": "CM. SAN PEDRO DE COCHE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_111"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.05079,
+          10.93728
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Las Hernández",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_112"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.05435,
+          10.93715
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Simoncito Numero 25 La Redoma, Las Hernandez",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_113"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88401,
+          11.15356
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Doctor Cayetano Garcia Salazar",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_114"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8597,
+          11.09761
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Paraguachi",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_115"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94983,
+          10.94531
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Santiago Marino",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_116"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92548,
+          10.9493
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Simoncito Simón Bolívar",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_117"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95746,
+          11.06951
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Presbitero Manuel Montaner Salazar",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_118"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.97058,
+          11.08657
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Bahia Del Sol",
+        "municipio": "MP. MARCANO",
+        "parroquia": "CM. JUAN GRIEGO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_119"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83754,
+          10.96967
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nuestra Señora De Coromoto",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_120"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83713,
+          10.96247
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Candido Sánchez",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_121"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88125,
+          10.95186
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa El Piache",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_122"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.18159,
+          10.95767
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Luis Castro",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "CM. BOCA DEL RIO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_123"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.37571,
+          11.01382
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Boca De Pozo",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_124"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.0853,
+          10.90266
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Tubores",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_125"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.15142,
+          10.96162
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Juan Ramón Aguilera",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_126"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.04438,
+          10.87745
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Concentrada Numero 25",
+        "municipio": "MP. TUBORES",
+        "parroquia": "PQ. LOS BARALES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_127"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86194,
+          11.12429
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Don Andres Bello",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_128"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86273,
+          10.98936
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Almirante Jose Maria Garcia",
+        "municipio": "MP. GARCIA",
+        "parroquia": "CM. VALLE ESP SANTO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_129"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.93093,
+          10.95259
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Simoncito Luisa Cheng De Marín",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_130"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88616,
+          10.98203
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Diocesano El Valle Del Espíritu Santo",
+        "municipio": "MP. GARCIA",
+        "parroquia": "CM. VALLE ESP SANTO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_131"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95347,
+          11.05232
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Vicuña",
+        "municipio": "MP. MARCANO",
+        "parroquia": "PQ. ADRIAN",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_132"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85372,
+          10.9562
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Educacional Simon Bolivar",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_133"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85736,
+          10.95835
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Liceo Bolivariano Nueva Esparta",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_134"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86557,
+          10.95035
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Doctor Leonardo Ruiz Pineda",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_135"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83194,
+          10.97561
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Educacional Porlamar",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_136"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.37748,
+          11.0109
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Ana Maria Campos",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_137"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88893,
+          10.94925
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Socialista Villa De Campo Santo",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_138"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.10358,
+          10.90127
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Albina Rodriguez De Marcano",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_139"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.15217,
+          11.00451
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Concentrada Numero 53 La Restinga",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_140"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86213,
+          11.09463
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Antolin Del Campo",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_141"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84849,
+          11.11945
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Doctor Luis Ortega",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_142"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94132,
+          10.94637
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Luisa Mercedes Hernandez De Carrillo",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_143"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92793,
+          10.96487
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Concepcion Mariño",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_144"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9731,
+          11.06646
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Rafael Valery Maza",
+        "municipio": "MP. MARCANO",
+        "parroquia": "PQ. ADRIAN",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_145"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84534,
+          10.95928
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Independencia",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_146"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84378,
+          10.9585
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bachiller Santiago Salazar Fermin",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_147"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8581,
+          10.95043
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Nacional Bolivariana Bachiller José Joaquín De León",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_148"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85797,
+          10.95914
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Andres Bello",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_149"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.18123,
+          10.95743
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Emilia Maria Mata Vasquez",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "CM. BOCA DEL RIO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_150"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.99338,
+          10.77979
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Napoleón Narváez",
+        "municipio": "MP.VILLALBA(I.COCHE)",
+        "parroquia": "CM. SAN PEDRO DE COCHE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_151"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.0818,
+          10.95396
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Salustiano Salazar Marin",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_152"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.95574,
+          10.7709
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Felipa Neri De Narváez",
+        "municipio": "MP.VILLALBA(I.COCHE)",
+        "parroquia": "PQ. VICENTE FUENTES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_153"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8574,
+          11.07536
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Bachiller Luis Navarro Rivas",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_154"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86239,
+          11.08406
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Cruz Millan Garcia",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_155"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92505,
+          10.95459
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Escuela Básica Villa Rosa",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_156"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.93146,
+          10.94615
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Maria Montessori",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_157"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83854,
+          11.00801
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Educativo Renacer",
+        "municipio": "MP. MANEIRO",
+        "parroquia": "PQ. AGUIRRE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_158"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86545,
+          10.95393
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Doña Menca De Leoni",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_159"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8512,
+          10.96131
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa San Nicolas",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_160"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8542,
+          10.96283
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Simoncito Azul Y Viento",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_161"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83019,
+          10.96584
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Socialista Campomar",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_162"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.21551,
+          10.93834
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Simon Bolivar",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "CM. BOCA DEL RIO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_163"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.99545,
+          10.78059
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Básica Bolivariana Doctor Agustín Rafael Hernández",
+        "municipio": "MP.VILLALBA(I.COCHE)",
+        "parroquia": "CM. SAN PEDRO DE COCHE",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_164"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.02779,
+          10.94818
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Josefina Ortiz",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_165"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.08733,
+          10.89826
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Los Marineritos",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_166"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.04331,
+          10.9212
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Jesús Ramón Gamboa",
+        "municipio": "MP. TUBORES",
+        "parroquia": "PQ. LOS BARALES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_167"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86231,
+          11.09394
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Antolin Del Campo",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_168"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91979,
+          10.96251
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Simoncito San Antonio",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_169"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92576,
+          10.94819
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Guaiqueri",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_170"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8307,
+          10.9731
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Educativo Arcoiris",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_171"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84366,
+          10.96429
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Virgen Del Valle (Adulto)",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_172"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8566,
+          10.96385
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Cacique Charaima",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_173"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85746,
+          10.95055
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Bachiller José Joaquín De León",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_174"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.87407,
+          10.95845
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Socialista Los Olivos",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_175"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.39923,
+          10.97442
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Concentrada Punta Arenas",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_176"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.90043,
+          10.74191
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Merita Marín",
+        "municipio": "MP.VILLALBA(I.COCHE)",
+        "parroquia": "PQ. VICENTE FUENTES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_177"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.11764,
+          10.94254
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Estadal Jose Presentacion Espinoza Reyes",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_178"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.03395,
+          10.93943
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro Educacion Inicial Nuestra Señora De Las Mercedes",
+        "municipio": "MP. TUBORES",
+        "parroquia": "PQ. LOS BARALES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_179"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84696,
+          11.10317
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Amada Fermin De Hernandez",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_180"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86761,
+          10.97556
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Colegio Americo Vespucio",
+        "municipio": "MP. GARCIA",
+        "parroquia": "CM. VALLE ESP SANTO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_181"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9073,
+          10.93936
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Manuela Saenz",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_182"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91811,
+          10.96385
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito San Antonio (Sede Anterior)",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_183"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85494,
+          10.9569
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa San José",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_184"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.83616,
+          10.97045
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Doctor Arturo Uslar Pietri",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_185"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86138,
+          10.94619
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Socialista Valle Encantado",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_186"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86956,
+          10.94849
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Maestra Belen San Juan",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_187"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.17921,
+          10.96738
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Maestra Nilda Fernandez",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "CM. BOCA DEL RIO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_188"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9259,
+          10.74062
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Victor Manuel Salazar",
+        "municipio": "MP.VILLALBA(I.COCHE)",
+        "parroquia": "PQ. VICENTE FUENTES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_189"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.08745,
+          10.90259
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Bolivariana Para La Diversidad Funcional Intelectual Las Hernández",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_190"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.09327,
+          10.89918
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Colegio San Simón Apóstol (Adulto)",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_191"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.03544,
+          10.91259
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Concentrada Numero 59",
+        "municipio": "MP. TUBORES",
+        "parroquia": "PQ. LOS BARALES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_192"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86063,
+          11.10697
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Rural Numero 29",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_193"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.9262,
+          10.94787
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Presbistero Manuel Montaner Salazar",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_194"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91755,
+          10.95746
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial  Maria Elvira De Figueroa",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_195"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91788,
+          10.96384
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Pedro Luis Briceno",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_196"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85472,
+          10.97964
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa José Jesús García Rodríguez",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_197"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86622,
+          10.94573
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Ince Mar",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_198"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.85357,
+          10.95483
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Estado Zulia",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_199"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84555,
+          10.96941
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Don Romulo Gallegos",
+        "municipio": "MP. MARIÑO",
+        "parroquia": "CM. PORLAMAR",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_200"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.31554,
+          10.95841
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Francisco Rojas Gamboa",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_201"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.37259,
+          11.02907
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Antonio Jose De Sucre",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_202"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.09991,
+          10.94564
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Don Simon Rodriguez",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_203"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.07142,
+          10.90083
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Bachiller Cruz Jose Marval",
+        "municipio": "MP. TUBORES",
+        "parroquia": "PQ. LOS BARALES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_204"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8846,
+          11.09446
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Estadal Jose Rafael Marcano Gil",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_205"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.88887,
+          10.98672
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Nacional Bolivariana Monsenor Eduardo Vasquez",
+        "municipio": "MP. GARCIA",
+        "parroquia": "CM. VALLE ESP SANTO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_206"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92642,
+          10.95383
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Luisa Cáceres De Arismendi",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_207"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92648,
+          10.96162
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Villas San Antonio",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_208"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.37855,
+          11.00877
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Escuela Basica Doctor Francisco Antonio Garcia",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_209"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.31316,
+          11.05761
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Jesus Eufracio Valerio Marin",
+        "municipio": "MP.PENIN. DE MACANAO",
+        "parroquia": "PQ. SAN FRANCISCO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_210"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.10312,
+          10.90046
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educación Inicial Tio Conejo",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_211"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.0799,
+          10.91498
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Maestra Trina Guerra De Guerra",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_212"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84816,
+          11.11889
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Bolivariana Doctor Luis Ortega",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_213"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.06324,
+          10.89405
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa José Vicente Marcano",
+        "municipio": "MP. TUBORES",
+        "parroquia": "PQ. LOS BARALES",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_214"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.91751,
+          10.95785
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Maria Elvira De Figueroa",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_215"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92388,
+          10.95355
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Liceo Bolivariano Maestra Argelia Laya",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_216"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.918,
+          10.93936
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Villa Zoita",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_217"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.11233,
+          10.93011
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Doroteo Diaz Salazar",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_218"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -64.03268,
+          10.95748
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Centro De Educacion Inicial Simoncito Guayacan Del Norte",
+        "municipio": "MP. TUBORES",
+        "parroquia": "CM. PUNTA DE PIEDRAS",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_219"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82998,
+          11.07277
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Rural Numero 21",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_220"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.87164,
+          11.13891
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Estadal Elvira Josefina De Rodriguez",
+        "municipio": "MP.ANTOLIN DEL CAMPO",
+        "parroquia": "CM.LA PLAZA DE PARAGUACHI",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_221"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92738,
+          10.89438
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Santiago Mariño",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_222"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.92481,
+          10.95021
+        ]
+      },
+      "properties": {
+        "estado": "Nueva Esparta",
+        "nombre": "Unidad Educativa Instituto Educacional Abc",
+        "municipio": "MP. GARCIA",
+        "parroquia": "PQ. FRANCISCO FAJARDO",
+        "region_tipo": "Maritima e Insular",
+        "id": "escuelas_223"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8623,
+          11.0321
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_0",
+        "nombre": "Liceo Juan Bautista Arismendi",
+        "name": "Liceo Juan Bautista Arismendi",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Luis Beltrán Prieto Figueroa",
+        "circuito_educativo": "Luis Beltrán Prieto Figueroa",
+        "maps_url": "https://maps.app.goo.gl/PK89i7iJw8tQMWM46"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8623,
+          11.0321
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_1",
+        "nombre": "Liceo Nocturno Maestro Luis Beltrán Prieto Figueroa",
+        "name": "Liceo Nocturno Maestro Luis Beltrán Prieto Figueroa",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Luis Beltrán Prieto Figueroa",
+        "circuito_educativo": "Luis Beltrán Prieto Figueroa",
+        "maps_url": "https://maps.app.goo.gl/PK89i7iJw8tQMWM46"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.859,
+          11.0365
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_2",
+        "nombre": "UEEE Petronila de La Concepción de Mata Romero",
+        "name": "UEEE Petronila de La Concepción de Mata Romero",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Luis Beltrán Prieto Figueroa",
+        "circuito_educativo": "Luis Beltrán Prieto Figueroa",
+        "maps_url": "https://maps.app.goo.gl/cRHm2ZzZVsyoBusJ7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.864,
+          11.0345
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_3",
+        "nombre": "Cenda Jean Piaget",
+        "name": "Cenda Jean Piaget",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Luis Beltrán Prieto Figueroa",
+        "circuito_educativo": "Luis Beltrán Prieto Figueroa",
+        "maps_url": "https://maps.app.goo.gl/6C1uo1BFaTNxDW7L9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.864,
+          11.0345
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_4",
+        "nombre": "Equipo de Integración Josefa Camejo",
+        "name": "Equipo de Integración Josefa Camejo",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Luis Beltrán Prieto Figueroa",
+        "circuito_educativo": "Luis Beltrán Prieto Figueroa",
+        "maps_url": "https://maps.app.goo.gl/6C1uo1BFaTNxDW7L9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8615,
+          11.031
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_5",
+        "nombre": "Cecoprode Arismendi",
+        "name": "Cecoprode Arismendi",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Luis Beltrán Prieto Figueroa",
+        "circuito_educativo": "Luis Beltrán Prieto Figueroa",
+        "maps_url": "https://maps.app.goo.gl/8dahxWQrCxSDdSJq9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8635,
+          11.0352
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_6",
+        "nombre": "Caidv Luis Brailler",
+        "name": "Caidv Luis Brailler",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Luis Beltrán Prieto Figueroa",
+        "circuito_educativo": "Luis Beltrán Prieto Figueroa",
+        "maps_url": "https://maps.app.goo.gl/shuqsesqz1abx8Q47"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.821,
+          11.041
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_9",
+        "nombre": "Colegio Guayamuri",
+        "name": "Colegio Guayamuri",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Batalla de Matasiete",
+        "circuito_educativo": "Batalla de Matasiete",
+        "maps_url": "https://maps.app.goo.gl/jzYcHRnsoCvcTZ4M6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.828,
+          11.048
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_10",
+        "nombre": "UE Rafael Urdaneta",
+        "name": "UE Rafael Urdaneta",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Batalla de Matasiete",
+        "circuito_educativo": "Batalla de Matasiete",
+        "maps_url": "https://maps.app.goo.gl/kBzwWH6iCgwhwxkD9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8245,
+          11.0495
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_12",
+        "nombre": "UE Nueva Cádiz",
+        "name": "UE Nueva Cádiz",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Batalla de Matasiete",
+        "circuito_educativo": "Batalla de Matasiete",
+        "maps_url": "https://maps.app.goo.gl/GXvcsomSNrDxu8iG7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.83,
+          11.046
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_13",
+        "nombre": "Colegio Domingo Savio",
+        "name": "Colegio Domingo Savio",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Batalla de Matasiete",
+        "circuito_educativo": "Batalla de Matasiete",
+        "maps_url": "https://maps.google.com/?cid=14822068156541882538&entry=gps"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.827,
+          11.044
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_14",
+        "nombre": "Colegio Náutico Contralmirante José María García",
+        "name": "Colegio Náutico Contralmirante José María García",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Batalla de Matasiete",
+        "circuito_educativo": "Batalla de Matasiete",
+        "maps_url": "https://maps.app.goo.gl/eYa4is4dwwUpvf8g8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.863,
+          11.038
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_19",
+        "nombre": "Taller Laboral Marisol García",
+        "name": "Taller Laboral Marisol García",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Castillo Santa Rosa",
+        "circuito_educativo": "Castillo Santa Rosa",
+        "maps_url": "https://maps.app.goo.gl/Z6zbspk9687Qma8V8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8605,
+          11.034
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_20",
+        "nombre": "UE Jhony Escobar OTILCA",
+        "name": "UE Jhony Escobar OTILCA",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Castillo Santa Rosa",
+        "circuito_educativo": "Castillo Santa Rosa",
+        "maps_url": "https://maps.app.goo.gl/6PxHbMpxwffpsJHUA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.858,
+          11.039
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_21",
+        "nombre": "UEE Encarnación Rojas",
+        "name": "UEE Encarnación Rojas",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Castillo Santa Rosa",
+        "circuito_educativo": "Castillo Santa Rosa",
+        "maps_url": "https://maps.app.goo.gl/hW5n7UcbnTU9JNANA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8612,
+          11.0378
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_22",
+        "nombre": "Escuela de Emprendimiento La Asunción",
+        "name": "Escuela de Emprendimiento La Asunción",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Castillo Santa Rosa",
+        "circuito_educativo": "Castillo Santa Rosa",
+        "maps_url": "https://maps.app.goo.gl/MyFWoRnkbwZw8ZTAA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8645,
+          11.036
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_23",
+        "nombre": "CAIPA Hugo Chávez",
+        "name": "CAIPA Hugo Chávez",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Castillo Santa Rosa",
+        "circuito_educativo": "Castillo Santa Rosa",
+        "maps_url": "https://maps.app.goo.gl/VCdZDXevNpsLPZz89"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8631,
+          11.0335
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_25",
+        "nombre": "UE Nuestra Señora De La Asunción",
+        "name": "UE Nuestra Señora De La Asunción",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Fortín La Libertad",
+        "circuito_educativo": "Fortín La Libertad",
+        "maps_url": "https://maps.google.com/?q=24QJ%2BPR7%2C+Calle+Girardot%2C+La+Asunci%C3%B3n+6311%2C+Nueva+Esparta"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8675,
+          11.0315
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_26",
+        "nombre": "UE Divino Niño I Y II",
+        "name": "UE Divino Niño I Y II",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Fortín La Libertad",
+        "circuito_educativo": "Fortín La Libertad",
+        "maps_url": "https://maps.app.goo.gl/ftipxzAbCRup1rhT7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.865,
+          11.033
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_27",
+        "nombre": "UE San Francisco de Asís",
+        "name": "UE San Francisco de Asís",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Fortín La Libertad",
+        "circuito_educativo": "Fortín La Libertad",
+        "maps_url": "https://maps.app.goo.gl/EJpwVZDHY8MxVerN7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.868,
+          11.03
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_28",
+        "nombre": "CEI Margarita (Fedecene)",
+        "name": "CEI Margarita (Fedecene)",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Fortín La Libertad",
+        "circuito_educativo": "Fortín La Libertad",
+        "maps_url": "https://maps.app.goo.gl/Fm4dgVLBAwJiRdtT9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8595,
+          11.033
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_30",
+        "nombre": "CDI Simón Bolívar",
+        "name": "CDI Simón Bolívar",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Hugo Chávez",
+        "circuito_educativo": "Hugo Chávez",
+        "maps_url": "https://maps.app.goo.gl/R9muDAVH2n1KKBhX7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.864,
+          11.031
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_31",
+        "nombre": "CEEI Nuestra Señora del Carmen",
+        "name": "CEEI Nuestra Señora del Carmen",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Hugo Chávez",
+        "circuito_educativo": "Hugo Chávez",
+        "maps_url": "https://maps.app.goo.gl/5g26hey1DDEAuyFEA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.86,
+          11.0325
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_32",
+        "nombre": "Liceo Francisco Antonio Risquez",
+        "name": "Liceo Francisco Antonio Risquez",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Hugo Chávez",
+        "circuito_educativo": "Hugo Chávez",
+        "maps_url": "https://maps.app.goo.gl/oivq7GutPQgxJ4tp9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.855,
+          11.03
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_33",
+        "nombre": "UE Talentos Deportivos",
+        "name": "UE Talentos Deportivos",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Hugo Chávez",
+        "circuito_educativo": "Hugo Chávez",
+        "maps_url": "https://maps.app.goo.gl/sj9k3PZKs41rctNY7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8638,
+          11.0348
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_34",
+        "nombre": "Escuela de Artes Plásticas",
+        "name": "Escuela de Artes Plásticas",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Hugo Chávez",
+        "circuito_educativo": "Hugo Chávez",
+        "maps_url": "https://maps.app.goo.gl/xadcYcaJTrLwj4DC9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.866,
+          11.032
+        ]
+      },
+      "properties": {
+        "id": "escuelas_arismendi_35",
+        "nombre": "CEI Virgen La Milagrosa",
+        "name": "CEI Virgen La Milagrosa",
+        "estado": "Nueva Esparta",
+        "municipio": "MP. ARISMENDI",
+        "parroquia": "LA ASUNCION",
+        "circuito": "Hugo Chávez",
+        "circuito_educativo": "Hugo Chávez",
+        "maps_url": "https://maps.app.goo.gl/wjEH5N9WA9vBr88z5"
+      }
+    }
+  ]
+}

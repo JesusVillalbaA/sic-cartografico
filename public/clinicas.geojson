@@ -1,0 +1,265 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84588683170343,
+          10.959052120148172
+        ]
+      },
+      "properties": {
+        "beds": 15,
+        "name": "Centro de Especialidades Médicas (CEM)",
+        "tipo": "Clínica / Centro Médico",
+        "address": "Calle Genovés, Sector Genovés, Porlamar, Municipio Mariño.",
+        "municipio": "Mariño",
+        "ambulances": 1,
+        "description": "Centro especializado en consultas de alta gama con capacidad quirúrgica para procedimientos ambulatorios y de hospitalización breve.",
+        "id": "clinicas_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.831072657750724,
+          10.974450605022787
+        ]
+      },
+      "properties": {
+        "beds": 50,
+        "name": "Centro Clínico del Caribe",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "Edificio Centro Clínico del Caribe, Av. Francisco Esteban Gómez, Porlamar 6301, Nueva Esparta",
+        "municipio": "Mariño",
+        "ambulances": 2,
+        "description": "Es la clínica de mayor complejidad tecnológica en la isla. Cuenta con Unidad de Cuidados Intensivos (UCI) para adultos y neonatos, servicios de hemodinamia, banco de sangre y una amplia gama de subespecialidades quirúrgicas.",
+        "id": "clinicas_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84733479949329,
+          10.957867090268486
+        ]
+      },
+      "properties": {
+        "beds": 25,
+        "name": "Centro Clínico Margarita",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "Calle Marcano con calle San Nicolás, Porlamar, Municipio Mariño.",
+        "municipio": "Mariño",
+        "ambulances": 1,
+        "description": "Centro de salud con trayectoria que ofrece consultas especializadas, servicios de laboratorio y hospitalización para cirugías generales y ginecológicas.",
+        "id": "clinicas_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.868540987163634,
+          10.977963174307451
+        ]
+      },
+      "properties": {
+        "beds": 20,
+        "name": "Centro Clínico El Valle",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "Calle principal de El Valle del Espíritu Santo, Municipio García.",
+        "municipio": "García",
+        "ambulances": 1,
+        "description": "Especializado en obstetricia, pediatría y cirugías de mediana complejidad. Atiende a gran parte de la población del centro de la isla y el municipio García.",
+        "id": "clinicas_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.833636881627726,
+          10.985053098781245
+        ]
+      },
+      "properties": {
+        "beds": 30,
+        "name": "Hospital Clínicas del Este",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "Avenida Llano Adentro, Edificio Clínicas del Este, Porlamar, Municipio Mariño.",
+        "municipio": "Mariño",
+        "ambulances": 1,
+        "description": "Institución médica con instalaciones modernas que ofrece servicios completos de hospitalización, cirugía general y maternidad. Se destaca por su ubicación estratégica para la atención de emergencias en la zona de Porlamar.",
+        "id": "clinicas_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.84633731599897,
+          10.958000820016457
+        ]
+      },
+      "properties": {
+        "beds": 20,
+        "name": "Clínica Chico Sanabria",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "Calle San Nicolás, entre Calle Marcano y Calle Jesús María Patiño, Porlamar, Municipio Mariño. (Muy cerca de la Plaza Bolívar).",
+        "municipio": "Mariño",
+        "ambulances": 1,
+        "description": "Es un centro de salud privado que ofrece hospitalización y servicios quirúrgicos. Es muy reconocida por su unidad de maternidad, ginecobstetricia y cirugía general. También cuenta con servicios de laboratorio, retén para recién nacidos y emergencias las 24 horas.",
+        "id": "clinicas_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.82342166017354,
+          10.994409036037778
+        ]
+      },
+      "properties": {
+        "beds": 45,
+        "name": "Clínica La Fe",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "Avenida Jóvito Villalba, Sector Los Robles, Municipio Maneiro.",
+        "municipio": "Maneiro",
+        "ambulances": 1,
+        "description": "Centro de referencia en cirugía especializada y diagnóstico por imágenes de alta resolución (Resonancia y Tomografía). Posee una unidad de cuidados intensivos moderna y atención de emergencias 24 horas con alta capacidad de respuesta.",
+        "id": "clinicas_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.956816781048595,
+          11.072135309561448
+        ]
+      },
+      "properties": {
+        "beds": 25,
+        "name": "Clínica Juan Griego",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "2da. Transversal del Sector Laguna Honda, Juan Griego, Municipio Marcano.",
+        "municipio": "Marcano",
+        "ambulances": 1,
+        "description": "El principal centro privado de salud en la zona norte de Margarita. Cuenta con quirófanos equipados, sala de partos y una pequeña unidad de cuidados intensivos (3 camas UCI) para estabilizar pacientes críticos en el municipio Marcano.",
+        "id": "clinicas_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86697511784348,
+          11.023941922513105
+        ]
+      },
+      "properties": {
+        "beds": 15,
+        "name": "Clínica Nueva Esparta",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "Calle Velásquez con calle Páez, Porlamar, Municipio Mariño.",
+        "municipio": "Mariño",
+        "ambulances": 1,
+        "description": "Ofrece atención médica integral con servicios de cirugía ambulatoria y hospitalización de corta y mediana estancia en el casco central de Porlamar.",
+        "id": "clinicas_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.8193642123079,
+          10.990866966008262
+        ]
+      },
+      "properties": {
+        "beds": 12,
+        "name": "Clínica El Ángel",
+        "tipo": "Clínica / Hospital Privado",
+        "address": "Avenida Aldonza Manrique, Urbanización Playa El Ángel, Municipio Maneiro.",
+        "municipio": "Maneiro",
+        "ambulances": 1,
+        "description": "Clínica enfocada en cirugía ambulatoria, medicina estética especializada y emergencias pediátricas/adultos de respuesta rápida en la zona de mayor crecimiento comercial.",
+        "id": "clinicas_9"
+      }
+    }
+  ]
+}

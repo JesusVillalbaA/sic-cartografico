@@ -1,0 +1,1085 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.969609999999896,
+          11.079835999999833
+        ]
+      },
+      "properties": {
+        "NAME": "A",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.834984,
+          10.969209
+        ]
+      },
+      "properties": {
+        "NAME": "B",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.834984,
+          10.969208999999834
+        ]
+      },
+      "properties": {
+        "NAME": "B",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.94458399999989,
+          11.011064999999832
+        ]
+      },
+      "properties": {
+        "NAME": "B",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              -63.96961,
+              11.079836
+            ],
+            [
+              -63.969477,
+              11.079775
+            ],
+            [
+              -63.96952,
+              11.079641
+            ],
+            [
+              -63.969675,
+              11.079702
+            ],
+            [
+              -63.96961,
+              11.079836
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "NAME": "IAPOLENE-JUAN GRIEGO",
+        "LAYER": "Unknown Area Type",
+        "PERIMETER": "66.236 m",
+        "ENCLOSED_A": "0.0002747 sq km",
+        "id": "IAPOLENE_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.862193,
+          11.027726999999837
+        ]
+      },
+      "properties": {
+        "NAME": "D",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.969674999999896,
+          11.079701999999829
+        ]
+      },
+      "properties": {
+        "NAME": "D",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.944584,
+          11.011065
+        ]
+      },
+      "properties": {
+        "NAME": "B",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86203,
+          11.027565999999835
+        ]
+      },
+      "properties": {
+        "NAME": "C",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.862193,
+          11.027727
+        ]
+      },
+      "properties": {
+        "NAME": "D",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.944743,
+          11.011051
+        ]
+      },
+      "properties": {
+        "NAME": "C",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              -63.944618,
+              11.011243
+            ],
+            [
+              -63.944584,
+              11.011065
+            ],
+            [
+              -63.944743,
+              11.011051
+            ],
+            [
+              -63.944751,
+              11.011237
+            ],
+            [
+              -63.944618,
+              11.011243
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "NAME": "IAPOLENE-SAN JUAN",
+        "LAYER": "Unknown Area Type",
+        "PERIMETER": "72.625 m",
+        "ENCLOSED_A": "0.0003257 sq km",
+        "id": "IAPOLENE_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.969675,
+          11.079702
+        ]
+      },
+      "properties": {
+        "NAME": "D",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.835441,
+          10.969415
+        ]
+      },
+      "properties": {
+        "NAME": "D",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.944751,
+          11.011236999999833
+        ]
+      },
+      "properties": {
+        "NAME": "D",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              -63.835203,
+              10.969577
+            ],
+            [
+              -63.834984,
+              10.969209
+            ],
+            [
+              -63.835208,
+              10.969053
+            ],
+            [
+              -63.835441,
+              10.969415
+            ],
+            [
+              -63.835203,
+              10.969577
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "NAME": "IAPOLENE-PORLAMAR",
+        "LAYER": "Unknown Area Type",
+        "PERIMETER": "156.22 m",
+        "ENCLOSED_A": "0.001463 sq km",
+        "id": "IAPOLENE_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.969477,
+          11.079775
+        ]
+      },
+      "properties": {
+        "NAME": "B",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.861904,
+          11.027908
+        ]
+      },
+      "properties": {
+        "NAME": "A",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              -63.861904,
+              11.027908
+            ],
+            [
+              -63.861756,
+              11.027766
+            ],
+            [
+              -63.86203,
+              11.027566
+            ],
+            [
+              -63.862193,
+              11.027727
+            ],
+            [
+              -63.861904,
+              11.027908
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "NAME": "IAPOLENE-COMANDANCIA",
+        "LAYER": "Unknown Area Type",
+        "PERIMETER": "122.35 m",
+        "ENCLOSED_A": "0.000879 sq km",
+        "id": "IAPOLENE_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.835208,
+          10.969053
+        ]
+      },
+      "properties": {
+        "NAME": "C",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.944618,
+          11.011242999999832
+        ]
+      },
+      "properties": {
+        "NAME": "A",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              -63.944618,
+              11.011242999999832
+            ],
+            [
+              -63.94458399999989,
+              11.011064999999832
+            ],
+            [
+              -63.944743,
+              11.011050999999833
+            ],
+            [
+              -63.944751,
+              11.011236999999833
+            ],
+            [
+              -63.944618,
+              11.011242999999832
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "NAME": "IAPOLENE-SAN JUAN",
+        "LAYER": "Unknown Area Type",
+        "PERIMETER": "72.625 m",
+        "ENCLOSED_A": "0.0003257 sq km",
+        "id": "IAPOLENE_21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96961,
+          11.079836
+        ]
+      },
+      "properties": {
+        "NAME": "A",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.835203,
+          10.969577
+        ]
+      },
+      "properties": {
+        "NAME": "A",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.944743,
+          11.011050999999833
+        ]
+      },
+      "properties": {
+        "NAME": "C",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              -63.861904,
+              11.027907999999835
+            ],
+            [
+              -63.861756,
+              11.027765999999833
+            ],
+            [
+              -63.86203,
+              11.027565999999835
+            ],
+            [
+              -63.862193,
+              11.027726999999837
+            ],
+            [
+              -63.861904,
+              11.027907999999835
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "NAME": "IAPOLENE-COMANDANCIA",
+        "LAYER": "Unknown Area Type",
+        "PERIMETER": "122.35 m",
+        "ENCLOSED_A": "0.000879 sq km",
+        "id": "IAPOLENE_25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96952,
+          11.079641
+        ]
+      },
+      "properties": {
+        "NAME": "C",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.835203,
+          10.969576999999836
+        ]
+      },
+      "properties": {
+        "NAME": "A",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.944618,
+          11.011243
+        ]
+      },
+      "properties": {
+        "NAME": "A",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.86203,
+          11.027566
+        ]
+      },
+      "properties": {
+        "NAME": "C",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.861756,
+          11.027766
+        ]
+      },
+      "properties": {
+        "NAME": "B",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.96947699999989,
+          11.079774999999831
+        ]
+      },
+      "properties": {
+        "NAME": "B",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.835441,
+          10.969414999999836
+        ]
+      },
+      "properties": {
+        "NAME": "D",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_32"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              -63.969609999999896,
+              11.079835999999833
+            ],
+            [
+              -63.96947699999989,
+              11.079774999999831
+            ],
+            [
+              -63.969519999999896,
+              11.079640999999828
+            ],
+            [
+              -63.969674999999896,
+              11.079701999999829
+            ],
+            [
+              -63.969609999999896,
+              11.079835999999833
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "NAME": "IAPOLENE-JUAN GRIEGO",
+        "LAYER": "Unknown Area Type",
+        "PERIMETER": "66.236 m",
+        "ENCLOSED_A": "0.0002747 sq km",
+        "id": "IAPOLENE_33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.861904,
+          11.027907999999835
+        ]
+      },
+      "properties": {
+        "NAME": "A",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_34"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.835208,
+          10.969052999999835
+        ]
+      },
+      "properties": {
+        "NAME": "C",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.944751,
+          11.011237
+        ]
+      },
+      "properties": {
+        "NAME": "D",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_36"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          [
+            [
+              -63.835203,
+              10.969576999999836
+            ],
+            [
+              -63.834984,
+              10.969208999999834
+            ],
+            [
+              -63.835208,
+              10.969052999999835
+            ],
+            [
+              -63.835441,
+              10.969414999999836
+            ],
+            [
+              -63.835203,
+              10.969576999999836
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "NAME": "IAPOLENE-PORLAMAR",
+        "LAYER": "Unknown Area Type",
+        "PERIMETER": "156.22 m",
+        "ENCLOSED_A": "0.001463 sq km",
+        "id": "IAPOLENE_37"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.861756,
+          11.027765999999833
+        ]
+      },
+      "properties": {
+        "NAME": "B",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_38"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "coordinates": [
+          -63.969519999999896,
+          11.079640999999828
+        ]
+      },
+      "properties": {
+        "NAME": "C",
+        "LAYER": "Unknown Point Feature",
+        "GM_TYPE": "Unknown Point Feature",
+        "GM_LAYER": "Unknown Point Feature",
+        "id": "IAPOLENE_39"
+      }
+    }
+  ]
+}

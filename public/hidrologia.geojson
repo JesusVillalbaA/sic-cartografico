@@ -1,0 +1,2885 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.948722222222216,
+          11.111177777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_0",
+        "name": "Planta Desalinizadora Bahia de Plata",
+        "NAME": "Planta Desalinizadora Bahia de Plata",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Gomez",
+        "address": "Gomez",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.38693333333335,
+          10.997558333333332
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_1",
+        "name": "Planta Desalinizadora Boca de Pozo",
+        "NAME": "Planta Desalinizadora Boca de Pozo",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Peninsula de Macanao",
+        "address": "Peninsula de Macanao",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.18871111111112,
+          10.947988888888888
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_2",
+        "name": "Planta Desalinizadora Boca de Rio",
+        "NAME": "Planta Desalinizadora Boca de Rio",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Peninsula de Macanao",
+        "address": "Peninsula de Macanao",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.03139722222222,
+          10.990830555555554
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_3",
+        "name": "Planta Desalinizadora Calle Carabobo",
+        "NAME": "Planta Desalinizadora Calle Carabobo",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Diaz",
+        "address": "Diaz",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.16072777777778,
+          10.961130555555554
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_4",
+        "name": "Planta Desalinizadora Chacachacare",
+        "NAME": "Planta Desalinizadora Chacachacare",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Peninsula de Macanao",
+        "address": "Peninsula de Macanao",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.801325,
+          10.994616666666666
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_5",
+        "name": "Planta Desalinizadora Circulo Militar",
+        "NAME": "Planta Desalinizadora Circulo Militar",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Maneiro",
+        "address": "Maneiro",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.933988888888884,
+          10.799616666666667
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_6",
+        "name": "Planta Desalinizadora La Uva Coche",
+        "NAME": "Planta Desalinizadora La Uva Coche",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Villalba",
+        "address": "Villalba",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.98663611111111,
+          10.8078
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_7",
+        "name": "Planta Desalinizadora Coche Paradise",
+        "NAME": "Planta Desalinizadora Coche Paradise",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Villalba",
+        "address": "Villalba",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.993547222222226,
+          10.787883333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_8",
+        "name": "Planta Desalinizadora San Pedro de Coche",
+        "NAME": "Planta Desalinizadora San Pedro de Coche",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Villalba",
+        "address": "Villalba",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.812641666666664,
+          11.048083333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_9",
+        "name": "Planta Desalinizadora Guacuco",
+        "NAME": "Planta Desalinizadora Guacuco",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Arismendi",
+        "address": "Arismendi",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.06994166666667,
+          10.897497222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_10",
+        "name": "Planta Desalinizadora Guamache",
+        "NAME": "Planta Desalinizadora Guamache",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Tubores",
+        "address": "Tubores",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21241111111111,
+          10.936425
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_11",
+        "name": "Planta Desalinizadora Guayacancito",
+        "NAME": "Planta Desalinizadora Guayacancito",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Peninsula de Macanao",
+        "address": "Peninsula de Macanao",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.02055833333333,
+          11.005833333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_12",
+        "name": "Planta Desalinizadora Guire Guire",
+        "NAME": "Planta Desalinizadora Guire Guire",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.97605,
+          11.086958333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_13",
+        "name": "Planta Desalinizadora La Galera",
+        "NAME": "Planta Desalinizadora La Galera",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.11796388888888,
+          10.924569444444444
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_14",
+        "name": "Planta Desalinizadora Laguna de Raya",
+        "NAME": "Planta Desalinizadora Laguna de Raya",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.08986944444445,
+          10.898022222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_15",
+        "name": "Planta Desalinizadora Las Mercedes Punta de Piedra",
+        "NAME": "Planta Desalinizadora Las Mercedes Punta de Piedra",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.31882499999999,
+          10.957622222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_16",
+        "name": "Planta Desalinizadora El Manglillo",
+        "NAME": "Planta Desalinizadora El Manglillo",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.84373888888889,
+          11.110388888888888
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_17",
+        "name": "Planta Desalinizadora Playa Cardon",
+        "NAME": "Planta Desalinizadora Playa Cardon",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.96873888888889,
+          11.110238888888889
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_18",
+        "name": "Planta Desalinizadora Playa Caribe",
+        "NAME": "Planta Desalinizadora Playa Caribe",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.86570555555556,
+          11.146744444444444
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_19",
+        "name": "Planta Desalinizadora Playa el Agua I y II",
+        "NAME": "Planta Desalinizadora Playa el Agua I y II",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.924613888888885,
+          11.123752777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_20",
+        "name": "Planta Desalinizadora Pedro Gonzalez",
+        "NAME": "Planta Desalinizadora Pedro Gonzalez",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.87751388888889,
+          11.164286111111112
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_21",
+        "name": "Planta Desalinizadora Puerto Real Manzanillo",
+        "NAME": "Planta Desalinizadora Puerto Real Manzanillo",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.27898888888889,
+          11.062750000000001
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_22",
+        "name": "Planta Desalinizadora San Francisco I y II",
+        "NAME": "Planta Desalinizadora San Francisco I y II",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.98339722222222,
+          11.071902777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_23",
+        "name": "Planta Desalinizadora Taguantar Bicentenario",
+        "NAME": "Planta Desalinizadora Taguantar Bicentenario",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.81823888888889,
+          10.97808611111111
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_24",
+        "name": "Planta Desalinizadora Venetur I y II",
+        "NAME": "Planta Desalinizadora Venetur I y II",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88133333333333,
+          11.150441666666667
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_desalinizadora_25",
+        "name": "Planta Desalinizadora El Turpial",
+        "NAME": "Planta Desalinizadora El Turpial",
+        "tipo": "Planta Desalinizadora",
+        "subcategoria": "desalinizadoras",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.81982222222223,
+          11.010927777777777
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_de_tratamiento_0",
+        "name": "Planta De Tratamiento Los Cerritos",
+        "NAME": "Planta De Tratamiento Los Cerritos",
+        "tipo": "Planta de Tratamiento",
+        "subcategoria": "tratamiento",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.94993611111111,
+          10.940038888888889
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_de_tratamiento_1",
+        "name": "Planta De Tratamiento Los Bagres",
+        "NAME": "Planta De Tratamiento Los Bagres",
+        "tipo": "Planta de Tratamiento",
+        "subcategoria": "tratamiento",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.96065277777778,
+          10.906783333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_de_tratamiento_2",
+        "name": "Planta De Tratamiento El Yaque",
+        "NAME": "Planta De Tratamiento El Yaque",
+        "tipo": "Planta de Tratamiento",
+        "subcategoria": "tratamiento",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.98439166666667,
+          10.773869444444445
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_de_tratamiento_3",
+        "name": "Planta De Tratamiento San Pedro De Coche",
+        "NAME": "Planta De Tratamiento San Pedro De Coche",
+        "tipo": "Planta de Tratamiento",
+        "subcategoria": "tratamiento",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.96855,
+          11.090930555555556
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_de_tratamiento_4",
+        "name": "Planta De Tratamiento Juan Griego",
+        "NAME": "Planta De Tratamiento Juan Griego",
+        "tipo": "Planta de Tratamiento",
+        "subcategoria": "tratamiento",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.85758333333334,
+          11.128652777777779
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_de_tratamiento_5",
+        "name": "Planta De Tratamiento Aricagua",
+        "NAME": "Planta De Tratamiento Aricagua",
+        "tipo": "Planta de Tratamiento",
+        "subcategoria": "tratamiento",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0803,
+          10.899377777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_de_tratamiento_6",
+        "name": "Planta De Tratamiento Punta de Piedra",
+        "NAME": "Planta De Tratamiento Punta de Piedra",
+        "tipo": "Planta de Tratamiento",
+        "subcategoria": "tratamiento",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.02331666666666,
+          10.982138888888889
+        ]
+      },
+      "properties": {
+        "id": "agua_planta_de_tratamiento_7",
+        "name": "Planta De Tratamiento La Guardia",
+        "NAME": "Planta De Tratamiento La Guardia",
+        "tipo": "Planta de Tratamiento",
+        "subcategoria": "tratamiento",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.791333333333334,
+          10.999291666666666
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_0",
+        "name": "Estación De Bombeo AS La Caranta",
+        "NAME": "Estación De Bombeo AS La Caranta",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.80139444444444,
+          10.993602777777777
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_1",
+        "name": "Estación De Bombeo AS Circulo Militar",
+        "NAME": "Estación De Bombeo AS Circulo Militar",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.802369444444444,
+          10.992091666666665
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_2",
+        "name": "Estación De Bombeo AS Nueva Cadiz",
+        "NAME": "Estación De Bombeo AS Nueva Cadiz",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.80473611111111,
+          10.986966666666666
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_3",
+        "name": "Estación De Bombeo AS Casas Del Sol",
+        "NAME": "Estación De Bombeo AS Casas Del Sol",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.819861111111116,
+          10.982486111111111
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_4",
+        "name": "Estación De Bombeo AS La Auyama",
+        "NAME": "Estación De Bombeo AS La Auyama",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.83265555555556,
+          10.959427777777776
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_5",
+        "name": "Estación De Bombeo AS Bartolo y Felipa",
+        "NAME": "Estación De Bombeo AS Bartolo y Felipa",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.84589722222223,
+          10.955158333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_6",
+        "name": "Estación De Bombeo AS Guaraguao",
+        "NAME": "Estación De Bombeo AS Guaraguao",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.855025000000005,
+          10.950169444444445
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_7",
+        "name": "Estación De Bombeo AS Punda",
+        "NAME": "Estación De Bombeo AS Punda",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.85250833333333,
+          11.027277777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_8",
+        "name": "Estación De Bombeo AS Palosano",
+        "NAME": "Estación De Bombeo AS Palosano",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.815105555555554,
+          11.030311111111113
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_9",
+        "name": "Estación De Bombeo AS Agua de Vaca",
+        "NAME": "Estación De Bombeo AS Agua de Vaca",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.96022777777778,
+          11.088836111111112
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_10",
+        "name": "Estación De Bombeo AS Catame",
+        "NAME": "Estación De Bombeo AS Catame",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.97034166666667,
+          11.079324999999999
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_11",
+        "name": "Estación De Bombeo AS El Consejo",
+        "NAME": "Estación De Bombeo AS El Consejo",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.971444444444444,
+          11.086583333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_12",
+        "name": "Estación De Bombeo AS Giriguire",
+        "NAME": "Estación De Bombeo AS Giriguire",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.97079166666667,
+          11.077597222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_13",
+        "name": "Estación De Bombeo AS Valparaiso",
+        "NAME": "Estación De Bombeo AS Valparaiso",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.975475,
+          11.090386111111112
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_14",
+        "name": "Estación De Bombeo AS La Galera",
+        "NAME": "Estación De Bombeo AS La Galera",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.100725,
+          10.946388888888889
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_15",
+        "name": "Estación De Bombeo AS Principal Punta De Piedras",
+        "NAME": "Estación De Bombeo AS Principal Punta De Piedras",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.08573333333332,
+          10.898055555555555
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_16",
+        "name": "Estación De Bombeo AS Simon Carvajal (Punta Garza)",
+        "NAME": "Estación De Bombeo AS Simon Carvajal (Punta Garza)",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.09171388888889,
+          10.899416666666665
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_17",
+        "name": "Estación De Bombeo AS Pueblo Nuevo INAVIS",
+        "NAME": "Estación De Bombeo AS Pueblo Nuevo INAVIS",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0697111111111,
+          10.897108333333334
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_18",
+        "name": "Estación De Bombeo AS Guamache",
+        "NAME": "Estación De Bombeo AS Guamache",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.91296944444444,
+          10.934800000000001
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_19",
+        "name": "Estación De Bombeo AS Porlamar Oeste",
+        "NAME": "Estación De Bombeo AS Porlamar Oeste",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.86528055555556,
+          11.146436111111111
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_20",
+        "name": "Estación De Bombeo AS Miragua",
+        "NAME": "Estación De Bombeo AS Miragua",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.844947222222224,
+          11.126130555555555
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_21",
+        "name": "Estación De Bombeo AS Paguito",
+        "NAME": "Estación De Bombeo AS Paguito",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.891822222222224,
+          11.156666666666666
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_22",
+        "name": "Estación De Bombeo AS Manzanillo",
+        "NAME": "Estación De Bombeo AS Manzanillo",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.96389166666667,
+          10.897377777777777
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_23",
+        "name": "Estación De Bombeo AS El Yaque",
+        "NAME": "Estación De Bombeo AS El Yaque",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.99656388888889,
+          10.781725000000002
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_24",
+        "name": "Estación De Bombeo AS San Pedro De Coche",
+        "NAME": "Estación De Bombeo AS San Pedro De Coche",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0288,
+          10.988613888888889
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_25",
+        "name": "Estación De Bombeo AS La Guardia",
+        "NAME": "Estación De Bombeo AS La Guardia",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.04657222222222,
+          10.878533333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_26",
+        "name": "Estación De Bombeo AS Punta De Mangle",
+        "NAME": "Estación De Bombeo AS Punta De Mangle",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.78570555555555,
+          10.996763888888887
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_27",
+        "name": "Estación De Bombeo AS Capitanía de Puertos",
+        "NAME": "Estación De Bombeo AS Capitanía de Puertos",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.96237222222223,
+          11.06431388888889
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_aguas_servidas_28",
+        "name": "Estación De Bombeo AS Barrio Moscú-Brisas De Los Ángeles",
+        "NAME": "Estación De Bombeo AS Barrio Moscú-Brisas De Los Ángeles",
+        "tipo": "Estación de Bombeo Aguas Servidas",
+        "subcategoria": "bombeoServidas",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.18711111111112,
+          10.970477777777777
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_0",
+        "name": "Estación De Bombeo AP Carujo",
+        "NAME": "Estación De Bombeo AP Carujo",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.97442222222222,
+          10.984163888888888
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_1",
+        "name": "Estación De Bombeo AP Espinal",
+        "NAME": "Estación De Bombeo AP Espinal",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.81009722222222,
+          10.995769444444443
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_2",
+        "name": "Estación De Bombeo AP Paraíso",
+        "NAME": "Estación De Bombeo AP Paraíso",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.86620277777778,
+          10.998708333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_3",
+        "name": "Estación De Bombeo AP La Aguada",
+        "NAME": "Estación De Bombeo AP La Aguada",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.31786388888888,
+          10.957372222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_4",
+        "name": "Estación De Bombeo AP Manglillo",
+        "NAME": "Estación De Bombeo AP Manglillo",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.889852777777776,
+          10.755272222222223
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_5",
+        "name": "Estación De Bombeo AP Zulica Coche",
+        "NAME": "Estación De Bombeo AP Zulica Coche",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88151944444444,
+          11.150169444444446
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_6",
+        "name": "Estación De Bombeo AP Turpial Manzanillo",
+        "NAME": "Estación De Bombeo AP Turpial Manzanillo",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.91873611111111,
+          11.120177777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_7",
+        "name": "Estación De Bombeo AP Guayacán",
+        "NAME": "Estación De Bombeo AP Guayacán",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.94063333333333,
+          11.099902777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_bombeo_agua_potable_8",
+        "name": "Estación De Bombeo AP Pedro González",
+        "NAME": "Estación De Bombeo AP Pedro González",
+        "tipo": "Estación de Bombeo Agua Potable",
+        "subcategoria": "bombeoPotable",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.18301944444445,
+          11.025777777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_0",
+        "name": "Tanque La Restinga",
+        "NAME": "Tanque La Restinga",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.858575,
+          10.978736111111111
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_1",
+        "name": "Tanque Porlamar",
+        "NAME": "Tanque Porlamar",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.81980555555556,
+          11.044530555555555
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_2",
+        "name": "Tanque Guacuco",
+        "NAME": "Tanque Guacuco",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.887077777777776,
+          11.156716666666666
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_3",
+        "name": "Tanque Manzanillo Turpial",
+        "NAME": "Tanque Manzanillo Turpial",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.95336944444445,
+          11.031905555555557
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_4",
+        "name": "Tanque La Pista",
+        "NAME": "Tanque La Pista",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.3178361111111,
+          10.957483333333332
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_5",
+        "name": "Tanque Manglillo",
+        "NAME": "Tanque Manglillo",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.29209722222222,
+          11.020541666666668
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_6",
+        "name": "Tanque San Francisco",
+        "NAME": "Tanque San Francisco",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.18694444444445,
+          10.970541666666668
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_7",
+        "name": "Tanque Carujo",
+        "NAME": "Tanque Carujo",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.17659722222223,
+          10.968302777777778
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_8",
+        "name": "Tanque La Udo",
+        "NAME": "Tanque La Udo",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.876577777777776,
+          11.028447222222223
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_9",
+        "name": "Tanque Asunción",
+        "NAME": "Tanque Asunción",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.91882222222222,
+          11.116247222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_10",
+        "name": "Tanque Pedro González",
+        "NAME": "Tanque Pedro González",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.89938055555555,
+          10.889380555555555
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_11",
+        "name": "Tanque La Isleta",
+        "NAME": "Tanque La Isleta",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88305,
+          11.029016666666667
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_12",
+        "name": "Tanque Copey",
+        "NAME": "Tanque Copey",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.918825,
+          11.120225000000001
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_13",
+        "name": "Tanque Guayacán",
+        "NAME": "Tanque Guayacán",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88816111111111,
+          11.04758611111111
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_14",
+        "name": "Tanque Tacarigua",
+        "NAME": "Tanque Tacarigua",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.36749444444443,
+          10.99903611111111
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_15",
+        "name": "Tanque Boca De Pozo",
+        "NAME": "Tanque Boca De Pozo",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.81270277777777,
+          11.005258333333334
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_16",
+        "name": "Tanque Paraíso",
+        "NAME": "Tanque Paraíso",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.857597222222225,
+          11.055177777777779
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_17",
+        "name": "Tanque Salamanca",
+        "NAME": "Tanque Salamanca",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.97058888888889,
+          10.97166111111111
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_18",
+        "name": "Tanque El Espinal",
+        "NAME": "Tanque El Espinal",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.05932777777778,
+          10.930908333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_19",
+        "name": "Tanque Las Hernández",
+        "NAME": "Tanque Las Hernández",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.889763888888886,
+          10.99041111111111
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_20",
+        "name": "Tanque Las Piedras Del Valle",
+        "NAME": "Tanque Las Piedras Del Valle",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.82327777777778,
+          11.00628611111111
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_21",
+        "name": "Tanque Jorge Coll",
+        "NAME": "Tanque Jorge Coll",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.00055833333333,
+          10.980680555555555
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_22",
+        "name": "Tanque La Guardia",
+        "NAME": "Tanque La Guardia",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88892222222222,
+          11.093547222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_23",
+        "name": "Tanque La Rinconada",
+        "NAME": "Tanque La Rinconada",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.970508333333335,
+          11.057633333333333
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_24",
+        "name": "Tanque Pedregales",
+        "NAME": "Tanque Pedregales",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.20783333333334,
+          10.935422222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_25",
+        "name": "Tanque Guayacancito",
+        "NAME": "Tanque Guayacancito",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.90966944444444,
+          10.757466666666666
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_26",
+        "name": "Tanque Zulica Coche",
+        "NAME": "Tanque Zulica Coche",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.98805,
+          10.775983333333334
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_27",
+        "name": "Tanque Seneca Coche",
+        "NAME": "Tanque Seneca Coche",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.98305833333333,
+          10.78828611111111
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_28",
+        "name": "Tanque Los Morochos I y II",
+        "NAME": "Tanque Los Morochos I y II",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88084166666667,
+          11.164883333333334
+        ]
+      },
+      "properties": {
+        "id": "agua_tanque_de_almacenamiento_29",
+        "name": "Tanque Puerto Real",
+        "NAME": "Tanque Puerto Real",
+        "tipo": "Tanque de Almacenamiento",
+        "subcategoria": "tanques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.93790277777777,
+          11.021527777777779
+        ]
+      },
+      "properties": {
+        "id": "agua_dique_toma_0",
+        "name": "Dique San Juan",
+        "NAME": "Dique San Juan",
+        "tipo": "Dique Toma",
+        "subcategoria": "diques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.876216666666664,
+          10.980322222222222
+        ]
+      },
+      "properties": {
+        "id": "agua_dique_toma_1",
+        "name": "Dique Guatamare",
+        "NAME": "Dique Guatamare",
+        "tipo": "Dique Toma",
+        "subcategoria": "diques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.913977777777774,
+          10.977136111111111
+        ]
+      },
+      "properties": {
+        "id": "agua_dique_toma_2",
+        "name": "Dique Pololo",
+        "NAME": "Dique Pololo",
+        "tipo": "Dique Toma",
+        "subcategoria": "diques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.869591666666665,
+          11.027644444444446
+        ]
+      },
+      "properties": {
+        "id": "agua_dique_toma_3",
+        "name": "Dique Asunción",
+        "NAME": "Dique Asunción",
+        "tipo": "Dique Toma",
+        "subcategoria": "diques",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.87168888888889,
+          11.096591666666667
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_0",
+        "name": "Pozo INTI Estancia/Parcela #34",
+        "NAME": "Pozo INTI Estancia/Parcela #34",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.87329166666667,
+          11.099797222222223
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_1",
+        "name": "Pozo Las Minas",
+        "NAME": "Pozo Las Minas",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88075555555556,
+          11.094413888888889
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_2",
+        "name": "Pozo INTI Estancia/Parcela #17",
+        "NAME": "Pozo INTI Estancia/Parcela #17",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.881344444444444,
+          11.128502777777777
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_3",
+        "name": "Pozo El Coco De Aricagua",
+        "NAME": "Pozo El Coco De Aricagua",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.87331666666667,
+          11.099244444444444
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_4",
+        "name": "Pozo Las Minas #5",
+        "NAME": "Pozo Las Minas #5",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.86251111111111,
+          11.126097222222223
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_5",
+        "name": "Pozo Los Molinos",
+        "NAME": "Pozo Los Molinos",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.86853888888889,
+          11.12138611111111
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_6",
+        "name": "Pozo El Toco #2",
+        "NAME": "Pozo El Toco #2",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88075555555556,
+          11.093861111111112
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_7",
+        "name": "Pozo La Rinconada1 #4",
+        "NAME": "Pozo La Rinconada1 #4",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.873275,
+          11.096713888888889
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_8",
+        "name": "Pozo La Rinconada Parcela #28",
+        "NAME": "Pozo La Rinconada Parcela #28",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.921327777777776,
+          11.071502777777777
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_9",
+        "name": "Pozo Comunidad Tres Molinos",
+        "NAME": "Pozo Comunidad Tres Molinos",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.92154722222222,
+          11.071919444444445
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_10",
+        "name": "Pozo Cerro La Cruz #1",
+        "NAME": "Pozo Cerro La Cruz #1",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.858072222222226,
+          11.051569444444445
+        ]
+      },
+      "properties": {
+        "id": "agua_pozo_de_agua_potable_11",
+        "name": "Pozo Mat",
+        "NAME": "Pozo Mat",
+        "tipo": "Pozo de Agua Potable",
+        "subcategoria": "pozos",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.03828055555556,
+          10.875508333333334
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_clorado_0",
+        "name": "Estación de Clorado Los Argodones",
+        "NAME": "Estación de Clorado Los Argodones",
+        "tipo": "Estación de Clorado",
+        "subcategoria": "clorado",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "2 Juan B",
+        "aporte": "",
+        "capacidad": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.88883611111111,
+          10.894097222222221
+        ]
+      },
+      "properties": {
+        "id": "agua_estación_de_clorado_1",
+        "name": "Estación de Clorado Punta Mozquito",
+        "NAME": "Estación de Clorado Punta Mozquito",
+        "tipo": "Estación de Clorado",
+        "subcategoria": "clorado",
+        "municipio": "Nueva Esparta",
+        "address": "",
+        "status": "Operativo",
+        "institution": "HIDROCARIBE / MPSA",
+        "circuito": "8 Luisa C",
+        "aporte": "",
+        "capacidad": ""
+      }
+    }
+  ]
+}
