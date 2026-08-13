@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { supabase } from '@/app/lib/supabase';
+import { Minimize2, Maximize2, X, ChevronDown, Layers } from 'lucide-react';
 
 // Importación de Componentes de Tarjetas
 import { MunicipioCard } from './cards/MunicipioCard';
@@ -194,6 +195,7 @@ async function loadKey(key: keyof DataNeeds): Promise<void> {
 export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOpenDiagrama }: any) => {
   const [loadedData, setLoadedData] = useState<Partial<DataNeeds>>({});
   const [loadingItems, setLoadingItems] = useState<Set<string>>(new Set());
+  const [isContainerMinimized, setIsContainerMinimized] = useState<boolean>(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll al inicio cuando cambia o se añade un nuevo panel
@@ -267,6 +269,59 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
   const isLoadingAny = loadingItems.size > 0;
   const hasMunicipio = features.some((f: any) => detectType(f) === 'municipio');
 
+  // ── MODO CONTENEDOR MINIMIZADO (Permite zoom y navegación total en el mapa) ──
+  if (isContainerMinimized) {
+    const firstFeature = features[0]?.properties || {};
+    const label = features.length === 1 
+      ? (firstFeature.nombre || firstFeature.name || firstFeature.adm2_name || firstFeature.SECTOR || 'Elemento')
+      : `${features.length} PANELES ACTIVOS`;
+
+    return (
+      <div className="fixed top-24 right-6 z-40 animate-in fade-in slide-in-from-top-3 duration-300">
+        <div className={`p-3 rounded-2xl shadow-2xl border flex items-center gap-3 backdrop-blur-2xl transition-all ${
+          theme === 'light' 
+            ? 'bg-white/95 border-slate-300 text-slate-800' 
+            : 'bg-slate-950/95 border-cyan-500/40 text-white shadow-[0_0_30px_rgba(6,182,212,0.3)]'
+        }`}>
+          <div 
+            className="flex items-center gap-2.5 cursor-pointer select-none group"
+            onClick={() => setIsContainerMinimized(false)}
+            title="Hacer clic para expandir panel"
+          >
+            <div className="w-2.5 h-2.5 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_10px_cyan]" />
+            <div className="flex flex-col">
+              <span className="text-[9px] font-black uppercase tracking-widest text-cyan-300 leading-none">
+                SOGNE • PANEL MINIMIZADO
+              </span>
+              <span className="text-xs font-black text-white truncate max-w-[210px] mt-0.5 group-hover:text-cyan-200 transition-colors">
+                {label}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1.5 pl-2 border-l border-white/10">
+            <button
+              onClick={() => setIsContainerMinimized(false)}
+              className="px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 hover:text-white border border-cyan-500/40 text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+              title="Expandir Panel Completo"
+            >
+              <Maximize2 size={13} />
+              <span>Expandir</span>
+            </button>
+            <button
+              onClick={onClear}
+              className="p-1.5 rounded-xl bg-white/10 hover:bg-rose-500/20 text-slate-400 hover:text-rose-300 transition-all border border-white/10 hover:border-rose-500/40 cursor-pointer"
+              title="Cerrar y Limpiar Todo"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── MODO CONTENEDOR EXPANDIDO ──
   return (
     <div className={`fixed bottom-0 left-0 right-0 w-full max-h-[88vh] rounded-t-3xl md:absolute md:top-14 md:bottom-4 md:right-6 ${
       hasMunicipio ? 'md:w-[40rem] lg:w-[48rem] xl:w-[54rem]' : 'md:w-[30rem] lg:w-[36rem]'
@@ -274,7 +329,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       theme === 'light' ? 'bg-white/95 border-slate-300 light-theme' : 'bg-slate-950/95 border-white/10 backdrop-blur-2xl'
     }`}>
 
-      {/* Header Táctico */}
+      {/* Header Táctico con Botón de Minimizar Contenedor */}
       <div className="p-4 sm:p-5 border-b border-white/5 flex justify-between items-center bg-slate-900/70 shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-2.5 h-2.5 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_12px_cyan]" />
@@ -287,9 +342,31 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
             </span>
           )}
         </div>
-        {isLoadingAny && (
-          <div className="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
-        )}
+
+        <div className="flex items-center gap-2">
+          {isLoadingAny && (
+            <div className="w-4 h-4 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin mr-1" />
+          )}
+
+          {/* Minimizar Contenedor Entero */}
+          <button
+            onClick={() => setIsContainerMinimized(true)}
+            className="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/40 text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            title="Minimizar panel para ver y hacer zoom en el mapa"
+          >
+            <Minimize2 size={13} />
+            <span className="hidden sm:inline">Minimizar Panel</span>
+          </button>
+
+          {/* Cerrar Todo */}
+          <button
+            onClick={onClear}
+            className="p-1.5 rounded-xl bg-white/10 hover:bg-rose-500/20 text-slate-400 hover:text-rose-300 border border-white/10 hover:border-rose-500/40 transition-all cursor-pointer"
+            title="Cerrar y Limpiar Todo"
+          >
+            <X size={15} />
+          </button>
+        </div>
       </div>
 
       {/* Contenedor de Tarjetas con Scroll Mejorado */}
