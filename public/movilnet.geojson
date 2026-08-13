@@ -1,616 +1,1130 @@
 {
   "type": "FeatureCollection",
+  "name": "ANTENAS_Movilnet",
   "features": [
     {
       "type": "Feature",
+      "properties": {
+        "N": 6,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Central Movilnet",
+        "DIRECCION": "Calle Amador Hernandez, Edif:CANTV, piso 4, Porlamar",
+        "COORDENADAS": "10°57'43.47\"N- 63°50'45.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Central Movilnet",
+        "NAME": "Antena Central Movilnet",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Amador Hernandez, Edif:CANTV, piso 4, Porlamar"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -64.3736361111111,
-          11.0106472222222
+          -63.8460527777778,
+          10.962075
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA BOCA DE POZO",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_0"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 7,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Porlamar",
+        "DIRECCION": "Calle Milano, Entre calles San Rafael y Amador Hernandez, Porlamar.",
+        "COORDENADAS": "10°57'43.47\"N- 63°50'45.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Porlamar",
+        "NAME": "Antena Porlamar",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Milano, Entre calles San Rafael y Amador Hernandez, Porlamar."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9646222222222,
-          11.0828166666667
+          -63.8460527777778,
+          10.962075
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA JUAN GRIEGO",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_1"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 8,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Palma Real",
+        "DIRECCION": "Parque Nacional Cerro Copey, La Asuncion/ El Valle.",
+        "COORDENADAS": "10°59'51.67\"N-63°54'43.76\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Palma Real",
+        "NAME": "Antena Palma Real",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Parque Nacional Cerro Copey, La Asuncion/ El Valle."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9000138888889,
-          10.7460027777778
+          -63.9121555555556,
+          10.9976861111111
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA GUINIMA",
-        "link": "files\\wifi.png",
-        "time": "2017-12-10T01:31:20Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_2"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 9,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Villa Rosa",
+        "DIRECCION": "Av. Principal de Villa Rosa, Torre de CANTV, Villa Rosa.",
+        "COORDENADAS": "10°57'2.51\"N-63°55'38.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Villa Rosa",
+        "NAME": "Antena Villa Rosa",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Av. Principal de Villa Rosa, Torre de CANTV, Villa Rosa."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.92595,
-          10.9505444444444
+          -63.9274416666667,
+          10.9506972222222
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA VILLA ROSA",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_3"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 10,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Juan Griego",
+        "DIRECCION": "La Vecindad, Sector el Moro, Barrio el Calvario, detrás del estadio la Vecindad, Juan Griego.",
+        "COORDENADAS": "11° 4'9.11\"N- 63°57'0.31\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Juan Griego",
+        "NAME": "Antena Juan Griego",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "La Vecindad, Sector el Moro, Barrio el Calvario, detrás del estadio la Vecindad, Juan Griego."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8101944444444,
-          10.9847638888889
+          -63.9500861111111,
+          11.0691972222222
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PLAYA EL ANGEL",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_4"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 11,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Puntas de Piedras",
+        "DIRECCION": "Urb. Las Mercedes, Calle Principal, Entre veredas 16 y 35, Puntas de Piedras.",
+        "COORDENADAS": "10°53'49.47\"N- 64° 5'12.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Puntas de Piedras",
+        "NAME": "Antena Puntas de Piedras",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Urb. Las Mercedes, Calle Principal, Entre veredas 16 y 35, Puntas de Piedras."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9511055555556,
-          11.0991972222222
+          -64.0868861111111,
+          10.8969083333333
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA ALTAGRACIA",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_5"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 12,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Los Cerritos",
+        "DIRECCION": "Av.Principal de Apostadero, Entre los Sectores Agua de Vaca, Guerra y Apostadero, Pampatar.",
+        "COORDENADAS": "11° 1'2.99\"N- 63°49'19.15\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Los Cerritos",
+        "NAME": "Antena Los Cerritos",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Av.Principal de Apostadero, Entre los Sectores Agua de Vaca, Guerra y Apostadero, Pampatar."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8443694444444,
-          10.96015
+          -63.8219861111111,
+          11.0174972222222
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PORLAMAR",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_6"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 13,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Playa el  Angel",
+        "DIRECCION": "Calle el Carite, Urb. Playa el Angel, Detrás del Centro Comercial AB, Pampatar.",
+        "COORDENADAS": "10°59'8.87\"N-63°49'0.43\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Playa el  Angel",
+        "NAME": "Antena Playa el  Angel",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle el Carite, Urb. Playa el Angel, Detrás del Centro Comercial AB, Pampatar."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8466611111111,
-          11.0779916666667
+          -63.8167861111111,
+          10.9857972222222
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PUNTA DE GUARAME",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_7"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 14,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Playa el Agua",
+        "DIRECCION": "Av. 31 de Julio, Sector Playa Parguito, Cerro Cimarron.",
+        "COORDENADAS": "11° 7'27.11\"N-63°50'58.51\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Playa el Agua",
+        "NAME": "Antena Playa el Agua",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Av. 31 de Julio, Sector Playa Parguito, Cerro Cimarron."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9722833333333,
-          10.7734666666667
+          -63.8495861111111,
+          11.1241972222222
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENAS SAN PEDRO",
-        "link": "files\\wifi.png",
-        "time": "2017-12-10T01:30:33Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_8"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 15,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Aeropuerto",
+        "DIRECCION": "Aeropuerto Gral. Santiago Mariño, antenas de CANTV, Sector Playa el Yaque.",
+        "COORDENADAS": "10°55'5.47\"N-63°58'13.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Aeropuerto",
+        "NAME": "Antena Aeropuerto",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Aeropuerto Gral. Santiago Mariño, antenas de CANTV, Sector Playa el Yaque."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8654388888889,
-          10.9682861111111
+          -63.9704972222222,
+          10.9181861111111
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA CONEJEROS",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_9"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 16,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "El Espinal",
+        "DIRECCION": "Via San Juan Bautista, a 300 Mts de cruce con Av. Juan Bautista Arismendi",
+        "COORDENADAS": "10°57'41.47\"N- 63°58'53.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena El Espinal",
+        "NAME": "Antena El Espinal",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Via San Juan Bautista, a 300 Mts de cruce con Av. Juan Bautista Arismendi"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8192444444445,
-          11.0477583333333
+          -63.9816083333333,
+          10.9615194444444
         ]
-      },
-      "properties": {
-        "cmt": "09-12-2017 19:26:15",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "PLAYA GUACUCO",
-        "link": "files\\wifi.png",
-        "time": "1899-12-30T13:00:00Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_10"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 17,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Guinima",
+        "DIRECCION": "Calle PPAL. CANTV Guinima",
+        "COORDENADAS": "10°44'31.23\"N-63°55'30.30\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Guinima",
+        "NAME": "Antena Guinima",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle PPAL. CANTV Guinima"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.896875,
-          11.008775
+          -63.9250833333333,
+          10.7420083333333
         ]
-      },
-      "properties": {
-        "cmt": "09-12-2017 17:33:18",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PALMA REAL",
-        "link": "files\\wifi.png",
-        "time": "1899-12-30T13:00:00Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_11"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 18,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Juangriego Centro",
+        "DIRECCION": "Calle Los Martires a 50 Mts final de Av. Jesus Rafael Leandro",
+        "COORDENADAS": "11° 5'5.47\"N-63°58'11.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Juangriego Centro",
+        "NAME": "Antena Juangriego Centro",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Los Martires a 50 Mts final de Av. Jesus Rafael Leandro"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8181527777778,
-          11.0223527777778
+          -63.9699416666667,
+          11.0848527777778
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA AGUA DE VACA",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_12"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 19,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "La Arboleda",
+        "DIRECCION": "Av.Jose Maria Lozada, Urbanizacion Sabanamar, Porlamar.",
+        "COORDENADAS": "10°58'15.44\"N- 63°50'2.31\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena La Arboleda",
+        "NAME": "Antena La Arboleda",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Av.Jose Maria Lozada, Urbanizacion Sabanamar, Porlamar."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -64.1008805555555,
-          10.9011555555556
+          -63.833975,
+          10.9715111111111
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PUNTA DE PIEDRAS",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_13"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 20,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "La Asuncion",
+        "DIRECCION": "Av. 31 de Julio, Sector Las Huertas a 100 mts del crucero de Guacuco.",
+        "COORDENADAS": "11° 1'51.04\"N- 63°51'27.51\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena La Asuncion",
+        "NAME": "Antena La Asuncion",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Av. 31 de Julio, Sector Las Huertas a 100 mts del crucero de Guacuco."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9279333333333,
-          11.0705361111111
+          -63.8576416666667,
+          11.0308444444444
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA SANTA ANA",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_14"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 21,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Pampatar",
+        "DIRECCION": "Calle Colinas de la Caranta, Sector la Caranta, Pampatar.",
+        "COORDENADAS": "10°59'52.43\"N-63°47'17.47\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Pampatar",
+        "NAME": "Antena Pampatar",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Colinas de la Caranta, Sector la Caranta, Pampatar."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8851583333333,
-          11.1567055555556
+          -63.7881861111111,
+          10.9978972222222
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA MANZANILLO",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_15"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 22,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Punta Horcon",
+        "DIRECCION": "Carretera Boca del Rio/ Boca de Pozo, sector Morro Blanco, Peninsula de Macanao",
+        "COORDENADAS": "10°57'43.47\"N-64°21'4.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Punta Horcon",
+        "NAME": "Antena Punta Horcon",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Carretera Boca del Rio/ Boca de Pozo, sector Morro Blanco, Peninsula de Macanao"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8553555555556,
-          11.0864416666667
+          -64.3513305555556,
+          10.962075
         ]
-      },
-      "properties": {
-        "cmt": "09-12-2017 19:21:53",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "EL SALADO (PARAGUACH�)",
-        "link": "files\\wifi.png",
-        "time": "1899-12-30T13:00:00Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_16"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 23,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Altagracia",
+        "DIRECCION": "Calle Los Gonzalez, al lado del cementerio",
+        "COORDENADAS": "11° 5'27.47\"N- 63°57'3.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Altagracia",
+        "NAME": "Antena Altagracia",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Los Gonzalez, al lado del cementerio"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -64.1806027777778,
-          10.9635055555556
+          -63.9504972222222,
+          11.0909638888889
         ]
-      },
+      }
+    },
+    {
+      "type": "Feature",
       "properties": {
-        "cmt": "09-12-2017 18:39:34",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA BOCA DE RIO",
-        "link": "files\\wifi.png",
-        "time": "1899-12-30T13:00:00Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_17"
+        "N": 24,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Archpielago Los Testigos",
+        "DIRECCION": "Estacion de guaracostas Los Testigos, isla La Iguana, archipielago Los Testigos",
+        "COORDENADAS": "11°21'26.21\"N-63° 7'57.41\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Archpielago Los Testigos",
+        "NAME": "Antena Archpielago Los Testigos",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Estacion de guaracostas Los Testigos, isla La Iguana, archipielago Los Testigos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.1326138888889,
+          11.3572805555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 25,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Boca de Pozo",
+        "DIRECCION": "Calle Mariño, Antenas de Cantv, Boca de Pozo, Peninsula de Macanao.",
+        "COORDENADAS": "11° 0'24.47\"N- 64°22'48.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Boca de Pozo",
+        "NAME": "Antena Boca de Pozo",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Mariño, Antenas de Cantv, Boca de Pozo, Peninsula de Macanao."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.3802194444444,
+          11.0067972222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 26,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Boca del Rio",
+        "DIRECCION": "Calle 19. CANTV Boca del Rio",
+        "COORDENADAS": "10°58'10.19\"N-64°10'50.83\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Boca del Rio",
+        "NAME": "Antena Boca del Rio",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle 19. CANTV Boca del Rio"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.1807861111111,
+          10.9694972222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 27,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Boulevard Guevara",
+        "DIRECCION": "Res.Alay. Cruce calles Marina y Meneses. Azotea de edificio.",
+        "COORDENADAS": "10°57'3.47\"N-63°51'17.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Boulevard Guevara",
+        "NAME": "Antena Boulevard Guevara",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Res.Alay. Cruce calles Marina y Meneses. Azotea de edificio."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8549416666667,
+          10.9509638888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 28,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Conejeros",
+        "DIRECCION": "Sector Conejeros, entre calles Tamanaco y Flores, Porlamar.",
+        "COORDENADAS": "10°57'30.59\"N-63°51'46.75\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Conejeros",
+        "NAME": "Antena Conejeros",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Sector Conejeros, entre calles Tamanaco y Flores, Porlamar."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8629861111111,
+          10.9584972222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 29,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "El Guamache",
+        "DIRECCION": "Sector El Guamache",
+        "COORDENADAS": "10°53'37.47\"N- 64° 3'38.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena El Guamache",
+        "NAME": "Antena El Guamache",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Sector El Guamache"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.060775,
+          10.8937416666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 30,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "El Salado",
+        "DIRECCION": "Calle Flandes. La Fuente",
+        "COORDENADAS": "11° 4'41.47\"N-63°51'27.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena El Salado",
+        "NAME": "Antena El Salado",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Flandes. La Fuente"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8577194444444,
+          11.0781861111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 31,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "El Valle",
+        "DIRECCION": "Av. Concepcion Mariño a 300 mts semaforo. Sector Toporo",
+        "COORDENADAS": "10°58'22.43\"N- 63°52'8.35\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena El Valle",
+        "NAME": "Antena El Valle",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Av. Concepcion Mariño a 300 mts semaforo. Sector Toporo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8689861111111,
+          10.9728972222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 32,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "El Yaque",
+        "DIRECCION": "Planta Baja, Hotel California. El Yaque",
+        "COORDENADAS": "10°53'53.47\"N- 63°57'40.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena El Yaque",
+        "NAME": "Antena El Yaque",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Planta Baja, Hotel California. El Yaque"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.9613305555556,
+          10.8981861111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 33,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Isla Bonita",
+        "DIRECCION": "Carretera Manzanillo-Pedro Gonzalez, sector Isla Bonita - Guayacan, Pedro Gonzalez.",
+        "COORDENADAS": "11° 7'57.71\"N-63°54'54.67\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Isla Bonita",
+        "NAME": "Antena Isla Bonita",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Carretera Manzanillo-Pedro Gonzalez, sector Isla Bonita - Guayacan, Pedro Gonzalez."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.9151861111111,
+          11.1326972222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 34,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "La Asuncion II",
+        "DIRECCION": "Sector Cocheima, subiendo hacia tanque de agua (loma)",
+        "COORDENADAS": "11° 2'42.47\"N-63°51'36.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena La Asuncion II",
+        "NAME": "Antena La Asuncion II",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Sector Cocheima, subiendo hacia tanque de agua (loma)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8602194444444,
+          11.0451305555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 35,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "La Guardia",
+        "DIRECCION": "Calle Nueva, Frente al Grupo Escolar Miguel Zuniaga, La Guardia",
+        "COORDENADAS": "10°59'48.57\"N- 64° 1'8.71\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena La Guardia",
+        "NAME": "Antena La Guardia",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Nueva, Frente al Grupo Escolar Miguel Zuniaga, La Guardia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0196416666667,
+          10.996825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 36,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Las Hernandez",
+        "DIRECCION": "Av Juan Bautista Arismendi. Las Hernandez",
+        "COORDENADAS": "10°56'26.47\"N-64° 2'34.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Las Hernandez",
+        "NAME": "Antena Las Hernandez",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Av Juan Bautista Arismendi. Las Hernandez"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0430194444444,
+          10.9406861111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 37,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Los Robles",
+        "DIRECCION": "Calle Libertad, Sector Punta Brava, Los Robles, Pampatar.",
+        "COORDENADAS": "10°59'41.27\"N- 63°49'46.87\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Los Robles",
+        "NAME": "Antena Los Robles",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Libertad, Sector Punta Brava, Los Robles, Pampatar."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8296861111111,
+          10.9947972222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 38,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Manzanillo",
+        "DIRECCION": "Av. 31 de Julio. Manzanillo",
+        "COORDENADAS": "11° 9'21.27\"N-63°53'17.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Manzanillo",
+        "NAME": "Antena Manzanillo",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Av. 31 de Julio. Manzanillo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.888275,
+          11.1559083333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 39,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Paraiso",
+        "DIRECCION": "Calle La orquidea. Urb Paraiso. Pampatar",
+        "COORDENADAS": "11° 0'2.47\"N- 63°48'29.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Paraiso",
+        "NAME": "Antena Paraiso",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle La orquidea. Urb Paraiso. Pampatar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.808275,
+          11.0006861111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 40,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Playa Guacuco",
+        "DIRECCION": "Playa Guacuco, lateral a residencias Dakota",
+        "COORDENADAS": "11° 2'54.67\"N- 63°48'54.09\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Playa Guacuco",
+        "NAME": "Antena Playa Guacuco",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Playa Guacuco, lateral a residencias Dakota"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.815025,
+          11.0485194444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 41,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Porlamar Sur",
+        "DIRECCION": "Calle Igualdad, cruce con calle Diaz, asotea Edif. Gina Morena",
+        "COORDENADAS": "10°57'24.47\"N-63°50'50.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Porlamar Sur",
+        "NAME": "Antena Porlamar Sur",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Igualdad, cruce con calle Diaz, asotea Edif. Gina Morena"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8474416666667,
+          10.9567972222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 42,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Ranchos de Chana",
+        "DIRECCION": "Sector Guarame.",
+        "COORDENADAS": "11° 4'13.64\"N-63°49'24.60\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Ranchos de Chana",
+        "NAME": "Antena Ranchos de Chana",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Sector Guarame."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8235,
+          11.0704555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 43,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "San Antonio",
+        "DIRECCION": "Urb. Doña Elisa, calle El Mangle, sector Macho Muerto",
+        "COORDENADAS": "10°56'38.47\"N- 63°54'14.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena San Antonio",
+        "NAME": "Antena San Antonio",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Urb. Doña Elisa, calle El Mangle, sector Macho Muerto"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.9041083333333,
+          10.9440194444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 44,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "San Francisco de Macanao",
+        "DIRECCION": "Calle principal, al lado de la plaza. San Francisco de Macanao",
+        "COORDENADAS": "11° 2'48.47\"N- 64°17'49.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena San Francisco de Macanao",
+        "NAME": "Antena San Francisco de Macanao",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle principal, al lado de la plaza. San Francisco de Macanao"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2966083333333,
+          11.0467972222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 45,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "San Juan Bautista",
+        "DIRECCION": "Calle Girardot, sector El Vergel, San Juan Bautista",
+        "COORDENADAS": "11° 1'13.47\"N-63°57'14.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena San Juan Bautista",
+        "NAME": "Antena San Juan Bautista",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Calle Girardot, sector El Vergel, San Juan Bautista"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.9541083333333,
+          11.0204083333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 46,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "San Pedro de Coche",
+        "DIRECCION": "",
+        "COORDENADAS": "10°46'55.39\"N- 63°59'38.39\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena San Pedro de Coche",
+        "NAME": "Antena San Pedro de Coche",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "San Pedro de Coche"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.9939972222222,
+          10.7820527777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 47,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Santa Ana",
+        "DIRECCION": "",
+        "COORDENADAS": "11° 4'6.47\"N- 63°55'23.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Santa Ana",
+        "NAME": "Antena Santa Ana",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Santa Ana"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.923275,
+          11.0684638888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 48,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Santa Maria",
+        "DIRECCION": "Carretera Boca del Rio, sector Santa Maria",
+        "COORDENADAS": "10°57'2.47\"N-64° 5'50.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Santa Maria",
+        "NAME": "Antena Santa Maria",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Carretera Boca del Rio, sector Santa Maria"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0974416666667,
+          10.9506861111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 49,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Tacarigua",
+        "DIRECCION": "Sector El Toporo. Tacarigua",
+        "COORDENADAS": "11° 3'14.47\"N- 63°54'5.79\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Tacarigua",
+        "NAME": "Antena Tacarigua",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Sector El Toporo. Tacarigua"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.9014972222222,
+          11.0539638888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "N": 50,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Venetur Margarita",
+        "DIRECCION": "Jardines Hotel Venetur Margarita",
+        "COORDENADAS": "10°58'49.07\"N-63°49'11.16\"O",
+        "operadora": "MOVILNET",
+        "OPERADORA": "MOVILNET",
+        "nombre": "Antena Venetur Margarita",
+        "NAME": "Antena Venetur Margarita",
+        "tipo": "Radiobase MOVILNET",
+        "ubicacion": "Jardines Hotel Venetur Margarita"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.8197666666667,
+          10.9802972222222
+        ]
       }
     }
   ]

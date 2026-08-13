@@ -1,616 +1,305 @@
 {
   "type": "FeatureCollection",
+  "name": "ANTENAS_Digitel",
   "features": [
     {
       "type": "Feature",
+      "properties": {
+        "N": 63,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "La Guardia",
+        "DIRECCION": "Calle Nueva con Arismendi. La guardia, Margarita.",
+        "COORDENADAS": "10°59'48.50''     64 01 10.10''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena La Guardia",
+        "NAME": "Antena La Guardia",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Calle Nueva con Arismendi. La guardia, Margarita."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -64.3736361111111,
-          11.0106472222222
+          -64.0194722222222,
+          10.9968055555556
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA BOCA DE POZO",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_0"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 67,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Asunción",
+        "DIRECCION": "Av. 31 de Julio con Las Margaritas. La Asunción.",
+        "COORDENADAS": "11  02  05.2 63  51  21.0''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena Asunción",
+        "NAME": "Antena Asunción",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Av. 31 de Julio con Las Margaritas. La Asunción."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9646222222222,
-          11.0828166666667
+          -63.8558333333333,
+          11.0347777777778
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA JUAN GRIEGO",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_1"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 68,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Av 4 de Mayo",
+        "DIRECCION": "Calle Narvaez con Calle Tubores, Edif. San Carlos. Porlamar, Isla de Margarita, Edo. Nueva Esparta, Mun. Mariño.",
+        "COORDENADAS": "10 59 11.00 63 50 35.06''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena Av 4 de Mayo",
+        "NAME": "Antena Av 4 de Mayo",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Calle Narvaez con Calle Tubores, Edif. San Carlos. Porlamar, Isla de Margarita, Edo. Nueva Esparta, Mun. Mariño."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9000138888889,
-          10.7460027777778
+          -63.8430722222222,
+          10.9863888888889
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA GUINIMA",
-        "link": "files\\wifi.png",
-        "time": "2017-12-10T01:31:20Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_2"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 69,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Boca de Pozo",
+        "DIRECCION": "Via Tejerías-Robledal, Sector Boca de Pozo (a 2.5 Km de la población de Robledal). Isla de Margarita, Edo. Nueva Esparta, Mun. Peninsula de Macanao",
+        "COORDENADAS": "11 00 53'' 64 22 36.10''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena Boca de Pozo",
+        "NAME": "Antena Boca de Pozo",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Via Tejerías-Robledal, Sector Boca de Pozo (a 2.5 Km de la población de Robledal). Isla de Margarita, Edo. Nueva Esparta, Mun. Peninsula de Macanao"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.92595,
-          10.9505444444444
+          -64.3766944444444,
+          11.0147222222222
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA VILLA ROSA",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_3"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 70,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Boca de Rio",
+        "DIRECCION": "Calle Comejen, Urb El hato, Boca del Rio",
+        "COORDENADAS": "10° 58' 38.5'' 64° 10' 39.0''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena Boca de Rio",
+        "NAME": "Antena Boca de Rio",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Calle Comejen, Urb El hato, Boca del Rio"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8101944444444,
-          10.9847638888889
+          -64.1775,
+          10.9773611111111
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PLAYA EL ANGEL",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_4"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 74,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "CC La redoma",
+        "DIRECCION": "CC comercial la redoma de los robles",
+        "COORDENADAS": "10°59'25.69  63°50'19.18''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena CC La redoma",
+        "NAME": "Antena CC La redoma",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "CC comercial la redoma de los robles"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9511055555556,
-          11.0991972222222
+          -63.8386611111111,
+          10.9904694444444
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA ALTAGRACIA",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_5"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 76,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Copey",
+        "DIRECCION": "Sector La Sierra, Cerro Copey, Parroquia Valle del espíritu Santo, Margarita.",
+        "COORDENADAS": "11°  00'  04.3'' 63°  54'  35.2''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena Copey",
+        "NAME": "Antena Copey",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Sector La Sierra, Cerro Copey, Parroquia Valle del espíritu Santo, Margarita."
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8443694444444,
-          10.96015
+          -63.9097777777778,
+          11.0011944444444
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PORLAMAR",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_6"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 107,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "Sambil Pta arenas",
+        "DIRECCION": "Centro Comercial Sambil,AV. Jovito Villalba, Pampatar, Margarita.-",
+        "COORDENADAS": "10°  59  44''  63° 48  46''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena Sambil Pta arenas",
+        "NAME": "Antena Sambil Pta arenas",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Centro Comercial Sambil,AV. Jovito Villalba, Pampatar, Margarita.-"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8466611111111,
-          11.0779916666667
+          -63.8127777777778,
+          10.9955555555556
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PUNTA DE GUARAME",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_7"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 108,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "San Fernando",
+        "DIRECCION": "Ubr Jorge Coll",
+        "COORDENADAS": "11° 0'12.38''  63°49'42.41''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena San Fernando",
+        "NAME": "Antena San Fernando",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Ubr Jorge Coll"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.9722833333333,
-          10.7734666666667
+          -63.8284472222222,
+          11.0034388888889
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENAS SAN PEDRO",
-        "link": "files\\wifi.png",
-        "time": "2017-12-10T01:30:33Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_8"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 109,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "San Francisco Macanao",
+        "DIRECCION": "Sector El Tunal, a 3.5 km de San Francisco de Macanao, Edo. Nueva Esparta, Mun. Peninsula de Macanao",
+        "COORDENADAS": "11° 03 06.4'' 64° 17 06''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena San Francisco Macanao",
+        "NAME": "Antena San Francisco Macanao",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Sector El Tunal, a 3.5 km de San Francisco de Macanao, Edo. Nueva Esparta, Mun. Peninsula de Macanao"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8654388888889,
-          10.9682861111111
+          -64.285,
+          11.0517777777778
         ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA CONEJEROS",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_9"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 110,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "San Juan Bautista",
+        "DIRECCION": "Sector Boqueron, San Juan Bautista, Isla de Margarita,  Nueva Esparta, Mun. Díaz",
+        "COORDENADAS": "11° 01 25.30'' 63°57 04''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena San Juan Bautista",
+        "NAME": "Antena San Juan Bautista",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Sector Boqueron, San Juan Bautista, Isla de Margarita,  Nueva Esparta, Mun. Díaz"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.8192444444445,
-          11.0477583333333
+          -63.9511111111111,
+          11.0236944444444
         ]
-      },
-      "properties": {
-        "cmt": "09-12-2017 19:26:15",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "PLAYA GUACUCO",
-        "link": "files\\wifi.png",
-        "time": "1899-12-30T13:00:00Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_10"
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "N": 111,
+        "REDI": "REDIMAIN",
+        "ZODI": "ZODINE",
+        "ADI": "",
+        "SECTOR": "San Pedro de Coche",
+        "DIRECCION": "Cerro La ermita, al lado de torre Movistar, San Pedro de Coche, Isla de Coche",
+        "COORDENADAS": "10' 46 55.30'' 63' 59 37.80''",
+        "operadora": "DIGITEL",
+        "OPERADORA": "DIGITEL",
+        "nombre": "Antena San Pedro de Coche",
+        "NAME": "Antena San Pedro de Coche",
+        "tipo": "Radiobase DIGITEL",
+        "ubicacion": "Cerro La ermita, al lado de torre Movistar, San Pedro de Coche, Isla de Coche"
+      },
       "geometry": {
         "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
         "coordinates": [
-          -63.896875,
-          11.008775
+          -63.9938333333333,
+          10.7820277777778
         ]
-      },
-      "properties": {
-        "cmt": "09-12-2017 17:33:18",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PALMA REAL",
-        "link": "files\\wifi.png",
-        "time": "1899-12-30T13:00:00Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_11"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.8181527777778,
-          11.0223527777778
-        ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA AGUA DE VACA",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_12"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -64.1008805555555,
-          10.9011555555556
-        ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA PUNTA DE PIEDRAS",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_13"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.9279333333333,
-          11.0705361111111
-        ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA SANTA ANA",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_14"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.8851583333333,
-          11.1567055555556
-        ]
-      },
-      "properties": {
-        "cmt": "",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA MANZANILLO",
-        "link": "files\\wifi.png",
-        "time": "",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_15"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.8553555555556,
-          11.0864416666667
-        ]
-      },
-      "properties": {
-        "cmt": "09-12-2017 19:21:53",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "EL SALADO (PARAGUACH�)",
-        "link": "files\\wifi.png",
-        "time": "1899-12-30T13:00:00Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_16"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -64.1806027777778,
-          10.9635055555556
-        ]
-      },
-      "properties": {
-        "cmt": "09-12-2017 18:39:34",
-        "fix": "2d",
-        "sym": "Flag, Blue",
-        "NAME": "ANTENA BOCA DE RIO",
-        "link": "files\\wifi.png",
-        "time": "1899-12-30T13:00:00Z",
-        "LAYER": "Waypoint",
-        "FONT_SIZE": "14",
-        "FONT_CHARS": "0",
-        "FONT_COLOR": "RGB(0,0,0)",
-        "POINT_SYMB": "Dot",
-        "gpxx_Categ": "ANTENAS MOVILNET-CANTV.kmz",
-        "gpxx_Displ": "SymbolOnly",
-        "wptx1_Cate": "ANTENAS MOVILNET-CANTV.kmz",
-        "wptx1_Disp": "SymbolOnly",
-        "id": "ANTENAS_17"
       }
     }
   ]

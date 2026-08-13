@@ -124,14 +124,17 @@ const saveJson = (filePath, data) => {
   console.log(`Guardado ${filePath} con ${data.features.length} registros.`);
 };
 
-// Directorios
+// Directorios correctos:
 const publicDirs = [
-  path.join(__dirname, 'public'),
-  path.join(__dirname, '..', 'sistema-redimain-lite', 'public')
+  path.join(__dirname, '..', 'public'),
+  path.join(__dirname, '..', '..', 'sistema-redimain-lite', 'public')
 ];
 
 publicDirs.forEach(pDir => {
-  if (!fs.existsSync(pDir)) return;
+  if (!fs.existsSync(pDir)) {
+    console.log(`Directorio no existe: ${pDir}`);
+    return;
+  }
 
   // 1. Guardar ANTENAS.geojson con toda la colección
   const allEnriched = {
@@ -163,4 +166,4 @@ publicDirs.forEach(pDir => {
   });
 });
 
-console.log("¡Archivos GeoJSON de antenas actualizados exitosamente con los datos auténticos del usuario!");
+console.log("¡Archivos GeoJSON de antenas sobreescritos exitosamente con los datos auténticos!");
