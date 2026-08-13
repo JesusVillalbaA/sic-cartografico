@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-// Caché en memoria para evitar lecturas de disco repetidas
-const geojsonCache = new Map<string, any>();
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -11,15 +10,6 @@ export async function GET(request: Request) {
 
   if (!nombre) {
     return NextResponse.json({ error: 'Falta el parámetro nombre' }, { status: 400 });
-  }
-
-  // Retornar desde caché si ya fue cargado
-  if (geojsonCache.has(nombre)) {
-    return NextResponse.json(geojsonCache.get(nombre), {
-      headers: {
-        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
-      },
-    });
   }
 
   try {
@@ -46,11 +36,12 @@ export async function GET(request: Request) {
     }
 
     const data = JSON.parse(fileContent);
-    geojsonCache.set(nombre, data);
 
     return NextResponse.json(data, {
       headers: {
-        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       },
     });
   } catch (error: any) {
