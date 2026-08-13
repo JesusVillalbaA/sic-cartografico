@@ -1,20 +1,67 @@
 "use client";
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
+import { 
+  Building2, 
+  Zap, 
+  Flame, 
+  Droplets, 
+  Bus, 
+  Fuel, 
+  Radio, 
+  X, 
+  Search, 
+  ExternalLink, 
+  Layers, 
+  Users, 
+  ShieldAlert, 
+  HeartPulse, 
+  Navigation 
+} from 'lucide-react';
 
-export const MunicipioCard = ({ 
+interface MunicipioCardProps {
+  nombre: string;
+  cuadrantesMaster?: any[];
+  densidadMaster?: any[];
+  redSaludMaster?: any[];
+  incidentesDB?: any;
+  traficoDB?: any;
+  puntosDB?: any[];
+  personasDB?: any[];
+  bandasDB?: any[];
+  bandasOrganizadas?: any[];
+  sectoresAPI?: any[];
+  onClose?: () => void;
+}
+
+export const MunicipioCard: React.FC<MunicipioCardProps> = ({ 
   nombre, 
   cuadrantesMaster = [], 
   densidadMaster = [], 
   redSaludMaster = [], 
   incidentesDB = {}, 
-  traficoDB = {}, // Nuevo prop integrado
+  traficoDB = {},
   puntosDB = [],
   personasDB = [],
   bandasDB = [],
   bandasOrganizadas = [],
-  sectoresAPI = []
-}: any) => {
+  sectoresAPI = [],
+  onClose
+}) => {
   
+  // Estados para datos de infraestructura
+  const [escuelasData, setEscuelasData] = useState<any[]>([]);
+  const [electricosData, setElectricosData] = useState<any[]>([]);
+  const [gasData, setGasData] = useState<any[]>([]);
+  const [aguaData, setAguaData] = useState<any[]>([]);
+  const [transporteData, setTransporteData] = useState<any[]>([]);
+  const [estacionesData, setEstacionesData] = useState<any[]>([]);
+  const [antenasData, setAntenasData] = useState<any[]>([]);
+  const [isLoadingInfra, setIsLoadingInfra] = useState<boolean>(true);
+
+  // Estado del mini-modal de desglose
+  const [modalCategory, setModalCategory] = useState<string | null>(null);
+  const [modalSearch, setModalSearch] = useState<string>('');
+
   // Base de datos de fuerza motorizada
   const fuerzaDesplegada: Record<string, { m: number, p: number }> = {
     "TUBORES": { m: 6, p: 1 },
@@ -30,56 +77,118 @@ export const MunicipioCard = ({
     "MACANAO": { m: 10, p: 2 }
   };
 
+  const nomNorm = useMemo(() => {
+    return (nombre || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+  }, [nombre]);
+
+  // Carga de todas las capas de infraestructura desde la API en memoria
+  useEffect(() => {
+    let isMounted = true;
+    setIsLoadingInfra(true);
+
+    const loadAllInfra = async () => {
+      try {
+        const [
+          escuelasRes,
+          electricosRes,
+          gasRes,
+          aguaRes,
+          transporteRes,
+          estacionesRes,
+          antenasRes
+        ] = await Promise.all([
+          fetch('/api/map/capas?nombre=escuelas').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/api/map/capas?nombre=SISTEMAELECTRICONE').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/api/map/capas?nombre=estaciongasNE').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/api/map/capas?nombre=estacionagua').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/api/map/capas?nombre=transporte').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/api/map/capas?nombre=estacionservicio').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/api/map/capas?nombre=ANTENAS').then(r => r.json()).catch(() => ({ features: [] }))
+        ]);
+
+        if (isMounted) {
+          setEscuelasData(escuelasRes.features || []);
+          setElectricosData(electricosRes.features || []);
+          setGasData(gasRes.features || []);
+          setAguaData(aguaRes.features || []);
+          setTransporteData(transporteRes.features || []);
+          setEstacionesData(estacionesRes.features || []);
+          setAntenasData(antenasRes.features || []);
+          setIsLoadingInfra(false);
+        }
+      } catch (e) {
+        console.warn("Error cargando infraestructura municipal:", e);
+        if (isMounted) setIsLoadingInfra(false);
+      }
+    };
+
+    loadAllInfra();
+    return () => { isMounted = false; };
+  }, []);
+
+  // Función de coincidencia flexible de texto con el municipio
+  const matchesMun = (val?: string) => {
+    if (!val) return false;
+    const clean = val.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/MP\./g, "").replace(/MUNICIPIO/g, "").trim();
+    return clean.includes(nomNorm) || nomNorm.includes(clean);
+  };
+
+  // Filtrado y agregación de infraestructura para este municipio
+  const infraItems = useMemo(() => {
+    const escuelas = escuelasData.filter(f => matchesMun(f.properties?.municipio || f.properties?.MUNICIPIO || f.properties?.address));
+    const subestaciones = electricosData.filter(f => matchesMun(f.properties?.MUNICIPIO || f.properties?.municipio || f.properties?.DESCRIPCION));
+    const estacionesGas = gasData.filter(f => matchesMun(f.properties?.municipio || f.properties?.MUNICIPIO || f.properties?.sector));
+    const serviciosAgua = aguaData.filter(f => matchesMun(f.properties?.municipio || f.properties?.MUNICIPIO || f.properties?.address || f.properties?.NAME));
+    const paradas = transporteData.filter(f => matchesMun(f.properties?.municipio || f.properties?.ubicacion || f.properties?.descripcion));
+    const estacionesServicio = estacionesData.filter(f => matchesMun(f.properties?.CityName || f.properties?.municipio || f.properties?.NAME));
+    const antenas = antenasData.filter(f => matchesMun(f.properties?.MUNICIPIO || f.properties?.municipio || f.properties?.PARROQUIA || f.properties?.LOCALIDAD));
+
+    return {
+      escuelas,
+      subestaciones,
+      estacionesGas,
+      serviciosAgua,
+      paradas,
+      estacionesServicio,
+      antenas
+    };
+  }, [nomNorm, escuelasData, electricosData, gasData, aguaData, transporteData, estacionesData, antenasData]);
+
   const stats = useMemo(() => {
-    const nomNorm = nombre?.toUpperCase().trim() || "";
-    const keyMatch = nomNorm.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    
     // Cuadrantes
     const misCuadrantes = cuadrantesMaster.filter((c: any) => 
-      (c.properties?.municipio || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() === keyMatch
+      matchesMun(c.properties?.municipio || c.properties?.MUNICIPIO)
     );
 
     // Vehículos
-    const vehiculos = fuerzaDesplegada[keyMatch] || { m: 0, p: 0 };
+    const vehiculos = fuerzaDesplegada[nomNorm] || { m: 0, p: 0 };
 
     // Población
     const rawPob = densidadMaster?.find((d: any) => 
-      d.municipio?.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() === keyMatch
+      matchesMun(d.municipio)
     ) || {};
     const h = Number(rawPob.hombres) || 0;
     const m = Number(rawPob.women || rawPob.mujeres) || 0;
 
     // Salud
     const saludMun = redSaludMaster.filter((f: any) => 
-      (f.properties?.municipio || f.properties?.adm2_name || f.properties?.municipality)?.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() === keyMatch
+      matchesMun(f.properties?.municipio || f.properties?.adm2_name || f.properties?.municipality)
     );
 
-    // Incidencias (Búsqueda en objeto agrupado)
-    const keyInc = Object.keys(incidentesDB).find(k => 
-      k.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() === keyMatch
-    );
+    // Incidencias
+    const keyInc = Object.keys(incidentesDB).find(k => matchesMun(k));
+    const keyTraf = Object.keys(traficoDB).find(k => matchesMun(k));
 
-    // Tráfico (Búsqueda en objeto agrupado)
-    const keyTraf = Object.keys(traficoDB).find(k => 
-      k.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() === keyMatch
-    );
+    // Puntos de Interés
+    const puntosLocales = puntosDB.filter((pt: any) => matchesMun(pt.municipio));
+    const personasLocales = personasDB.filter((pe: any) => matchesMun(pe.municipio));
 
-    // Puntos de Interés (todo)
-    const puntosLocales = puntosDB.filter((pt: any) => 
-      (pt.municipio || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() === keyMatch
-    );
-
-    // Personas de Interés
-    const personasLocales = personasDB.filter((pe: any) => 
-      (pe.municipio || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() === keyMatch
-    );
-
-    // Bandas operativas (Por municipio o por sectores internos)
+    // Bandas
     const normalizedSectores = sectoresAPI.map((s: string) => s.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim());
     const zonasLocales = bandasDB.filter((z: any) => {
       const zonaStr = (z.nombre_zona || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
       const munStr = (z.municipio || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-      return munStr === keyMatch || zonaStr.includes(keyMatch) || normalizedSectores.some((s: string) => s.includes(zonaStr) || zonaStr.includes(s));
+      return munStr === nomNorm || zonaStr.includes(nomNorm) || normalizedSectores.some((s: string) => s.includes(zonaStr) || zonaStr.includes(s));
     });
     const idsBandas = Array.from(new Set(zonasLocales.map((z: any) => z.id_banda)));
     const bandasLocales = bandasOrganizadas.filter((b: any) => idsBandas.includes(b.id_banda));
@@ -103,147 +212,484 @@ export const MunicipioCard = ({
         bandas: bandasLocales
       }
     };
-  }, [nombre, cuadrantesMaster, densidadMaster, redSaludMaster, incidentesDB, traficoDB, puntosDB, personasDB, bandasDB, bandasOrganizadas]);
+  }, [nomNorm, cuadrantesMaster, densidadMaster, redSaludMaster, incidentesDB, traficoDB, puntosDB, personasDB, bandasDB, bandasOrganizadas, sectoresAPI, nombre]);
+
+  // Lista activa para el modal según la categoría clickeada
+  const activeModalData = useMemo(() => {
+    if (!modalCategory) return { title: '', icon: null, color: '', items: [] };
+
+    let items: any[] = [];
+    let title = '';
+    let icon = null;
+    let color = '';
+
+    switch (modalCategory) {
+      case 'escuelas':
+        items = infraItems.escuelas;
+        title = 'Planteles Educativos y Escuelas';
+        icon = <Building2 className="text-blue-400" size={18} />;
+        color = 'border-blue-500/40 text-blue-400 bg-blue-500/10';
+        break;
+      case 'subestaciones':
+        items = infraItems.subestaciones;
+        title = 'Subestaciones y Sistema Eléctrico';
+        icon = <Zap className="text-amber-400" size={18} />;
+        color = 'border-amber-500/40 text-amber-400 bg-amber-500/10';
+        break;
+      case 'gas':
+        items = infraItems.estacionesGas;
+        title = 'Centros de Distribución y Estaciones de Gas';
+        icon = <Flame className="text-orange-400" size={18} />;
+        color = 'border-orange-500/40 text-orange-400 bg-orange-500/10';
+        break;
+      case 'agua':
+        items = infraItems.serviciosAgua;
+        title = 'Instalaciones y Servicios de Agua';
+        icon = <Droplets className="text-cyan-400" size={18} />;
+        color = 'border-cyan-500/40 text-cyan-400 bg-cyan-500/10';
+        break;
+      case 'transporte':
+        items = infraItems.paradas;
+        title = 'Paradas y Rutas de Transporte';
+        icon = <Bus className="text-purple-400" size={18} />;
+        color = 'border-purple-500/40 text-purple-400 bg-purple-500/10';
+        break;
+      case 'estacionesServicio':
+        items = infraItems.estacionesServicio;
+        title = 'Estaciones de Servicio de Combustible';
+        icon = <Fuel className="text-emerald-400" size={18} />;
+        color = 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10';
+        break;
+      case 'antenas':
+        items = infraItems.antenas;
+        title = 'Infraestructura de Telecomunicaciones y Antenas';
+        icon = <Radio className="text-rose-400" size={18} />;
+        color = 'border-rose-500/40 text-rose-400 bg-rose-500/10';
+        break;
+    }
+
+    // Filtrar por texto de búsqueda interno
+    if (modalSearch.trim()) {
+      const q = modalSearch.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      items = items.filter(it => {
+        const str = JSON.stringify(it.properties || {}).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return str.includes(q);
+      });
+    }
+
+    return { title, icon, color, items };
+  }, [modalCategory, modalSearch, infraItems]);
 
   return (
-    <div className="bg-slate-50 rounded-4xl shadow-2xl overflow-hidden border border-slate-200 text-slate-900 animate-in fade-in zoom-in-95 duration-500">
+    <div className="bg-slate-900/95 text-slate-100 rounded-3xl shadow-2xl overflow-hidden border border-white/10 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-500 flex flex-col relative">
       
       {/* HEADER TÁCTICO */}
-      <div className="bg-slate-900 p-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-4 opacity-10">
-            <img src="/Municipios.png" className="w-20 h-20 object-contain grayscale" alt="Fondo" />
+      <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/80 p-6 relative overflow-hidden border-b border-white/10 shrink-0">
+        <div className="absolute top-0 right-0 p-4 opacity-15 pointer-events-none">
+          <img src="/Municipios.png" className="w-24 h-24 object-contain" alt="Fondo" />
         </div>
-        <div className="flex items-center gap-2 mb-2 bg-white w-max px-3 py-1 rounded-full shadow-sm border border-cyan-500/20">
-            <img src="/Municipios.png" alt="Municipio" className="w-5 h-5 object-contain" />
-            <span className="text-[9px] font-black uppercase tracking-widest text-cyan-600">
-              Ficha de Inteligencia Municipal
+        
+        <div className="flex items-center justify-between relative z-10 mb-3">
+          <div className="flex items-center gap-2 bg-cyan-500/20 border border-cyan-500/40 px-3 py-1 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+            <img src="/Municipios.png" alt="Municipio" className="w-4 h-4 object-contain" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">
+              FICHA DE INTELIGENCIA TERRITORIAL
             </span>
+          </div>
+
+          {onClose && (
+            <button 
+              onClick={onClose}
+              className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors cursor-pointer"
+              title="Cerrar Ficha"
+            >
+              <X size={16} />
+            </button>
+          )}
         </div>
-        <h2 className="text-3xl font-black text-white uppercase tracking-tight italic leading-none">{stats.nombre}</h2>
+
+        <h2 className="text-3xl font-black text-white uppercase tracking-tight italic leading-tight">
+          MUNICIPIO {stats.nombre}
+        </h2>
+        <p className="text-[11px] font-mono text-cyan-400/80 mt-0.5">
+          Estado Nueva Esparta • Centro de Comando y Control Geointeligente
+        </p>
       </div>
 
-      <div className="p-6 space-y-5">
+      {/* CONTENIDO PRINCIPAL SCROLLEABLE */}
+      <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(85vh-140px)] custom-scrollbar">
         
-        {/* FILA 1: SEGURIDAD Y TRÁFICO */}
-        <div className="grid grid-cols-1 gap-4">
-          <div className="bg-white p-4 border border-slate-200 rounded-2xl shadow-sm">
-            <p className="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest text-center">Estado de Operaciones</p>
-            <div className="grid grid-cols-3 gap-2 divide-x divide-slate-100">
-              <div className="text-center">
-                <p className="text-2xl font-black text-slate-800">{stats.cuadrantes}</p>
-                <p className="text-[8px] font-black text-slate-500 uppercase">N° Cuadrantes</p>
+        {/* =========================================================================
+            NUEVA SECCIÓN: INFRAESTRUCTURA ESTRATÉGICA Y SERVICIOS CON CLICK INTERACTIVO
+            ========================================================================= */}
+        <div className="bg-slate-950/80 p-5 rounded-2xl border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.1)] space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Layers size={16} className="text-cyan-400" />
+              <span className="text-[11px] font-black uppercase tracking-widest text-cyan-300">
+                Infraestructura Estratégica
+              </span>
+            </div>
+            <span className="text-[9px] font-bold text-slate-400 bg-white/5 px-2 py-0.5 rounded-md border border-white/10">
+              Toca un número para desglose
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 pt-1">
+            
+            {/* 1. ESCUELAS */}
+            <button
+              onClick={() => { setModalCategory('escuelas'); setModalSearch(''); }}
+              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-blue-950/70 border border-blue-500/30 hover:border-blue-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
+            >
+              <div className="flex items-center justify-between w-full mb-1">
+                <span className="text-[10px] font-bold text-slate-300 group-hover:text-blue-300 transition-colors uppercase">Escuelas</span>
+                <Building2 size={15} className="text-blue-400 group-hover:scale-110 transition-transform" />
               </div>
-              <div className="text-center">
-                <p className="text-2xl font-black text-rose-600">{stats.incidencias}</p>
-                <p className="text-[8px] font-black text-slate-500 uppercase">Incidencias</p>
+              <div className="flex items-baseline justify-between mt-auto">
+                <span className="text-2xl font-black text-blue-400 group-hover:text-blue-300">
+                  {infraItems.escuelas.length}
+                </span>
+                <span className="text-[9px] font-mono text-slate-500 group-hover:text-blue-400/80">Ver detalle &rarr;</span>
               </div>
-              <div className="text-center">
-                <p className="text-2xl font-black text-amber-500">{stats.trafico}</p>
-                <p className="text-[8px] font-black text-slate-500 uppercase">Tráfico Droga</p>
+            </button>
+
+            {/* 2. SUBESTACIONES */}
+            <button
+              onClick={() => { setModalCategory('subestaciones'); setModalSearch(''); }}
+              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-amber-950/70 border border-amber-500/30 hover:border-amber-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
+            >
+              <div className="flex items-center justify-between w-full mb-1">
+                <span className="text-[10px] font-bold text-slate-300 group-hover:text-amber-300 transition-colors uppercase">Subestaciones</span>
+                <Zap size={15} className="text-amber-400 group-hover:scale-110 transition-transform" />
               </div>
+              <div className="flex items-baseline justify-between mt-auto">
+                <span className="text-2xl font-black text-amber-400 group-hover:text-amber-300">
+                  {infraItems.subestaciones.length}
+                </span>
+                <span className="text-[9px] font-mono text-slate-500 group-hover:text-amber-400/80">Ver detalle &rarr;</span>
+              </div>
+            </button>
+
+            {/* 3. ESTACIONES DE GAS */}
+            <button
+              onClick={() => { setModalCategory('gas'); setModalSearch(''); }}
+              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-orange-950/70 border border-orange-500/30 hover:border-orange-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
+            >
+              <div className="flex items-center justify-between w-full mb-1">
+                <span className="text-[10px] font-bold text-slate-300 group-hover:text-orange-300 transition-colors uppercase">Est. de Gas</span>
+                <Flame size={15} className="text-orange-400 group-hover:scale-110 transition-transform" />
+              </div>
+              <div className="flex items-baseline justify-between mt-auto">
+                <span className="text-2xl font-black text-orange-400 group-hover:text-orange-300">
+                  {infraItems.estacionesGas.length}
+                </span>
+                <span className="text-[9px] font-mono text-slate-500 group-hover:text-orange-400/80">Ver detalle &rarr;</span>
+              </div>
+            </button>
+
+            {/* 4. SERVICIOS DE AGUA */}
+            <button
+              onClick={() => { setModalCategory('agua'); setModalSearch(''); }}
+              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-cyan-950/70 border border-cyan-500/30 hover:border-cyan-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
+            >
+              <div className="flex items-center justify-between w-full mb-1">
+                <span className="text-[10px] font-bold text-slate-300 group-hover:text-cyan-300 transition-colors uppercase">Servicios Agua</span>
+                <Droplets size={15} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+              </div>
+              <div className="flex items-baseline justify-between mt-auto">
+                <span className="text-2xl font-black text-cyan-400 group-hover:text-cyan-300">
+                  {infraItems.serviciosAgua.length}
+                </span>
+                <span className="text-[9px] font-mono text-slate-500 group-hover:text-cyan-400/80">Ver detalle &rarr;</span>
+              </div>
+            </button>
+
+            {/* 5. PARADAS / TRANSPORTE */}
+            <button
+              onClick={() => { setModalCategory('transporte'); setModalSearch(''); }}
+              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-purple-950/70 border border-purple-500/30 hover:border-purple-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
+            >
+              <div className="flex items-center justify-between w-full mb-1">
+                <span className="text-[10px] font-bold text-slate-300 group-hover:text-purple-300 transition-colors uppercase">Paradas / Rutas</span>
+                <Bus size={15} className="text-purple-400 group-hover:scale-110 transition-transform" />
+              </div>
+              <div className="flex items-baseline justify-between mt-auto">
+                <span className="text-2xl font-black text-purple-400 group-hover:text-purple-300">
+                  {infraItems.paradas.length}
+                </span>
+                <span className="text-[9px] font-mono text-slate-500 group-hover:text-purple-400/80">Ver detalle &rarr;</span>
+              </div>
+            </button>
+
+            {/* 6. ESTACIONES DE SERVICIO */}
+            <button
+              onClick={() => { setModalCategory('estacionesServicio'); setModalSearch(''); }}
+              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-emerald-950/70 border border-emerald-500/30 hover:border-emerald-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md"
+            >
+              <div className="flex items-center justify-between w-full mb-1">
+                <span className="text-[10px] font-bold text-slate-300 group-hover:text-emerald-300 transition-colors uppercase">E/S Combustible</span>
+                <Fuel size={15} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+              </div>
+              <div className="flex items-baseline justify-between mt-auto">
+                <span className="text-2xl font-black text-emerald-400 group-hover:text-emerald-300">
+                  {infraItems.estacionesServicio.length}
+                </span>
+                <span className="text-[9px] font-mono text-slate-500 group-hover:text-emerald-400/80">Ver detalle &rarr;</span>
+              </div>
+            </button>
+
+            {/* 7. ANTENAS */}
+            <button
+              onClick={() => { setModalCategory('antenas'); setModalSearch(''); }}
+              className="group flex flex-col p-3 rounded-xl bg-slate-900/90 hover:bg-rose-950/70 border border-rose-500/30 hover:border-rose-400/70 transition-all hover:scale-[1.03] text-left cursor-pointer shadow-md col-span-2 sm:col-span-1"
+            >
+              <div className="flex items-center justify-between w-full mb-1">
+                <span className="text-[10px] font-bold text-slate-300 group-hover:text-rose-300 transition-colors uppercase">Antenas Telecom</span>
+                <Radio size={15} className="text-rose-400 group-hover:scale-110 transition-transform" />
+              </div>
+              <div className="flex items-baseline justify-between mt-auto">
+                <span className="text-2xl font-black text-rose-400 group-hover:text-rose-300">
+                  {infraItems.antenas.length}
+                </span>
+                <span className="text-[9px] font-mono text-slate-500 group-hover:text-rose-400/80">Ver detalle &rarr;</span>
+              </div>
+            </button>
+
+          </div>
+        </div>
+
+        {/* OPERACIONES Y SEGURIDAD */}
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-white/5 text-center">
+            <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block mb-1">Cuadrantes</span>
+            <p className="text-2xl font-black text-white">{stats.cuadrantes}</p>
+          </div>
+          <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-rose-500/20 text-center">
+            <span className="text-[9px] font-black text-rose-400 uppercase tracking-wider block mb-1">Incidencias</span>
+            <p className="text-2xl font-black text-rose-500">{stats.incidencias}</p>
+          </div>
+          <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-amber-500/20 text-center">
+            <span className="text-[9px] font-black text-amber-400 uppercase tracking-wider block mb-1">Tráfico Droga</span>
+            <p className="text-2xl font-black text-amber-400">{stats.trafico}</p>
+          </div>
+        </div>
+
+        {/* VEHÍCULOS DE RESPUESTA */}
+        <div className="bg-slate-950/90 text-white p-4 rounded-2xl border border-cyan-500/20 shadow-md">
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="text-[9px] font-black text-cyan-400 uppercase tracking-widest mb-1.5">Fuerza Desplegada</p>
+              <div className="flex gap-4">
+                <div>
+                  <span className="text-xl font-black text-white">{stats.fuerza.m}</span>
+                  <span className="text-[9px] font-bold text-slate-400 ml-1 uppercase">Motos</span>
+                </div>
+                <div>
+                  <span className="text-xl font-black text-white">{stats.fuerza.p}</span>
+                  <span className="text-[9px] font-bold text-slate-400 ml-1 uppercase">Patrullas</span>
+                </div>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-2xl font-black text-cyan-300">{stats.fuerza.total}</p>
+              <p className="text-[8px] font-bold text-slate-400 uppercase leading-none">Unidades Totales</p>
             </div>
           </div>
         </div>
 
-        {/* FILA 2: VEHÍCULOS DE RESPUESTA */}
-        <div className="bg-slate-900 text-white p-4 rounded-2xl shadow-lg relative overflow-hidden">
-            <div className="flex justify-between items-center relative z-10">
-                <div>
-                    <p className="text-[9px] font-black text-cyan-400 uppercase tracking-widest mb-1">Vehiculos</p>
-                    <div className="flex gap-4">
-                        <div>
-                            <span className="text-xl font-black">{stats.fuerza.m}</span>
-                            <span className="text-[9px] font-bold text-slate-400 ml-1 uppercase">Motos</span>
-                        </div>
-                        <div>
-                            <span className="text-xl font-black">{stats.fuerza.p}</span>
-                            <span className="text-[9px] font-bold text-slate-400 ml-1 uppercase">Patrullas</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="text-right">
-                    <p className="text-[18px] font-black text-white">{stats.fuerza.total}</p>
-                    <p className="text-[8px] font-bold text-cyan-500 uppercase leading-none">Total</p>
-                </div>
-            </div>
-            <div className="absolute bottom-0 left-0 h-1 bg-cyan-500 w-full opacity-50" />
-        </div>
-
-        {/* BLOQUE DEMOGRAFÍA */}
-        <div className="bg-slate-100 p-5 rounded-2xl border border-slate-200">
-          <p className="text-[10px] font-bold text-slate-500 uppercase mb-4 text-center tracking-widest">Censo Poblacional</p>
+        {/* CENSO POBLACIONAL */}
+        <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5">
+          <div className="flex items-center gap-2 mb-3">
+            <Users size={14} className="text-cyan-400" />
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Censo Poblacional</p>
+          </div>
           <div className="flex justify-around items-center">
             <div className="text-center">
-              <p className="text-lg font-bold text-slate-700">{stats.pob.h.toLocaleString()}</p>
-              <p className="text-[9px] font-black text-blue-600 uppercase">Hombres</p>
+              <p className="text-lg font-bold text-blue-400">{stats.pob.h.toLocaleString()}</p>
+              <p className="text-[9px] font-black text-slate-400 uppercase">Hombres</p>
             </div>
-            <div className="text-center bg-white px-6 py-3 rounded-2xl border border-slate-200 shadow-sm ring-4 ring-slate-50">
-              <p className="text-3xl font-black text-slate-900 leading-none">{stats.pob.total.toLocaleString()}</p>
-              <p className="text-[9px] font-black text-slate-400 uppercase mt-1">Densidad de personas</p>
+            <div className="text-center bg-slate-900 px-5 py-2.5 rounded-2xl border border-white/10 shadow-inner">
+              <p className="text-2xl font-black text-white leading-none">{stats.pob.total.toLocaleString()}</p>
+              <p className="text-[8px] font-black text-cyan-400 uppercase mt-1">Población Total</p>
             </div>
             <div className="text-center">
-              <p className="text-lg font-bold text-slate-700">{stats.pob.m.toLocaleString()}</p>
-              <p className="text-[9px] font-black text-pink-600 uppercase">Mujeres</p>
+              <p className="text-lg font-bold text-pink-400">{stats.pob.m.toLocaleString()}</p>
+              <p className="text-[9px] font-black text-slate-400 uppercase">Mujeres</p>
             </div>
           </div>
         </div>
 
-        {/* BLOQUE SALUD */}
+        {/* RED DE SALUD */}
         <div className="space-y-2">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-1">Infraestructura de Salud</p>
+          <div className="flex items-center gap-2 px-1">
+            <HeartPulse size={14} className="text-rose-400" />
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Red Asistencial de Salud</p>
+          </div>
           <div className="grid grid-cols-4 gap-2">
             {[
-              { label: 'Hospitales', val: stats.salud.hosp, bg: 'bg-rose-500', text: 'text-white' },
-              { label: 'Clínicas', val: stats.salud.clin, bg: 'bg-orange-500', text: 'text-white' },
-              { label: 'CDI', val: stats.salud.cdi, bg: 'bg-emerald-500', text: 'text-white' },
-              { label: 'Ambulatorio', val: stats.salud.amb, bg: 'bg-blue-500', text: 'text-white' }
+              { label: 'Hospitales', val: stats.salud.hosp, bg: 'bg-rose-500/20 text-rose-400 border-rose-500/30' },
+              { label: 'Clínicas', val: stats.salud.clin, bg: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
+              { label: 'CDI', val: stats.salud.cdi, bg: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' },
+              { label: 'Ambulatorio', val: stats.salud.amb, bg: 'bg-blue-500/20 text-blue-400 border-blue-500/30' }
             ].map((item, i) => (
-              <div key={i} className={`${item.bg} p-3 rounded-xl shadow-sm text-center transform transition-hover hover:scale-105`}>
-                <p className={`text-xl font-black ${item.text}`}>{item.val}</p>
-                <p className={`text-[8px] font-black ${item.text} uppercase leading-none opacity-80`}>{item.label}</p>
+              <div key={i} className={`${item.bg} border p-2.5 rounded-xl text-center shadow-sm`}>
+                <p className="text-xl font-black">{item.val}</p>
+                <p className="text-[8px] font-black uppercase leading-none opacity-80 mt-0.5">{item.label}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* BLOQUE INTELIGENCIA SERVIDOR */}
-        <div className="bg-slate-100 p-5 rounded-2xl border border-slate-200">
-          <p className="text-[10px] font-bold text-slate-500 uppercase mb-4 text-center tracking-widest">Base de Datos de Inteligencia</p>
-          <div className="flex justify-around items-center">
-            <div className="text-center">
-              <p className="text-xl font-black text-amber-500">{stats.inteligencia.puntos.length}</p>
-              <p className="text-[8px] font-black text-slate-500 uppercase">Puntos Interés</p>
+        {/* BASE DE INTELIGENCIA */}
+        <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5">
+          <div className="flex items-center gap-2 mb-3">
+            <ShieldAlert size={14} className="text-amber-400" />
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Registro de Inteligencia</p>
+          </div>
+          <div className="grid grid-cols-3 gap-2 text-center">
+            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
+              <p className="text-xl font-black text-amber-400">{stats.inteligencia.puntos.length}</p>
+              <p className="text-[8px] font-black text-slate-400 uppercase">Puntos Interés</p>
             </div>
-            <div className="text-center bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm">
-              <p className="text-2xl font-black text-sky-500 leading-none">{stats.inteligencia.personas.length}</p>
-              <p className="text-[8px] font-black text-slate-400 uppercase mt-1">Sujetos Registrados</p>
+            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
+              <p className="text-xl font-black text-sky-400">{stats.inteligencia.personas.length}</p>
+              <p className="text-[8px] font-black text-slate-400 uppercase">Sujetos</p>
             </div>
-            <div className="text-center">
-              <p className="text-xl font-black text-rose-500">{stats.inteligencia.bandas.length}</p>
-              <p className="text-[8px] font-black text-slate-500 uppercase">Grupos Delictivos</p>
+            <div className="bg-slate-900/80 p-2.5 rounded-xl border border-white/5">
+              <p className="text-xl font-black text-rose-400">{stats.inteligencia.bandas.length}</p>
+              <p className="text-[8px] font-black text-slate-400 uppercase">Grupos Delictivos</p>
             </div>
           </div>
-          
         </div>
 
       </div>
 
-      <div className="bg-slate-900/5 p-4 text-center border-t border-slate-200">
-        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
-          SOGNE • Inteligencia Geográfica • 2026
+      {/* FOOTER */}
+      <div className="bg-slate-950/90 p-3.5 text-center border-t border-white/10 shrink-0">
+        <p className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">
+          SOGNE • REDIMAIN • SISTEMA DE ORIENTACIÓN GEOINTELIGENTE
         </p>
       </div>
+
+      {/* =========================================================================
+          MINI-MODAL INTERACTIVO DE DESGLOSE TÁCTICO
+          ========================================================================= */}
+      {modalCategory && (
+        <div className="absolute inset-0 z-50 bg-slate-950/95 backdrop-blur-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          
+          {/* Header del Modal */}
+          <div className="p-4 bg-slate-900 border-b border-white/10 flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-2.5">
+              <div className={`p-2 rounded-xl border ${activeModalData.color}`}>
+                {activeModalData.icon}
+              </div>
+              <div>
+                <h4 className="text-sm font-black text-white uppercase tracking-wider leading-tight">
+                  {activeModalData.title}
+                </h4>
+                <p className="text-[10px] font-mono text-cyan-400">
+                  {stats.nombre} • {activeModalData.items.length} Registros Encontrados
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setModalCategory(null)}
+              className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors cursor-pointer"
+              title="Cerrar Desglose"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Buscador dentro del Modal */}
+          <div className="p-3 bg-slate-900/50 border-b border-white/5 shrink-0">
+            <div className="relative">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Buscar por nombre, sector o tipo..."
+                value={modalSearch}
+                onChange={(e) => setModalSearch(e.target.value)}
+                className="w-full bg-slate-950 border border-white/10 rounded-xl pl-9 pr-8 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+              />
+              {modalSearch && (
+                <button
+                  onClick={() => setModalSearch('')}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                >
+                  <X size={12} />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Lista de Registros Desglosados */}
+          <div className="flex-1 p-3.5 space-y-2.5 overflow-y-auto custom-scrollbar">
+            {activeModalData.items.length === 0 ? (
+              <div className="text-center py-10 text-slate-500">
+                <p className="text-xs">No se encontraron registros para esta categoría en {stats.nombre}.</p>
+              </div>
+            ) : (
+              activeModalData.items.map((it: any, idx: number) => {
+                const p = it.properties || {};
+                const coords = it.geometry?.coordinates;
+                const itemNombre = p.nombre || p.name || p.NAME || p.NOMBRE || p.denominacion || `Instalación #${idx + 1}`;
+                const itemTipo = p.tipo || p.subcategoria || p.categoria || p.CATEGORIA || p.TIPO_SERVICIO || p.TENSION_ASOCIADA || 'General';
+                const itemUbicacion = p.sector || p.address || p.ubicacion || p.CityName || p.PARROQUIA || p.DESCRIPCION || p.parroquia || 'Ubicación registrada';
+                const itemExtra = p.OPERADOR || p.empresa || p.institution || p.circuito || p.CUSTODIA || p.status || p.estatus || p.OPERADORA || p.region_tipo;
+
+                return (
+                  <div
+                    key={idx}
+                    className="p-3 bg-slate-900/80 hover:bg-slate-850 rounded-xl border border-white/10 hover:border-cyan-500/40 transition-all shadow-sm flex flex-col gap-1.5"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <h5 className="text-xs font-bold text-white uppercase tracking-tight leading-snug">
+                        {itemNombre}
+                      </h5>
+                      <span className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-cyan-300 shrink-0">
+                        {itemTipo}
+                      </span>
+                    </div>
+
+                    <p className="text-[10px] text-slate-400 leading-tight">
+                      📍 {itemUbicacion}
+                    </p>
+
+                    {itemExtra && (
+                      <div className="flex items-center gap-1.5 text-[9px] font-mono text-slate-400 mt-0.5">
+                        <span className="text-slate-500">Info:</span>
+                        <span className="text-slate-300 font-semibold">{itemExtra}</span>
+                      </div>
+                    )}
+
+                    {coords && (
+                      <div className="flex items-center justify-between text-[9px] font-mono text-slate-500 pt-1 border-t border-white/5 mt-1">
+                        <span>GPS: {coords[1].toFixed(4)}, {coords[0].toFixed(4)}</span>
+                        <span className="text-cyan-400/80 font-bold">Activo</span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+
+          {/* Botón de Cierre del Modal */}
+          <div className="p-3 bg-slate-900 border-t border-white/10 shrink-0 text-center">
+            <button
+              onClick={() => setModalCategory(null)}
+              className="w-full py-2 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-lg cursor-pointer"
+            >
+              Volver a la Ficha Municipal
+            </button>
+          </div>
+
+        </div>
+      )}
+
     </div>
   );
 };
-
-// Componente decorativo interno si no tienes lucide-react instalado
-const Activity = ({ size, className }: any) => (
-    <svg 
-        width={size} height={size} viewBox="0 0 24 24" fill="none" 
-        stroke="currentColor" strokeWidth="2" strokeLinecap="round" 
-        strokeLinejoin="round" className={className}
-    >
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-    </svg>
-);

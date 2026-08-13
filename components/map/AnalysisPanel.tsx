@@ -262,8 +262,12 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
 
   const isLoadingAny = loadingItems.size > 0;
 
+  const hasMunicipio = features.some((f: any) => detectType(f) === 'municipio');
+
   return (
-    <div className={`fixed bottom-0 left-0 right-0 w-full max-h-[75vh] rounded-t-3xl md:absolute md:top-20 md:bottom-4 md:right-6 md:w-[26rem] md:rounded-[2.5rem] md:left-auto md:max-h-[85vh] shadow-2xl overflow-hidden flex flex-col z-40 transition-all duration-500 border ${
+    <div className={`fixed bottom-0 left-0 right-0 w-full max-h-[85vh] rounded-t-3xl md:absolute md:top-16 md:bottom-4 md:right-6 ${
+      hasMunicipio ? 'md:w-[32rem] lg:w-[36rem]' : 'md:w-[26rem]'
+    } md:rounded-[2.5rem] md:left-auto md:max-h-[90vh] shadow-2xl overflow-hidden flex flex-col z-40 transition-all duration-500 border ${
       theme === 'light' ? 'bg-white/95 border-slate-300 light-theme' : 'bg-slate-950/95 border-white/10 backdrop-blur-2xl'
     }`}>
 
@@ -318,6 +322,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
                   bandasDB={loadedData.zonasDB || []}
                   bandasOrganizadas={loadedData.bandasOrganizadasMaster || []}
                   sectoresAPI={getSectoresFromMap(nombreRaw)}
+                  onClose={() => onRemove(f)}
                 />
               ) : type === 'salud' ? (
                 <SaludCard feature={f} onClose={() => onRemove(f)} />
