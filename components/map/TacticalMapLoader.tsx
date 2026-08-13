@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Activity, Cpu, CheckCircle2 } from 'lucide-react';
 
 interface TacticalMapLoaderProps {
@@ -22,16 +22,22 @@ const TACTICAL_MESSAGES = [
 export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({ 
   isLoading, 
   theme = 'dark',
-  progress: externalProgress,
   statusMessage: externalMessage
 }) => {
-  const [internalProgress, setInternalProgress] = useState(15);
-  const [msgIndex, setMsgIndex] = useState(0);
-  const [shouldRender, setShouldRender] = useState(true);
-  const [isFadingOut, setIsFadingOut] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [percent, setPercent] = useState<number>(1);
+  const [msgIndex, setMsgIndex] = useState<number>(0);
+  const [shouldRender, setShouldRender] = useState<boolean>(true);
+  const [isFadingOut, setIsFadingOut] = useState<boolean>(false);
+  const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
-  // Rotar mensajes informativos cada 1.8 segundos si no hay mensaje externo
+  const percentRef = useRef<number>(1);
+  const isLoadingRef = useRef<boolean>(isLoading);
+
+  useEffect(() => {
+    isLoadingRef.current = isLoading;
+  }, [isLoading]);
+
+  // Rotar mensajes tácticos informativos cada 1.8 segundos
   useEffect(() => {
     if (!isLoading) return;
     const interval = setInterval(() => {
@@ -40,62 +46,63 @@ export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({
     return () => clearInterval(interval);
   }, [isLoading]);
 
-  // Manejo de progreso fluido y continuo (NUNCA se queda trabado en 94%)
+  // Contador constante y fluido 1%, 2%, 3%, 4% ... n% -> 100%
   useEffect(() => {
-    if (externalProgress !== undefined) {
-      // Si viene progreso real medido desde useMapbox
-      if (externalProgress >= 100 || !isLoading) {
-        setInternalProgress(100);
-        setIsCompleted(true);
-        const timer = setTimeout(() => {
-          setIsFadingOut(true);
-          setTimeout(() => setShouldRender(false), 500);
-        }, 350);
-        return () => clearTimeout(timer);
-      } else {
-        setInternalProgress(externalProgress);
-      }
-    } else {
-      // Si corre en modo automático fluido
-      if (!isLoading) {
-        setInternalProgress(100);
-        setIsCompleted(true);
-        const timer = setTimeout(() => {
-          setIsFadingOut(true);
-          setTimeout(() => setShouldRender(false), 500);
-        }, 350);
-        return () => clearTimeout(timer);
-      } else {
-        setShouldRender(true);
-        setIsFadingOut(false);
-        setIsCompleted(false);
+    let timer: NodeJS.Timeout | null = null;
 
-        // Incremento asintótico continuo y constante que avanza suavemente hacia 99% sin detenerse nunca
-        const interval = setInterval(() => {
-          setInternalProgress((prev) => {
-            if (prev < 40) return prev + 6;
-            if (prev < 70) return prev + 4;
-            if (prev < 88) return prev + 2;
-            if (prev < 96) return prev + 1;
-            if (prev < 99) return prev + 0.5;
-            return prev;
-          });
-        }, 180);
-
-        return () => clearInterval(interval);
+    const runTicker = () => {
+      // Si el mapa ya terminó de cargar, acelerar rápidamente al 100%
+      if (!isLoadingRef.current) {
+        if (percentRef.current < 100) {
+          percentRef.current += 1;
+          setPercent(percentRef.current);
+          timer = setTimeout(runTicker, 8); // Paso ultra rápido hacia el 100%
+        } else {
+          setPercent(100);
+          setIsCompleted(true);
+          // Breve confirmación visual al 100% y desvanecimiento suave
+          setTimeout(() => {
+            setIsFadingOut(true);
+            setTimeout(() => setShouldRender(false), 450);
+          }, 250);
+        }
+        return;
       }
-    }
-  }, [isLoading, externalProgress]);
+
+      // Si aún está cargando el sistema: incremento constante unidad por unidad
+      if (percentRef.current < 99) {
+        percentRef.current += 1;
+        setPercent(percentRef.current);
+
+        // Velocidad adaptativa fluida para avanzar continuamente según la necesidad
+        let delay = 25; // 1% a 50%
+        if (percentRef.current > 50 && percentRef.current <= 80) delay = 35;
+        if (percentRef.current > 80 && percentRef.current <= 92) delay = 50;
+        if (percentRef.current > 92 && percentRef.current <= 98) delay = 75;
+        if (percentRef.current >= 98) delay = 120;
+
+        timer = setTimeout(runTicker, delay);
+      } else {
+        // En 99%, si aún no está listo, espera el aviso del mapa
+        timer = setTimeout(runTicker, 50);
+      }
+    };
+
+    timer = setTimeout(runTicker, 20);
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isLoading]);
 
   if (!shouldRender) return null;
 
-  const currentDisplayProgress = Math.min(100, Math.floor(internalProgress));
   const displayMsg = externalMessage || TACTICAL_MESSAGES[msgIndex];
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-500 ${
-        isFadingOut ? 'opacity-0 scale-98 pointer-events-none' : 'opacity-100 scale-100'
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-450 ${
+        isFadingOut ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
       } ${
         theme === 'light'
           ? 'bg-slate-100/90 backdrop-blur-2xl text-slate-900'
@@ -115,7 +122,7 @@ export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({
         <div className="relative mb-5">
           <div className="w-24 h-24 rounded-full border-2 border-cyan-500/30 flex items-center justify-center relative overflow-hidden">
             {/* Escáner de Radar Giratorio */}
-            <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(6,182,212,0.45)_360deg)] animate-[spin_1.8s_linear_infinite]" />
+            <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(6,182,212,0.45)_360deg)] animate-[spin_1.6s_linear_infinite]" />
             <div className="w-20 h-20 rounded-full bg-slate-950/90 border border-cyan-500/50 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)] relative z-10">
               <img 
                 src="/Municipios.png" 
@@ -146,7 +153,7 @@ export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({
           Centro de Orientación Geoespacial y Comando Estratégico
         </p>
 
-        {/* Barra de Progreso Fluida en Tiempo Real */}
+        {/* Barra de Progreso Fluida en Tiempo Real (1% -> 100%) */}
         <div className="w-full mt-6 space-y-2">
           <div className="flex justify-between items-center text-[10px] font-mono">
             <span className="text-cyan-400 flex items-center gap-1.5 font-bold">
@@ -160,18 +167,18 @@ export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({
               </span>
             </span>
             <span className="text-white font-mono font-black text-xs">
-              {currentDisplayProgress}%
+              {percent}%
             </span>
           </div>
 
           <div className="w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-white/15 p-0.5 shadow-inner">
             <div 
-              className={`h-full rounded-full transition-all duration-200 ease-out shadow-[0_0_15px_rgba(6,182,212,0.8)] ${
+              className={`h-full rounded-full transition-all duration-100 ease-linear shadow-[0_0_15px_rgba(6,182,212,0.8)] ${
                 isCompleted 
                   ? 'bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400' 
                   : 'bg-gradient-to-r from-cyan-500 via-sky-400 to-emerald-400'
               }`}
-              style={{ width: `${currentDisplayProgress}%` }}
+              style={{ width: `${percent}%` }}
             />
           </div>
         </div>

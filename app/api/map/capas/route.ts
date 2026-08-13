@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-export const dynamic = 'force-dynamic';
+// Memoria caché en el servidor para evitar lectura de disco repetida
+const memoryCache = new Map<string, any>();
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -10,6 +11,15 @@ export async function GET(request: Request) {
 
   if (!nombre) {
     return NextResponse.json({ error: 'Falta el parámetro nombre' }, { status: 400 });
+  }
+
+  // Respuesta ultra-rápida desde memoria caché si ya fue leído
+  if (memoryCache.has(nombre)) {
+    return NextResponse.json(memoryCache.get(nombre), {
+      headers: {
+        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+      },
+    });
   }
 
   try {
@@ -32,16 +42,17 @@ export async function GET(request: Request) {
       fileContent = fs.readFileSync(jsonPath, 'utf8');
     } else {
       console.warn(`[SIGDI] Capa no encontrada: ${nombre} (${fileName})`);
-      return NextResponse.json({ type: 'FeatureCollection', features: [] });
+      const emptyFC = { type: 'FeatureCollection', features: [] };
+      memoryCache.set(nombre, emptyFC);
+      return NextResponse.json(emptyFC);
     }
 
     const data = JSON.parse(fileContent);
+    memoryCache.set(nombre, data);
 
     return NextResponse.json(data, {
       headers: {
-        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0',
+        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
       },
     });
   } catch (error: any) {

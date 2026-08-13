@@ -182,7 +182,11 @@ const gasGeoJSON = {
         empresa: "PDVSA Gas Comunal / DINFRA",
         estatus: "Operativa",
         organismo: "CEO - Dirección Conjunta de Protección de Instalaciones Críticas",
-        descripcion: "Planta de llenado de bombonas y distribución directa comunal de gas GLP para abastecimiento residencial, comercial y de servicios."
+        descripcion: "Planta de llenado de bombonas y distribución directa comunal de gas GLP para abastecimiento residencial, comercial y de servicios.",
+        fotos: [
+          "/gas/manuela_saenz_1.png",
+          "/gas/manuela_saenz_2.png"
+        ]
       }
     },
     {
@@ -211,7 +215,11 @@ const gasGeoJSON = {
         empresa: "Tricada Gas",
         estatus: "Operativa",
         organismo: "CEO - Dirección Conjunta de Protección de Instalaciones Críticas",
-        descripcion: "Planta privada comercial para el trasvasado, llenado de cilindros y distribución a granel de GLP."
+        descripcion: "Planta privada comercial para el trasvasado, llenado de cilindros y distribución a granel de GLP.",
+        fotos: [
+          "/gas/tricada_gas_1.png",
+          "/gas/tricada_gas_2.png"
+        ]
       }
     },
     {
@@ -240,7 +248,11 @@ const gasGeoJSON = {
         empresa: "PDVSA Gas Comunal / DINFRA",
         estatus: "Operativa",
         organismo: "CEO - Dirección Conjunta de Protección de Instalaciones Críticas",
-        descripcion: "Planta estratégica de llenado, distribución y suministro continuo de gas GLP para las comunidades de la Península de Macanao y zona oeste."
+        descripcion: "Planta estratégica de llenado, distribución y suministro continuo de gas GLP para las comunidades de la Península de Macanao y zona oeste.",
+        fotos: [
+          "/gas/indio_macanao_1.png",
+          "/gas/indio_macanao_2.png"
+        ]
       }
     },
     {

@@ -59,6 +59,12 @@ export const EstacionGasCard = ({ f, onRemove }: any) => {
     fotos = ['/gas/bm50_1.png', '/gas/bm50_2.png'];
   } else if (fotos.length === 0 && (p.id === 'planta_pdvsa_guamache' || String(p.nombre || p.instalacion || '').toUpperCase().includes('GUAMACHE'))) {
     fotos = ['/gas/guamache_1.png', '/gas/guamache_2.png'];
+  } else if (fotos.length === 0 && (p.id === 'planta_glp_manuela_saenz' || String(p.nombre || p.instalacion || '').toUpperCase().includes('MANUELA'))) {
+    fotos = ['/gas/manuela_saenz_1.png', '/gas/manuela_saenz_2.png'];
+  } else if (fotos.length === 0 && (p.id === 'planta_glp_tricada_gas' || String(p.nombre || p.instalacion || '').toUpperCase().includes('TRICADA'))) {
+    fotos = ['/gas/tricada_gas_1.png', '/gas/tricada_gas_2.png'];
+  } else if (fotos.length === 0 && (p.id === 'planta_glp_indio_macanao' || String(p.nombre || p.instalacion || '').toUpperCase().includes('MACANAO'))) {
+    fotos = ['/gas/indio_macanao_1.png', '/gas/indio_macanao_2.png'];
   }
 
   const openLightbox = (index: number = 0) => {
