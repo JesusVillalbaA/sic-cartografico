@@ -711,18 +711,19 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
               activeModalData.items.map((it: any, idx: number) => {
                 const p = it.properties || {};
                 const coords = it.geometry?.coordinates;
-                const itemNombre = p.NAME || p.nombre || p.name || p.NOMBRE || p.denominacion || `Instalación #${idx + 1}`;
-                const itemTipo = p.gpxx_Categ || p.tipo || p.subcategoria || p.categoria || p.CATEGORIA || p.TIPO_SERVICIO || p.TENSION_ASOCIADA || 'Infraestructura';
-                const itemUbicacion = p.sector || p.address || p.ubicacion || p.CityName || p.PARROQUIA || p.DESCRIPCION || p.parroquia || (p.NAME ? p.NAME.replace(/ANTENA\s+/i, '') : 'Nueva Esparta');
+                const itemNombre = p.SECTOR ? `Antena ${p.SECTOR}` : (p.NAME || p.nombre || p.name || p.NOMBRE || p.denominacion || `Instalación #${idx + 1}`);
+                const itemTipo = p.gpxx_Categ || p.tipo || p.subcategoria || p.categoria || p.CATEGORIA || p.TIPO_SERVICIO || p.TENSION_ASOCIADA || (p.SECTOR ? 'Estación Radiobase' : 'Infraestructura');
+                const itemUbicacion = p.DIRECCION || p.sector || p.address || p.ubicacion || p.CityName || p.PARROQUIA || p.DESCRIPCION || p.parroquia || 'Nueva Esparta';
                 const itemExtra = p.OPERADOR || p.empresa || p.institution || p.circuito || p.CUSTODIA || p.status || p.estatus || p.OPERADORA || p.region_tipo || p.sym || p.LAYER;
 
                 // Detección de Operadora para Antenas
                 let opBadge = null;
                 if (modalCategory === 'antenas') {
                   const rawOp = (p.operadora || p.operator || p.OPERADORA || p.gpxx_Categ || p.NAME || '').toUpperCase();
-                  if (rawOp.includes('DIGITEL')) {
+                  const n = Number(p.N);
+                  if (rawOp.includes('DIGITEL') || n >= 63) {
                     opBadge = { name: 'Digitel', color: 'text-purple-400 border-purple-500/30 bg-purple-500/10', icon: '/digitel.png' };
-                  } else if (rawOp.includes('MOVISTAR')) {
+                  } else if (rawOp.includes('MOVISTAR') || (n >= 52 && n <= 61)) {
                     opBadge = { name: 'Movistar', color: 'text-sky-400 border-sky-500/30 bg-sky-500/10', icon: '/movistar.png' };
                   } else {
                     opBadge = { name: 'Movilnet', color: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10', icon: '/movilnet.png' };
@@ -745,7 +746,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                       </div>
                       {opBadge ? (
                         <span className={`text-[9px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${opBadge.color}`}>
-                          {opBadge.name}
+                          {opBadge.name} {p.N ? `· Nº ${p.N}` : ''}
                         </span>
                       ) : (
                         <span className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-cyan-300 shrink-0">
@@ -758,7 +759,14 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                       📍 {itemUbicacion}
                     </p>
 
-                    {itemExtra && (
+                    {p.COORDENADAS && (
+                      <div className="flex items-center gap-1.5 text-[9px] font-mono text-cyan-400/90 mt-0.5">
+                        <span className="text-slate-500">DMS:</span>
+                        <span className="font-semibold">{p.COORDENADAS}</span>
+                      </div>
+                    )}
+
+                    {itemExtra && !p.SECTOR && (
                       <div className="flex items-center gap-1.5 text-[9px] font-mono text-slate-400 mt-0.5">
                         <span className="text-slate-500">Info:</span>
                         <span className="text-slate-300 font-semibold">{itemExtra}</span>
