@@ -24,7 +24,7 @@ export const CuadrantePuntoCard = ({ f, geoData, onRemove }: any) => {
     <div className="bg-slate-950/90 rounded-[2.5rem] border border-white/10 shadow-2xl backdrop-blur-xl relative overflow-hidden animate-in fade-in zoom-in-95 duration-500 ring-1 ring-cyan-500/20">
       
       {/* 1. SECCIÓN DE ESTADO Y TÍTULO */}
-      <div className="bg-linear-to-b from-cyan-500/10 to-transparent p-6 pb-4">s
+      <div className="bg-linear-to-b from-cyan-500/10 to-transparent p-6 pb-4">
         <div className="flex justify-between items-start">
           <div className="space-y-1">
             <div className="flex items-center gap-2 bg-white w-max px-3 py-1 rounded-full shadow-sm border border-cyan-500/20">

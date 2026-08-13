@@ -119,7 +119,7 @@ async function loadKey(key: keyof DataNeeds): Promise<void> {
   try {
     switch (key) {
       case 'cuadrantesGeoData': {
-        const r = await fetch('/cuadrantePoligono.geojson');
+        const r = await fetch('/cuadrantes.geojson');
         dataCache.cuadrantesGeoData = await r.json();
         break;
       }
@@ -324,7 +324,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
   // ── MODO CONTENEDOR EXPANDIDO ──
   return (
     <div className={`fixed bottom-0 left-0 right-0 w-full max-h-[88vh] rounded-t-3xl md:absolute md:top-14 md:bottom-4 md:right-6 ${
-      hasMunicipio ? 'md:w-[40rem] lg:w-[48rem] xl:w-[54rem]' : 'md:w-[30rem] lg:w-[36rem]'
+      hasMunicipio ? 'md:w-[38rem] lg:w-[44rem] xl:w-[48rem] max-w-[96vw]' : 'md:w-[28rem] lg:w-[32rem]'
     } md:rounded-[2.5rem] md:left-auto md:max-h-[92vh] shadow-2xl overflow-hidden flex flex-col z-40 transition-all duration-500 border ${
       theme === 'light' ? 'bg-white/95 border-slate-300 light-theme' : 'bg-slate-950/95 border-white/10 backdrop-blur-2xl'
     }`}>
@@ -373,7 +373,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       <div 
         ref={scrollContainerRef}
         id="analysis-panel-content" 
-        className="p-4 sm:p-5 space-y-5 overflow-y-auto flex-1 custom-scrollbar scroll-smooth"
+        className="p-4 sm:p-5 space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth"
       >
         {features.map((f: any, i: number) => {
           const p = f.properties || {};
@@ -487,7 +487,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       <div className="p-4 bg-slate-900/50 border-t border-white/5 shrink-0 flex items-center gap-3">
         <button
           onClick={onClear}
-          className="w-full py-3.5 bg-rose-500/10 hover:bg-rose-600 text-rose-400 hover:text-white text-[10px] font-black rounded-2xl uppercase tracking-[0.2em] transition-all border border-rose-500/20 shadow-md cursor-pointer"
+          className="w-full py-3 bg-rose-500/10 hover:bg-rose-600 text-rose-400 hover:text-white text-[10px] font-black rounded-2xl uppercase tracking-[0.2em] transition-all border border-rose-500/20 shadow-md cursor-pointer"
         >
           Limpiar Todos los Paneles
         </button>
