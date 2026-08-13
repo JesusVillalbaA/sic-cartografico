@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { X, Radio, MapPin, Activity, Shield, Cpu } from 'lucide-react';
+import { X, Radio, MapPin, Activity, Cpu } from 'lucide-react';
 
 interface AntenaCardProps {
   f: any;
@@ -9,116 +9,100 @@ interface AntenaCardProps {
 
 export const AntenaCard: React.FC<AntenaCardProps> = ({ f, onRemove }) => {
   const p = f.properties || {};
-  const layerId = (f.layer?.id || "").toLowerCase();
+  const coords = f.geometry?.coordinates;
 
-  // Determinar la operadora según la capa o las propiedades
-  let operator = "Operadora Desconocida";
-  let colorTheme = "text-violet-400";
-  let bgTheme = "bg-violet-500/20 border-violet-500/30";
-  let borderTheme = "border-violet-500/30";
-  let shadowGlow = "bg-violet-500";
+  // Nombre auténtico de la antena desde el GeoJSON
+  const name = p.NAME || p.nombre || p.name || "Antena Telecom";
 
-  if (layerId.includes('digitel') || p.operator?.toLowerCase().includes('digitel') || p.operadora?.toLowerCase().includes('digitel')) {
-    operator = "Digitel";
-    colorTheme = "text-purple-400";
-    bgTheme = "bg-purple-500/20 border-purple-500/30";
-    borderTheme = "border-purple-500/30";
-    shadowGlow = "bg-purple-500";
-  } else if (layerId.includes('movistar') || p.operator?.toLowerCase().includes('movistar') || p.operadora?.toLowerCase().includes('movistar')) {
-    operator = "Movistar";
-    colorTheme = "text-cyan-400";
-    bgTheme = "bg-cyan-500/20 border-cyan-500/30";
-    borderTheme = "border-cyan-500/30";
-    shadowGlow = "bg-cyan-500";
-  } else if (layerId.includes('movilnet') || p.operator?.toLowerCase().includes('movilnet') || p.operadora?.toLowerCase().includes('movilnet')) {
-    operator = "Movilnet";
-    colorTheme = "text-emerald-400";
-    bgTheme = "bg-emerald-500/20 border-emerald-500/30";
-    borderTheme = "border-emerald-500/30";
-    shadowGlow = "bg-emerald-500";
-  }
+  // Categoría u operadora según el archivo KMZ / GeoJSON
+  const categoria = p.gpxx_Categ || p.operadora || p.categoria || "ANTENAS MOVILNET-CANTV";
 
-  // Nombre de la estación o antena
-  const name = p.NAME || p.nombre || p.name || p.SECTOR || p.site_id || p.id || "Estación Base";
+  // Símbolo o capa del Waypoint
+  const capaWaypoint = p.LAYER || p.sym || "Radiobase";
 
-  // Dirección
-  const direccion = p.DIRECCION || p.address || p.municipio || p.parroquia || 'Nueva Esparta, VE';
-
-  // Tecnologías soportadas
-  const tecnologia = p.tecnologia || p.tech || p.type || "LTE / 4G";
-
-  // Mostrar propiedades adicionales excluyendo las genéricas
-  const excludeKeys = ['NAME', 'nombre', 'name', 'SECTOR', 'DIRECCION', 'address', 'site_id', 'id', 'operator', 'operadora', 'tecnologia', 'tech', 'type'];
-  const extraProps = Object.entries(p).filter(([key]) => !excludeKeys.includes(key) && typeof p[key] !== 'object');
+  // Parámetros técnicos reales del GeoJSON sin inventar datos
+  const excludeKeys = ['NAME', 'nombre', 'name', 'id', 'link', 'time', 'cmt', 'fix', 'gpxx_Categ', 'wptx1_Cate'];
+  const extraProps = Object.entries(p).filter(([key, val]) => !excludeKeys.includes(key) && val !== '' && typeof val !== 'object');
 
   return (
-    <div className={`relative w-full overflow-hidden backdrop-blur-xl bg-[#0a0a0f]/95 border ${borderTheme} rounded-[2.5rem] shadow-2xl animate-in slide-in-from-right-5`}>
-      <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${shadowGlow}`} />
-      <div className={`absolute top-0 right-0 w-36 h-36 blur-[90px] opacity-25 ${shadowGlow}`} />
+    <div className="relative w-full overflow-hidden backdrop-blur-xl bg-[#0a0a0f]/95 border border-cyan-500/30 rounded-[2.5rem] shadow-2xl animate-in slide-in-from-right-5">
+      <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-cyan-500" />
+      <div className="absolute top-0 right-0 w-36 h-36 blur-[90px] opacity-25 bg-cyan-500" />
 
       <div className="p-5 pl-7">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <div className={`flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-white/10 shadow-sm`}>
-            <img src="/antena.png" alt="Antena" className="w-5 h-5 object-contain" />
-            <span className={`text-[9px] font-black uppercase tracking-widest ${colorTheme}`}>
-              Antena · {operator}
+          <div className="flex items-center gap-2 bg-cyan-500/20 px-3 py-1 rounded-full border border-cyan-500/30 shadow-sm">
+            <Radio className="w-4 h-4 text-cyan-400" />
+            <span className="text-[9px] font-black uppercase tracking-widest text-cyan-300">
+              INFRAESTRUCTURA DE TELECOMUNICACIONES
             </span>
           </div>
-          <button onClick={() => onRemove(f)} className="text-white/20 hover:text-white hover:bg-white/10 p-1.5 rounded-xl transition-all">
+          <button 
+            onClick={() => onRemove(f)} 
+            className="text-white/40 hover:text-white hover:bg-white/10 p-1.5 rounded-xl transition-all cursor-pointer"
+            title="Cerrar"
+          >
             <X size={16} />
           </button>
         </div>
 
         {/* Título de la antena */}
         <div className="mb-4">
-          <h4 className="text-lg font-black text-white uppercase italic leading-tight mb-1">
+          <h4 className="text-xl font-black text-white uppercase italic leading-tight mb-1">
             {name}
           </h4>
-          <div className="flex items-start gap-2">
-            <MapPin size={12} className={`mt-0.5 shrink-0 ${colorTheme}`} />
-            <span className="text-[10px] text-slate-400 font-mono leading-tight">
-              {direccion}
-            </span>
-          </div>
+          <p className="text-[11px] text-cyan-400 font-mono">
+            {categoria}
+          </p>
         </div>
 
-        {/* Tecnología y Estado */}
+        {/* Coordenadas GPS y Tipo */}
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
-            <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Tecnología</span>
+          <div className="bg-white/5 border border-white/10 p-2.5 rounded-2xl">
+            <span className="text-[8px] text-slate-400 font-bold uppercase block mb-1">Tipo de Registro</span>
             <div className="flex items-center gap-1.5">
-              <Cpu size={11} className={colorTheme} />
-              <span className="text-[10px] text-slate-200 font-bold truncate">{tecnologia}</span>
+              <Cpu size={12} className="text-cyan-400" />
+              <span className="text-[11px] text-slate-200 font-bold truncate">{capaWaypoint}</span>
             </div>
           </div>
-          <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
-            <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Estado de Servicio</span>
+          <div className="bg-white/5 border border-white/10 p-2.5 rounded-2xl">
+            <span className="text-[8px] text-slate-400 font-bold uppercase block mb-1">Estatus</span>
             <div className="flex items-center gap-1.5">
-              <Activity size={11} className="text-emerald-400" />
-              <span className="text-[10px] text-emerald-400 font-bold truncate">{p.status || p.estado || 'Operativo'}</span>
+              <Activity size={12} className="text-emerald-400" />
+              <span className="text-[11px] text-emerald-400 font-bold">Activo en GeoJSON</span>
             </div>
           </div>
         </div>
 
-        {/* Propiedades Extra */}
+        {coords && (
+          <div className="bg-slate-950/60 border border-white/5 rounded-2xl p-3 mb-4 flex items-center gap-2">
+            <MapPin size={14} className="text-cyan-400 shrink-0" />
+            <div className="text-[10px] font-mono text-slate-300">
+              <span className="text-slate-500">Coordenadas: </span>
+              {coords[1].toFixed(6)}, {coords[0].toFixed(6)}
+            </div>
+          </div>
+        )}
+
+        {/* Propiedades Extra auténticas */}
         {extraProps.length > 0 && (
-          <div className="bg-white/2 border border-white/5 rounded-2xl p-3.5 mb-4 space-y-2">
-            <span className="text-[7px] text-slate-500 font-black uppercase tracking-widest block mb-1">Parámetros Técnicos</span>
+          <div className="bg-white/2 border border-white/5 rounded-2xl p-3.5 mb-2 space-y-2">
+            <span className="text-[8px] text-slate-400 font-black uppercase tracking-widest block mb-1">Metadatos del GeoJSON</span>
             <div className="grid grid-cols-1 gap-1 text-[10px] text-slate-300 font-mono">
-              {extraProps.slice(0, 6).map(([key, val]) => (
+              {extraProps.map(([key, val]) => (
                 <div key={key} className="flex justify-between border-b border-white/5 pb-1">
-                  <span className="text-slate-500 uppercase">{key.replace(/_/g, ' ')}:</span>
-                  <span className="text-slate-200 font-bold truncate max-w-[150px]">{String(val)}</span>
+                  <span className="text-slate-500 uppercase">{key}:</span>
+                  <span className="text-slate-200 font-bold truncate max-w-[180px]">{String(val)}</span>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        <div className="mt-3 pt-2 flex justify-between items-center border-t border-white/5 opacity-30">
-          <span className="text-[7px] font-mono text-white tracking-widest uppercase italic">SOGNE-ANTENA-GEO</span>
-          <span className="text-[7px] font-mono text-white">{String(p.id || '').slice(0, 8)}</span>
+        <div className="mt-3 pt-2 flex justify-between items-center border-t border-white/5 opacity-40">
+          <span className="text-[8px] font-mono text-cyan-400 tracking-widest uppercase italic">REDIMAIN • GEOJSON ANTENAS</span>
+          <span className="text-[8px] font-mono text-slate-400">{String(p.id || '').slice(0, 12)}</span>
         </div>
       </div>
     </div>

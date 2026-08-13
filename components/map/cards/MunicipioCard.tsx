@@ -693,10 +693,10 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
               activeModalData.items.map((it: any, idx: number) => {
                 const p = it.properties || {};
                 const coords = it.geometry?.coordinates;
-                const itemNombre = p.nombre || p.name || p.NAME || p.NOMBRE || p.denominacion || `Instalación #${idx + 1}`;
-                const itemTipo = p.tipo || p.subcategoria || p.categoria || p.CATEGORIA || p.TIPO_SERVICIO || p.TENSION_ASOCIADA || 'General';
-                const itemUbicacion = p.sector || p.address || p.ubicacion || p.CityName || p.PARROQUIA || p.DESCRIPCION || p.parroquia || 'Ubicación registrada';
-                const itemExtra = p.OPERADOR || p.empresa || p.institution || p.circuito || p.CUSTODIA || p.status || p.estatus || p.OPERADORA || p.region_tipo;
+                const itemNombre = p.NAME || p.nombre || p.name || p.NOMBRE || p.denominacion || `Instalación #${idx + 1}`;
+                const itemTipo = p.gpxx_Categ || p.tipo || p.subcategoria || p.categoria || p.CATEGORIA || p.TIPO_SERVICIO || p.TENSION_ASOCIADA || 'Infraestructura';
+                const itemUbicacion = p.sector || p.address || p.ubicacion || p.CityName || p.PARROQUIA || p.DESCRIPCION || p.parroquia || (p.NAME ? p.NAME.replace(/ANTENA\s+/i, '') : 'Nueva Esparta');
+                const itemExtra = p.OPERADOR || p.empresa || p.institution || p.circuito || p.CUSTODIA || p.status || p.estatus || p.OPERADORA || p.region_tipo || p.sym || p.LAYER;
 
                 return (
                   <div
