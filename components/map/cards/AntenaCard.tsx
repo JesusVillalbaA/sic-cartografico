@@ -130,10 +130,10 @@ export const AntenaCard: React.FC<AntenaCardProps> = ({ f, onRemove }) => {
               <span className="text-cyan-300 font-semibold">{coordenadasDMS}</span>
             </div>
           )}
-          {coords && (
+          {Array.isArray(coords) && coords.length >= 2 && (
             <div className="flex items-center justify-between text-[10px] font-mono text-slate-400">
               <span className="text-slate-500">GPS Decimal:</span>
-              <span>{coords[1].toFixed(6)}, {coords[0].toFixed(6)}</span>
+              <span>{Number(coords[1]).toFixed(6)}, {Number(coords[0]).toFixed(6)}</span>
             </div>
           )}
         </div>

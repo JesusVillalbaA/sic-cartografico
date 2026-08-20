@@ -47,11 +47,11 @@ export const EscuelaCard = ({ f, onRemove }: any) => {
               <span className="text-[9px] font-mono leading-tight">{direccion}</span>
             </div>
           )}
-          {!direccion && coordinates.length >= 2 && (
+          {!direccion && Array.isArray(coordinates) && coordinates.length >= 2 && (
             <div className="flex items-center gap-1.5 text-slate-400">
               <MapPin size={11} className="text-fuchsia-400" />
               <span className="text-[9px] font-mono">
-                {coordinates[1].toFixed(5)}, {coordinates[0].toFixed(5)}
+                {Number(coordinates[1]).toFixed(5)}, {Number(coordinates[0]).toFixed(5)}
               </span>
             </div>
           )}

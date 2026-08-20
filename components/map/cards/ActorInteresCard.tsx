@@ -63,9 +63,9 @@ export const ActorInteresCard = ({ f, onRemove }: any) => {
               <MapPin size={11} className="text-fuchsia-400 shrink-0" />
               <div className="flex flex-col">
                 <span className="text-[9px] text-slate-200 font-bold truncate">{p.sector || p.municipio || 'N/A'}</span>
-                {f.geometry?.coordinates && (
+                {Array.isArray(f.geometry?.coordinates) && f.geometry.coordinates.length >= 2 && (
                   <span className="text-[7px] font-mono text-slate-400 leading-none">
-                    {f.geometry.coordinates[1].toFixed(5)}, {f.geometry.coordinates[0].toFixed(5)}
+                    {Number(f.geometry.coordinates[1]).toFixed(5)}, {Number(f.geometry.coordinates[0]).toFixed(5)}
                   </span>
                 )}
               </div>

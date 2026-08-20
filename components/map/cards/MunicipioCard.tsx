@@ -37,6 +37,55 @@ interface MunicipioCardProps {
   onClose?: () => void;
 }
 
+// Formateador seguro de números/coordenadas para prevenir crashes tipo TypeError
+const safeFixed = (val: any, decimals: number = 4): string | null => {
+  if (val === undefined || val === null) return null;
+  const num = typeof val === 'number' ? val : parseFloat(String(val));
+  return isNaN(num) ? null : num.toFixed(decimals);
+};
+
+const getGPSCoords = (item: any): { lat: string; lng: string } | null => {
+  if (!item) return null;
+  const geom = item.geometry;
+  const p = item.properties || {};
+
+  let lngRaw: any = null;
+  let latRaw: any = null;
+
+  if (geom?.type === 'Point' && Array.isArray(geom.coordinates) && geom.coordinates.length >= 2) {
+    lngRaw = geom.coordinates[0];
+    latRaw = geom.coordinates[1];
+  } else if ((geom?.type === 'Polygon' || geom?.type === 'MultiPolygon') && Array.isArray(geom.coordinates)) {
+    try {
+      const pt = geom.type === 'Polygon' ? geom.coordinates[0]?.[0] : geom.coordinates[0]?.[0]?.[0];
+      if (Array.isArray(pt) && pt.length >= 2) {
+        lngRaw = pt[0];
+        latRaw = pt[1];
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  if (latRaw === null || lngRaw === null) {
+    if (p.lat !== undefined && p.lng !== undefined) {
+      latRaw = p.lat;
+      lngRaw = p.lng;
+    } else if (p.latitude !== undefined && p.longitude !== undefined) {
+      latRaw = p.latitude;
+      lngRaw = p.longitude;
+    }
+  }
+
+  const lat = safeFixed(latRaw, 4);
+  const lng = safeFixed(lngRaw, 4);
+
+  if (lat !== null && lng !== null) {
+    return { lat, lng };
+  }
+  return null;
+};
+
 // Diccionario de localidades y palabras clave por municipio en Nueva Esparta
 const LOCALIDADES_NE: Record<string, string[]> = {
   'ARISMENDI': ['ASUNCION', 'SALAMANCA', 'GUAYATAMO', 'CAMORUCO', 'SIERRA', 'ATAMO', 'MATASIETE', 'FORTIN', 'CATALAN', 'PORTACHUELO'],
@@ -906,7 +955,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
             ) : (
               activeModalData.items.map((it: any, idx: number) => {
                 const p = it.properties || {};
-                const coords = it.geometry?.coordinates;
+                const gps = getGPSCoords(it);
                 
                 // Si la categoría es cuadrantes
                 if (modalCategory === 'cuadrantes') {
@@ -974,9 +1023,9 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                           <span className="text-[9px] text-slate-500 font-mono">Sin teléfono registrado</span>
                         )}
 
-                        {coords && (
+                        {gps && (
                           <span className="text-[9px] font-mono text-cyan-400/80">
-                            GPS: {coords[1]?.toFixed(4)}, {coords[0]?.toFixed(4)}
+                            GPS: {gps.lat}, {gps.lng}
                           </span>
                         )}
                       </div>
@@ -1054,9 +1103,9 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                       </div>
                     )}
 
-                    {coords && (
+                    {gps && (
                       <div className="flex items-center justify-between text-[9px] font-mono text-slate-500 pt-1 border-t border-white/5 mt-1">
-                        <span>GPS: {coords[1].toFixed(4)}, {coords[0].toFixed(4)}</span>
+                        <span>GPS: {gps.lat}, {gps.lng}</span>
                         <span className="text-cyan-400/80 font-bold">Activo</span>
                       </div>
                     )}

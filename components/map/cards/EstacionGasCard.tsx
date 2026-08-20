@@ -18,7 +18,7 @@ export const EstacionGasCard = ({ f, onRemove }: any) => {
   const [galleryImages, setGalleryImages] = useState<string[] | null>(null);
   const [galleryIdx, setGalleryIdx] = useState<number>(0);
 
-  const coordsDisplay = p.coordenadas_dms || (coords ? `${coords[1]?.toFixed(5)}° N, ${coords[0]?.toFixed(5)}° W` : null);
+  const coordsDisplay = p.coordenadas_dms || (Array.isArray(coords) && coords.length >= 2 ? `${Number(coords[1]).toFixed(5)}° N, ${Number(coords[0]).toFixed(5)}° W` : null);
 
   const handleCopyCoords = () => {
     if (coordsDisplay) {

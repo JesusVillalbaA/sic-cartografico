@@ -46,9 +46,9 @@ export const PuntoInteresCard = ({ f, onRemove }: any) => {
                 {p.sector || 'N/A'} — {p.municipio || 'Nueva Esparta'}
               </span>
             </div>
-            {f.geometry?.coordinates && (
+            {Array.isArray(f.geometry?.coordinates) && f.geometry.coordinates.length >= 2 && (
               <span className="text-[8px] font-mono text-slate-500 pl-5">
-                Lat: {f.geometry.coordinates[1].toFixed(5)} | Lng: {f.geometry.coordinates[0].toFixed(5)}
+                Lat: {Number(f.geometry.coordinates[1]).toFixed(5)} | Lng: {Number(f.geometry.coordinates[0]).toFixed(5)}
               </span>
             )}
           </div>
