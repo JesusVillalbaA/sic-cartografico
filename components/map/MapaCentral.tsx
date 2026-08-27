@@ -107,27 +107,28 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
 
       <div ref={mapContainer} className="w-full h-full" />
       
-      {/* Opción flotante pequeña al tocar/activar electricidad */}
-      {isElectricoActive && (
+      {/* Botones de Acceso Directo Permanente a Esquemas Tácticos (Sin abrir ningún panel) */}
+      <div className="absolute top-24 left-6 z-30 flex flex-col gap-2">
+        {/* Diagrama Eléctrico */}
         <button
           onClick={() => setIsDiagramaOpen(true)}
-          className="absolute top-24 left-6 z-30 flex items-center gap-2 bg-[#0a0a05]/95 hover:bg-yellow-950/95 text-yellow-400 hover:text-white px-4 py-2.5 rounded-2xl border border-yellow-500/50 shadow-[0_0_25px_rgba(234,179,8,0.3)] backdrop-blur-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 animate-in fade-in slide-in-from-left-4 hover:scale-105 group cursor-pointer"
+          className="flex items-center gap-2 bg-[#0a0a05]/95 hover:bg-yellow-950/95 text-yellow-400 hover:text-white px-4 py-2.5 rounded-2xl border border-yellow-500/50 shadow-[0_0_25px_rgba(234,179,8,0.3)] backdrop-blur-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 animate-in fade-in slide-in-from-left-4 hover:scale-105 group cursor-pointer"
+          title="Ver Diagrama Unifilar del Sistema Eléctrico"
         >
           <Zap size={14} className="text-yellow-400 animate-pulse group-hover:scale-110 transition-transform" />
           <span>Ver Diagrama Unifilar</span>
         </button>
-      )}
 
-      {/* Opción flotante pequeña al tocar/activar gas */}
-      {isGasActive && (
+        {/* Esquema del Gasoducto */}
         <button
           onClick={() => setIsDiagramaGasOpen(true)}
-          className={`absolute ${isElectricoActive ? 'top-36' : 'top-24'} left-6 z-30 flex items-center gap-2 bg-[#0c0602]/95 hover:bg-orange-950/95 text-orange-400 hover:text-white px-4 py-2.5 rounded-2xl border border-orange-500/50 shadow-[0_0_25px_rgba(249,115,22,0.3)] backdrop-blur-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 animate-in fade-in slide-in-from-left-4 hover:scale-105 group cursor-pointer`}
+          className="flex items-center gap-2 bg-[#0c0602]/95 hover:bg-orange-950/95 text-orange-400 hover:text-white px-4 py-2.5 rounded-2xl border border-orange-500/50 shadow-[0_0_25px_rgba(249,115,22,0.3)] backdrop-blur-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 animate-in fade-in slide-in-from-left-4 hover:scale-105 group cursor-pointer"
+          title="Ver Esquema del Gasoducto Nororiental"
         >
           <Flame size={14} className="text-orange-400 animate-pulse group-hover:scale-110 transition-transform" />
           <span>Ver Esquema Gasoducto</span>
         </button>
-      )}
+      </div>
 
       <TacticalToolbar map={map.current} theme={theme} selectedFeatures={selectedFeatures} />
       <BuscadorGlobal map={map.current} onSelectFeature={handleSearchSelect} theme={theme} layersVisible={layersVisible} />
