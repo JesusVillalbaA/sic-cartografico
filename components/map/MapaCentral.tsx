@@ -90,10 +90,10 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
   };
 
   const hasElectricalSelected = selectedFeatures.some(f => (f.layer?.id || "").includes('electric') || f.properties?.categoria?.includes('ELECTRICA') || f.properties?.gpxx_Categ?.includes('ELECTRICAS'));
-  const isElectricoActive = hasElectricalSelected || safeLayersVisible.sistemasElectricos;
+  const isElectricoActive = safeLayersVisible.sistemasElectricos || hasElectricalSelected;
 
-  const hasGasSelected = selectedFeatures.some(f => (f.layer?.id || "").includes('gas') || f.properties?.categoria?.includes('GAS') || (f.properties?.estatus || '').length > 0);
-  const isGasActive = hasGasSelected || safeLayersVisible.estacionGas;
+  const hasGasSelected = selectedFeatures.some(f => (f.layer?.id || "").includes('gas') || f.properties?.categoria?.includes('GAS') || (f.properties?.estatus || '').length > 0 || f.properties?.id === 'emr_bm21');
+  const isGasActive = safeLayersVisible.estacionesGas || safeLayersVisible.estacionGas || hasGasSelected;
 
   return (
     <div id="map-export-container" className="relative w-full h-full overflow-hidden">
