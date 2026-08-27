@@ -1,4 +1,5 @@
 "use client";
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { Zap, Flame } from 'lucide-react';
 import { AnalysisPanel } from './AnalysisPanel';
 import { useMapbox } from './useMapbox';
