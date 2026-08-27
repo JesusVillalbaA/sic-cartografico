@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-// Memoria caché en el servidor con registro de tiempo de modificación (mtime)
+// Memoria caché en el servidor con registro de mtime
 const memoryCache = new Map<string, { data: any; mtime: number }>();
 
 export async function GET(request: Request) {
@@ -31,31 +31,38 @@ export async function GET(request: Request) {
       const stats = fs.statSync(targetPath);
       const mtime = stats.mtimeMs;
 
-      // Servir desde caché si el archivo no ha sido modificado
+      // Servir desde caché solo si coincide exactamente el mtime del archivo
       const cached = memoryCache.get(nombre);
       if (cached && cached.mtime === mtime) {
         return NextResponse.json(cached.data, {
           headers: {
-            'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
           },
         });
       }
 
-      // Si fue modificado o no está en caché, leer de disco
+      // Si fue modificado o no está en caché, leer directamente del disco
       const fileContent = fs.readFileSync(targetPath, 'utf8');
       const data = JSON.parse(fileContent);
       memoryCache.set(nombre, { data, mtime });
 
       return NextResponse.json(data, {
         headers: {
-          'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
         },
       });
     } else {
       console.warn(`[SIGDI] Capa no encontrada: ${nombre} (${fileName})`);
       const emptyFC = { type: 'FeatureCollection', features: [] };
-      memoryCache.set(nombre, { data: emptyFC, mtime: Date.now() });
-      return NextResponse.json(emptyFC);
+      return NextResponse.json(emptyFC, {
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+        },
+      });
     }
   } catch (error: any) {
     console.error(`Error fetching layer ${nombre}:`, error);

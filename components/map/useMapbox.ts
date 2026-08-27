@@ -93,7 +93,7 @@ export const useMapbox = (
       m.addSource('antenas-movistar-source', { type: 'geojson', data: { type: 'FeatureCollection', features: [] }, generateId: true });
       m.addSource('sistemas-electricos-source', { type: 'geojson', data: '/api/map/capas?nombre=SISTEMAELECTRICONE', generateId: true });
       m.addSource('embalses-source', { type: 'geojson', data: { type: 'FeatureCollection', features: [] }, generateId: true });
-      m.addSource('estaciones-gas-source', { type: 'geojson', data: '/api/map/capas?nombre=estaciongasNE', generateId: true });
+      m.addSource('estaciones-gas-source', { type: 'geojson', data: `/api/map/capas?nombre=estaciongasNE&t=${Date.now()}`, generateId: true });
       m.addSource('transporte-source', { type: 'geojson', data: '/api/map/capas?nombre=transporte', generateId: true });
       m.addSource('conppas-source', { type: 'geojson', data: '/api/map/capas?nombre=conppas', generateId: true });
 
