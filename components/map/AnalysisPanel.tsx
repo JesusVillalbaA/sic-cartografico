@@ -192,7 +192,7 @@ async function loadKey(key: keyof DataNeeds): Promise<void> {
 }
 
 // ─── Componente Principal ─────────────────────────────────────────────────────
-export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOpenDiagrama }: any) => {
+export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOpenDiagrama, onOpenDiagramaGas }: any) => {
   const [loadedData, setLoadedData] = useState<Partial<DataNeeds>>({});
   const [loadingItems, setLoadingItems] = useState<Set<string>>(new Set());
   const [isContainerMinimized, setIsContainerMinimized] = useState<boolean>(false);
@@ -406,7 +406,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
               ) : type === 'estacionesAgua' ? (
                 <EmbalseCard f={f} onRemove={onRemove} />
               ) : type === 'estacionGas' ? (
-                <EstacionGasCard f={f} onRemove={onRemove} />
+                <EstacionGasCard f={f} onRemove={onRemove} onOpenDiagramaGas={onOpenDiagramaGas} />
               ) : type === 'transporte' ? (
                 <TransporteCard f={f} onRemove={onRemove} />
               ) : type === 'parroquia' ? (

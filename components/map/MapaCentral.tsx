@@ -1,11 +1,11 @@
 "use client";
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
-import { Zap } from 'lucide-react';
+import { Zap, Flame } from 'lucide-react';
 import { AnalysisPanel } from './AnalysisPanel';
 import { useMapbox } from './useMapbox';
 import { Legend } from './Legend';
 import { BuscadorGlobal } from './BuscadorGlobal';
 import { ModalDiagramaElectrico } from './ModalDiagramaElectrico';
+import { ModalDiagramaGas } from './ModalDiagramaGas';
 import { TacticalToolbar } from './TacticalToolbar';
 import { ZoomControls } from './ZoomControls';
 import { TacticalMapLoader } from './TacticalMapLoader';
@@ -16,6 +16,7 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
   const [selectedFeatures, setSelectedFeatures] = useState<any[]>([]);
   const [isExporting, setIsExporting] = useState(false);
   const [isDiagramaOpen, setIsDiagramaOpen] = useState(false);
+  const [isDiagramaGasOpen, setIsDiagramaGasOpen] = useState(false);
 
   // Asegurar que layersVisible tenga la propiedad 'estaciones' (si el padre no la pasa, se inicializa)
   const safeLayersVisible = {
@@ -90,6 +91,9 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
   const hasElectricalSelected = selectedFeatures.some(f => (f.layer?.id || "").includes('electric') || f.properties?.categoria?.includes('ELECTRICA') || f.properties?.gpxx_Categ?.includes('ELECTRICAS'));
   const isElectricoActive = hasElectricalSelected || safeLayersVisible.sistemasElectricos;
 
+  const hasGasSelected = selectedFeatures.some(f => (f.layer?.id || "").includes('gas') || f.properties?.categoria?.includes('GAS') || (f.properties?.estatus || '').length > 0);
+  const isGasActive = hasGasSelected || safeLayersVisible.estacionGas;
+
   return (
     <div id="map-export-container" className="relative w-full h-full overflow-hidden">
       {/* Animación Táctica de Carga Inicial con Progreso Real en Vivo */}
@@ -113,6 +117,17 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
         </button>
       )}
 
+      {/* Opción flotante pequeña al tocar/activar gas */}
+      {isGasActive && (
+        <button
+          onClick={() => setIsDiagramaGasOpen(true)}
+          className={`absolute ${isElectricoActive ? 'top-36' : 'top-24'} left-6 z-30 flex items-center gap-2 bg-[#0c0602]/95 hover:bg-orange-950/95 text-orange-400 hover:text-white px-4 py-2.5 rounded-2xl border border-orange-500/50 shadow-[0_0_25px_rgba(249,115,22,0.3)] backdrop-blur-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 animate-in fade-in slide-in-from-left-4 hover:scale-105 group cursor-pointer`}
+        >
+          <Flame size={14} className="text-orange-400 animate-pulse group-hover:scale-110 transition-transform" />
+          <span>Ver Esquema Gasoducto</span>
+        </button>
+      )}
+
       <TacticalToolbar map={map.current} theme={theme} selectedFeatures={selectedFeatures} />
       <BuscadorGlobal map={map.current} onSelectFeature={handleSearchSelect} theme={theme} layersVisible={layersVisible} />
       <Legend theme={theme} layersVisible={layersVisible} />
@@ -123,11 +138,13 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
           onRemove={handleRemove} 
           onClear={handleClear} 
           theme={theme}
-          onOpenDiagrama={() => setIsDiagramaOpen(true)} 
+          onOpenDiagrama={() => setIsDiagramaOpen(true)}
+          onOpenDiagramaGas={() => setIsDiagramaGasOpen(true)}
         />
       )}
 
       <ModalDiagramaElectrico isOpen={isDiagramaOpen} onClose={() => setIsDiagramaOpen(false)} />
+      <ModalDiagramaGas isOpen={isDiagramaGasOpen} onClose={() => setIsDiagramaGasOpen(false)} />
     </div>
   );
 });

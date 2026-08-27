@@ -7,7 +7,7 @@ import {
   ChevronLeft, ChevronRight, Maximize2, Eye 
 } from 'lucide-react';
 
-export const EstacionGasCard = ({ f, onRemove }: any) => {
+export const EstacionGasCard = ({ f, onRemove, onOpenDiagramaGas }: any) => {
   const p = f?.properties || {};
   const coords = f?.geometry?.coordinates;
   const estatus = (p.estatus || 'Desconocido').toLowerCase();
@@ -287,6 +287,17 @@ export const EstacionGasCard = ({ f, onRemove }: any) => {
               {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
             </button>
           </div>
+        )}
+
+        {/* Botón Ver Esquema del Gasoducto */}
+        {onOpenDiagramaGas && (
+          <button
+            onClick={onOpenDiagramaGas}
+            className="w-full py-2.5 px-4 mb-3 rounded-2xl bg-gradient-to-r from-orange-500/20 via-amber-500/15 to-orange-600/20 hover:from-orange-500/30 hover:to-orange-600/30 border border-orange-500/40 text-orange-300 hover:text-white text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md shadow-orange-500/10 cursor-pointer group"
+          >
+            <Flame size={15} className="text-orange-400 group-hover:scale-110 transition-transform" />
+            <span>Ver Esquema Gasoducto Nororiental</span>
+          </button>
         )}
 
         {/* Descripción Técnica */}
