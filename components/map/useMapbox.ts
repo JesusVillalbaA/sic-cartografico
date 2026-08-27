@@ -676,8 +676,22 @@ export const useMapbox = (
       set(`agua-${sub}-icons`, !!layersVisible.servicioAgua?.[sub]);
     });
 
-    set('estaciones-gas-layer',      !!layersVisible.estacionesGas);
-    set('estaciones-gas-labels',     !!layersVisible.estacionesGas);
+    const isGasOn = !!(layersVisible.estacionesGas || layersVisible.estacionGas || layersVisible.serviciosBasicos?.estacionesGas);
+    set('estaciones-gas-layer',  isGasOn);
+    set('estaciones-gas-labels', isGasOn);
+
+    if (isGasOn && map.current && typeof map.current.fitBounds === 'function') {
+      try {
+        const bounds = new mapboxgl.LngLatBounds();
+        bounds.extend([-63.86886, 10.63351]); // BM-21 (EVA Araya)
+        bounds.extend([-63.89572, 10.74341]); // BM-22 (Isla de Coche)
+        bounds.extend([-64.03221, 10.87515]); // BM-50
+        bounds.extend([-63.88597, 10.93810]); // BM-30 (Margarita)
+        map.current.fitBounds(bounds, { padding: 90, duration: 1200, maxZoom: 13 });
+      } catch (e) {
+        // ignore
+      }
+    }
 
     // ── TRANSPORTE ─────────────────────────────────────────────────────────
     set('transporte-layer',  !!layersVisible.transporteGeneral);

@@ -111,8 +111,8 @@ export const Legend = ({ theme = 'dark', layersVisible = {} }: LegendProps) => {
       icon: Zap,
       color: '#eab308',
       items: [
-        { id: 'electricidad', label: 'Sistemas Eléctricos', iconSrc: '/electricidad.png', colorDot: '#eab308', glowColor: 'rgba(234, 179, 8, 0.5)', desc: 'Subestaciones y líneas', activeKey: (lv) => !!lv.serviciosBasicos?.sistemasElectricos },
-        { id: 'gas', label: 'Estaciones de Gas', iconSrc: '/gasolinera.png', colorDot: '#f97316', glowColor: 'rgba(249, 115, 22, 0.5)', desc: 'Plantas y distribución de GLP', activeKey: (lv) => !!lv.serviciosBasicos?.estacionesGas },
+        { id: 'electricidad', label: 'Sistemas Eléctricos', iconSrc: '/electricidad.png', colorDot: '#eab308', glowColor: 'rgba(234, 179, 8, 0.5)', desc: 'Subestaciones y líneas', activeKey: (lv) => !!(lv.sistemasElectricos || lv.serviciosBasicos?.sistemasElectricos) },
+        { id: 'gas', label: 'Estaciones de Gas', iconSrc: '/gasolinera.png', colorDot: '#f97316', glowColor: 'rgba(249, 115, 22, 0.5)', desc: 'Plantas y distribución de GLP', activeKey: (lv) => !!(lv.estacionesGas || lv.estacionGas || lv.serviciosBasicos?.estacionesGas) },
         { id: 'agua_embalses', label: 'Embalses y Represas', colorDot: '#00838f', glowColor: 'rgba(0, 131, 143, 0.6)', desc: 'Fuentes hídricas principales', activeKey: (lv) => !!lv.serviciosBasicos?.servicioAgua?.embalses },
         { id: 'agua_parales', label: 'Parales y Pozos', colorDot: '#00bcd4', glowColor: 'rgba(0, 188, 212, 0.6)', desc: 'Llenaderos de cisternas y pozos', activeKey: (lv) => !!(lv.serviciosBasicos?.servicioAgua?.parales || lv.serviciosBasicos?.servicioAgua?.pozos) },
         { id: 'agua_diques', label: 'Diques y Plantas Clorado', colorDot: '#004d40', glowColor: 'rgba(0, 77, 64, 0.6)', desc: 'Tratamiento y almacenamiento', activeKey: (lv) => !!(lv.serviciosBasicos?.servicioAgua?.diques || lv.serviciosBasicos?.servicioAgua?.clorado) },
