@@ -1,0 +1,1669 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "conppa_1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.841558,
+          11.10635
+        ]
+      },
+      "properties": {
+        "id": "conppa_1",
+        "nro": 1,
+        "nombre": "El Cardón",
+        "nombre_sitio": "El Cardón",
+        "nombre_conppa": "EL CARDÓN",
+        "vocero": "GERMARY INFANTE",
+        "cedula": "20.438.999",
+        "telefono": "0424-6194864",
+        "comunidad": "EL CARDÓN",
+        "parroquia": "PLAZA DE PARAGUACHI",
+        "municipio": "ANTOLÍN DEL CAMPO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°06'22.86\"N 63°50'29.61\"W",
+        "latitud": 11.10635,
+        "longitud": -63.841558,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.845303,
+          11.117572
+        ]
+      },
+      "properties": {
+        "id": "conppa_2",
+        "nro": 2,
+        "nombre": "El Tirano",
+        "nombre_sitio": "El Tirano",
+        "nombre_conppa": "EL TIRANO",
+        "vocero": "ERIKA CARREÑO",
+        "cedula": "11.856.068",
+        "telefono": "0412-3528822",
+        "comunidad": "EL TIRANO",
+        "parroquia": "PLAZA PARAGUACHI",
+        "municipio": "ANTOLÍN DEL CAMPO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°07'03.26\"N 63°50'43.09\"W",
+        "latitud": 11.117572,
+        "longitud": -63.845303,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.891161,
+          11.158103
+        ]
+      },
+      "properties": {
+        "id": "conppa_3",
+        "nro": 3,
+        "nombre": "Manzanillo",
+        "nombre_sitio": "Manzanillo",
+        "nombre_conppa": "MANZANILLO",
+        "vocero": "YARELYS VARGAS",
+        "cedula": "14.221.511",
+        "telefono": "0412-7953462",
+        "comunidad": "MANZANILLO",
+        "parroquia": "PLAZA PARAGUACHI",
+        "municipio": "ANTOLÍN DEL CAMPO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°09'29.17\"N 63°53'28.18\"W",
+        "latitud": 11.158103,
+        "longitud": -63.891161,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_4",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.968003,
+          10.898289
+        ]
+      },
+      "properties": {
+        "id": "conppa_4",
+        "nro": 4,
+        "nombre": "Playa el Yaque",
+        "nombre_sitio": "Playa el Yaque",
+        "nombre_conppa": "PLAYA EL YAQUE",
+        "vocero": "CELENIA MATA",
+        "cedula": "9.936.778",
+        "telefono": "0424-8871935",
+        "comunidad": "EL YAQUE",
+        "parroquia": "ZABALA",
+        "municipio": "DÍAZ",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°53'53.84\"N 63°58'04.81\"W",
+        "latitud": 10.898289,
+        "longitud": -63.968003,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_5",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.026444,
+          10.996806
+        ]
+      },
+      "properties": {
+        "id": "conppa_5",
+        "nro": 5,
+        "nombre": "El Centro - La Guardia",
+        "nombre_sitio": "El Centro - La Guardia",
+        "nombre_conppa": "EL CENTRO",
+        "vocero": "JESUS SALAZAR",
+        "cedula": "16.546.940",
+        "telefono": "0412-3011905",
+        "comunidad": "EL CENTRO- LA GUARDIA",
+        "parroquia": "ZABALA",
+        "municipio": "DÍAZ",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°59'48.50\"N 64°01'35.20\"W",
+        "latitud": 10.996806,
+        "longitud": -64.026444,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_6",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.02995,
+          10.992228
+        ]
+      },
+      "properties": {
+        "id": "conppa_6",
+        "nro": 6,
+        "nombre": "El Palotal La Guardia",
+        "nombre_sitio": "El Palotal La Guardia",
+        "nombre_conppa": "EL PALOTAL",
+        "vocero": "FELIX LEANDRO",
+        "cedula": "9.309.069",
+        "telefono": "0414-8152655",
+        "comunidad": "EL PALOTAL- LA GUARDIA",
+        "parroquia": "ZABALA",
+        "municipio": "DÍAZ",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°59'32.02\"N 64°01'47.82\"W",
+        "latitud": 10.992228,
+        "longitud": -64.02995,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_7",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.991042,
+          10.891528
+        ]
+      },
+      "properties": {
+        "id": "conppa_7",
+        "nro": 7,
+        "nombre": "El Manglillo del Yaque (Detrás de Musipán)",
+        "nombre_sitio": "El Manglillo del Yaque (Detrás de Musipán)",
+        "nombre_conppa": "EL MANGLILLO DEL YAQUE",
+        "vocero": "JUAN GIL",
+        "cedula": "17.112.693",
+        "telefono": "0414-5426287",
+        "comunidad": "EL MANGLILLO DEL YAQUE",
+        "parroquia": "ZABALA",
+        "municipio": "DÍAZ",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°53'29.50\"N 63°59'27.75\"W",
+        "latitud": 10.891528,
+        "longitud": -63.991042,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_8",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0204,
+          11.002628
+        ]
+      },
+      "properties": {
+        "id": "conppa_8",
+        "nro": 8,
+        "nombre": "Guiriguire La Guardia",
+        "nombre_sitio": "Guiriguire La Guardia",
+        "nombre_conppa": "GUIRIGUIRI",
+        "vocero": "CARLOS CARBALLO",
+        "cedula": "17.653.387",
+        "telefono": "0412-3507782",
+        "comunidad": "GUIRIGUIRI- LA GUARDIA",
+        "parroquia": "ZABALA",
+        "municipio": "DÍAZ",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°00'09.46\"N 64°01'13.44\"W",
+        "latitud": 11.002628,
+        "longitud": -64.0204,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.929903,
+          10.892475
+        ]
+      },
+      "properties": {
+        "id": "conppa_9",
+        "nro": 9,
+        "nombre": "La Isleta",
+        "nombre_sitio": "La Isleta",
+        "nombre_conppa": "LA ISLETA",
+        "vocero": "ELVIS E. LOPEZ L.",
+        "cedula": "17.110.992",
+        "telefono": "0424-8498532",
+        "comunidad": "LA ISLETA",
+        "parroquia": "FRANCISCO FAJARDO",
+        "municipio": "GARCÍA",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°53'32.91\"N 63°55'47.65\"W",
+        "latitud": 10.892475,
+        "longitud": -63.929903,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_10",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.912769,
+          11.136125
+        ]
+      },
+      "properties": {
+        "id": "conppa_10",
+        "nro": 10,
+        "nombre": "Guayacán de Manzanillo",
+        "nombre_sitio": "Guayacán de Manzanillo",
+        "nombre_conppa": "GUAYACAN",
+        "vocero": "MARLYN GOMEZ",
+        "cedula": "16.337.214",
+        "telefono": "0412-5308081",
+        "comunidad": "GUAYACÁN",
+        "parroquia": "MATA SIETE",
+        "municipio": "GÓMEZ",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°08'10.05\"N 63°54'45.97\"W",
+        "latitud": 11.136125,
+        "longitud": -63.912769,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_11",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.957922,
+          11.101264
+        ]
+      },
+      "properties": {
+        "id": "conppa_11",
+        "nro": 11,
+        "nombre": "Altagracia La Sabana",
+        "nombre_sitio": "Altagracia La Sabana",
+        "nombre_conppa": "ALTAGRACIA",
+        "vocero": "EUCLIDES ROJAS",
+        "cedula": "15.006.583",
+        "telefono": "0416-0998370",
+        "comunidad": "LA SABANA",
+        "parroquia": "SUCRE",
+        "municipio": "GÓMEZ",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°06'04.55\"N 63°57'28.52\"W",
+        "latitud": 11.101264,
+        "longitud": -63.957922,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_12",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.930775,
+          11.119586
+        ]
+      },
+      "properties": {
+        "id": "conppa_12",
+        "nro": 12,
+        "nombre": "Pedro González",
+        "nombre_sitio": "Pedro González",
+        "nombre_conppa": "PEDRO GONZALEZ",
+        "vocero": "MARIO GOMEZ",
+        "cedula": "12.920.043",
+        "telefono": "0426-8888622",
+        "comunidad": "PEDRO GONZALEZ",
+        "parroquia": "MATA SIETE",
+        "municipio": "GÓMEZ",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°07'10.51\"N 63°55'50.79\"W",
+        "latitud": 11.119586,
+        "longitud": -63.930775,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_13",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.791508,
+          10.998594
+        ]
+      },
+      "properties": {
+        "id": "conppa_13",
+        "nro": 13,
+        "nombre": "Pampatar",
+        "nombre_sitio": "Pampatar",
+        "nombre_conppa": "PAMPATAR",
+        "vocero": "ZAIRA VELASQUEZ",
+        "cedula": "12.676.863",
+        "telefono": "0412-3500249",
+        "comunidad": "PAMPATAR",
+        "parroquia": "AGUIRRE",
+        "municipio": "MANEIRO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°59'54.94\"N 63°47'29.43\"W",
+        "latitud": 10.998594,
+        "longitud": -63.791508,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_14",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.810306,
+          10.981444
+        ]
+      },
+      "properties": {
+        "id": "conppa_14",
+        "nro": 14,
+        "nombre": "Puerto Moreno",
+        "nombre_sitio": "Puerto Moreno",
+        "nombre_conppa": "PUERTO MORENO",
+        "vocero": "SUNIMAR MARQUEZ",
+        "cedula": "14.686.877",
+        "telefono": "0414-7881204",
+        "comunidad": "PUERTO MORENO",
+        "parroquia": "AGUIRRE",
+        "municipio": "MANEIRO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°58'53.20\"N 63°48'37.10\"W",
+        "latitud": 10.981444,
+        "longitud": -63.810306,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_15",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.801594,
+          10.993339
+        ]
+      },
+      "properties": {
+        "id": "conppa_15",
+        "nro": 15,
+        "nombre": "Cristo del Buen Viaje",
+        "nombre_sitio": "Cristo del Buen Viaje",
+        "nombre_conppa": "EL CRISTO DEL BUEN VIAJE",
+        "vocero": "ALEXANDER YNDRIAGO",
+        "cedula": "13.425.363",
+        "telefono": "0416-6954122",
+        "comunidad": "EL CRISTO DEL BUEN VIAJE",
+        "parroquia": "AGUIRRE",
+        "municipio": "MANEIRO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°59'36.02\"N 63°48'05.74\"W",
+        "latitud": 10.993339,
+        "longitud": -63.801594,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_16",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.972911,
+          11.085575
+        ]
+      },
+      "properties": {
+        "id": "conppa_16",
+        "nro": 16,
+        "nombre": "Juangriego",
+        "nombre_sitio": "Juangriego",
+        "nombre_conppa": "JUANGRIEGO",
+        "vocero": "LUIS LAREZ",
+        "cedula": "15.203.983",
+        "telefono": "0416-0986207",
+        "comunidad": "JUANGRIEGO",
+        "parroquia": "FRANCISCO ADRIAN",
+        "municipio": "MARCANO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°05'08.07\"N 63°58'22.48\"W",
+        "latitud": 11.085575,
+        "longitud": -63.972911,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_17",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.976736,
+          11.089378
+        ]
+      },
+      "properties": {
+        "id": "conppa_17",
+        "nro": 17,
+        "nombre": "La Galera",
+        "nombre_sitio": "La Galera",
+        "nombre_conppa": "LA GALERA",
+        "vocero": "REINALDO HERNADEZ",
+        "cedula": "10.201.074",
+        "telefono": "0426-4944352",
+        "comunidad": "LA GALERA",
+        "parroquia": "FRANCISCO ADRIAN",
+        "municipio": "MARCANO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°05'21.76\"N 63°58'36.25\"W",
+        "latitud": 11.089378,
+        "longitud": -63.976736,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_18",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.97415,
+          11.077886
+        ]
+      },
+      "properties": {
+        "id": "conppa_18",
+        "nro": 18,
+        "nombre": "Las Piedras Juangriego",
+        "nombre_sitio": "Las Piedras Juangriego",
+        "nombre_conppa": "LAS PIEDRAS",
+        "vocero": "LEONEL RODRIGUEZ",
+        "cedula": "10.200.749",
+        "telefono": "0424-8022161",
+        "comunidad": "LAS PIEDRAS",
+        "parroquia": "FRANCISCO ADRIAN",
+        "municipio": "MARCANO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°04'40.39\"N 63°58'26.94\"W",
+        "latitud": 11.077886,
+        "longitud": -63.97415,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_19",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.014019,
+          11.049872
+        ]
+      },
+      "properties": {
+        "id": "conppa_19",
+        "nro": 19,
+        "nombre": "Taguantar",
+        "nombre_sitio": "Taguantar",
+        "nombre_conppa": "TAGUANTAR",
+        "vocero": "ALQUIMEDES MILLAN",
+        "cedula": "10.201.221",
+        "telefono": "0416-6981849",
+        "comunidad": "TAGUANTAR",
+        "parroquia": "ADRIAN",
+        "municipio": "MARCANO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°02'59.54\"N 64°00'50.47\"W",
+        "latitud": 11.049872,
+        "longitud": -64.014019,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_20",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.887594,
+          10.918339
+        ]
+      },
+      "properties": {
+        "id": "conppa_20",
+        "nro": 20,
+        "nombre": "El Silguero",
+        "nombre_sitio": "El Silguero",
+        "nombre_conppa": "EL SILGUERO",
+        "vocero": "EDGAR ALEXANDER BRITO PERERO",
+        "cedula": "17.112.885",
+        "telefono": "0426-9968141",
+        "comunidad": "EL SILGUERO",
+        "parroquia": "PORLAMAR",
+        "municipio": "MARIÑO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°55'06.02\"N 63°53'15.34\"W",
+        "latitud": 10.918339,
+        "longitud": -63.887594,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_21",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.834392,
+          10.958883
+        ]
+      },
+      "properties": {
+        "id": "conppa_21",
+        "nro": 21,
+        "nombre": "La Boquita de Bella Vista",
+        "nombre_sitio": "La Boquita de Bella Vista",
+        "nombre_conppa": "LA BOQUITA DE BELLA VISTA",
+        "vocero": "JOSÉ CEDEÑO",
+        "cedula": "15.005.476",
+        "telefono": "0426-7885926",
+        "comunidad": "BELLA VISTA",
+        "parroquia": "PORLAMAR",
+        "municipio": "MARIÑO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°57'31.98\"N 63°50'03.81\"W",
+        "latitud": 10.958883,
+        "longitud": -63.834392,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_22",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.857097,
+          10.949242
+        ]
+      },
+      "properties": {
+        "id": "conppa_22",
+        "nro": 22,
+        "nombre": "Los Cocos",
+        "nombre_sitio": "Los Cocos",
+        "nombre_conppa": "LOS COCOS",
+        "vocero": "ELIS DEL VALLE GOMEZ",
+        "cedula": "4.951.326",
+        "telefono": "0416-2904110",
+        "comunidad": "LOS COCOS",
+        "parroquia": "PORLAMAR",
+        "municipio": "MARIÑO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°56'57.27\"N 63°51'25.55\"W",
+        "latitud": 10.949242,
+        "longitud": -63.857097,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_23",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.878339,
+          10.939339
+        ]
+      },
+      "properties": {
+        "id": "conppa_23",
+        "nro": 23,
+        "nombre": "Los Cuartos",
+        "nombre_sitio": "Los Cuartos",
+        "nombre_conppa": "LOS CUARTOS",
+        "vocero": "AYARIT GIL",
+        "cedula": "13.275.597",
+        "telefono": "0424-8280415",
+        "comunidad": "LOS CUARTOS",
+        "parroquia": "PORLAMAR",
+        "municipio": "MARIÑO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°56'21.62\"N 63°52'42.02\"W",
+        "latitud": 10.939339,
+        "longitud": -63.878339,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_24",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.816861,
+          10.947042
+        ]
+      },
+      "properties": {
+        "id": "conppa_24",
+        "nro": 24,
+        "nombre": "Playa Valdez (Muelle Valdez)",
+        "nombre_sitio": "Playa Valdez (Muelle Valdez)",
+        "nombre_conppa": "PLAYA VALDEZ",
+        "vocero": "ARLENI MARTINEZ",
+        "cedula": "9.424.213",
+        "telefono": "0424-8485800",
+        "comunidad": "PLAYA VÁLDEZ",
+        "parroquia": "MARIÑO",
+        "municipio": "MARIÑO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°56'49.35\"N 63°49'00.70\"W",
+        "latitud": 10.947042,
+        "longitud": -63.816861,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_25",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.870033,
+          10.945647
+        ]
+      },
+      "properties": {
+        "id": "conppa_25",
+        "nro": 25,
+        "nombre": "Incemar (Los Cocos)",
+        "nombre_sitio": "Incemar (Los Cocos)",
+        "nombre_conppa": "INCEMAR",
+        "vocero": "KATIUSKA NORIEGA",
+        "cedula": "13.937.007",
+        "telefono": "0412-8645132",
+        "comunidad": "INCEMAR",
+        "parroquia": "MARIÑO",
+        "municipio": "MARIÑO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°56'44.33\"N 63°52'12.12\"W",
+        "latitud": 10.945647,
+        "longitud": -63.870033,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_26",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.381147,
+          11.010619
+        ]
+      },
+      "properties": {
+        "id": "conppa_26",
+        "nro": 26,
+        "nombre": "Boca de Pozo",
+        "nombre_sitio": "Boca de Pozo",
+        "nombre_conppa": "BOCA DE POZO",
+        "vocero": "LISMARY SANCHEZ",
+        "cedula": "20.902.869",
+        "telefono": "0412-3546260",
+        "comunidad": "BOCA DE POZO",
+        "parroquia": "SAN FRANCISCO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°00'38.23\"N 64°22'52.13\"W",
+        "latitud": 11.010619,
+        "longitud": -64.381147,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_27",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.180192,
+          10.963306
+        ]
+      },
+      "properties": {
+        "id": "conppa_27",
+        "nro": 27,
+        "nombre": "Boca de Río",
+        "nombre_sitio": "Boca de Río",
+        "nombre_conppa": "BOCA DE RIO",
+        "vocero": "ESTHER MARIN",
+        "cedula": "19.896.204",
+        "telefono": "0426-2890909",
+        "comunidad": "BOCA DE RIO",
+        "parroquia": "BOCA DE RIO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°57'47.90\"N 64°10'48.69\"W",
+        "latitud": 10.963306,
+        "longitud": -64.180192,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_28",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.292961,
+          10.945378
+        ]
+      },
+      "properties": {
+        "id": "conppa_28",
+        "nro": 28,
+        "nombre": "El Horcón",
+        "nombre_sitio": "El Horcón",
+        "nombre_conppa": "EL HORCÓN",
+        "vocero": "MANUEL VASQUEZ",
+        "cedula": "12.921.321",
+        "telefono": "0414-8151672",
+        "comunidad": "EL HORCÓN",
+        "parroquia": "BOCA DE RIO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°56'43.36\"N 64°17'34.66\"W",
+        "latitud": 10.945378,
+        "longitud": -64.292961,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_29",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.196175,
+          11.073267
+        ]
+      },
+      "properties": {
+        "id": "conppa_29",
+        "nro": 29,
+        "nombre": "El Maguey",
+        "nombre_sitio": "El Maguey",
+        "nombre_conppa": "EL MAGUEY",
+        "vocero": "RODRIGO VELASQUEZ",
+        "cedula": "9.426.338",
+        "telefono": "0416-0317960",
+        "comunidad": "EL MAGUEY",
+        "parroquia": "SAN FRANCISCO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°04'23.76\"N 64°11'46.23\"W",
+        "latitud": 11.073267,
+        "longitud": -64.196175,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_30",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.297489,
+          11.068739
+        ]
+      },
+      "properties": {
+        "id": "conppa_30",
+        "nro": 30,
+        "nombre": "El Tunal",
+        "nombre_sitio": "El Tunal",
+        "nombre_conppa": "EL TUNAL",
+        "vocero": "FRANKLIN MARIN",
+        "cedula": "16.036.775",
+        "telefono": "0412-3565090",
+        "comunidad": "EL TUNAL",
+        "parroquia": "SAN FRANCISCO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°04'07.46\"N 64°17'50.96\"W",
+        "latitud": 11.068739,
+        "longitud": -64.297489,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_31",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.313025,
+          11.059119
+        ]
+      },
+      "properties": {
+        "id": "conppa_31",
+        "nro": 31,
+        "nombre": "Los Marinos de La Pared",
+        "nombre_sitio": "Los Marinos de La Pared",
+        "nombre_conppa": "LOS MARINOS DE LA PARED",
+        "vocero": "AGUNDINA DEL VALLE HERNANDEZ ZABALA",
+        "cedula": "11.536.297",
+        "telefono": "0412-7952065",
+        "comunidad": "LA PARED",
+        "parroquia": "SAN FRANCISCO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°03'32.83\"N 64°18'46.89\"W",
+        "latitud": 11.059119,
+        "longitud": -64.313025,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_32",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.318067,
+          10.957186
+        ]
+      },
+      "properties": {
+        "id": "conppa_32",
+        "nro": 32,
+        "nombre": "El Manglillo de Macanao",
+        "nombre_sitio": "El Manglillo de Macanao",
+        "nombre_conppa": "EL MANGLILLO",
+        "vocero": "LEONARDO MARIN",
+        "cedula": "16.932.818",
+        "telefono": "0412-3530100",
+        "comunidad": "MANGLILLO",
+        "parroquia": "BOCA DE RIO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°57'25.87\"N 64°19'05.04\"W",
+        "latitud": 10.957186,
+        "longitud": -64.318067,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_33",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.400303,
+          10.974647
+        ]
+      },
+      "properties": {
+        "id": "conppa_33",
+        "nro": 33,
+        "nombre": "Punta Arenas",
+        "nombre_sitio": "Punta Arenas",
+        "nombre_conppa": "PUNTA ARENAS",
+        "vocero": "ADRIANA CENTENO",
+        "cedula": "27.301.158",
+        "telefono": "0412-0933921",
+        "comunidad": "PUNTA ARENAS",
+        "parroquia": "SAN FRANCISCO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°58'28.73\"N 64°24'01.09\"W",
+        "latitud": 10.974647,
+        "longitud": -64.400303,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_34",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.364006,
+          10.962975
+        ]
+      },
+      "properties": {
+        "id": "conppa_34",
+        "nro": 34,
+        "nombre": "La Laguna de Boca Chica",
+        "nombre_sitio": "La Laguna de Boca Chica",
+        "nombre_conppa": "LA LAGUNA DE BOCA CHICA",
+        "vocero": "ROSMARY RODRIGUEZ",
+        "cedula": "14.841.368",
+        "telefono": "0412-6958686",
+        "comunidad": "LA LAGUNA DE BOCA CHICA",
+        "parroquia": "SAN FRANCISCO DE MACANAO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°57'46.71\"N 64°21'50.42\"W",
+        "latitud": 10.962975,
+        "longitud": -64.364006,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_35",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.246447,
+          11.0682
+        ]
+      },
+      "properties": {
+        "id": "conppa_35",
+        "nro": 35,
+        "nombre": "Arenas y La Auyama",
+        "nombre_sitio": "Arenas y La Auyama",
+        "nombre_conppa": "ARENAS - AUYAMA",
+        "vocero": "YALITZA JOSE VASQUEZ VELASQUEZ",
+        "cedula": "11.536.617",
+        "telefono": "0412-1784238",
+        "comunidad": "ARENAS Y LA AUYAMA",
+        "parroquia": "SAN FRANCISCO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°04'05.52\"N 64°14'47.21\"W",
+        "latitud": 11.0682,
+        "longitud": -64.246447,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_36",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.376794,
+          11.030458
+        ]
+      },
+      "properties": {
+        "id": "conppa_36",
+        "nro": 36,
+        "nombre": "Robledal",
+        "nombre_sitio": "Robledal",
+        "nombre_conppa": "ROBLEDAL",
+        "vocero": "MARI CARMEN MENDOZA SALAZAR",
+        "cedula": "19.232.475",
+        "telefono": "0412-3561337",
+        "comunidad": "ROBLEDAL",
+        "parroquia": "SAN FRANCISCO DE MACANAO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°01'49.65\"N 64°22'36.46\"W",
+        "latitud": 11.030458,
+        "longitud": -64.376794,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_37",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.217297,
+          10.938717
+        ]
+      },
+      "properties": {
+        "id": "conppa_37",
+        "nro": 37,
+        "nombre": "Guayacancito Macanao",
+        "nombre_sitio": "Guayacancito Macanao",
+        "nombre_conppa": "GUAYACANCITO",
+        "vocero": "LEOBERT VASQUEZ",
+        "cedula": "16.337.460",
+        "telefono": "0416-5967958",
+        "comunidad": "GUAYACANCITO",
+        "parroquia": "BOCA DE RIO",
+        "municipio": "PENÍNSULA DE MACANAO",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°56'19.38\"N 64°13'02.27\"W",
+        "latitud": 10.938717,
+        "longitud": -64.217297,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_38",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.060997,
+          10.888661
+        ]
+      },
+      "properties": {
+        "id": "conppa_38",
+        "nro": 38,
+        "nombre": "El Guamache (Isla de Margarita)",
+        "nombre_sitio": "El Guamache (Isla de Margarita)",
+        "nombre_conppa": "EL GUAMACHE",
+        "vocero": "ASDRUBAL MARVAL",
+        "cedula": "17.879.464",
+        "telefono": "0412-0921836",
+        "comunidad": "EL GUAMACHE",
+        "parroquia": "LOS BARALES",
+        "municipio": "TUBORES",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°53'19.18\"N 64°03'39.59\"W",
+        "latitud": 10.888661,
+        "longitud": -64.060997,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_39",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.152281,
+          11.004833
+        ]
+      },
+      "properties": {
+        "id": "conppa_39",
+        "nro": 39,
+        "nombre": "La Restinga",
+        "nombre_sitio": "La Restinga",
+        "nombre_conppa": "LA RESTINGA",
+        "vocero": "PEDRO FIDEL VASQUEZ",
+        "cedula": "11.379.540",
+        "telefono": "0412-1953690",
+        "comunidad": "LA RESTINGA",
+        "parroquia": "PUNTA DE PIEDRA",
+        "municipio": "TUBORES",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°00'17.40\"N 64°09'08.21\"W",
+        "latitud": 11.004833,
+        "longitud": -64.152281,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_40",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.117181,
+          10.925219
+        ]
+      },
+      "properties": {
+        "id": "conppa_40",
+        "nro": 40,
+        "nombre": "Laguna de Raya",
+        "nombre_sitio": "Laguna de Raya",
+        "nombre_conppa": "LAGUNA DE RAYA",
+        "vocero": "ANDRY SALAZAR",
+        "cedula": "16.037.734",
+        "telefono": "0412-0958322",
+        "comunidad": "LAGUNA DE RAYA",
+        "parroquia": "PUNTA DE PIEDRA",
+        "municipio": "TUBORES",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°55'30.79\"N 64°07'01.85\"W",
+        "latitud": 10.925219,
+        "longitud": -64.117181,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_41",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.128256,
+          10.938611
+        ]
+      },
+      "properties": {
+        "id": "conppa_41",
+        "nro": 41,
+        "nombre": "Mata Redonda",
+        "nombre_sitio": "Mata Redonda",
+        "nombre_conppa": "MATA REDONDA",
+        "vocero": "AQUILES MARIN",
+        "cedula": "16.931.077",
+        "telefono": "0424-8467458",
+        "comunidad": "MATA REDONDA",
+        "parroquia": "PUNTA DE PIEDRA",
+        "municipio": "TUBORES",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°56'19.00\"N 64°07'41.72\"W",
+        "latitud": 10.938611,
+        "longitud": -64.128256,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_42",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.150772,
+          10.958219
+        ]
+      },
+      "properties": {
+        "id": "conppa_42",
+        "nro": 42,
+        "nombre": "Chacachacare",
+        "nombre_sitio": "Chacachacare",
+        "nombre_conppa": "CHACAHACARE",
+        "vocero": "TIBISAY VELASQUEZ",
+        "cedula": "11.146.809",
+        "telefono": "0412-4923600",
+        "comunidad": "CHACAHACARE",
+        "parroquia": "PUNTA DE PIEDRA",
+        "municipio": "TUBORES",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°57'29.59\"N 64°09'02.78\"W",
+        "latitud": 10.958219,
+        "longitud": -64.150772,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_43",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.0192,
+          10.873733
+        ]
+      },
+      "properties": {
+        "id": "conppa_43",
+        "nro": 43,
+        "nombre": "Los Algodones",
+        "nombre_sitio": "Los Algodones",
+        "nombre_conppa": "LOS ALGODONES",
+        "vocero": "WILBERTO CASTILLO",
+        "cedula": "5.480.891",
+        "telefono": "0426-3892948",
+        "comunidad": "LOS ALGODONES",
+        "parroquia": "LOS BARALES",
+        "municipio": "TUBORES",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°52'25.44\"N 64°01'09.12\"W",
+        "latitud": 10.873733,
+        "longitud": -64.0192,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_44",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.068203,
+          10.894878
+        ]
+      },
+      "properties": {
+        "id": "conppa_44",
+        "nro": 44,
+        "nombre": "Las Casitas",
+        "nombre_sitio": "Las Casitas",
+        "nombre_conppa": "LAS CASITAS",
+        "vocero": "MARI MILANO",
+        "cedula": "12.270.775",
+        "telefono": "0414-7878217",
+        "comunidad": "LAS CASITAS",
+        "parroquia": "LOS BARALES",
+        "municipio": "TUBORES",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°53'41.56\"N 64°04'05.53\"W",
+        "latitud": 10.894878,
+        "longitud": -64.068203,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_45",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.094531,
+          10.898492
+        ]
+      },
+      "properties": {
+        "id": "conppa_45",
+        "nro": 45,
+        "nombre": "Punta de Piedras",
+        "nombre_sitio": "Punta de Piedras",
+        "nombre_conppa": "PUNTA DE PIEDRAS",
+        "vocero": "ROSELMIS GUADALUPE MELCHOR",
+        "cedula": "12.221.808",
+        "telefono": "0412-3588489",
+        "comunidad": "PUNTA DE PIEDRAS",
+        "parroquia": "LOS BARALES",
+        "municipio": "TUBORES",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°53'54.57\"N 64°05'40.31\"W",
+        "latitud": 10.898492,
+        "longitud": -64.094531,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_46",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.91645,
+          10.736483
+        ]
+      },
+      "properties": {
+        "id": "conppa_46",
+        "nro": 46,
+        "nombre": "El Amparo (Isla de Coche)",
+        "nombre_sitio": "El Amparo (Isla de Coche)",
+        "nombre_conppa": "EL AMPARO",
+        "vocero": "TONY SALAZAR",
+        "cedula": "19.318.077",
+        "telefono": "0426-3885758",
+        "comunidad": "EL AMPARO",
+        "parroquia": "VICENTE FUENTE",
+        "municipio": "VILLALBA",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°44'11.34\"N 63°54'59.22\"W",
+        "latitud": 10.736483,
+        "longitud": -63.91645,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_47",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.901939,
+          10.7394
+        ]
+      },
+      "properties": {
+        "id": "conppa_47",
+        "nro": 47,
+        "nombre": "El Guamache (Isla de Coche)",
+        "nombre_sitio": "El Guamache (Isla de Coche)",
+        "nombre_conppa": "EL GUAMACHE DE COCHE",
+        "vocero": "WILFREDO SALGADO",
+        "cedula": "19.119.074",
+        "telefono": "0416-7996137",
+        "comunidad": "EL GUAMACHE (ISLA DE COCHE)",
+        "parroquia": "VICENTE FUENTE",
+        "municipio": "VILLALBA",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°44'21.84\"N 63°54'06.98\"W",
+        "latitud": 10.7394,
+        "longitud": -63.901939,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_48",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.922772,
+          10.739239
+        ]
+      },
+      "properties": {
+        "id": "conppa_48",
+        "nro": 48,
+        "nombre": "Güinima (Isla de Coche)",
+        "nombre_sitio": "Güinima (Isla de Coche)",
+        "nombre_conppa": "GÜINIMA",
+        "vocero": "ANGELA REYES",
+        "cedula": "15.203.289",
+        "telefono": "0424-8308499",
+        "comunidad": "GUINMA",
+        "parroquia": "VICENTE FUENTE",
+        "municipio": "VILLALBA",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°44'21.26\"N 63°55'21.98\"W",
+        "latitud": 10.739239,
+        "longitud": -63.922772,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_49",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.956892,
+          10.768683
+        ]
+      },
+      "properties": {
+        "id": "conppa_49",
+        "nro": 49,
+        "nombre": "El Bichar (Isla de Coche)",
+        "nombre_sitio": "El Bichar (Isla de Coche)",
+        "nombre_conppa": "BICHAR",
+        "vocero": "MIZAYDI RODRIGEZ",
+        "cedula": "13.425.243",
+        "telefono": "0424-8656260",
+        "comunidad": "ISLA DE COCHE",
+        "parroquia": "VICENTE FUENTE",
+        "municipio": "VILLALBA",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°46'07.26\"N 63°57'24.81\"W",
+        "latitud": 10.768683,
+        "longitud": -63.956892,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_50",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.991575,
+          10.790022
+        ]
+      },
+      "properties": {
+        "id": "conppa_50",
+        "nro": 50,
+        "nombre": "San Pedro de Coche",
+        "nombre_sitio": "San Pedro de Coche",
+        "nombre_conppa": "SAN PEDRO DE COCHE",
+        "vocero": "ROGERS ALFONZO",
+        "cedula": "12.224.613",
+        "telefono": "0414-3956405",
+        "comunidad": "ISLA DE COCHE",
+        "parroquia": "VICENTE FUENTE",
+        "municipio": "VILLALBA",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°47'24.08\"N 63°59'29.67\"W",
+        "latitud": 10.790022,
+        "longitud": -63.991575,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_51",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.931475,
+          10.799039
+        ]
+      },
+      "properties": {
+        "id": "conppa_51",
+        "nro": 51,
+        "nombre": "La Uva (Isla de Coche)",
+        "nombre_sitio": "La Uva (Isla de Coche)",
+        "nombre_conppa": "LA UVA",
+        "vocero": "YORDAN VELAZQUEZ",
+        "cedula": "20.538.227",
+        "telefono": "0416-9834877",
+        "comunidad": "LA UVA",
+        "parroquia": "VICENTE FUENTE",
+        "municipio": "VILLALBA",
+        "estado": "NUEVA ESPARTA",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "10°47'56.54\"N 63°55'53.31\"W",
+        "latitud": 10.799039,
+        "longitud": -63.931475,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "conppa_52",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.132608,
+          11.359414
+        ]
+      },
+      "properties": {
+        "id": "conppa_52",
+        "nro": 52,
+        "nombre": "Archipiélago Los Testigos",
+        "nombre_sitio": "Archipiélago Los Testigos",
+        "nombre_conppa": "ARCHIPIELAGO DE LOS TESTIGOS",
+        "vocero": "HERNAN CARREÑO",
+        "cedula": "11.969.555",
+        "telefono": "0424-8493063",
+        "comunidad": "ARCHIPIELAGO DE LOS TESTIGOS",
+        "parroquia": "ARCHIPIELAGO DE LOS TESTIGOS",
+        "municipio": "DEPENDENCIA FEDERALES",
+        "estado": "TERRITORIO INSULAR",
+        "tipo": "CONPPA / Puerto Pesquero",
+        "categoria": "CONPPA",
+        "coordenadas_dms": "11°21'33.89\"N 63°07'57.39\"W",
+        "latitud": 11.359414,
+        "longitud": -63.132608,
+        "ente": "INSOPESCA / MINPESCA",
+        "year": "2026"
+      }
+    }
+  ]
+}

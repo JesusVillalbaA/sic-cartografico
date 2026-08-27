@@ -94,6 +94,9 @@ export default function DespachadorPage() {
     taxis: false,
     recorridoBusesPrivados: false,
 
+    // CONPPAS (Sector Pesquero)
+    conppas: false,
+
     // Gestión
     generarClave: false
   });

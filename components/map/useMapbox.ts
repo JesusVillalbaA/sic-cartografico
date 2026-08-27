@@ -95,6 +95,7 @@ export const useMapbox = (
       m.addSource('embalses-source', { type: 'geojson', data: { type: 'FeatureCollection', features: [] }, generateId: true });
       m.addSource('estaciones-gas-source', { type: 'geojson', data: '/api/map/capas?nombre=estaciongasNE', generateId: true });
       m.addSource('transporte-source', { type: 'geojson', data: '/api/map/capas?nombre=transporte', generateId: true });
+      m.addSource('conppas-source', { type: 'geojson', data: '/api/map/capas?nombre=conppas', generateId: true });
 
       RECURSOS_SALUD.forEach(res => {
         m.addSource(`${res.id}-source`, { type: 'geojson', data: res.src, generateId: true });
@@ -201,12 +202,16 @@ export const useMapbox = (
         { id: 'icon-drogas', url: '/drogas.png' },
         { id: 'icon-actores', url: '/actor.png' },
         { id: 'icon-bandas', url: '/banda.png' },
-        { id: 'icon-puntos-interes', url: '/punto.png' }
+        { id: 'icon-puntos-interes', url: '/punto.png' },
+        { id: 'icon-conppas', url: '/hidrografia.png' }
       ];
       customIcons.forEach(icon => {
         m.loadImage(icon.url, (error, image) => {
-          if (!error && image && !m.hasImage(icon.id)) {
-            m.addImage(icon.id, image);
+          if (!error && image) {
+            if (!m.hasImage(icon.id)) {
+              m.addImage(icon.id, image);
+            }
+            m.triggerRepaint();
           }
         });
       });
@@ -214,7 +219,7 @@ export const useMapbox = (
       // Recursos salud e infraestructura
       RECURSOS_SALUD.forEach(res => {
         m.addLayer({ id: `${res.id}-layer`, type: 'circle', source: `${res.id}-source`, layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': res.color, 'circle-opacity': 1 } });
-        m.addLayer({ id: `${res.id}-icons`, type: 'symbol', source: `${res.id}-source`, layout: { visibility: 'none', 'icon-image': `icon-${res.id}`, 'icon-size': 0.04, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': res.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+        m.addLayer({ id: `${res.id}-icons`, type: 'symbol', source: `${res.id}-source`, layout: { visibility: 'none', 'icon-image': `icon-${res.id}`, 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': res.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
       });
       RECURSOS_INFRAESTRUCTURA.forEach(res => {
         if (res.type === 'line') {
@@ -222,7 +227,7 @@ export const useMapbox = (
         } else {
           m.addLayer({ id: `${res.id}-layer`, type: 'circle', source: `${res.id}-source`, layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': res.color, 'circle-opacity': 1 } });
           const iconId = res.id === 'escuelas' ? 'icon-escuelas' : 'icon-estaciones';
-          m.addLayer({ id: `${res.id}-icons`, type: 'symbol', source: `${res.id}-source`, layout: { visibility: 'none', 'icon-image': iconId, 'icon-size': 0.04, 'text-field': ['coalesce', ['get', 'nombre'], ['get', 'NAME']], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': res.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+          m.addLayer({ id: `${res.id}-icons`, type: 'symbol', source: `${res.id}-source`, layout: { visibility: 'none', 'icon-image': iconId, 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['coalesce', ['get', 'nombre'], ['get', 'NAME']], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': res.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
         }
       });
 
@@ -231,10 +236,15 @@ export const useMapbox = (
       m.addLayer({ id: 'parroquias-line', type: 'line', source: 'parroquias-source', filter: ['==', ['get', 'adm1_name'], 'Nueva Esparta'], layout: { visibility: 'none' }, paint: { 'line-color': '#ff00ff', 'line-width': 2, 'line-opacity': 0.8 } });
       m.addLayer({ id: 'vialidad-layer',  type: 'line', source: 'vialidad-source',   layout: { visibility: 'none' }, paint: { 'line-color': '#adff2f', 'line-width': 2.5, 'line-opacity': 0.9 } });
       m.addLayer({ id: 'estaciones-layer',  type: 'circle', source: 'estaciones-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': ['match', ['get', 'TIPO_SERVICIO'], 'Marítima', '#0ea5e9', '#ff4500'], 'circle-opacity': 1 } });
-      m.addLayer({ id: 'estaciones-labels', type: 'symbol', source: 'estaciones-source', layout: { visibility: 'none', 'icon-image': 'icon-estaciones', 'icon-size': 0.04, 'text-field': ['get', 'NAME'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': ['match', ['get', 'TIPO_SERVICIO'], 'Marítima', '#0ea5e9', '#ff4500'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'estaciones-labels', type: 'symbol', source: 'estaciones-source', layout: { visibility: 'none', 'icon-image': 'icon-estaciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'NAME'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': ['match', ['get', 'TIPO_SERVICIO'], 'Marítima', '#0ea5e9', '#ff4500'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
       // TRANSPORTE
       m.addLayer({ id: 'transporte-layer',  type: 'circle', source: 'transporte-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': ['match', ['get', 'tipo'], 'Terminal Principal', '#6366f1', 'Terminal de Autobuses', '#6366f1', 'Histórico / Antiguo Terminal', '#6366f1', '#0ea5e9'], 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
-      m.addLayer({ id: 'transporte-labels', type: 'symbol', source: 'transporte-source', layout: { visibility: 'none', 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'], 'text-size': 10, 'text-offset': [0, 1.2], 'text-anchor': 'top' }, paint: { 'text-color': ['match', ['get', 'tipo'], 'Terminal Principal', '#6366f1', 'Terminal de Autobuses', '#6366f1', 'Histórico / Antiguo Terminal', '#6366f1', '#0ea5e9'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'transporte-labels', type: 'symbol', source: 'transporte-source', layout: { visibility: 'none', 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'], 'text-size': 10, 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true }, paint: { 'text-color': ['match', ['get', 'tipo'], 'Terminal Principal', '#6366f1', 'Terminal de Autobuses', '#6366f1', 'Histórico / Antiguo Terminal', '#6366f1', '#0ea5e9'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+
+      // CONPPAS (Sector Pesquero - 52 Puertos y Comunidades)
+      m.addLayer({ id: 'conppas-glow',   type: 'circle', source: 'conppas-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 18, 'circle-color': '#06b6d4', 'circle-blur': 1.6, 'circle-opacity': 0.6 } });
+      m.addLayer({ id: 'conppas-layer',  type: 'circle', source: 'conppas-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#0284c7', 'circle-opacity': 1 } });
+      m.addLayer({ id: 'conppas-labels', type: 'symbol', source: 'conppas-source', layout: { visibility: 'none', 'icon-image': 'icon-conppas', 'icon-size': 0.045, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['coalesce', ['get', 'nombre_sitio'], ['get', 'nombre']], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0284c7', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // Antenas — DIGITEL (#9400d3), MOVILNET (#00ff7f), MOVISTAR (#00bfff)
       m.addLayer({ id: 'antenas-digitel-layer', type: 'circle', source: 'antenas-digitel-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': '#9400d3', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
@@ -243,7 +253,7 @@ export const useMapbox = (
 
       // Sistemas Eléctricos — NEÓN AMARILLO ELÉCTRICO (#ffff00)
       m.addLayer({ id: 'sistemas-electricos-layer', type: 'circle', source: 'sistemas-electricos-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 16, 'circle-color': '#ffffff', 'circle-stroke-width': 3, 'circle-stroke-color': '#eab308', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'sistemas-electricos-icons', type: 'symbol', source: 'sistemas-electricos-source', layout: { visibility: 'none', 'icon-image': 'icon-electricos', 'icon-size': 0.04, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'sistemas-electricos-icons', type: 'symbol', source: 'sistemas-electricos-source', layout: { visibility: 'none', 'icon-image': 'icon-electricos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // Servicio de Agua — Subcategorías
       const waterSubcats = [
@@ -273,43 +283,43 @@ export const useMapbox = (
           type: 'symbol',
           source: 'embalses-source',
           filter: ['==', ['get', 'subcategoria'], sub.id],
-          layout: { visibility: 'none', 'icon-image': 'icon-agua', 'icon-size': 0.04, 'text-field': ['get', 'name'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true },
+          layout: { visibility: 'none', 'icon-image': 'icon-agua', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'name'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' },
           paint: { 'text-color': sub.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 }
         });
       });
 
       // Estaciones de Gas — NARANJA INTENSO (#ff8c00)
       m.addLayer({ id: 'estaciones-gas-layer', type: 'circle', source: 'estaciones-gas-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff8c00', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'estaciones-gas-labels', type: 'symbol', source: 'estaciones-gas-source', layout: { visibility: 'none', 'icon-image': 'icon-gas', 'icon-size': 0.04, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': '#ff8c00', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'estaciones-gas-labels', type: 'symbol', source: 'estaciones-gas-source', layout: { visibility: 'none', 'icon-image': 'icon-gas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff8c00', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // ── CAPAS DINÁMICAS (Supabase) ─────────────────────────────────────────
       // 1. Delitos comunes — ROJO BRILLANTE (#ff003c)
       m.addLayer({ id: 'incidencias-riesgo-layer', type: 'circle', source: 'incidencias-riesgo', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff003c', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'incidencias-riesgo-icons', type: 'symbol', source: 'incidencias-riesgo', layout: { visibility: 'none', 'icon-image': 'icon-delitos', 'icon-size': 0.04, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': '#ff003c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'incidencias-riesgo-icons', type: 'symbol', source: 'incidencias-riesgo', layout: { visibility: 'none', 'icon-image': 'icon-delitos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff003c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 2. Cibernética — VIOLETA ELECTRICO (#7b2cbf)
       m.addLayer({ id: 'cibernetica-incidente-layer', type: 'circle', source: 'cibernetica-incidente', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#7b2cbf', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'cibernetica-incidente-icons', type: 'symbol', source: 'cibernetica-incidente', layout: { visibility: 'none', 'icon-image': 'icon-cibernetica', 'icon-size': 0.04, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': '#7b2cbf', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'cibernetica-incidente-icons', type: 'symbol', source: 'cibernetica-incidente', layout: { visibility: 'none', 'icon-image': 'icon-cibernetica', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#7b2cbf', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 3. Concentraciones — ORO BRILLANTE (#ffd700)
       m.addLayer({ id: 'concentraciones-incidente-layer', type: 'circle', source: 'concentraciones-incidente', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ffd700', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'concentraciones-incidente-icons', type: 'symbol', source: 'concentraciones-incidente', layout: { visibility: 'none', 'icon-image': 'icon-concentraciones', 'icon-size': 0.04, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'concentraciones-incidente-icons', type: 'symbol', source: 'concentraciones-incidente', layout: { visibility: 'none', 'icon-image': 'icon-concentraciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 4. Drogas — VERDE NEON (#39ff14)
       m.addLayer({ id: 'drogas-trafico-layer', type: 'circle', source: 'drogas-trafico', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#39ff14', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'drogas-trafico-icons', type: 'symbol', source: 'drogas-trafico', layout: { visibility: 'none', 'icon-image': 'icon-drogas', 'icon-size': 0.04, 'text-anchor': 'top', 'icon-allow-overlap': true } });
+      m.addLayer({ id: 'drogas-trafico-icons', type: 'symbol', source: 'drogas-trafico', layout: { visibility: 'none', 'icon-image': 'icon-drogas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-anchor': 'top' } });
 
       // 5. Actores de interés — ROSA MEXICANO (#ff007f)
       m.addLayer({ id: 'actores-layer', type: 'circle', source: 'actores', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff007f', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'actores-icons', type: 'symbol', source: 'actores', layout: { visibility: 'none', 'icon-image': 'icon-actores', 'icon-size': 0.04, 'text-field': ['get', 'alias'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': '#ff007f', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'actores-icons', type: 'symbol', source: 'actores', layout: { visibility: 'none', 'icon-image': 'icon-actores', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'alias'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff007f', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 6. Grupos delictivos — AZUL ZAFIRO (#0f52ba)
       m.addLayer({ id: 'grupos-bandas-layer', type: 'circle', source: 'grupos-bandas', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#0f52ba', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'grupos-bandas-icons', type: 'symbol', source: 'grupos-bandas', layout: { visibility: 'none', 'icon-image': 'icon-bandas', 'icon-size': 0.04, 'text-field': ['get', 'nombre_banda'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': '#0f52ba', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'grupos-bandas-icons', type: 'symbol', source: 'grupos-bandas', layout: { visibility: 'none', 'icon-image': 'icon-bandas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre_banda'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0f52ba', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 7. Puntos de interés — TURQUESA ELÉCTRICO (#00f5ff)
       m.addLayer({ id: 'puntos-interes-layer', type: 'circle', source: 'puntos-interes', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#00f5ff', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'puntos-interes-icons', type: 'symbol', source: 'puntos-interes', layout: { visibility: 'none', 'icon-image': 'icon-puntos-interes', 'icon-size': 0.04, 'text-field': ['get', 'nombre_punto'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top', 'icon-allow-overlap': true }, paint: { 'text-color': '#00f5ff', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'puntos-interes-icons', type: 'symbol', source: 'puntos-interes', layout: { visibility: 'none', 'icon-image': 'icon-puntos-interes', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre_punto'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#00f5ff', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // ── BÚSQUEDA GLOBAL / RESALTADO (Siempre visible) ────────────────────
       m.addSource('search-highlight-source', { type: 'geojson', data: empty });
@@ -511,7 +521,8 @@ export const useMapbox = (
         'incidencias-riesgo-layer', 'cibernetica-incidente-layer', 'concentraciones-incidente-layer',
         'drogas-trafico-layer', 'actores-layer', 'grupos-bandas-layer', 'puntos-interes-layer',
         'antenas-digitel-layer', 'antenas-movilnet-layer', 'antenas-movistar-layer',
-        'sistemas-electricos-layer', 'estaciones-gas-layer', 'transporte-layer'
+        'sistemas-electricos-layer', 'estaciones-gas-layer', 'transporte-layer',
+        'conppas-layer', 'conppas-labels', 'conppas-glow'
       ];
 
       m.on('click', (e) => {
@@ -671,6 +682,11 @@ export const useMapbox = (
     // ── TRANSPORTE ─────────────────────────────────────────────────────────
     set('transporte-layer',  !!layersVisible.transporteGeneral);
     set('transporte-labels', !!layersVisible.transporteGeneral);
+
+    // ── CONPPAS ────────────────────────────────────────────────────────────
+    set('conppas-layer',     !!layersVisible.conppas);
+    set('conppas-glow',      !!layersVisible.conppas);
+    set('conppas-labels',    !!layersVisible.conppas);
 
   }, [layersVisible, mapReady]); // <-- mapReady asegura que corra al terminar de cargar
 

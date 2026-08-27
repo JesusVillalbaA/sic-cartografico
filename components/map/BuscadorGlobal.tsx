@@ -16,7 +16,8 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
     layersVisible?.geocalizaciones?.drogas || 
     layersVisible?.geocalizaciones?.actorInteres || 
     layersVisible?.geocalizaciones?.puntoInteres || 
-    layersVisible?.bandasDelictivas;
+    layersVisible?.bandasDelictivas ||
+    layersVisible?.conppas;
 
   // Click outside to close
   useEffect(() => {
@@ -43,7 +44,8 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
         'drogas-trafico',
         'actores',
         'grupos-bandas',
-        'puntos-interes'
+        'puntos-interes',
+        'conppas-source'
       ];
       
       let featuresRaw: any[] = [];

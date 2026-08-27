@@ -25,6 +25,7 @@ import { EmbalseCard } from './cards/EmbalseCard';
 import { EstacionGasCard } from './cards/EstacionGasCard';
 import { EscuelaCard } from './cards/EscuelaCard';
 import { TransporteCard } from './cards/TransporteCard';
+import { ConppaCard } from './cards/ConppaCard';
 
 const normalizeText = (text: string) =>
   text?.toLowerCase()
@@ -44,6 +45,7 @@ function detectType(f: any) {
   if (layerId.includes('embalse') || p.institution !== undefined || p.Afluencia !== undefined || p.Embalse !== undefined || p["Superficie del embalse"] !== undefined || (p.gpxx_Categ && p.gpxx_Categ.includes('AGUA'))) return 'estacionesAgua';
   if (layerId === 'estaciones-gas-layer' || layerId === 'estaciones-gas-labels' || (p.empresa && p.tipo && p.estatus && layerId.includes('gas'))) return 'estacionGas';
   if (layerId === 'escuelas-layer' || layerId.includes('escuela')) return 'escuela';
+  if (layerId.includes('conppa') || p.nombre_conppa !== undefined || p.categoria === 'CONPPA' || p.tipo?.includes('CONPPA')) return 'conppa';
 
   if (layerId.includes('poligono') || layerId === 'poligonos-fill' || layerId === 'poligonos-line') {
     return geo === 'Point' ? 'cuadrantePunto' : 'cuadranteArea';
@@ -106,6 +108,7 @@ const DATA_NEEDS: Record<string, (keyof DataNeeds)[]> = {
   cuadrantePunto: ['cuadrantesGeoData'],
   cuadranteArea: [],
   transporte: [],
+  conppa: [],
   fallback: [],
 };
 
@@ -401,7 +404,9 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
 
           return (
             <div key={`${i}-${type}-${nombreRaw}`} className="pdf-capture-card animate-in fade-in slide-in-from-top-4 duration-300">
-              {type === 'sistemasElectricos' ? (
+              {type === 'conppa' ? (
+                <ConppaCard f={f} onRemove={onRemove} />
+              ) : type === 'sistemasElectricos' ? (
                 <ElectricoCard f={f} onRemove={onRemove} onOpenDiagrama={onOpenDiagrama} />
               ) : type === 'estacionesAgua' ? (
                 <EmbalseCard f={f} onRemove={onRemove} />

@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { 
   Layers, ChevronDown, ChevronUp, Search, 
   Sparkles, Minimize2, Maximize2, X, ShieldAlert,
-  Radio, Zap, HeartPulse, Bus, MapPin, Eye
+  Radio, Zap, HeartPulse, Bus, MapPin, Eye, Anchor
 } from 'lucide-react';
 
 interface LegendProps {
@@ -151,6 +151,15 @@ export const Legend = ({ theme = 'dark', layersVisible = {} }: LegendProps) => {
       items: [
         { id: 'trans_publico', label: 'Transporte Público', iconSrc: '/bus.png', colorDot: '#06b6d4', glowColor: 'rgba(6, 182, 212, 0.5)', desc: 'Rutas urbanas y suburbanas', activeKey: (lv) => !!lv.transporte?.transportePublico },
         { id: 'trans_privado', label: 'Transporte Privado', iconSrc: '/carro.png', colorDot: '#f59e0b', glowColor: 'rgba(245, 158, 11, 0.5)', desc: 'Líneas y taxis registrados', activeKey: (lv) => !!lv.transporte?.transportePrivado },
+      ]
+    },
+    {
+      id: 'pesca',
+      name: 'Sector Pesquero & CONPPAS',
+      icon: Anchor,
+      color: '#0ea5e9',
+      items: [
+        { id: 'conppas_item', label: 'CONPPAS y Puertos Pesqueros (52)', iconSrc: '/hidrografia.png', colorDot: '#0284c7', glowColor: 'rgba(2, 132, 199, 0.5)', desc: 'Consejos de pescadores y acuicultores', activeKey: 'conppas' }
       ]
     }
   ], []);

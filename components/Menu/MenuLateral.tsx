@@ -30,6 +30,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
   const [showServiciosBasicos, setShowServiciosBasicos] = useState(false);
   const [showAntenas, setShowAntenas] = useState(false);
   const [showTransporte, setShowTransporte] = useState(false);
+  const [showConppas, setShowConppas] = useState(false);
   const [showGestion, setShowGestion] = useState(false);
 
   const [showZonasRiesgoSub, setShowZonasRiesgoSub] = useState(false);
@@ -40,8 +41,9 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
   const [userRol, setUserRol] = useState('REDES');
   const [isLockedOpen, setIsLockedOpen] = useState(false);
+  const isMenuOpen = isHovered || isMobileMenuOpen;
 
-  const isAnySubmenuOpen = showCapas || showZonas || showCuadranteOptions || showInfraestructura || showServiciosBasicos || showAntenas || showTransporte || showGestion || showServicioAguaSub;
+  const isAnySubmenuOpen = showCapas || showZonas || showCuadranteOptions || showInfraestructura || showServiciosBasicos || showAntenas || showTransporte || showConppas || showGestion || showServicioAguaSub;
 
   const onToggleSub = (categoria: string, subcategoria: string) => {
     onToggle(`${categoria}.${subcategoria}`);
@@ -203,6 +205,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
     setShowServiciosBasicos(false);
     setShowAntenas(false);
     setShowTransporte(false);
+    setShowConppas(false);
     setShowGestion(false);
     setShowZonasRiesgoSub(false);
     setShowGeocalizacionesSub(false);
@@ -221,6 +224,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
     setShowServiciosBasicos(false);
     setShowAntenas(false);
     setShowTransporte(false);
+    setShowConppas(false);
     setShowGestion(false);
     setShowZonasRiesgoSub(false);
     setShowGeocalizacionesSub(false);
@@ -278,45 +282,45 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
             {/* ==================== CAPAS BASE ==================== */}
             <div className="space-y-3">
               <button 
-                onClick={() => isHovered && setShowCapas(!showCapas)}
+                onClick={() => isMenuOpen && setShowCapas(!showCapas)}
                 className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${
-                  isHovered ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'
+                  isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'
                 } ${showCapas ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}
               >
-                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isHovered ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
+                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
                   <img src="/Capas.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Capas" />
                 </div>
-                {isHovered && (
+                {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
                     <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>CAPAS BASE</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showCapas ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </button>
-              {isHovered && showCapas && (
+              {isMenuOpen && showCapas && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2 animate-in slide-in-from-top-4 fade-in duration-500">
-                  <MenuItem theme={theme} iconSrc="/Municipios.png" label="MUNICIPIOS" active={layersVisible.municipios} accentColor="#3b82f6" isHovered={isHovered} onClick={() => onToggle('municipios')} />
-                  <MenuItem theme={theme} iconSrc="/parroquia.png" label="PARROQUIAS" active={layersVisible.parroquias} accentColor="#ec4899" isHovered={isHovered} onClick={() => onToggle('parroquias')} />
-                  <MenuItem theme={theme} iconSrc="/Sectores.png" label="SECTORES" active={layersVisible.sectores} accentColor="#10b981" isHovered={isHovered} onClick={() => onToggle('sectores')} />
-                  <MenuItem theme={theme} iconSrc="/Cuadrantes.png" label="CUADRANTES" active={layersVisible.compas} accentColor="#f59e0b" isHovered={isHovered} onClick={() => onToggle('compas')} />
+                  <MenuItem theme={theme} iconSrc="/Municipios.png" label="MUNICIPIOS" active={layersVisible.municipios} accentColor="#3b82f6" isHovered={isMenuOpen} onClick={() => onToggle('municipios')} />
+                  <MenuItem theme={theme} iconSrc="/parroquia.png" label="PARROQUIAS" active={layersVisible.parroquias} accentColor="#ec4899" isHovered={isMenuOpen} onClick={() => onToggle('parroquias')} />
+                  <MenuItem theme={theme} iconSrc="/Sectores.png" label="SECTORES" active={layersVisible.sectores} accentColor="#10b981" isHovered={isMenuOpen} onClick={() => onToggle('sectores')} />
+                  <MenuItem theme={theme} iconSrc="/Cuadrantes.png" label="CUADRANTES" active={layersVisible.compas} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => onToggle('compas')} />
                 </div>
               )}
             </div>
 
             {/* ==================== ZONAS ==================== */}
             <div className="space-y-3">
-              <button onClick={() => isHovered && setShowZonas(!showZonas)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isHovered ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showZonas ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
-                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isHovered ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
+              <button onClick={() => isMenuOpen && setShowZonas(!showZonas)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showZonas ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
+                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
                   <img src="/zonas.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Zonas" />
                 </div>
-                {isHovered && (
+                {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
                     <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>ZONAS</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showZonas ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </button>
-              {isHovered && showZonas && (
+              {isMenuOpen && showZonas && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   
                   {/* ZONAS DE RIESGO */}
@@ -327,7 +331,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                         label="ZONAS DE RIESGO" 
                         active={layersVisible.zonasDeRiesgo ? Object.values(layersVisible.zonasDeRiesgo).some(v => v) : false} 
                         accentColor="#ef4444" 
-                        isHovered={isHovered} 
+                        isHovered={isMenuOpen} 
                         onClick={() => {}}
                       />
                     </div>
@@ -363,7 +367,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                         label="GEOCALIZACIONES" 
                         active={layersVisible.geocalizaciones ? Object.values(layersVisible.geocalizaciones).some(v => v) : false} 
                         accentColor="#a855f7" 
-                        isHovered={isHovered} 
+                        isHovered={isMenuOpen} 
                         onClick={() => {}}
                       />
                     </div>
@@ -397,7 +401,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                     label="GRUPOS DELICTIVOS" 
                     active={layersVisible.bandasDelictivas} 
                     accentColor="#f97316" 
-                    isHovered={isHovered} 
+                    isHovered={isMenuOpen} 
                     onClick={() => onToggle('bandasDelictivas')} 
                   />
                 </div>
@@ -408,47 +412,47 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
             {/* ==================== INFRAESTRUCTURA ==================== */}
             <div className="space-y-3">
-              <button onClick={() => isHovered && setShowInfraestructura(!showInfraestructura)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isHovered ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showInfraestructura ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
-                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isHovered ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
+              <button onClick={() => isMenuOpen && setShowInfraestructura(!showInfraestructura)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showInfraestructura ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
+                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
                   <img src="/infraestructura.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Infraestructura" />
                 </div>
-                {isHovered && (
+                {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
                     <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>INFRAESTRUCTURA</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showInfraestructura ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </button>
-              {isHovered && showInfraestructura && (
+              {isMenuOpen && showInfraestructura && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
-                  <MenuItem theme={theme} iconSrc="/hospital.png" label="HOSPITALES" active={layersVisible.hospitales} accentColor="#6366f1" isHovered={isHovered} onClick={() => onToggle('hospitales')} />
-                  <MenuItem theme={theme} iconSrc="/clinica.png" label="CLÍNICAS" active={layersVisible.clinicas} accentColor="#0ea5e9" isHovered={isHovered} onClick={() => onToggle('clinicas')} />
-                  <MenuItem theme={theme} iconSrc="/ambulatorio.png" label="AMBULATORIOS" active={layersVisible.ambulatorios} accentColor="#f43f5e" isHovered={isHovered} onClick={() => onToggle('ambulatorios')} />
-                  <MenuItem theme={theme} iconSrc="/dispensario.png" label="CDI" active={layersVisible.cdi} accentColor="#d946ef" isHovered={isHovered} onClick={() => onToggle('cdi')} />
-                  <MenuItem theme={theme} iconSrc="/gasolinera.png" label="ESTACIONES DE SERVICIO" active={layersVisible.estaciones} accentColor="#f97316" isHovered={isHovered} onClick={() => onToggle('estaciones')} />
-                  <MenuItem theme={theme} iconSrc="/social.png" label="ESCUELAS" active={layersVisible.escuelas} accentColor="#d946ef" isHovered={isHovered} onClick={() => onToggle('escuelas')} />
+                  <MenuItem theme={theme} iconSrc="/hospital.png" label="HOSPITALES" active={layersVisible.hospitales} accentColor="#6366f1" isHovered={isMenuOpen} onClick={() => onToggle('hospitales')} />
+                  <MenuItem theme={theme} iconSrc="/clinica.png" label="CLÍNICAS" active={layersVisible.clinicas} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => onToggle('clinicas')} />
+                  <MenuItem theme={theme} iconSrc="/ambulatorio.png" label="AMBULATORIOS" active={layersVisible.ambulatorios} accentColor="#f43f5e" isHovered={isMenuOpen} onClick={() => onToggle('ambulatorios')} />
+                  <MenuItem theme={theme} iconSrc="/dispensario.png" label="CDI" active={layersVisible.cdi} accentColor="#d946ef" isHovered={isMenuOpen} onClick={() => onToggle('cdi')} />
+                  <MenuItem theme={theme} iconSrc="/gasolinera.png" label="ESTACIONES DE SERVICIO" active={layersVisible.estaciones} accentColor="#f97316" isHovered={isMenuOpen} onClick={() => onToggle('estaciones')} />
+                  <MenuItem theme={theme} iconSrc="/social.png" label="ESCUELAS" active={layersVisible.escuelas} accentColor="#d946ef" isHovered={isMenuOpen} onClick={() => onToggle('escuelas')} />
                 </div>
               )}
             </div>
 
             {/* ==================== SERVICIOS BÁSICOS ==================== */}
             <div className="space-y-3">
-              <button onClick={() => isHovered && setShowServiciosBasicos(!showServiciosBasicos)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isHovered ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showServiciosBasicos ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
-                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isHovered ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
+              <button onClick={() => isMenuOpen && setShowServiciosBasicos(!showServiciosBasicos)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showServiciosBasicos ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
+                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
                   <img src="/serviciobasico.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Servicios Básicos" />
                 </div>
-                {isHovered && (
+                {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
                     <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>SERVICIOS BÁSICOS</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showServiciosBasicos ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </button>
-              {isHovered && showServiciosBasicos && (
+              {isMenuOpen && showServiciosBasicos && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   <div>
                     <div onClick={() => setShowServicioAguaSub(!showServicioAguaSub)} className="cursor-pointer">
-                      <MenuItem theme={theme} iconSrc="/agua.png" label="SERVICIO DE AGUA" active={layersVisible.servicioAgua ? Object.values(layersVisible.servicioAgua).some(v => v) : false} accentColor="#0ea5e9" isHovered={isHovered} onClick={() => {}} />
+                      <MenuItem theme={theme} iconSrc="/agua.png" label="SERVICIO DE AGUA" active={layersVisible.servicioAgua ? Object.values(layersVisible.servicioAgua).some(v => v) : false} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => {}} />
                     </div>
                     {showServicioAguaSub && (
                       <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
@@ -510,51 +514,85 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                       </div>
                     )}
                   </div>
-                  <MenuItem theme={theme} iconSrc="/gas.png" label="ESTACIONES DE GAS" active={layersVisible.estacionesGas} accentColor="#f59e0b" isHovered={isHovered} onClick={() => onToggle('estacionesGas')} />
-                  <MenuItem theme={theme} iconSrc="/electricidad.png" label="SUB-ESTACIONES ELÉCTRICAS" active={layersVisible.sistemasElectricos} accentColor="#facc15" isHovered={isHovered} onClick={() => onToggle('sistemasElectricos')} />
+                  <MenuItem theme={theme} iconSrc="/gas.png" label="ESTACIONES DE GAS" active={layersVisible.estacionesGas} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => onToggle('estacionesGas')} />
+                  <MenuItem theme={theme} iconSrc="/electricidad.png" label="SUB-ESTACIONES ELÉCTRICAS" active={layersVisible.sistemasElectricos} accentColor="#facc15" isHovered={isMenuOpen} onClick={() => onToggle('sistemasElectricos')} />
                 </div>
               )}
             </div>
 
             {/* ==================== ANTENAS ==================== */}
             <div className="space-y-3">
-              <button onClick={() => isHovered && setShowAntenas(!showAntenas)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isHovered ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showAntenas ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
-                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isHovered ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
+              <button onClick={() => isMenuOpen && setShowAntenas(!showAntenas)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showAntenas ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
+                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
                   <img src="/antena.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Antenas" />
                 </div>
-                {isHovered && (
+                {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
                     <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>ANTENAS</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showAntenas ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </button>
-              {isHovered && showAntenas && (
+              {isMenuOpen && showAntenas && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
-                  <MenuItem theme={theme} iconSrc="/digitel.png" label="DIGITEL" active={layersVisible.antenasDigitel} accentColor="#8b5cf6" isHovered={isHovered} onClick={() => onToggle('antenasDigitel')} />
-                  <MenuItem theme={theme} iconSrc="/movistar.png" label="MOVISTAR" active={layersVisible.antenasMovistar} accentColor="#06b6d4" isHovered={isHovered} onClick={() => onToggle('antenasMovistar')} />
-                  <MenuItem theme={theme} iconSrc="/movilnet.png" label="MOVILNET" active={layersVisible.antenasMovilnet} accentColor="#10b981" isHovered={isHovered} onClick={() => onToggle('antenasMovilnet')} />
+                  <MenuItem theme={theme} iconSrc="/digitel.png" label="DIGITEL" active={layersVisible.antenasDigitel} accentColor="#8b5cf6" isHovered={isMenuOpen} onClick={() => onToggle('antenasDigitel')} />
+                  <MenuItem theme={theme} iconSrc="/movistar.png" label="MOVISTAR" active={layersVisible.antenasMovistar} accentColor="#06b6d4" isHovered={isMenuOpen} onClick={() => onToggle('antenasMovistar')} />
+                  <MenuItem theme={theme} iconSrc="/movilnet.png" label="MOVILNET" active={layersVisible.antenasMovilnet} accentColor="#10b981" isHovered={isMenuOpen} onClick={() => onToggle('antenasMovilnet')} />
                 </div>
               )}
             </div>
 
             {/* ==================== TRANSPORTE (PÚBLICO Y PRIVADO) ==================== */}
             <div className="space-y-3">
-              <button onClick={() => isHovered && setShowTransporte(!showTransporte)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isHovered ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showTransporte ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
-                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isHovered ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
+              <button onClick={() => isMenuOpen && setShowTransporte(!showTransporte)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showTransporte ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
+                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
                   <img src="/transporte.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Transporte" />
                 </div>
-                {isHovered && (
+                {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
                     <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>TRANSPORTE</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showTransporte ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </button>
-              {isHovered && showTransporte && (
+              {isMenuOpen && showTransporte && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   
-                  <MenuItem theme={theme} iconSrc="/transporte_publico.png" label="TERMINALES Y PARADAS" active={layersVisible.transporteGeneral} accentColor="#0ea5e9" isHovered={isHovered} onClick={() => onToggle('transporteGeneral')} />
+                  <MenuItem theme={theme} iconSrc="/transporte_publico.png" label="TERMINALES Y PARADAS" active={layersVisible.transporteGeneral} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => onToggle('transporteGeneral')} />
+                </div>
+              )}
+            </div>
+
+            {/* ==================== CONPPAS (SECTOR PESQUERO) ==================== */}
+            <div className="space-y-3">
+              <button 
+                onClick={() => isMenuOpen && setShowConppas(!showConppas)} 
+                className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showConppas ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}
+              >
+                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
+                  <img src="/hidrografia.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="CONPPAS" />
+                </div>
+                {isMenuOpen && (
+                  <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
+                    <div className="flex flex-col text-left">
+                      <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>CONPPAS</span>
+                      <span className="text-[9px] font-bold text-cyan-400 font-mono tracking-wider">PESCA Y ACUICULTURA</span>
+                    </div>
+                    <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showConppas ? 'rotate-180' : ''}`} />
+                  </div>
+                )}
+              </button>
+              {isMenuOpen && showConppas && (
+                <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2 animate-in slide-in-from-top-4 fade-in duration-500">
+                  <MenuItem 
+                    theme={theme} 
+                    iconSrc="/hidrografia.png" 
+                    label="PUERTOS Y CONPPAS (52)" 
+                    active={layersVisible.conppas} 
+                    accentColor="#06b6d4" 
+                    isHovered={isMenuOpen} 
+                    onClick={() => onToggle('conppas')} 
+                  />
                 </div>
               )}
             </div>
@@ -563,22 +601,22 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
             {/* ==================== GESTIÓN ==================== */}
             <div className="space-y-3">
-              <button onClick={() => isHovered && setShowGestion(!showGestion)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isHovered ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showGestion ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
-                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isHovered ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
+              <button onClick={() => isMenuOpen && setShowGestion(!showGestion)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showGestion ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
+                <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
                   <KeyRound className="w-6 h-6 text-slate-800 transition-transform duration-500 group-hover:rotate-12" />
                 </div>
-                {isHovered && (
+                {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
                     <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>GESTIÓN</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showGestion ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </button>
-              {isHovered && showGestion && (
+              {isMenuOpen && showGestion && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
-                  <MenuItem theme={theme} iconSrc="/usuario.png" label="CREAR USUARIO" active={showModalUsuario} accentColor="#10b981" isHovered={isHovered} onClick={handleOpenCrearUsuario} />
-                  <MenuItem theme={theme} iconSrc="/codigo.png" label="GENERAR CÓDIGO" active={layersVisible.generarClave} accentColor="#06b6d4" isHovered={isHovered} onClick={() => { if (userRol === 'REDES') onToggle('generarClave'); else setShowAccesoDenegado(true); }} />
-                  <MenuItem theme={theme} iconSrc="/pdf.png" label={isGenerating ? "SINCRONIZANDO..." : "GENERAR REPORTE"} active={false} accentColor="#f59e0b" isHovered={isHovered} onClick={handleGeneratePDF} />
+                  <MenuItem theme={theme} iconSrc="/usuario.png" label="CREAR USUARIO" active={showModalUsuario} accentColor="#10b981" isHovered={isMenuOpen} onClick={handleOpenCrearUsuario} />
+                  <MenuItem theme={theme} iconSrc="/codigo.png" label="GENERAR CÓDIGO" active={layersVisible.generarClave} accentColor="#06b6d4" isHovered={isMenuOpen} onClick={() => { if (userRol === 'REDES') onToggle('generarClave'); else setShowAccesoDenegado(true); }} />
+                  <MenuItem theme={theme} iconSrc="/pdf.png" label={isGenerating ? "SINCRONIZANDO..." : "GENERAR REPORTE"} active={false} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={handleGeneratePDF} />
                 </div>
               )}
             </div>

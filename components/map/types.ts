@@ -70,5 +70,6 @@ export interface LayersVisibleState {
   antenasMovilnet: boolean;
   paradasPasajeros?: boolean;
   terminales?: boolean;
+  conppas?: boolean;
   [key: string]: any;
 }
