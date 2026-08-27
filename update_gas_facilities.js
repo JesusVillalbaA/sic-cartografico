@@ -283,6 +283,35 @@ const gasGeoJSON = {
         organismo: "PDVSA Gas Comunal",
         descripcion: "Oficina de la administración para gestiones, trámites contractuales y atención comercial de gas comunal en Nueva Esparta."
       }
+    },
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        crs: {
+          type: "name",
+          properties: { name: "EPSG:4326" }
+        },
+        coordinates: [-63.86886065824805, 10.633519724374162]
+      },
+      properties: {
+        id: "emr_bm21",
+        nombre: "Estación de Válvula de Medición y Regulación BM-21 (EVA Araya)",
+        instalacion: "ESTACIÓN DE VÁLVULA DE MEDICIÓN Y REGULACIÓN BM-21 (EVA ARAYA).",
+        tipo: "Estación de Válvula de Medición y Regulación (Enlace Tierra Firme)",
+        estado: "Sucre",
+        municipio: "Cruz Salmerón Acosta",
+        parroquia: "Chacopata / Araya",
+        sector: "Península de Araya - Enlace Tierra Firme",
+        ubicacion: "Península de Araya, Estado Sucre - Punto de Enlace de Tierra Firme al Tramo Submarino (51,8 km) del Gasoducto Nororiental GJ. José Francisco Bermúdez hacia Isla de Coche y Nueva Esparta.",
+        coordenadas_dms: "10° 38′ 0.67″ N; 063° 52′ 7.90″ W",
+        responsable: "ING. ALCIDES FIGUERA",
+        telefono: "0416-7825132",
+        empresa: "PDVSA Gas",
+        estatus: "Operativa",
+        organismo: "CEO - Dirección Conjunta de Protección de Instalaciones Críticas",
+        descripcion: "Estación de Válvula de Medición y Regulación BM-21 (EVA Araya). Punto estratégico de enlace de tierra firme (Sucre) hacia el tramo submarino de 51,8 km del Gasoducto Nororiental GJ. José Francisco Bermúdez que alimenta a Coche y Nueva Esparta."
+      }
     }
   ]
 };
