@@ -3,21 +3,40 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { layersVisible, selectedFeatures, message } = body;
+    const { layersVisible, selectedFeatures, message, spatialPayload, voiceCommand } = body;
+
+    // 1. Si es una solicitud de Evaluación de Riesgo Espacial por IA
+    if (spatialPayload) {
+      const riskReport = generateSpatialRiskAssessment(spatialPayload);
+      return NextResponse.json({
+        success: true,
+        riskReport,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // 2. Si es un Comando por Voz
+    let voiceActions: string[] = [];
+    let voiceResponseText = "";
+    if (voiceCommand && voiceCommand.trim().length > 0) {
+      const voiceResult = parseVoiceCommand(voiceCommand);
+      voiceActions = voiceResult.actions;
+      voiceResponseText = voiceResult.responseText;
+    }
 
     // Análisis de estado de capas activas
     const activeLayersCount = countActiveLayers(layersVisible);
     const missingRecommendations = getMissingLayerRecommendations(layersVisible);
     const tacticalAdvice = getTacticalAdvice(layersVisible, selectedFeatures);
 
-    let aiResponseText = "";
+    let aiResponseText = voiceResponseText;
 
-    if (message && message.trim().length > 0) {
-      // Respuesta interactiva a pregunta del usuario
-      aiResponseText = generateAnswerToUser(message, layersVisible, selectedFeatures);
-    } else {
-      // Diagnóstico general de la vista
-      aiResponseText = generateGeneralDiagnostic(layersVisible, selectedFeatures, activeLayersCount);
+    if (!aiResponseText) {
+      if (message && message.trim().length > 0) {
+        aiResponseText = generateAnswerToUser(message, layersVisible, selectedFeatures);
+      } else {
+        aiResponseText = generateGeneralDiagnostic(layersVisible, selectedFeatures, activeLayersCount);
+      }
     }
 
     return NextResponse.json({
@@ -25,6 +44,7 @@ export async function POST(req: Request) {
       activeLayersCount,
       missingRecommendations,
       tacticalAdvice,
+      voiceActions,
       response: aiResponseText,
       timestamp: new Date().toISOString()
     });
@@ -36,6 +56,162 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
+}
+
+// ── MOTOR DE EVALUACIÓN DE RIESGO Y VULNERABILIDAD ESPACIAL POR IA ──────────
+function generateSpatialRiskAssessment(payload: any) {
+  const { 
+    antenasCount = 0, 
+    saludCount = 0, 
+    electricoCount = 0, 
+    gasCount = 0, 
+    aguaCount = 0, 
+    cuadrantesCount = 0, 
+    conppasCount = 0, 
+    incidentesCount = 0, 
+    areaKm2 = 0,
+    shapeType = 'Polígono Trazado'
+  } = payload;
+
+  const totalCriticalAssets = antenasCount + saludCount + electricoCount + gasCount + aguaCount;
+  
+  // Cálculo cuantitativo de riesgo (Score 1 a 100)
+  let score = 15; // Base
+  score += Math.min(35, totalCriticalAssets * 7);
+  score += Math.min(30, incidentesCount * 10);
+  if (electricoCount > 0 && aguaCount > 0) score += 10;
+  if (saludCount === 0 && totalCriticalAssets > 3) score += 15; // Vulnerabilidad por falta de salud en zona crítica
+
+  let riskLevel: 'BAJO' | 'MEDIO' | 'ALTO' | 'CRÍTICO' = 'BAJO';
+  let badgeColor = 'emerald';
+  if (score >= 75) {
+    riskLevel = 'CRÍTICO';
+    badgeColor = 'rose';
+  } else if (score >= 50) {
+    riskLevel = 'ALTO';
+    badgeColor = 'amber';
+  } else if (score >= 30) {
+    riskLevel = 'MEDIO';
+    badgeColor = 'sky';
+  }
+
+  const vulnerabilities: string[] = [];
+  const recommendations: string[] = [];
+
+  if (electricoCount > 0) {
+    vulnerabilities.push(`Contiene ${electricoCount} nodo(s) de la red eléctrica. Un evento adverso en esta zona impactaría el suministro regional.`);
+    recommendations.push("Establecer punto de control preventivo de la FANB/IAPOLEPNE en accesos a instalaciones eléctricas.");
+  }
+
+  if (saludCount === 0 && totalCriticalAssets > 2) {
+    vulnerabilities.push("Inexistencia de centro de salud de respuesta rápida (Hospital/CDI) dentro del perímetro delimitado.");
+    recommendations.push("Definir ruta de evacuación médica prioritaria hacia el centro asistencial más cercano.");
+  } else if (saludCount > 0) {
+    recommendations.push(`Asegurar línea de comunicaciones directa con los ${saludCount} centro(s) asistenciales dentro de la zona.`);
+  }
+
+  if (antenasCount > 0) {
+    vulnerabilities.push(`Infraestructura de telecomunicaciones detectada (${antenasCount} antena/s). Riesgo de incomunicación táctica en caso de falla eléctrica.`);
+  }
+
+  if (incidentesCount > 0) {
+    vulnerabilities.push(`Histórico de ${incidentesCount} incidente(s) o zona de concentración delictiva registrada dentro del área.`);
+    recommendations.push(`Incrementar patrullaje del Cuadrante de Paz con frecuencia de recorrido cada 45 minutos.`);
+  }
+
+  if (vulnerabilities.length === 0) {
+    vulnerabilities.push("Área de baja densidad de infraestructura crítica sin incidentes graves reportados.");
+    recommendations.push("Mantener patrullaje de rutina e inspección visual periódica del perímetro.");
+  }
+
+  const summaryText = `La zona delimitada (${areaKm2.toFixed(2)} km²) contiene un total de ${totalCriticalAssets} infraestructura(s) crítica(s) y ${incidentesCount} punto(s) de atención de seguridad. El nivel de vulnerabilidad evaluado es ${riskLevel} (${score}/100).`;
+
+  return {
+    riskLevel,
+    riskScore: score,
+    badgeColor,
+    shapeType,
+    areaKm2: Number(areaKm2.toFixed(2)),
+    totalCriticalAssets,
+    breakdown: {
+      antenas: antenasCount,
+      salud: saludCount,
+      electrico: electricoCount,
+      gas: gasCount,
+      agua: aguaCount,
+      cuadrantes: cuadrantesCount,
+      conppas: conppasCount,
+      incidentes: incidentesCount
+    },
+    summaryText,
+    vulnerabilities,
+    recommendations
+  };
+}
+
+// ── PARSER DE COMANDOS DE VOZ EN ESPAÑOL ─────────────────────────────────────
+function parseVoiceCommand(command: string) {
+  const text = command.toLowerCase();
+  const actions: string[] = [];
+  let responseText = `Comando procesado: "${command}". `;
+
+  // Capas de Infraestructura y Seguridad
+  if (text.includes('subestación') || text.includes('subestaciones') || text.includes('eléctric') || text.includes('luz')) {
+    actions.push('sistemasElectricos');
+    responseText += "Habilitando Red de Sistemas Eléctricos. ";
+  }
+  if (text.includes('antena') || text.includes('comunicación') || text.includes('telefonía') || text.includes('celular')) {
+    actions.push('antenasDigitel', 'antenasMovistar', 'antenasMovilnet');
+    responseText += "Activando antenas de telecomunicaciones (Digitel, Movistar, Movilnet). ";
+  }
+  if (text.includes('salud') || text.includes('hospital') || text.includes('cdi') || text.includes('clínica') || text.includes('médic')) {
+    actions.push('hospitales', 'cdi', 'ambulatorios', 'clinicas');
+    responseText += "Desplegando Red de Salud Asistencial. ";
+  }
+  if (text.includes('cuadrante') || text.includes('cuadrantes') || text.includes('patrulla')) {
+    actions.push('cuadrantesPoligonos', 'cuadrantes');
+    responseText += "Mostrando Cuadrantes de Paz. ";
+  }
+  if (text.includes('agua') || text.includes('embalse') || text.includes('pozo') || text.includes('desalinizadora')) {
+    actions.push('servicioAgua.embalses', 'servicioAgua.desalinizadoras', 'servicioAgua.tanques');
+    responseText += "Cargando Red e Infraestructura de Agua. ";
+  }
+  if (text.includes('gas') || text.includes('combustible') || text.includes('gasolinera')) {
+    actions.push('estacionesGas', 'estacionesServicio');
+    responseText += "Mostrando Estaciones de Gas y Combustible. ";
+  }
+  if (text.includes('escuela') || text.includes('colegio') || text.includes('educación')) {
+    actions.push('escuelas');
+    responseText += "Habilitando Centros Educativos. ";
+  }
+
+  // Modos del Mapa
+  if (text.includes('3d') || text.includes('tres d') || text.includes('edificio') || text.includes('relieve')) {
+    actions.push('toggle_3d');
+    responseText += "Activando Perspectiva y Edificaciones 3D. ";
+  }
+  if (text.includes('calor') || text.includes('heatmap') || text.includes('incidencia') || text.includes('delito')) {
+    actions.push('toggle_heatmap');
+    responseText += "Desplegando Mapa de Calor Táctico. ";
+  }
+  if (text.includes('radio') || text.includes('cobertura') || text.includes('buffer')) {
+    actions.push('activate_buffer');
+    responseText += "Activando herramienta de Radio de Cobertura. ";
+  }
+  if (text.includes('trazar') || text.includes('área') || text.includes('zona') || text.includes('polígono')) {
+    actions.push('activate_polygon');
+    responseText += "Iniciando herramienta de Trazado de Área. ";
+  }
+  if (text.includes('limpiar') || text.includes('reset') || text.includes('borrar')) {
+    actions.push('clear_tools');
+    responseText += "Limpiando herramientas y filtros del mapa. ";
+  }
+
+  if (actions.length === 0) {
+    responseText = `Comando interpretado: "${command}". No se detectó ninguna capa específica. Intenta dictar: "Muéstrame las subestaciones eléctricas", "Activa la red de salud" o "Cambia a vista 3D".`;
+  }
+
+  return { actions, responseText };
 }
 
 function countActiveLayers(layers: any): number {
@@ -168,7 +344,7 @@ function generateGeneralDiagnostic(layers: any, selectedFeatures: any[], activeC
   if (selectedFeatures && selectedFeatures.length > 0) {
     diag += ` Se está analizando la entidad: ${selectedFeatures[0]?.properties?.nombre || selectedFeatures[0]?.properties?.NAME || 'Elemento'}.`;
   } else {
-    diag += ` Sugerencia: Puedes hacer clic en un municipio o sector para recibir recomendaciones focalizadas.`;
+    diag += ` Sugerencia: Puedes dictar comandos por voz con el botón del micrófono o evaluar una zona trazada.`;
   }
   return diag;
 }
@@ -189,5 +365,5 @@ function generateAnswerToUser(query: string, layers: any, selectedFeatures: any[
     return "Para exportar tu informe: Haz clic en el botón de **Reporte PDF** en el menú de herramientas. La IA incluirá las métricas de las capas actualmente visibles.";
   }
 
-  return `Entendido. Como consejero de geointeligencia SOGNE, te sugiero revisar las capas de infraestructura crítica y verificar si tienes algún sector o municipio seleccionado para hacer un diagnóstico detallado. ¿Deseas ayuda con alguna zona específica de Nueva Esparta?`;
+  return `Entendido. Como consejero de geointeligencia SOGNE, te sugiero revisar las capas de infraestructura crítica o dictar comandos por voz para controlar la cartografía.`;
 }

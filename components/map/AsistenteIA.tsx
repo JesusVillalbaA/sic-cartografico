@@ -2,7 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Sparkles, Bot, X, RefreshCw, Send, CheckCircle2, 
-  AlertTriangle, Lightbulb, PlusCircle, Layers, ChevronRight, MessageSquare, Zap 
+  AlertTriangle, Lightbulb, PlusCircle, Layers, ChevronRight, MessageSquare, Zap,
+  Mic, MicOff, ShieldAlert, Activity, FileCheck, Radio, Check
 } from 'lucide-react';
 
 interface AsistenteIAProps {
@@ -26,21 +27,136 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   theme = 'dark'
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'diagnostic' | 'chat'>('diagnostic');
+  const [activeTab, setActiveTab] = useState<'diagnostic' | 'chat' | 'risk'>('diagnostic');
   const [isLoading, setIsLoading] = useState(false);
   const [diagnosticData, setDiagnosticData] = useState<any>(null);
+  const [riskReportData, setRiskReportData] = useState<any>(null);
   
+  // Voice control state
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<any>(null);
+
   // Chat state
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
       sender: 'ai',
-      text: '¡Hola! Soy SOGNE IA, tu asistente de geointeligencia táctica. Puedo recomendarte qué capas te faltan por activar, darte consejos de análisis situacional o responder tus dudas sobre el mapa.',
+      text: '¡Hola! Soy SOGNE IA, tu consejero de geointeligencia. Puedes dictarme comandos por voz (ej: "Muéstrame las subestaciones de Maneiro y traza un radio de 3 km"), preguntarme sobre la cartografía o solicitar una Evaluación de Riesgo Espacial.',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
   const [inputQuery, setInputQuery] = useState('');
   const chatBottomRef = useRef<HTMLDivElement>(null);
+
+  // Inicializar Web Speech API para reconocimiento por voz en español
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'es-VE';
+
+        recognition.onstart = () => setIsListening(true);
+        recognition.onend = () => setIsListening(false);
+        recognition.onerror = (e: any) => {
+          console.warn("Error en el reconocimiento por voz:", e);
+          setIsListening(false);
+        };
+        recognition.onresult = (event: any) => {
+          const transcript = event.results[0][0]?.transcript;
+          if (transcript) {
+            handleSendVoiceCommand(transcript);
+          }
+        };
+
+        recognitionRef.current = recognition;
+      }
+    }
+  }, []);
+
+  // Escuchar eventos globales para abrir evaluación de riesgo desde el mapa
+  useEffect(() => {
+    const handleRiskEvent = (e: any) => {
+      if (e.detail?.spatialPayload) {
+        setIsOpen(true);
+        setActiveTab('risk');
+        fetchRiskAssessment(e.detail.spatialPayload);
+      }
+    };
+    window.addEventListener('sogne_open_risk_analysis', handleRiskEvent);
+    return () => window.removeEventListener('sogne_open_risk_analysis', handleRiskEvent);
+  }, []);
+
+  const toggleListening = () => {
+    if (!recognitionRef.current) {
+      alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");
+      return;
+    }
+    if (isListening) {
+      recognitionRef.current.stop();
+    } else {
+      try {
+        recognitionRef.current.start();
+      } catch (e) {
+        console.warn("Error al activar micrófono:", e);
+      }
+    }
+  };
+
+  const handleSendVoiceCommand = async (commandText: string) => {
+    if (!commandText.trim()) return;
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      sender: 'user',
+      text: `🎙️ "${commandText}"`,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setIsLoading(true);
+
+    try {
+      const res = await fetch('/api/ai-advisor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          voiceCommand: commandText,
+          layersVisible,
+          selectedFeatures
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        if (data.voiceActions && data.voiceActions.length > 0) {
+          data.voiceActions.forEach((actionKey: string) => {
+            if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {
+              window.dispatchEvent(new CustomEvent('sogne_voice_action', { detail: { action: actionKey } }));
+            } else {
+              onToggle(actionKey);
+            }
+          });
+        }
+
+        setMessages(prev => [
+          ...prev,
+          {
+            id: (Date.now() + 1).toString(),
+            sender: 'ai',
+            text: data.response || `Comando ejecutado con éxito: "${commandText}"`,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          }
+        ]);
+      }
+    } catch (err) {
+      console.error("Error procesando comando por voz:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Cargar diagnóstico cuando cambian capas o características seleccionadas
   const fetchDiagnostic = async (userMsg?: string) => {
@@ -79,11 +195,30 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     }
   };
 
+  const fetchRiskAssessment = async (spatialPayload: any) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/ai-advisor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ spatialPayload })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setRiskReportData(data.riskReport);
+      }
+    } catch (e) {
+      console.error("Error evaluando riesgo espacial:", e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && activeTab === 'diagnostic') {
       fetchDiagnostic();
     }
-  }, [isOpen, layersVisible, selectedFeatures]);
+  }, [isOpen, activeTab, layersVisible, selectedFeatures]);
 
   useEffect(() => {
     if (activeTab === 'chat') {
@@ -126,41 +261,55 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
         </div>
         <span className="hidden sm:inline">SOGNE IA</span>
         <span className="bg-cyan-500/20 text-cyan-300 text-[10px] px-1.5 py-0.5 rounded font-mono border border-cyan-400/30">
-          CONSEJERO
+          VOZ & RIESGO
         </span>
       </button>
 
-      {/* Drawer / Panel Deslizable de la Mini IA */}
+      {/* Panel Deslizable de SOGNE IA */}
       {isOpen && (
-        <div className="fixed top-16 right-4 z-40 w-96 max-w-[calc(100vw-2rem)] h-[calc(100vh-5rem)] max-h-[640px] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_40px_rgba(6,182,212,0.25)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden">
+        <div className="fixed top-16 right-4 z-40 w-[420px] max-w-[calc(100vw-2rem)] h-[calc(100vh-5rem)] max-h-[680px] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_45px_rgba(6,182,212,0.3)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden">
           
           {/* Encabezado del Panel */}
-          <div className="p-4 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/40 to-slate-950 flex items-center justify-between">
+          <div className="p-4 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/50 to-slate-950 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)]">
-                <Bot size={20} />
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                <Bot size={22} />
               </div>
               <div>
                 <h3 className="text-xs font-black tracking-widest text-cyan-300 uppercase flex items-center gap-2">
-                  SOGNE IA
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  SOGNE IA TÁCTICO
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </h3>
-                <p className="text-[10px] text-slate-400 font-mono">Consejero de Geointeligencia</p>
+                <p className="text-[10px] text-slate-400 font-mono">Consejero por Voz & Riesgo Espacial</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1.5">
+              {/* Botón de Micrófono por Voz */}
+              <button
+                onClick={toggleListening}
+                className={`p-2 rounded-xl border transition-all cursor-pointer flex items-center gap-1 text-[10px] font-bold ${
+                  isListening
+                    ? 'bg-rose-600 text-white border-rose-400 animate-pulse shadow-[0_0_15px_rgba(225,29,72,0.6)]'
+                    : 'bg-slate-900 text-cyan-400 border-cyan-500/40 hover:bg-cyan-950'
+                }`}
+                title={isListening ? "Detener micrófono" : "Dictar comando por voz en español"}
+              >
+                {isListening ? <MicOff size={15} /> : <Mic size={15} />}
+                <span className="hidden sm:inline">{isListening ? 'Escuchando...' : 'Voz'}</span>
+              </button>
+
               <button
                 onClick={() => fetchDiagnostic()}
                 disabled={isLoading}
-                className="p-1.5 text-slate-400 hover:text-cyan-300 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
-                title="Actualizar análisis"
+                className="p-2 text-slate-400 hover:text-cyan-300 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+                title="Actualizar diagnóstico"
               >
                 <RefreshCw size={14} className={isLoading ? 'animate-spin text-cyan-400' : ''} />
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+                className="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
                 title="Cerrar"
               >
                 <X size={16} />
@@ -179,8 +328,21 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
               }`}
             >
               <Lightbulb size={13} />
-              <span>Diagnóstico & Consejos</span>
+              <span>Diagnóstico</span>
             </button>
+
+            <button
+              onClick={() => setActiveTab('risk')}
+              className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                activeTab === 'risk'
+                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)]'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <ShieldAlert size={13} className="text-amber-400" />
+              <span>Riesgo Espacial</span>
+            </button>
+
             <button
               onClick={() => setActiveTab('chat')}
               className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
@@ -190,13 +352,121 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
               }`}
             >
               <MessageSquare size={13} />
-              <span>Preguntar a la IA</span>
+              <span>Voz & Chat</span>
             </button>
           </div>
 
           {/* Contenido del Panel */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar text-xs">
             
+            {/* 📋 PESTAÑA: EVALUACIÓN DE RIESGO ESPACIAL POR IA */}
+            {activeTab === 'risk' && (
+              <div className="space-y-4">
+                {riskReportData ? (
+                  <>
+                    {/* Header del Riesgo */}
+                    <div className={`p-4 rounded-2xl border flex items-center justify-between ${
+                      riskReportData.riskLevel === 'CRÍTICO' ? 'bg-rose-950/40 border-rose-500/40 text-rose-300' :
+                      riskReportData.riskLevel === 'ALTO' ? 'bg-amber-950/40 border-amber-500/40 text-amber-300' :
+                      riskReportData.riskLevel === 'MEDIO' ? 'bg-sky-950/40 border-sky-500/40 text-sky-300' :
+                      'bg-emerald-950/40 border-emerald-500/40 text-emerald-300'
+                    }`}>
+                      <div>
+                        <span className="text-[10px] uppercase font-mono tracking-widest block opacity-80">Evaluación Táctica de Riesgo:</span>
+                        <h4 className="text-lg font-black tracking-wider uppercase flex items-center gap-2">
+                          {riskReportData.riskLevel}
+                          <span className="text-xs font-mono font-normal">({riskReportData.riskScore}/100)</span>
+                        </h4>
+                        <span className="text-[10px] text-slate-300">{riskReportData.shapeType} • {riskReportData.areaKm2} km²</span>
+                      </div>
+                      <ShieldAlert size={36} className="opacity-90 shrink-0" />
+                    </div>
+
+                    {/* Resumen Cuantitativo de Activos Contenidos */}
+                    <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-2">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-mono block">
+                        📊 Infraestructuras Identificadas ({riskReportData.totalCriticalAssets} totales):
+                      </span>
+                      <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono">
+                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
+                          <span className="block text-cyan-400 font-bold text-sm">{riskReportData.breakdown.electrico}</span>
+                          <span className="text-slate-400">Eléctrico</span>
+                        </div>
+                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
+                          <span className="block text-emerald-400 font-bold text-sm">{riskReportData.breakdown.salud}</span>
+                          <span className="text-slate-400">Salud</span>
+                        </div>
+                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
+                          <span className="block text-sky-400 font-bold text-sm">{riskReportData.breakdown.antenas}</span>
+                          <span className="text-slate-400">Antenas</span>
+                        </div>
+                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
+                          <span className="block text-purple-400 font-bold text-sm">{riskReportData.breakdown.gas}</span>
+                          <span className="text-slate-400">Gas</span>
+                        </div>
+                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
+                          <span className="block text-blue-400 font-bold text-sm">{riskReportData.breakdown.agua}</span>
+                          <span className="text-slate-400">Agua</span>
+                        </div>
+                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
+                          <span className="block text-rose-400 font-bold text-sm">{riskReportData.breakdown.incidentes}</span>
+                          <span className="text-slate-400">Incidentes</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Resumen Táctico de IA */}
+                    <div className="bg-cyan-950/30 border border-cyan-500/30 rounded-xl p-3 space-y-1 leading-relaxed">
+                      <span className="text-[10px] font-bold text-cyan-400 uppercase font-mono block">Diagnóstico Ejecutivo IA:</span>
+                      <p className="text-slate-200 text-[11px]">{riskReportData.summaryText}</p>
+                    </div>
+
+                    {/* Vulnerabilidades Detectadas */}
+                    <div className="space-y-2">
+                      <span className="text-[11px] font-bold text-rose-400 flex items-center gap-1.5">
+                        <AlertTriangle size={14} />
+                        Puntos de Vulnerabilidad Crítica
+                      </span>
+                      <div className="space-y-1.5">
+                        {riskReportData.vulnerabilities.map((v: string, i: number) => (
+                          <div key={i} className="p-2.5 bg-slate-900/90 border border-rose-500/30 rounded-xl text-slate-300 text-[11px] flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0 mt-1.5" />
+                            <span>{v}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Recomendaciones Operativas */}
+                    <div className="space-y-2 pt-2 border-t border-slate-800">
+                      <span className="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5">
+                        <FileCheck size={14} />
+                        Recomendaciones de Despliegue Táctico
+                      </span>
+                      <div className="space-y-1.5">
+                        {riskReportData.recommendations.map((r: string, i: number) => (
+                          <div key={i} className="p-2.5 bg-slate-900/90 border border-emerald-500/30 rounded-xl text-slate-300 text-[11px] flex items-start gap-2">
+                            <CheckCircle2 size={13} className="text-emerald-400 shrink-0 mt-0.5" />
+                            <span>{r}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="p-6 text-center space-y-3 bg-slate-900/40 border border-slate-800 rounded-2xl text-slate-400">
+                    <ShieldAlert size={32} className="mx-auto text-amber-400 opacity-60 animate-pulse" />
+                    <div>
+                      <h4 className="font-bold text-slate-200 text-xs">Sin Evaluación de Riesgo Activa</h4>
+                      <p className="text-[11px] text-slate-400 mt-1">
+                        Utiliza el botón <strong>TRAZAR ÁREA</strong> o <strong>RADIO COBERTURA</strong> en el mapa y presiona <strong>EVALUAR RIESGO IA</strong> para generar un análisis cuantitativo de vulnerabilidad.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {activeTab === 'diagnostic' && (
               <>
                 {/* Banner de Entidad Seleccionada si aplica */}
@@ -292,14 +562,39 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
 
             {activeTab === 'chat' && (
               <div className="flex flex-col h-full space-y-3">
+                {/* Controles de Voz Interactivos */}
+                <div className="p-3 bg-slate-900/80 border border-slate-800 rounded-xl space-y-2">
+                  <div className="flex items-center justify-between text-[11px]">
+                    <span className="font-bold text-cyan-400 flex items-center gap-1.5">
+                      <Radio size={13} className={isListening ? "animate-ping text-rose-400" : ""} />
+                      Comandos por Voz Tácticos
+                    </span>
+                    <span className="text-[9px] font-mono text-slate-400">Web Speech API</span>
+                  </div>
+                  <p className="text-[10px] text-slate-400 leading-relaxed">
+                    Presiona el botón de voz para dictar comandos como: <em>"Muéstrame las subestaciones de Maneiro"</em> o <em>"Cambia a vista 3D"</em>.
+                  </p>
+                  <button
+                    onClick={toggleListening}
+                    className={`w-full py-2 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                      isListening
+                        ? 'bg-rose-600 hover:bg-rose-500 text-white shadow-[0_0_15px_rgba(225,29,72,0.5)] animate-pulse'
+                        : 'bg-cyan-600 hover:bg-cyan-500 text-white shadow-[0_0_15px_rgba(6,182,212,0.3)]'
+                    }`}
+                  >
+                    {isListening ? <MicOff size={15} /> : <Mic size={15} />}
+                    <span>{isListening ? 'DETENER MICRÓFONO' : 'DICTAR COMANDO POR VOZ'}</span>
+                  </button>
+                </div>
+
                 {/* Preguntas Frecuentes Rápidas */}
                 <div className="space-y-1">
                   <span className="text-[10px] font-mono text-slate-400">Preguntas sugeridas:</span>
                   <div className="flex flex-wrap gap-1.5">
                     {[
-                      "¿Qué capas me falta activar?",
-                      "¿Qué hacer si falla la red eléctrica?",
-                      "¿Cómo exportar el informe PDF?",
+                      "Muéstrame las subestaciones eléctricas",
+                      "Activa la red de salud",
+                      "Cambia a vista 3D",
                       "¿Qué cuadrantes revisar primero?"
                     ].map((promptText, i) => (
                       <button

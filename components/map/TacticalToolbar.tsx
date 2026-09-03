@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Ruler, CircleDot, Flame, Trash2, X, Box, Shapes, Download, FileJson, FileText } from 'lucide-react';
+import { Ruler, CircleDot, Flame, Trash2, X, Box, Shapes, Download, FileJson, FileText, ShieldAlert } from 'lucide-react';
 import * as turf from '@turf/turf';
 import mapboxgl from 'mapbox-gl';
 import { exportPDF as exportPDFUtil } from './mapUtils';
@@ -29,6 +29,89 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   const isPolygonFinishedRef = React.useRef(false);
   const activeToolRef = React.useRef(activeTool);
   const bufferCenterRef = React.useRef<[number, number] | null>(null);
+
+  // Escuchar acciones disparadas por comandos de voz
+  useEffect(() => {
+    const handleVoiceAction = (e: any) => {
+      const action = e.detail?.action;
+      if (action === 'toggle_3d') toggle3D();
+      else if (action === 'toggle_heatmap') toggleHeatmap();
+      else if (action === 'activate_buffer') setActiveTool('buffer');
+      else if (action === 'activate_polygon') setActiveTool('polygon');
+      else if (action === 'clear_tools') handleClearAll();
+    };
+    window.addEventListener('sogne_voice_action', handleVoiceAction);
+    return () => window.removeEventListener('sogne_voice_action', handleVoiceAction);
+  }, []);
+
+  // Escanear espacialmente activos contenidos y disparar la evaluación de riesgo con IA
+  const evaluateAreaRiskWithAI = (shapeGeoJSON: any, shapeType: string, areaMetersSq: number) => {
+    if (!map || !shapeGeoJSON) return;
+
+    let antenasCount = 0;
+    let saludCount = 0;
+    let electricoCount = 0;
+    let gasCount = 0;
+    let aguaCount = 0;
+    let cuadrantesCount = 0;
+    let conppasCount = 0;
+    let incidentesCount = 0;
+
+    const layersToScan = [
+      'antenas-digitel-layer', 'antenas-movistar-layer', 'antenas-movilnet-layer',
+      'hospitales-layer', 'cdi-layer', 'ambulatorios-layer', 'clinicas-layer',
+      'sistemas-electricos-layer', 'estaciones-gas-layer', 'estaciones-servicio-layer',
+      'agua-desalinizadoras-layer', 'agua-embalses-layer', 'agua-tanques-layer',
+      'cuadrantes-layer', 'conppas-layer', 'delitos-comunes-layer', 'concentraciones-layer'
+    ];
+
+    const activeScanLayers = layersToScan.filter(id => map.getLayer(id));
+    const features = map.queryRenderedFeatures(undefined, { layers: activeScanLayers });
+
+    features.forEach(f => {
+      if (f.geometry) {
+        let isInside = false;
+        try {
+          if (f.geometry.type === 'Point') {
+            isInside = turf.booleanPointInPolygon(f.geometry as any, shapeGeoJSON);
+          } else {
+            const bbox = turf.bbox(f);
+            const centerPt = turf.point([(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2]);
+            isInside = turf.booleanPointInPolygon(centerPt, shapeGeoJSON);
+          }
+        } catch (e) {
+          isInside = true;
+        }
+
+        if (isInside) {
+          const layerId = f.layer.id;
+          if (layerId.includes('antena')) antenasCount++;
+          else if (layerId.includes('hospital') || layerId.includes('cdi') || layerId.includes('ambulatorio') || layerId.includes('clinica')) saludCount++;
+          else if (layerId.includes('electrico')) electricoCount++;
+          else if (layerId.includes('gas') || layerId.includes('servicio')) gasCount++;
+          else if (layerId.includes('agua')) aguaCount++;
+          else if (layerId.includes('cuadrante')) cuadrantesCount++;
+          else if (layerId.includes('conppa')) conppasCount++;
+          else if (layerId.includes('delito') || layerId.includes('concentracione')) incidentesCount++;
+        }
+      }
+    });
+
+    const spatialPayload = {
+      shapeType,
+      areaKm2: areaMetersSq / 1000000,
+      antenasCount,
+      saludCount,
+      electricoCount,
+      gasCount,
+      aguaCount,
+      cuadrantesCount,
+      conppasCount,
+      incidentesCount
+    };
+
+    window.dispatchEvent(new CustomEvent('sogne_open_risk_analysis', { detail: { spatialPayload } }));
+  };
 
   // Sincronizar estado táctico global para evitar reseteos en useMapbox
   useEffect(() => {
@@ -662,6 +745,23 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             </button>
           ))}
           <span className="text-[10px] opacity-80 border-l border-white/20 pl-2">Área: {bufferArea} km²</span>
+
+          {bufferCenterRef.current && (
+            <button
+              onClick={() => {
+                if (bufferCenterRef.current) {
+                  const pt = turf.point(bufferCenterRef.current);
+                  const buf = turf.buffer(pt, bufferRadius, { units: 'kilometers' });
+                  evaluateAreaRiskWithAI(buf, `Radio de Cobertura (${bufferRadius} km)`, Number(bufferArea) * 1000000);
+                }
+              }}
+              className="ml-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 px-2 py-0.5 rounded-lg text-[10px] font-black uppercase transition-all shadow-[0_0_10px_rgba(245,158,11,0.5)] cursor-pointer flex items-center gap-1"
+              title="Evaluar vulnerabilidad espacial de esta zona con SOGNE IA"
+            >
+              <ShieldAlert size={12} />
+              <span>EVALUAR RIESGO IA</span>
+            </button>
+          )}
         </div>
       )}
 
@@ -702,6 +802,19 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
           {polygonPoints.length >= 3 && (
             <div className="flex items-center gap-1.5 ml-1 border-l border-white/20 pl-2">
+              <button
+                onClick={() => {
+                  const closedRing = [...polygonPoints, polygonPoints[0]];
+                  const poly = turf.polygon([closedRing]);
+                  evaluateAreaRiskWithAI(poly, "Polígono Trazado", totalArea);
+                }}
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 px-2 py-0.5 rounded-lg text-[10px] font-black uppercase transition-all shadow-[0_0_10px_rgba(245,158,11,0.5)] cursor-pointer flex items-center gap-1"
+                title="Evaluar vulnerabilidad espacial del área trazada con SOGNE IA"
+              >
+                <ShieldAlert size={12} />
+                <span>EVALUAR RIESGO IA</span>
+              </button>
+
               <button
                 onClick={downloadGeoJSON}
                 className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-2 py-0.5 rounded-lg text-[10px] font-black uppercase transition-all shadow-[0_0_10px_rgba(6,182,212,0.4)] cursor-pointer flex items-center gap-1"
