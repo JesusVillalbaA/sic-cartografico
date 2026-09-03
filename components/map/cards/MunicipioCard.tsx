@@ -129,6 +129,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
   const [transporteData, setTransporteData] = useState<any[]>([]);
   const [estacionesData, setEstacionesData] = useState<any[]>([]);
   const [antenasData, setAntenasData] = useState<any[]>([]);
+  const [saludLocalData, setSaludLocalData] = useState<any[]>([]);
   const [isLoadingInfra, setIsLoadingInfra] = useState<boolean>(true);
 
   // Estado del mini-modal de desglose
@@ -161,7 +162,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       .trim();
   }, [nombre]);
 
-  // Carga de todas las capas de infraestructura desde la API en memoria
+  // Carga de todas las capas de infraestructura desde la API o GeoJSON en memoria
   useEffect(() => {
     let isMounted = true;
     setIsLoadingInfra(true);
@@ -177,7 +178,11 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           estacionesRes,
           movilnetRes,
           movistarRes,
-          digitelRes
+          digitelRes,
+          hospRes,
+          clinRes,
+          cdiRes,
+          ambRes
         ] = await Promise.all([
           fetch('/api/map/capas?nombre=escuelas').then(r => r.json()).catch(() => ({ features: [] })),
           fetch('/api/map/capas?nombre=SISTEMAELECTRICONE').then(r => r.json()).catch(() => ({ features: [] })),
@@ -187,7 +192,11 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           fetch('/api/map/capas?nombre=estacionservicio').then(r => r.json()).catch(() => ({ features: [] })),
           fetch('/api/map/capas?nombre=movilnet').then(r => r.json()).catch(() => ({ features: [] })),
           fetch('/api/map/capas?nombre=movistar').then(r => r.json()).catch(() => ({ features: [] })),
-          fetch('/api/map/capas?nombre=digitel').then(r => r.json()).catch(() => ({ features: [] }))
+          fetch('/api/map/capas?nombre=digitel').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/hospitales.geojson').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/clinicas.geojson').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/cdi.geojson').then(r => r.json()).catch(() => ({ features: [] })),
+          fetch('/ambulatorios.geojson').then(r => r.json()).catch(() => ({ features: [] }))
         ]);
 
         if (isMounted) {
@@ -212,6 +221,13 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           }));
 
           setAntenasData([...movilnetFeats, ...movistarFeats, ...digitelFeats]);
+
+          const hospFeats = (hospRes.features || []).map((f: any) => ({ ...f, tipo_red: 'Hospital' }));
+          const clinFeats = (clinRes.features || []).map((f: any) => ({ ...f, tipo_red: 'Clínica' }));
+          const cdiFeats = (cdiRes.features || []).map((f: any) => ({ ...f, tipo_red: 'CDI' }));
+          const ambFeats = (ambRes.features || []).map((f: any) => ({ ...f, tipo_red: 'Ambulatorio' }));
+          setSaludLocalData([...hospFeats, ...clinFeats, ...cdiFeats, ...ambFeats]);
+
           setIsLoadingInfra(false);
         }
       } catch (e) {
@@ -224,11 +240,27 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
     return () => { isMounted = false; };
   }, []);
 
-  // Función híbrida de comprobación (Polígono Espacial + Atributos y Localidades)
+  // Función híbrida de comprobación (Atributos + Polígono Espacial + Localidades)
   const isInsideMunicipality = (item: any): boolean => {
     if (!item) return false;
+    const p = item.properties || {};
 
-    // 1. Coincidencia espacial mediante Turf (Punto dentro del Polígono del Municipio)
+    // 1. Coincidencia directa por campo municipio en las propiedades
+    const itemMun = String(p.municipio || p.MUNICIPIO || p.adm2_name || p.CityName || "")
+      .toUpperCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/MP\./g, "")
+      .replace(/MUNICIPIO/g, "")
+      .trim();
+
+    if (itemMun.length > 0) {
+      if (itemMun.includes(nomNorm) || nomNorm.includes(itemMun)) {
+        return true;
+      }
+    }
+
+    // 2. Coincidencia espacial mediante Turf (Punto dentro del Polígono del Municipio)
     if (feature?.geometry && (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon') && item.geometry?.coordinates) {
       try {
         if (item.geometry.type === 'Point') {
@@ -240,12 +272,8 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       }
     }
 
-    // 2. Coincidencia por texto en las propiedades del elemento
-    const p = item.properties || {};
+    // 3. Coincidencia por texto en la dirección, nombre o descripción
     const textValues = [
-      p.municipio,
-      p.MUNICIPIO,
-      p.CityName,
       p.address,
       p.ubicacion,
       p.sector,
@@ -256,8 +284,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       p.DIRECCION,
       p.NAME,
       p.nombre,
-      p.name,
-      p.adm2_name
+      p.name
     ].filter(Boolean).map(v => String(v).toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/MP\./g, "").trim());
 
     // Coincidencia directa del nombre del municipio
@@ -272,10 +299,68 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
     return false;
   };
 
+  // Clasificadores de precisión para la Red de Salud
+  const isHospital = (f: any) => {
+    if (f.tipo_red === 'Hospital') return true;
+    const p = f.properties || {};
+    const id = String(p.id || '').toLowerCase();
+    const name = String(p.name || p.nombre || '').toLowerCase();
+    const tipo = String(p.tipo || '').toLowerCase();
+    if (id.startsWith('hosp') || id.includes('hospital')) return true;
+    if (name.includes('hospital')) return true;
+    if (['i', 'ii', 'iii', 'iv'].includes(tipo)) return true;
+    return false;
+  };
+
+  const isClinica = (f: any) => {
+    if (f.tipo_red === 'Clínica') return true;
+    const p = f.properties || {};
+    const id = String(p.id || '').toLowerCase();
+    const name = String(p.name || p.nombre || '').toLowerCase();
+    const tipo = String(p.tipo || '').toLowerCase();
+    if (id.startsWith('clin') || id.includes('clinica')) return true;
+    if (name.includes('clinica') || name.includes('clínica') || name.includes('centro medico') || name.includes('centro médico')) return true;
+    if (tipo.includes('clin')) return true;
+    return false;
+  };
+
+  const isCDI = (f: any) => {
+    if (f.tipo_red === 'CDI') return true;
+    const p = f.properties || {};
+    const id = String(p.id || '').toLowerCase();
+    const name = String(p.name || p.nombre || '').toLowerCase();
+    const tipo = String(p.tipo || '').toLowerCase();
+    if (id.startsWith('cdi') || id.includes('cdi')) return true;
+    if (name.includes('cdi') || name.includes('diagnostico integral') || name.includes('diagnóstico integral')) return true;
+    if (tipo.includes('cdi')) return true;
+    return false;
+  };
+
+  const isAmbulatorio = (f: any) => {
+    if (f.tipo_red === 'Ambulatorio') return true;
+    const p = f.properties || {};
+    const id = String(p.id || '').toLowerCase();
+    const name = String(p.name || p.nombre || '').toLowerCase();
+    const tipo = String(p.tipo || '').toLowerCase();
+    if (id.startsWith('amb') || id.includes('ambulatorio')) return true;
+    if (name.includes('ambulatorio') || name.includes('consultorio popular') || name.includes('dispensario')) return true;
+    if (tipo.includes('amb')) return true;
+    return !isHospital(f) && !isClinica(f) && !isCDI(f);
+  };
+
   // Filtrado de Cuadrantes oficiales de este municipio
   const misCuadrantes = useMemo(() => {
     return cuadrantesMaster.filter(isInsideMunicipality);
   }, [cuadrantesMaster, nomNorm, feature]);
+
+  // Filtrado de Red Asistencial de Salud
+  const efectiveSalud = (redSaludMaster && redSaludMaster.length > 0) ? redSaludMaster : saludLocalData;
+  const saludMun = useMemo(() => efectiveSalud.filter(isInsideMunicipality), [efectiveSalud, isInsideMunicipality]);
+
+  const saludHospitales = useMemo(() => saludMun.filter(isHospital), [saludMun]);
+  const saludClinicas = useMemo(() => saludMun.filter(isClinica), [saludMun]);
+  const saludCDI = useMemo(() => saludMun.filter(isCDI), [saludMun]);
+  const saludAmbulatorios = useMemo(() => saludMun.filter(isAmbulatorio), [saludMun]);
 
   // Filtrado y agregación de infraestructura para este municipio
   const infraItems = useMemo(() => {
@@ -287,9 +372,13 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       serviciosAgua: aguaData.filter(isInsideMunicipality),
       paradas: transporteData.filter(isInsideMunicipality),
       estacionesServicio: estacionesData.filter(isInsideMunicipality),
-      antenas: antenasData.filter(isInsideMunicipality)
+      antenas: antenasData.filter(isInsideMunicipality),
+      saludHospitales,
+      saludClinicas,
+      saludCDI,
+      saludAmbulatorios
     };
-  }, [nomNorm, feature, misCuadrantes, escuelasData, electricosData, gasData, aguaData, transporteData, estacionesData, antenasData]);
+  }, [misCuadrantes, escuelasData, electricosData, gasData, aguaData, transporteData, estacionesData, antenasData, saludHospitales, saludClinicas, saludCDI, saludAmbulatorios, isInsideMunicipality]);
 
   const stats = useMemo(() => {
     // Vehículos
@@ -302,9 +391,6 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
     }) || {};
     const h = Number(rawPob.hombres) || 0;
     const m = Number(rawPob.women || rawPob.mujeres) || 0;
-
-    // Salud
-    const saludMun = redSaludMaster.filter(isInsideMunicipality);
 
     // Incidencias
     const keyInc = Object.keys(incidentesDB).find(k => {
@@ -338,10 +424,10 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       pob: { h, m, total: h + m },
       fuerza: { m: vehiculos.m, p: vehiculos.p, total: vehiculos.m + vehiculos.p },
       salud: {
-        hosp: saludMun.filter((f: any) => (f.tipo === 'hospital' || f.tipo_red === 'Hospital' || (f.properties?.tipo || '').toLowerCase().includes('hosp'))).length,
-        clin: saludMun.filter((f: any) => (f.tipo === 'clinica' || f.tipo_red === 'Clínica' || (f.properties?.tipo || '').toLowerCase().includes('clin'))).length,
-        cdi: saludMun.filter((f: any) => (f.tipo === 'cdi' || f.tipo_red === 'CDI' || (f.properties?.tipo || '').toLowerCase().includes('cdi'))).length,
-        amb: saludMun.filter((f: any) => (f.tipo === 'ambulatorio' || f.tipo_red === 'Ambulatorio' || (f.properties?.tipo || '').toLowerCase().includes('amb'))).length,
+        hosp: saludHospitales.length,
+        clin: saludClinicas.length,
+        cdi: saludCDI.length,
+        amb: saludAmbulatorios.length
       },
       inteligencia: {
         puntos: puntosLocales,
@@ -349,7 +435,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
         bandas: bandasLocales
       }
     };
-  }, [nomNorm, feature, misCuadrantes, densidadMaster, redSaludMaster, incidentesDB, traficoDB, puntosDB, personasDB, bandasDB, bandasOrganizadas, sectoresAPI, nombre]);
+  }, [nomNorm, misCuadrantes, saludHospitales, saludClinicas, saludCDI, saludAmbulatorios, densidadMaster, incidentesDB, traficoDB, puntosDB, personasDB, bandasDB, bandasOrganizadas, sectoresAPI, nombre, isInsideMunicipality]);
 
   // Lista activa para el modal según la categoría clickeada
   const activeModalData = useMemo(() => {
@@ -408,6 +494,30 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
         title = 'Infraestructura de Telecomunicaciones y Antenas';
         icon = <Radio className="text-rose-400" size={18} />;
         color = 'border-rose-500/40 text-rose-400 bg-rose-500/10';
+        break;
+      case 'hospitales':
+        items = infraItems.saludHospitales;
+        title = `Hospitales en Municipio ${nomNorm}`;
+        icon = <HeartPulse className="text-rose-400" size={18} />;
+        color = 'border-rose-500/40 text-rose-400 bg-rose-500/10';
+        break;
+      case 'clinicas':
+        items = infraItems.saludClinicas;
+        title = `Clínicas Privadas en Municipio ${nomNorm}`;
+        icon = <HeartPulse className="text-orange-400" size={18} />;
+        color = 'border-orange-500/40 text-orange-400 bg-orange-500/10';
+        break;
+      case 'cdi':
+        items = infraItems.saludCDI;
+        title = `CDI (Centros de Diagnóstico Integral) en Municipio ${nomNorm}`;
+        icon = <HeartPulse className="text-emerald-400" size={18} />;
+        color = 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10';
+        break;
+      case 'ambulatorios':
+        items = infraItems.saludAmbulatorios;
+        title = `Ambulatorios y Consultorios Populares en Municipio ${nomNorm}`;
+        icon = <HeartPulse className="text-blue-400" size={18} />;
+        color = 'border-blue-500/40 text-blue-400 bg-blue-500/10';
         break;
     }
 
@@ -847,12 +957,17 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 {[
-                  { label: 'Hospitales', val: stats.salud.hosp, bg: 'bg-rose-500/20 text-rose-400 border-rose-500/30' },
-                  { label: 'Clínicas', val: stats.salud.clin, bg: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
-                  { label: 'CDI', val: stats.salud.cdi, bg: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' },
-                  { label: 'Ambulatorio', val: stats.salud.amb, bg: 'bg-blue-500/20 text-blue-400 border-blue-500/30' }
+                  { label: 'Hospitales', val: stats.salud.hosp, catKey: 'hospitales', bg: 'bg-rose-500/20 text-rose-400 border-rose-500/30' },
+                  { label: 'Clínicas', val: stats.salud.clin, catKey: 'clinicas', bg: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
+                  { label: 'CDI', val: stats.salud.cdi, catKey: 'cdi', bg: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' },
+                  { label: 'Ambulatorio', val: stats.salud.amb, catKey: 'ambulatorios', bg: 'bg-blue-500/20 text-blue-400 border-blue-500/30' }
                 ].map((item, i) => (
-                  <div key={i} className={`${item.bg} border p-3 rounded-2xl text-center shadow-md`}>
+                  <div 
+                    key={i} 
+                    onClick={() => setModalCategory(item.catKey)}
+                    className={`${item.bg} border p-3 rounded-2xl text-center shadow-md cursor-pointer hover:scale-105 transition-all`}
+                    title={`Ver lista de ${item.label} en Municipio ${stats.nombre}`}
+                  >
                     <p className="text-xl sm:text-2xl font-black">{item.val}</p>
                     <p className="text-[9px] font-black uppercase leading-none opacity-80 mt-1">{item.label}</p>
                   </div>
