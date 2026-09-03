@@ -57,16 +57,21 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     let conppasCount = 0;
     let incidentesCount = 0;
 
-    const layersToScan = [
-      'antenas-digitel-layer', 'antenas-movistar-layer', 'antenas-movilnet-layer',
-      'hospitales-layer', 'cdi-layer', 'ambulatorios-layer', 'clinicas-layer',
-      'sistemas-electricos-layer', 'estaciones-gas-layer', 'estaciones-servicio-layer',
-      'agua-desalinizadoras-layer', 'agua-embalses-layer', 'agua-tanques-layer',
-      'cuadrantes-layer', 'conppas-layer', 'delitos-comunes-layer', 'concentraciones-layer'
-    ];
+    // Obtener dinámicamente todas las capas presentes en el mapa
+    const styleLayers = map.getStyle()?.layers || [];
+    const activeScanLayers = styleLayers
+      .map(l => l.id)
+      .filter(id => 
+        id.includes('antena') || id.includes('hospital') || id.includes('cdi') || 
+        id.includes('ambulatorio') || id.includes('clinica') || id.includes('salud') || 
+        id.includes('electr') || id.includes('gas') || id.includes('agua') || 
+        id.includes('cuadrante') || id.includes('conppa') || id.includes('incident') || 
+        id.includes('delito') || id.includes('riesgo') || id.includes('concentrac')
+      );
 
-    const activeScanLayers = layersToScan.filter(id => map.getLayer(id));
-    const features = map.queryRenderedFeatures(undefined, { layers: activeScanLayers });
+    const features = map.queryRenderedFeatures(undefined, { 
+      layers: activeScanLayers.length > 0 ? activeScanLayers : undefined 
+    });
 
     features.forEach(f => {
       if (f.geometry) {
@@ -86,13 +91,13 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         if (isInside) {
           const layerId = f.layer.id;
           if (layerId.includes('antena')) antenasCount++;
-          else if (layerId.includes('hospital') || layerId.includes('cdi') || layerId.includes('ambulatorio') || layerId.includes('clinica')) saludCount++;
-          else if (layerId.includes('electrico')) electricoCount++;
+          else if (layerId.includes('hospital') || layerId.includes('cdi') || layerId.includes('ambulatorio') || layerId.includes('clinica') || layerId.includes('salud')) saludCount++;
+          else if (layerId.includes('electr')) electricoCount++;
           else if (layerId.includes('gas') || layerId.includes('servicio')) gasCount++;
-          else if (layerId.includes('agua')) aguaCount++;
+          else if (layerId.includes('agua') || layerId.includes('embalse') || layerId.includes('pozo')) aguaCount++;
           else if (layerId.includes('cuadrante')) cuadrantesCount++;
           else if (layerId.includes('conppa')) conppasCount++;
-          else if (layerId.includes('delito') || layerId.includes('concentracione')) incidentesCount++;
+          else if (layerId.includes('delito') || layerId.includes('concentrac') || layerId.includes('incident') || layerId.includes('riesgo')) incidentesCount++;
         }
       }
     });
@@ -158,7 +163,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     });
   };
 
-  // Función para actualizar el círculo de cobertura en vivo
+  // Función para actualizar el círculo de cobertura en vivo y oscurecer el entorno
   const drawBufferCircle = React.useCallback((center: [number, number], radiusKm: number) => {
     if (!map) return;
     try {
@@ -169,6 +174,16 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       if (src && buffered) {
         src.setData({ type: 'FeatureCollection', features: [buffered] });
       }
+
+      // Oscurecer dramáticamente el entorno fuera del radio de cobertura
+      if (buffered) {
+        try {
+          const maskData = turf.mask(buffered);
+          const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
+          if (maskSrc) maskSrc.setData(maskData);
+        } catch (e) {}
+      }
+
       bringTacticalLayersToFront();
     } catch (e) {
       console.warn("Error dibujando radio de cobertura:", e);
