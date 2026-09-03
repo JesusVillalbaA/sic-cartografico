@@ -25,8 +25,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   const [bufferRadius, setBufferRadius] = useState<number>(1); // km
 
   const polygonPointsRef = React.useRef<[number, number][]>([]);
+  const measurePointsRef = React.useRef<[number, number][]>([]);
   const isPolygonFinishedRef = React.useRef(false);
   const activeToolRef = React.useRef(activeTool);
+  const bufferCenterRef = React.useRef<[number, number] | null>(null);
 
   // Sincronizar estado táctico global para evitar reseteos en useMapbox
   useEffect(() => {
@@ -39,6 +41,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   useEffect(() => {
     polygonPointsRef.current = polygonPoints;
   }, [polygonPoints]);
+
+  useEffect(() => {
+    measurePointsRef.current = measurePoints;
+  }, [measurePoints]);
 
   useEffect(() => {
     isPolygonFinishedRef.current = isPolygonFinished;
@@ -59,6 +65,39 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       }
     });
   }, [map]);
+
+  // Función para limpiar puntos duplicados consecutivos y evitar crash en turf.lineString
+  const sanitizePoints = (pts: [number, number][]): [number, number][] => {
+    return pts.filter((p, i) => {
+      if (i === 0) return true;
+      const prev = pts[i - 1];
+      return Math.abs(p[0] - prev[0]) > 0.000001 || Math.abs(p[1] - prev[1]) > 0.000001;
+    });
+  };
+
+  // Función para actualizar el círculo de cobertura en vivo
+  const drawBufferCircle = React.useCallback((center: [number, number], radiusKm: number) => {
+    if (!map) return;
+    try {
+      bufferCenterRef.current = center;
+      const point = turf.point(center);
+      const buffered = turf.buffer(point, radiusKm, { units: 'kilometers' });
+      const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
+      if (src && buffered) {
+        src.setData({ type: 'FeatureCollection', features: [buffered] });
+      }
+      bringTacticalLayersToFront();
+    } catch (e) {
+      console.warn("Error dibujando radio de cobertura:", e);
+    }
+  }, [map, bringTacticalLayersToFront]);
+
+  // Actualizar el círculo de cobertura cuando cambia el radio (0.5km, 1km, 3km, 5km, 10km)
+  useEffect(() => {
+    if (activeTool === 'buffer' && bufferCenterRef.current) {
+      drawBufferCircle(bufferCenterRef.current, bufferRadius);
+    }
+  }, [bufferRadius, activeTool, drawBufferCircle]);
 
   // Inicializar o limpiar fuentes de herramientas tácticas en el mapa
   useEffect(() => {
@@ -239,18 +278,19 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const mouseCoords: [number, number] = [e.lngLat.lng, e.lngLat.lat];
 
       if (currentTool === 'polygon' && currentPoints.length > 0 && !finished) {
-        const livePoints = [...currentPoints, mouseCoords];
+        const rawLive = [...currentPoints, mouseCoords];
+        const livePoints = sanitizePoints(rawLive);
         const pointFeatures = currentPoints.map(p => turf.point(p));
         pointFeatures.push(turf.point(mouseCoords));
         const features: any[] = [...pointFeatures];
 
-        // SIEMPRE añadir la línea neón que une todos los puntos con el cursor del ratón
         if (livePoints.length >= 2) {
-          const line = turf.lineString(livePoints);
-          features.push(line);
+          try {
+            const line = turf.lineString(livePoints);
+            features.push(line);
+          } catch(e){}
         }
 
-        // Si hay 3 o más puntos, calcular área sin dibujar relleno
         if (livePoints.length >= 3) {
           try {
             const closedRing = [...livePoints, livePoints[0]];
@@ -263,16 +303,21 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         const src = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
         if (src) src.setData({ type: 'FeatureCollection', features });
 
-      } else if (currentTool === 'measure' && measurePoints.length > 0) {
-        const livePoints = [...measurePoints, mouseCoords];
-        const pointFeatures = measurePoints.map(p => turf.point(p));
+      } else if (currentTool === 'measure' && measurePointsRef.current.length > 0) {
+        const rawLive = [...measurePointsRef.current, mouseCoords];
+        const livePoints = sanitizePoints(rawLive);
+        const pointFeatures = measurePointsRef.current.map(p => turf.point(p));
         pointFeatures.push(turf.point(mouseCoords));
         const features: any[] = [...pointFeatures];
 
-        const line = turf.lineString(livePoints);
-        features.push(line);
-        const dist = turf.length(line, { units: 'kilometers' });
-        setTotalDistance(dist);
+        if (livePoints.length >= 2) {
+          try {
+            const line = turf.lineString(livePoints);
+            features.push(line);
+            const dist = turf.length(line, { units: 'kilometers' });
+            setTotalDistance(dist);
+          } catch(e){}
+        }
 
         const src = map.getSource('tactical-measure-source') as mapboxgl.GeoJSONSource;
         if (src) src.setData({ type: 'FeatureCollection', features });
@@ -285,17 +330,21 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const finished = isPolygonFinishedRef.current;
 
       if (currentTool === 'measure') {
-        const newPoints = [...measurePoints, coords];
+        const rawNew = [...measurePointsRef.current, coords];
+        const newPoints = sanitizePoints(rawNew);
         setMeasurePoints(newPoints);
+        measurePointsRef.current = newPoints;
 
         const pointsFeatures = newPoints.map(p => turf.point(p));
         const features: any[] = [...pointsFeatures];
 
-        if (newPoints.length > 1) {
-          const line = turf.lineString(newPoints);
-          features.push(line);
-          const dist = turf.length(line, { units: 'kilometers' });
-          setTotalDistance(dist);
+        if (newPoints.length >= 2) {
+          try {
+            const line = turf.lineString(newPoints);
+            features.push(line);
+            const dist = turf.length(line, { units: 'kilometers' });
+            setTotalDistance(dist);
+          } catch(e){}
         } else {
           setTotalDistance(0);
         }
@@ -305,13 +354,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         bringTacticalLayersToFront();
 
       } else if (currentTool === 'buffer') {
-        const point = turf.point(coords);
-        const buffered = turf.buffer(point, bufferRadius, { units: 'kilometers' });
-        const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
-        if (src && buffered) {
-          src.setData({ type: 'FeatureCollection', features: [buffered] });
-        }
-        bringTacticalLayersToFront();
+        drawBufferCircle(coords, bufferRadius);
 
       } else if (currentTool === 'polygon') {
         if (finished) {
@@ -327,7 +370,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           const src = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
           if (src) src.setData({ type: 'FeatureCollection', features: [turf.point(coords)] });
         } else {
-          const newPoints = [...polygonPointsRef.current, coords];
+          const rawNew = [...polygonPointsRef.current, coords];
+          const newPoints = sanitizePoints(rawNew);
           setPolygonPoints(newPoints);
           polygonPointsRef.current = newPoints;
 
@@ -335,7 +379,9 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           const features: any[] = [...pointFeatures];
 
           if (newPoints.length >= 2) {
-            features.push(turf.lineString(newPoints));
+            try {
+              features.push(turf.lineString(newPoints));
+            } catch(e){}
           }
           if (newPoints.length >= 3) {
             try {
@@ -353,7 +399,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     };
 
     const finishPolygon = () => {
-      const currentPoints = polygonPointsRef.current;
+      const rawPoints = polygonPointsRef.current;
+      const currentPoints = sanitizePoints(rawPoints);
       if (currentPoints.length < 3) return;
       setIsPolygonFinished(true);
       isPolygonFinishedRef.current = true;
@@ -410,7 +457,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       if (map.getCanvas()) map.getCanvas().style.cursor = '';
       if (map.doubleClickZoom) map.doubleClickZoom.enable();
     };
-  }, [map, activeTool, measurePoints, bufferRadius, bringTacticalLayersToFront, isPolygonFinished]);
+  }, [map, activeTool, bringTacticalLayersToFront, drawBufferCircle, bufferRadius]);
 
   // Si hay elementos seleccionados y la herramienta buffer está activa
   useEffect(() => {
@@ -426,16 +473,13 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           center = [(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2];
         }
         if (center) {
-          const point = turf.point(center);
-          const buffered = turf.buffer(point, bufferRadius, { units: 'kilometers' });
-          const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
-          if (src && buffered) src.setData({ type: 'FeatureCollection', features: [buffered] });
+          drawBufferCircle(center, bufferRadius);
         }
       } catch (e) {
         console.warn("Error generando cobertura:", e);
       }
     }
-  }, [map, activeTool, bufferRadius, selectedFeatures]);
+  }, [map, activeTool, bufferRadius, selectedFeatures, drawBufferCircle]);
 
   const handleClearAll = () => {
     setActiveTool('none');
