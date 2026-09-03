@@ -22,20 +22,26 @@ const TACTICAL_MESSAGES = [
 export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({ 
   isLoading, 
   theme = 'dark',
+  progress: externalProgress,
   statusMessage: externalMessage
 }) => {
-  const [percent, setPercent] = useState<number>(1);
+  const [percent, setPercent] = useState<number>(5);
   const [msgIndex, setMsgIndex] = useState<number>(0);
   const [shouldRender, setShouldRender] = useState<boolean>(true);
   const [isFadingOut, setIsFadingOut] = useState<boolean>(false);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
-  const percentRef = useRef<number>(1);
-  const isLoadingRef = useRef<boolean>(isLoading);
+  const percentRef = useRef<number>(5);
+  const targetPercentRef = useRef<number>(externalProgress || 20);
 
+  // Sincronizar el progreso real objetivo enviado por Mapbox
   useEffect(() => {
-    isLoadingRef.current = isLoading;
-  }, [isLoading]);
+    if (!isLoading) {
+      targetPercentRef.current = 100;
+    } else if (externalProgress) {
+      targetPercentRef.current = Math.max(targetPercentRef.current, externalProgress);
+    }
+  }, [isLoading, externalProgress]);
 
   // Rotar mensajes tácticos informativos cada 1.8 segundos
   useEffect(() => {
@@ -46,54 +52,42 @@ export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({
     return () => clearInterval(interval);
   }, [isLoading]);
 
-  // Contador constante y fluido 1%, 2%, 3%, 4% ... n% -> 100% (Sin congelarse en 99%)
+  // Motor de interpolación continuo a 60 FPS (Sin congelarse NUNCA en un número estático)
   useEffect(() => {
-    let timer: NodeJS.Timeout | null = null;
+    let animFrame: number;
 
-    const runTicker = () => {
-      // Si el mapa ya terminó de cargar, avanzar velozmente al 100%
-      if (!isLoadingRef.current) {
-        if (percentRef.current < 100) {
-          percentRef.current = Math.min(100, percentRef.current + 2);
-          setPercent(percentRef.current);
-          timer = setTimeout(runTicker, 12); // Barrido rápido y constante hasta 100%
-        } else {
-          setPercent(100);
-          setIsCompleted(true);
-          // Confirmación visual al 100% y desvanecimiento suave
-          setTimeout(() => {
-            setIsFadingOut(true);
-            setTimeout(() => setShouldRender(false), 400);
-          }, 300);
-        }
+    const updateFrame = () => {
+      const current = percentRef.current;
+      const target = targetPercentRef.current;
+
+      if (current < target) {
+        // Avance fluido proporcional a la distancia del objetivo
+        const diff = target - current;
+        const speed = Math.max(0.3, Math.min(1.8, diff * 0.1));
+        const next = Math.min(target, current + speed);
+        percentRef.current = next;
+        setPercent(Math.floor(next));
+      } else if (current < 95 && isLoading) {
+        // Si el mapa aún está descargando capas, avanzar suavemente en micro-pasos para no congelar el número
+        const next = current + 0.04;
+        percentRef.current = next;
+        setPercent(Math.floor(next));
+      } else if (current >= 100 && !isCompleted) {
+        setPercent(100);
+        setIsCompleted(true);
+        setTimeout(() => {
+          setIsFadingOut(true);
+          setTimeout(() => setShouldRender(false), 450);
+        }, 350);
         return;
       }
 
-      // Si el mapa aún está cargando: avance progresivo sin detenerse en 99%
-      if (percentRef.current < 99) {
-        percentRef.current += 1;
-        setPercent(percentRef.current);
-
-        // Velocidad graduada fluida
-        let delay = 35; // 1% a 50%
-        if (percentRef.current > 50 && percentRef.current <= 75) delay = 55;
-        if (percentRef.current > 75 && percentRef.current <= 88) delay = 90;
-        if (percentRef.current > 88 && percentRef.current <= 95) delay = 180;
-        if (percentRef.current > 95 && percentRef.current < 99) delay = 450;
-
-        timer = setTimeout(runTicker, delay);
-      } else {
-        // En 99%, continuar avanzando suavemente en micro-pasos para no dar sensación de estar pegado
-        timer = setTimeout(runTicker, 300);
-      }
+      animFrame = requestAnimationFrame(updateFrame);
     };
 
-    timer = setTimeout(runTicker, 30);
-
-    return () => {
-      if (timer) clearTimeout(timer);
-    };
-  }, [isLoading]);
+    animFrame = requestAnimationFrame(updateFrame);
+    return () => cancelAnimationFrame(animFrame);
+  }, [isLoading, isCompleted]);
 
   if (!shouldRender) return null;
 
