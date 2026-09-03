@@ -1,19 +1,83 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MenuLogo } from './MenuLogo';
 import { MenuItem } from './MenuItem';
-import { ChevronDown, KeyRound, Sun, Moon } from 'lucide-react';
+import { ChevronDown, KeyRound, Sun, Moon, FileCode, Trash2, Layers, Globe } from 'lucide-react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ModalExito, ModalError, ModalCarga, ModalAccesoDenegado } from './ModalsBasicos';
 import { ModalCrearUsuario } from './ModalCrearUsuario';
 import { ModalGenerarCodigo } from './ModalGenerarCodigo';
+import { ModalExportarPDF } from './ModalExportarPDF';
+import { ModalGeoJsonEditor } from './ModalGeoJsonEditor';
 
 export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, isMobileMenuOpen, setIsMobileMenuOpen }: any) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showModalUsuario, setShowModalUsuario] = useState(false);
   const [showAccesoDenegado, setShowAccesoDenegado] = useState(false);
+  const [showModalExportPDF, setShowModalExportPDF] = useState(false);
+  const [showModalGisEditor, setShowModalGisEditor] = useState(false);
+  const [customModules, setCustomModules] = useState<any[]>([]);
+  const [activeCustomModules, setActiveCustomModules] = useState<Record<string, boolean>>({});
+
+  const fetchCustomModules = async () => {
+    try {
+      const res = await fetch('/api/map/custom-modules');
+      if (res.ok) {
+        const data = await res.json();
+        setCustomModules(data || []);
+      }
+    } catch (err) {
+      console.warn('Error obteniendo módulos personalizados:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchCustomModules();
+  }, []);
+
+  const handlePreviewOnMap = (geojson: any, bbox: number[] | null) => {
+    if (typeof window !== 'undefined' && (window as any)._previewGisGeojson) {
+      (window as any)._previewGisGeojson(geojson, bbox);
+    }
+  };
+
+  const handleToggleCustomModule = (mod: any) => {
+    const isNextActive = !activeCustomModules[mod.id];
+    setActiveCustomModules(prev => ({ ...prev, [mod.id]: isNextActive }));
+    if (typeof window !== 'undefined' && (window as any)._toggleCustomModule) {
+      (window as any)._toggleCustomModule(mod, isNextActive);
+    }
+  };
+
+  const [moduleToDelete, setModuleToDelete] = useState<any | null>(null);
+
+  const confirmDeleteCustomModule = async () => {
+    if (!moduleToDelete) return;
+    const { id, name } = moduleToDelete;
+    try {
+      if (typeof window !== 'undefined' && (window as any)._toggleCustomModule) {
+        (window as any)._toggleCustomModule(moduleToDelete, false);
+      }
+      setActiveCustomModules(prev => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
+
+      const res = await fetch(`/api/map/custom-modules?id=${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        showExitoModal(`Módulo "${name}" eliminado exitosamente del proyecto.`);
+        setModuleToDelete(null);
+        fetchCustomModules();
+      } else {
+        throw new Error('No se pudo eliminar');
+      }
+    } catch (err) {
+      showErrorModal('Error al eliminar el módulo del proyecto.');
+    }
+  };
   
   const [showExito, setShowExito] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -94,15 +158,26 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
       doc.rect(0, 0, pageWidth, 40, 'F');
       
       try {
-        const logo = await loadImage('/logo.png');
-        doc.addImage(logo, 'PNG', 15, 10, 20, 20);
-      } catch (e) { console.warn("Logo no disponible"); }
+        const logo = await loadImage('/Municipios.png');
+        // Dibujar insignia de carga en el PDF (aro cyan + fondo blanco + logo)
+        doc.setFillColor(6, 182, 212);
+        doc.circle(22, 20, 11, 'F');
+        doc.setFillColor(255, 255, 255);
+        doc.circle(22, 20, 10, 'F');
+        doc.addImage(logo, 'PNG', 15, 13, 14, 14);
+      } catch (e) {
+        try {
+          const logoAlt = await loadImage('/logo.png');
+          doc.addImage(logoAlt, 'PNG', 15, 10, 20, 20);
+        } catch (err) { console.warn("Logo no disponible"); }
+      }
 
       doc.setTextColor(255, 255, 255);
-      doc.setFontSize(20);
-      doc.text("SOGNE", 40, 22);
-      doc.setFontSize(10);
-      doc.text("REPORTE OPERATIVO - ESTADO NUEVA ESPARTA", 40, 30);
+      doc.setFontSize(18);
+      doc.text("SOGNE REDIMAIN", 40, 22);
+      doc.setFontSize(9);
+      doc.setTextColor(186, 230, 253);
+      doc.text("REPORTE OPERATIVO • ESTADO NUEVA ESPARTA", 40, 30);
 
       if (mapRef?.current) {
         // Obtenemos el canvas original de Mapbox
@@ -159,7 +234,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
       const panelContent = document.getElementById('analysis-panel-content');
       if (panelContent && panelContent.innerText.trim().length > 0) {
         // Limpiamos un poco el texto (quitar botones '✕', saltos excesivos)
-        let text = panelContent.innerText
+        const text = panelContent.innerText
           .replace(/✕/g, '')
           .replace(/\n\s*\n/g, '\n')
           .trim();
@@ -566,35 +641,31 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
             {/* ==================== CONPPAS (SECTOR PESQUERO) ==================== */}
             <div className="space-y-3">
               <button 
-                onClick={() => isMenuOpen && setShowConppas(!showConppas)} 
-                className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showConppas ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}
+                onClick={() => onToggle('conppas')} 
+                className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${layersVisible.conppas ? 'bg-cyan-500/15 border border-cyan-500/30 shadow-xl' : 'hover:bg-white/5'}`}
               >
                 <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
-                  <img src="/hidrografia.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="CONPPAS" />
+                  <img src="/conppa.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="CONPPAS" />
                 </div>
                 {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
                     <div className="flex flex-col text-left">
-                      <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>CONPPAS</span>
-                      <span className="text-[9px] font-bold text-cyan-400 font-mono tracking-wider">PESCA Y ACUICULTURA</span>
+                      <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${layersVisible.conppas ? 'text-cyan-400' : (theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white')}`}>CONPPAS</span>
+                      {layersVisible.conppas && (
+                        <span className="text-[9px] font-bold text-cyan-400 font-mono tracking-wider animate-in fade-in slide-in-from-top-1 duration-300">
+                          PESCA Y ACUICULTURA
+                        </span>
+                      )}
                     </div>
-                    <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showConppas ? 'rotate-180' : ''}`} />
+                    {layersVisible.conppas && (
+                      <span className="flex h-2.5 w-2.5 relative shrink-0">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+                      </span>
+                    )}
                   </div>
                 )}
               </button>
-              {isMenuOpen && showConppas && (
-                <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2 animate-in slide-in-from-top-4 fade-in duration-500">
-                  <MenuItem 
-                    theme={theme} 
-                    iconSrc="/hidrografia.png" 
-                    label="PUERTOS Y CONPPAS (52)" 
-                    active={layersVisible.conppas} 
-                    accentColor="#06b6d4" 
-                    isHovered={isMenuOpen} 
-                    onClick={() => onToggle('conppas')} 
-                  />
-                </div>
-              )}
             </div>
 
             <div className="px-6"><hr className="border-white/10" /></div>
@@ -616,7 +687,49 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   <MenuItem theme={theme} iconSrc="/usuario.png" label="CREAR USUARIO" active={showModalUsuario} accentColor="#10b981" isHovered={isMenuOpen} onClick={handleOpenCrearUsuario} />
                   <MenuItem theme={theme} iconSrc="/codigo.png" label="GENERAR CÓDIGO" active={layersVisible.generarClave} accentColor="#06b6d4" isHovered={isMenuOpen} onClick={() => { if (userRol === 'REDES') onToggle('generarClave'); else setShowAccesoDenegado(true); }} />
-                  <MenuItem theme={theme} iconSrc="/pdf.png" label={isGenerating ? "SINCRONIZANDO..." : "GENERAR REPORTE"} active={false} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={handleGeneratePDF} />
+                  <MenuItem theme={theme} iconSrc="/pdf.png" label={isGenerating ? "SINCRONIZANDO..." : "GENERAR REPORTE"} active={false} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => setShowModalExportPDF(true)} />
+                  <MenuItem theme={theme} iconSrc="/cuadrantes.png" label="IMPORTADOR GIS (GEOJSON.IO)" active={showModalGisEditor} accentColor="#00f0ff" isHovered={isMenuOpen} onClick={() => setShowModalGisEditor(true)} />
+
+                  {/* Lista de Módulos Personalizados Creados por el Usuario */}
+                  {customModules.length > 0 && (
+                    <div className="pt-3 border-t border-white/10 space-y-2">
+                      <div className="text-[10px] font-black uppercase text-cyan-400 tracking-widest flex items-center gap-1.5">
+                        <Layers size={12} />
+                        <span>Módulos de Usuario ({customModules.length})</span>
+                      </div>
+                      {customModules.map((mod: any) => {
+                        const isActive = !!activeCustomModules[mod.id];
+                        return (
+                          <div key={mod.id} className={`flex items-center justify-between p-2 rounded-xl border transition-all ${isActive ? 'bg-cyan-500/15 border-cyan-500/40 shadow-sm' : 'bg-white/5 border-white/5 hover:bg-white/10'}`}>
+                            <button
+                              onClick={() => handleToggleCustomModule(mod)}
+                              className="flex-1 flex items-center gap-2 text-left min-w-0"
+                            >
+                              <span
+                                className="w-3 h-3 rounded-full shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.4)]"
+                                style={{ backgroundColor: mod.color || '#06b6d4' }}
+                              />
+                              <div className="truncate">
+                                <span className={`text-[11px] font-bold block truncate ${isActive ? 'text-cyan-300' : 'text-slate-300'}`}>
+                                  {mod.name}
+                                </span>
+                                <span className="text-[9px] text-slate-400 font-mono block">
+                                  {mod.featuresCount || 0} elem • {mod.category}
+                                </span>
+                              </div>
+                            </button>
+                            <button
+                              onClick={() => setModuleToDelete(mod)}
+                              className="text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+                              title="Eliminar módulo del proyecto"
+                            >
+                              <Trash2 size={13} />
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -660,6 +773,64 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         isOpen={!!layersVisible.generarClave} 
         onClose={() => onToggle('generarClave')} 
       />
+      <ModalExportarPDF
+        isOpen={showModalExportPDF}
+        onClose={() => setShowModalExportPDF(false)}
+        onGenerateGeneralPDF={handleGeneratePDF}
+        mapRef={mapRef}
+      />
+      <ModalGeoJsonEditor
+        isOpen={showModalGisEditor}
+        onClose={() => setShowModalGisEditor(false)}
+        onPreviewOnMap={handlePreviewOnMap}
+        onModuleCreated={fetchCustomModules}
+        showExitoModal={showExitoModal}
+        showErrorModal={showErrorModal}
+      />
+
+      {/* Modal de Doble Confirmación para Eliminar un Módulo */}
+      {moduleToDelete && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="w-full max-w-md bg-slate-900 border-2 border-red-500/50 rounded-3xl p-6 space-y-5 shadow-[0_0_50px_rgba(239,68,68,0.3)] text-slate-100">
+            <div className="flex items-center gap-3 border-b border-white/10 pb-3">
+              <div className="w-10 h-10 rounded-2xl bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center">
+                <Trash2 size={20} />
+              </div>
+              <div>
+                <h3 className="text-sm font-black uppercase text-red-400 tracking-wider">
+                  ELIMINAR MÓDULO DEL PROYECTO
+                </h3>
+                <p className="text-[10px] text-slate-400 font-mono">
+                  Esta acción desinstalará la capa del sistema SOGNE
+                </p>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-300 font-mono leading-relaxed">
+              ¿Estás seguro de que deseas eliminar permanentemente el módulo <strong className="text-white">"{moduleToDelete.name}"</strong>?
+              <br />
+              <span className="text-slate-400 text-[11px] block mt-2">
+                Se borrará el archivo <code>{moduleToDelete.id}.geojson</code> del proyecto y se removerá del menú.
+              </span>
+            </p>
+
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                onClick={() => setModuleToDelete(null)}
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={confirmDeleteCustomModule}
+                className="px-5 py-2.5 rounded-xl bg-red-500 hover:bg-red-400 text-white font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all cursor-pointer"
+              >
+                Sí, Eliminar Módulo
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

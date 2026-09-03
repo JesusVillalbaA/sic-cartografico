@@ -10,17 +10,21 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || '';
 const fetchAndSetData = async (map: mapboxgl.Map | null | undefined, sourceId: string, url: string) => {
   if (!map) return;
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const geojson = await response.json();
+    const response = await fetch(url).catch(() => null);
+    if (!response || !response.ok) {
+      if (response) console.warn(`[SIGDI] Capa ${sourceId} retorno HTTP ${response.status}`);
+      return;
+    }
+    const geojson = await response.json().catch(() => null);
+    if (!geojson) return;
+    
     // Re-check after async: map may have been destroyed during fetch
     if (!map || typeof map.getSource !== 'function' || !map.getStyle()) return;
     const source = map.getSource(sourceId) as mapboxgl.GeoJSONSource;
     if (source) source.setData(geojson);
   } catch (err) {
-    // Silently ignore if map was removed (e.g. theme change triggers remount)
     if (err instanceof Error && err.message.includes('removed')) return;
-    console.error(`[SIGDI] Error cargando ${sourceId} desde ${url}:`, err);
+    console.warn(`[SIGDI] No se pudieron cargar los datos de ${sourceId} desde ${url}`);
   }
 };
 
@@ -55,7 +59,9 @@ export const useMapbox = (
       fadeDuration: 0,
       minZoom: 7,
       maxZoom: 19,
-      dragRotate: false,
+      dragRotate: true,
+      pitchWithRotate: true,
+      touchPitch: true,
       trackResize: true,
       preserveDrawingBuffer: true
     });
@@ -66,6 +72,9 @@ export const useMapbox = (
 
     m.on('load', async () => {
       map.current = m;
+      if (typeof window !== 'undefined') {
+        (window as any)._mapboxMapInstance = m;
+      }
       setLoadingStage({ progress: 80, message: 'Montando 68 Cuadrantes de Paz y división territorial...' });
 
       // Ocultar capas de salud del basemap
@@ -104,6 +113,104 @@ export const useMapbox = (
         m.addSource(`${res.id}-source`, { type: 'geojson', data: res.src, generateId: true });
       });
 
+      // ── FUENTE DE PREVISUALIZACIÓN GIS (geojson.io) ─────────────────────────
+      m.addSource('imported-preview-source', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+
+      m.addLayer({
+        id: 'imported-preview-fill',
+        type: 'fill',
+        source: 'imported-preview-source',
+        filter: ['match', ['geometry-type'], ['Polygon', 'MultiPolygon'], true, false],
+        paint: { 'fill-color': '#06b6d4', 'fill-opacity': 0.45, 'fill-outline-color': '#00f0ff' }
+      });
+      m.addLayer({
+        id: 'imported-preview-line',
+        type: 'line',
+        source: 'imported-preview-source',
+        filter: ['match', ['geometry-type'], ['LineString', 'MultiLineString'], true, false],
+        paint: { 'line-color': '#00f0ff', 'line-width': 3.5 }
+      });
+      m.addLayer({
+        id: 'imported-preview-circle',
+        type: 'circle',
+        source: 'imported-preview-source',
+        filter: ['match', ['geometry-type'], ['Point', 'MultiPoint'], true, false],
+        paint: { 'circle-radius': 8, 'circle-color': '#00f0ff', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff' }
+      });
+
+      // Métodos globales en window para interactuar con la Estación GIS y Módulos
+      if (typeof window !== 'undefined') {
+        (window as any)._previewGisGeojson = (geojson: any, bbox: number[] | null) => {
+          if (!map.current) return;
+          const source = map.current.getSource('imported-preview-source') as mapboxgl.GeoJSONSource;
+          if (source) {
+            source.setData(geojson || { type: 'FeatureCollection', features: [] });
+          }
+          if (bbox && bbox.length === 4 && bbox.every(n => isFinite(n))) {
+            map.current.fitBounds(bbox as [number, number, number, number], { padding: 80, maxZoom: 16, duration: 1500 });
+          }
+        };
+
+        (window as any)._toggleCustomModule = async (mod: any, isVisible: boolean) => {
+          const mc = map.current;
+          if (!mc) return;
+          const sourceId = `custom-mod-${mod.id}-source`;
+          const fillLayerId = `custom-mod-${mod.id}-fill`;
+          const lineLayerId = `custom-mod-${mod.id}-line`;
+          const circleLayerId = `custom-mod-${mod.id}-circle`;
+
+          if (!isVisible) {
+            if (mc.getLayer(fillLayerId)) mc.setLayoutProperty(fillLayerId, 'visibility', 'none');
+            if (mc.getLayer(lineLayerId)) mc.setLayoutProperty(lineLayerId, 'visibility', 'none');
+            if (mc.getLayer(circleLayerId)) mc.setLayoutProperty(circleLayerId, 'visibility', 'none');
+            return;
+          }
+
+          if (!mc.getSource(sourceId)) {
+            const res = await fetch(mod.geojsonUrl).catch(() => null);
+            if (!res || !res.ok) return;
+            const geojson = await res.json().catch(() => null);
+            if (!geojson) return;
+
+            mc.addSource(sourceId, { type: 'geojson', data: geojson });
+            const col = mod.color || '#06b6d4';
+
+            mc.addLayer({
+              id: fillLayerId,
+              type: 'fill',
+              source: sourceId,
+              filter: ['match', ['geometry-type'], ['Polygon', 'MultiPolygon'], true, false],
+              paint: { 'fill-color': col, 'fill-opacity': 0.45, 'fill-outline-color': '#ffffff' }
+            });
+            mc.addLayer({
+              id: lineLayerId,
+              type: 'line',
+              source: sourceId,
+              filter: ['match', ['geometry-type'], ['LineString', 'MultiLineString'], true, false],
+              paint: { 'line-color': col, 'line-width': 3 }
+            });
+            mc.addLayer({
+              id: circleLayerId,
+              type: 'circle',
+              source: sourceId,
+              filter: ['match', ['geometry-type'], ['Point', 'MultiPoint'], true, false],
+              paint: { 'circle-radius': 7, 'circle-color': col, 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff' }
+            });
+
+            try {
+              const bbox = turf.bbox(geojson);
+              if (bbox && bbox.every(n => isFinite(n))) {
+                mc.fitBounds(bbox as [number, number, number, number], { padding: 80, maxZoom: 16, duration: 1500 });
+              }
+            } catch (err) {}
+          } else {
+            if (mc.getLayer(fillLayerId)) mc.setLayoutProperty(fillLayerId, 'visibility', 'visible');
+            if (mc.getLayer(lineLayerId)) mc.setLayoutProperty(lineLayerId, 'visibility', 'visible');
+            if (mc.getLayer(circleLayerId)) mc.setLayoutProperty(circleLayerId, 'visibility', 'visible');
+          }
+        };
+      }
+
       // ── FUENTES DINÁMICAS (Supabase via API) ──────────────────────────────
       const empty: any = { type: 'FeatureCollection', features: [] };
       m.addSource('incidencias-riesgo',       { type: 'geojson', data: empty });
@@ -127,6 +234,76 @@ export const useMapbox = (
           if (src) src.setData({ type: 'FeatureCollection', features: polygons });
         })
         .catch(err => console.error('Error IAPOLENE:', err));
+
+      // ── CONFIGURACIÓN DE TERRENO Y EDIFICIOS EN 3D ───────────────────────
+      try {
+        if (!m.getSource('mapbox-dem')) {
+          m.addSource('mapbox-dem', {
+            type: 'raster-dem',
+            url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+            tileSize: 512,
+            maxzoom: 14
+          });
+        }
+        m.setTerrain({ source: 'mapbox-dem', exaggeration: 1.25 });
+      } catch (err) {
+        console.warn('[SIGDI] No se pudo cargar el mapa de elevación 3D DEM:', err);
+      }
+
+      // Capa de Extrusión 3D de Casas y Edificaciones
+      try {
+        if (!m.getLayer('3d-buildings')) {
+          const layers = m.getStyle().layers;
+          let labelLayerId: string | undefined;
+          for (let i = 0; i < layers.length; i++) {
+            const layer = layers[i] as any;
+            if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
+              labelLayerId = layer.id;
+              break;
+            }
+          }
+
+          m.addLayer(
+            {
+              id: '3d-buildings',
+              source: 'composite',
+              'source-layer': 'building',
+              filter: ['==', 'extrude', 'true'],
+              type: 'fill-extrusion',
+              minzoom: 14,
+              paint: {
+                'fill-extrusion-color': [
+                  'interpolate',
+                  ['linear'],
+                  ['get', 'height'],
+                  0, '#1e293b',
+                  15, '#0f172a',
+                  35, '#0284c7',
+                  70, '#06b6d4'
+                ],
+                'fill-extrusion-height': [
+                  'interpolate',
+                  ['linear'],
+                  ['zoom'],
+                  14, 0,
+                  14.5, ['get', 'height']
+                ],
+                'fill-extrusion-base': [
+                  'interpolate',
+                  ['linear'],
+                  ['zoom'],
+                  14, 0,
+                  14.5, ['get', 'min_height']
+                ],
+                'fill-extrusion-opacity': 0.85
+              }
+            },
+            labelLayerId
+          );
+        }
+      } catch (err) {
+        console.warn('[SIGDI] No se pudo agregar la capa 3d-buildings:', err);
+      }
 
       // ── CAPAS ─────────────────────────────────────────────────────────────
 
@@ -203,7 +380,7 @@ export const useMapbox = (
         { id: 'icon-actores', url: '/actor.png' },
         { id: 'icon-bandas', url: '/banda.png' },
         { id: 'icon-puntos-interes', url: '/punto.png' },
-        { id: 'icon-conppas', url: '/hidrografia.png' }
+        { id: 'icon-conppas', url: '/conppa.png' }
       ];
       customIcons.forEach(icon => {
         m.loadImage(icon.url, (error, image) => {
@@ -219,7 +396,7 @@ export const useMapbox = (
       // Recursos salud e infraestructura
       RECURSOS_SALUD.forEach(res => {
         m.addLayer({ id: `${res.id}-layer`, type: 'circle', source: `${res.id}-source`, layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': res.color, 'circle-opacity': 1 } });
-        m.addLayer({ id: `${res.id}-icons`, type: 'symbol', source: `${res.id}-source`, layout: { visibility: 'none', 'icon-image': `icon-${res.id}`, 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': res.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+        m.addLayer({ id: `${res.id}-icons`, type: 'symbol', source: `${res.id}-source`, layout: { visibility: 'none', 'icon-image': `icon-${res.id}`, 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': res.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
       });
       RECURSOS_INFRAESTRUCTURA.forEach(res => {
         if (res.type === 'line') {
@@ -227,7 +404,7 @@ export const useMapbox = (
         } else {
           m.addLayer({ id: `${res.id}-layer`, type: 'circle', source: `${res.id}-source`, layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': res.color, 'circle-opacity': 1 } });
           const iconId = res.id === 'escuelas' ? 'icon-escuelas' : 'icon-estaciones';
-          m.addLayer({ id: `${res.id}-icons`, type: 'symbol', source: `${res.id}-source`, layout: { visibility: 'none', 'icon-image': iconId, 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['coalesce', ['get', 'nombre'], ['get', 'NAME']], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': res.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+          m.addLayer({ id: `${res.id}-icons`, type: 'symbol', source: `${res.id}-source`, layout: { visibility: 'none', 'icon-image': iconId, 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['coalesce', ['get', 'nombre'], ['get', 'NAME']], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': res.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
         }
       });
 
@@ -236,7 +413,7 @@ export const useMapbox = (
       m.addLayer({ id: 'parroquias-line', type: 'line', source: 'parroquias-source', filter: ['==', ['get', 'adm1_name'], 'Nueva Esparta'], layout: { visibility: 'none' }, paint: { 'line-color': '#ff00ff', 'line-width': 2, 'line-opacity': 0.8 } });
       m.addLayer({ id: 'vialidad-layer',  type: 'line', source: 'vialidad-source',   layout: { visibility: 'none' }, paint: { 'line-color': '#adff2f', 'line-width': 2.5, 'line-opacity': 0.9 } });
       m.addLayer({ id: 'estaciones-layer',  type: 'circle', source: 'estaciones-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': ['match', ['get', 'TIPO_SERVICIO'], 'Marítima', '#0ea5e9', '#ff4500'], 'circle-opacity': 1 } });
-      m.addLayer({ id: 'estaciones-labels', type: 'symbol', source: 'estaciones-source', layout: { visibility: 'none', 'icon-image': 'icon-estaciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'NAME'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': ['match', ['get', 'TIPO_SERVICIO'], 'Marítima', '#0ea5e9', '#ff4500'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'estaciones-labels', type: 'symbol', source: 'estaciones-source', layout: { visibility: 'none', 'icon-image': 'icon-estaciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'NAME'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': ['match', ['get', 'TIPO_SERVICIO'], 'Marítima', '#0ea5e9', '#ff4500'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
       // TRANSPORTE
       m.addLayer({ id: 'transporte-layer',  type: 'circle', source: 'transporte-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': ['match', ['get', 'tipo'], 'Terminal Principal', '#6366f1', 'Terminal de Autobuses', '#6366f1', 'Histórico / Antiguo Terminal', '#6366f1', '#0ea5e9'], 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
       m.addLayer({ id: 'transporte-labels', type: 'symbol', source: 'transporte-source', layout: { visibility: 'none', 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'], 'text-size': 10, 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true }, paint: { 'text-color': ['match', ['get', 'tipo'], 'Terminal Principal', '#6366f1', 'Terminal de Autobuses', '#6366f1', 'Histórico / Antiguo Terminal', '#6366f1', '#0ea5e9'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
@@ -244,7 +421,7 @@ export const useMapbox = (
       // CONPPAS (Sector Pesquero - 52 Puertos y Comunidades)
       m.addLayer({ id: 'conppas-glow',   type: 'circle', source: 'conppas-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 18, 'circle-color': '#06b6d4', 'circle-blur': 1.6, 'circle-opacity': 0.6 } });
       m.addLayer({ id: 'conppas-layer',  type: 'circle', source: 'conppas-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#0284c7', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'conppas-labels', type: 'symbol', source: 'conppas-source', layout: { visibility: 'none', 'icon-image': 'icon-conppas', 'icon-size': 0.045, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['coalesce', ['get', 'nombre_sitio'], ['get', 'nombre']], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0284c7', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'conppas-labels', type: 'symbol', source: 'conppas-source', layout: { visibility: 'none', 'icon-image': 'icon-conppas', 'icon-size': 0.045, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['coalesce', ['get', 'nombre_sitio'], ['get', 'nombre']], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0284c7', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // Antenas — DIGITEL (#9400d3), MOVILNET (#00ff7f), MOVISTAR (#00bfff)
       m.addLayer({ id: 'antenas-digitel-layer', type: 'circle', source: 'antenas-digitel-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': '#9400d3', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
@@ -253,7 +430,7 @@ export const useMapbox = (
 
       // Sistemas Eléctricos — NEÓN AMARILLO ELÉCTRICO (#ffff00)
       m.addLayer({ id: 'sistemas-electricos-layer', type: 'circle', source: 'sistemas-electricos-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 16, 'circle-color': '#ffffff', 'circle-stroke-width': 3, 'circle-stroke-color': '#eab308', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'sistemas-electricos-icons', type: 'symbol', source: 'sistemas-electricos-source', layout: { visibility: 'none', 'icon-image': 'icon-electricos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'sistemas-electricos-icons', type: 'symbol', source: 'sistemas-electricos-source', layout: { visibility: 'none', 'icon-image': 'icon-electricos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // Servicio de Agua — Subcategorías
       const waterSubcats = [
@@ -283,43 +460,43 @@ export const useMapbox = (
           type: 'symbol',
           source: 'embalses-source',
           filter: ['==', ['get', 'subcategoria'], sub.id],
-          layout: { visibility: 'none', 'icon-image': 'icon-agua', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'name'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' },
+          layout: { visibility: 'none', 'icon-image': 'icon-agua', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'name'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' },
           paint: { 'text-color': sub.color, 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 }
         });
       });
 
       // Estaciones de Gas — NARANJA INTENSO (#ff8c00)
       m.addLayer({ id: 'estaciones-gas-layer', type: 'circle', source: 'estaciones-gas-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff8c00', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'estaciones-gas-labels', type: 'symbol', source: 'estaciones-gas-source', layout: { visibility: 'none', 'icon-image': 'icon-gas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff8c00', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'estaciones-gas-labels', type: 'symbol', source: 'estaciones-gas-source', layout: { visibility: 'none', 'icon-image': 'icon-gas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff8c00', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // ── CAPAS DINÁMICAS (Supabase) ─────────────────────────────────────────
       // 1. Delitos comunes — ROJO BRILLANTE (#ff003c)
       m.addLayer({ id: 'incidencias-riesgo-layer', type: 'circle', source: 'incidencias-riesgo', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff003c', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'incidencias-riesgo-icons', type: 'symbol', source: 'incidencias-riesgo', layout: { visibility: 'none', 'icon-image': 'icon-delitos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff003c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'incidencias-riesgo-icons', type: 'symbol', source: 'incidencias-riesgo', layout: { visibility: 'none', 'icon-image': 'icon-delitos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff003c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 2. Cibernética — VIOLETA ELECTRICO (#7b2cbf)
       m.addLayer({ id: 'cibernetica-incidente-layer', type: 'circle', source: 'cibernetica-incidente', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#7b2cbf', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'cibernetica-incidente-icons', type: 'symbol', source: 'cibernetica-incidente', layout: { visibility: 'none', 'icon-image': 'icon-cibernetica', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#7b2cbf', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'cibernetica-incidente-icons', type: 'symbol', source: 'cibernetica-incidente', layout: { visibility: 'none', 'icon-image': 'icon-cibernetica', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#7b2cbf', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 3. Concentraciones — ORO BRILLANTE (#ffd700)
       m.addLayer({ id: 'concentraciones-incidente-layer', type: 'circle', source: 'concentraciones-incidente', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ffd700', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'concentraciones-incidente-icons', type: 'symbol', source: 'concentraciones-incidente', layout: { visibility: 'none', 'icon-image': 'icon-concentraciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'concentraciones-incidente-icons', type: 'symbol', source: 'concentraciones-incidente', layout: { visibility: 'none', 'icon-image': 'icon-concentraciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 4. Drogas — VERDE NEON (#39ff14)
       m.addLayer({ id: 'drogas-trafico-layer', type: 'circle', source: 'drogas-trafico', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#39ff14', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'drogas-trafico-icons', type: 'symbol', source: 'drogas-trafico', layout: { visibility: 'none', 'icon-image': 'icon-drogas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-anchor': 'top' } });
+      m.addLayer({ id: 'drogas-trafico-icons', type: 'symbol', source: 'drogas-trafico', layout: { visibility: 'none', 'icon-image': 'icon-drogas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-anchor': 'top' } });
 
       // 5. Actores de interés — ROSA MEXICANO (#ff007f)
       m.addLayer({ id: 'actores-layer', type: 'circle', source: 'actores', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff007f', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'actores-icons', type: 'symbol', source: 'actores', layout: { visibility: 'none', 'icon-image': 'icon-actores', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'alias'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff007f', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'actores-icons', type: 'symbol', source: 'actores', layout: { visibility: 'none', 'icon-image': 'icon-actores', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'alias'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff007f', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 6. Grupos delictivos — AZUL ZAFIRO (#0f52ba)
       m.addLayer({ id: 'grupos-bandas-layer', type: 'circle', source: 'grupos-bandas', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#0f52ba', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'grupos-bandas-icons', type: 'symbol', source: 'grupos-bandas', layout: { visibility: 'none', 'icon-image': 'icon-bandas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre_banda'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0f52ba', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'grupos-bandas-icons', type: 'symbol', source: 'grupos-bandas', layout: { visibility: 'none', 'icon-image': 'icon-bandas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre_banda'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0f52ba', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // 7. Puntos de interés — TURQUESA ELÉCTRICO (#00f5ff)
       m.addLayer({ id: 'puntos-interes-layer', type: 'circle', source: 'puntos-interes', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#00f5ff', 'circle-opacity': 1 } });
-      m.addLayer({ id: 'puntos-interes-icons', type: 'symbol', source: 'puntos-interes', layout: { visibility: 'none', 'icon-image': 'icon-puntos-interes', 'icon-size': 0.04, 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'text-optional': true, 'text-field': ['get', 'nombre_punto'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#00f5ff', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'puntos-interes-icons', type: 'symbol', source: 'puntos-interes', layout: { visibility: 'none', 'icon-image': 'icon-puntos-interes', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre_punto'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#00f5ff', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
       // ── BÚSQUEDA GLOBAL / RESALTADO (Siempre visible) ────────────────────
       m.addSource('search-highlight-source', { type: 'geojson', data: empty });
@@ -399,9 +576,10 @@ export const useMapbox = (
       // ── CARGA DE ANTENAS DESDE ARCHIVOS SEPARADOS POR OPERADORA ──────────────
       const loadAntenaFile = async (file: string, operadora: string, sourceId: string) => {
         try {
-          const r = await fetch(file);
-          if (!r.ok) throw new Error(`HTTP ${r.status}`);
-          const raw = await r.json();
+          const r = await fetch(file).catch(() => null);
+          if (!r || !r.ok) return;
+          const raw = await r.json().catch(() => null);
+          if (!raw) return;
 
           // Soporta tanto GeoJSON FeatureCollection como un array simple [{name, address, coordinates}]
           let features: any[] = [];
@@ -526,6 +704,11 @@ export const useMapbox = (
       ];
 
       m.on('click', (e) => {
+        // Evitar que el clic en herramientas tácticas (medidor o radio de cobertura) reseteen el mapa o la inclinación 3D
+        if (typeof window !== 'undefined' && (window as any)._activeTacticalTool && (window as any)._activeTacticalTool !== 'none') {
+          return;
+        }
+
         const queryable = layersToQuery.filter(l => m.getLayer(l));
         const features  = m.queryRenderedFeatures(e.point, { layers: queryable });
         if (!features.length) {
@@ -551,18 +734,22 @@ export const useMapbox = (
                     focusPoly = turf.buffer(clicked as any, 0.1); // 100m de radio para lineas
                 }
 
+                const currentPitch = m.getPitch() || 0;
+                const targetPitch = currentPitch > 0 ? currentPitch : 45;
+
                 if (focusPoly) {
                     const bbox = turf.bbox(focusPoly) as [number, number, number, number];
-                    m.fitBounds(bbox, { padding: 80, pitch: 45, duration: 1000 });
+                    m.fitBounds(bbox, { padding: 80, pitch: targetPitch, duration: 1000 });
                     const mask = turf.mask(focusPoly);
                     const maskSrc = m.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
                     if (maskSrc) maskSrc.setData(mask);
                 } else {
-                    m.flyTo({ center: e.lngLat, zoom: 14, pitch: 45, duration: 1000 });
+                    m.flyTo({ center: e.lngLat, zoom: 14, pitch: targetPitch, duration: 1000 });
                 }
             } catch (err) {
                 console.error("Error al hacer focus:", err);
-                m.flyTo({ center: e.lngLat, zoom: 14, pitch: 45, duration: 1000 });
+                const currentPitch = m.getPitch() || 0;
+                m.flyTo({ center: e.lngLat, zoom: 14, pitch: currentPitch > 0 ? currentPitch : 45, duration: 1000 });
             }
         }
         // ---------------------------
@@ -608,6 +795,7 @@ export const useMapbox = (
     if (!m || !mapReady) return;
 
     const set = (layerId: string, visible: boolean) => {
+      if (!m || typeof m.getStyle !== 'function' || !m.getStyle()) return;
       if (m.getLayer(layerId)) m.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
     };
 

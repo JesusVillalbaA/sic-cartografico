@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { Shield, MapPin, Truck, Phone, X, Activity, Navigation } from 'lucide-react';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 export const CuadrantePuntoCard = ({ f, geoData, onRemove }: any) => {
   const rawP = f.properties || {};
@@ -70,7 +71,7 @@ export const CuadrantePuntoCard = ({ f, geoData, onRemove }: any) => {
 
         {/* 3. GRID DE DATOS TÉCNICOS */}
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-white/2 p-4 rounded-[1.8rem] border border-white/5">
+          <div className="bg-white/5 p-4 rounded-[1.8rem] border border-white/5">
             <div className="flex items-center gap-2 mb-2">
               <Activity size={12} className="text-cyan-500" />
               <p className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Jurisdicción</p>
@@ -80,7 +81,7 @@ export const CuadrantePuntoCard = ({ f, geoData, onRemove }: any) => {
             </p>
           </div>
 
-          <div className="bg-white/2 p-4 rounded-[1.8rem] border border-white/5">
+          <div className="bg-white/5 p-4 rounded-[1.8rem] border border-white/5">
             <div className="flex items-center gap-2 mb-2">
               <Truck size={12} className="text-cyan-500" />
               <p className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Vehiculos municipal</p>
@@ -92,15 +93,16 @@ export const CuadrantePuntoCard = ({ f, geoData, onRemove }: any) => {
         </div>
 
         {/* 4. ÁREA DE REFERENCIA GEOGRÁFICA */}
-        <div className="bg-cyan-500/2 p-4 rounded-2xl border border-dashed border-cyan-500/20">
+        <div className="bg-cyan-500/5 p-4 rounded-2xl border border-dashed border-cyan-500/20">
           <p className="text-[7px] text-cyan-500/50 font-black uppercase tracking-[0.2em] mb-2 text-center">Referencia de Ubicación</p>
           <p className="text-[10px] text-slate-400 italic text-center leading-relaxed px-2 line-clamp-3">
             {p.ubicacion_descripcion || 'Ubicación pendiente de verificación'}
           </p>
         </div>
 
-        {/* 5. ACCIÓN DE ENLACE */}
-        <div className="pt-2">
+        {/* 5. ACCIÓN DE ENLACE Y MAPA */}
+        <div className="pt-2 space-y-2">
+          <GoogleMapsButton feature={f} className="w-full" />
           <a 
             href={getWhatsAppLink(p.telefono, p.cuadrante)} 
             target="_blank" 
@@ -118,7 +120,7 @@ export const CuadrantePuntoCard = ({ f, geoData, onRemove }: any) => {
         </div>
       </div>
 
-      <div className="bg-white/2 py-3 text-center border-t border-white/5">
+      <div className="bg-white/5 py-3 text-center border-t border-white/5">
         <p className="text-[7px] font-black text-white/5 uppercase tracking-[1em] ml-[1em]">
           REDIMAIN • SOGNE
         </p>

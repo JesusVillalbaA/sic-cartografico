@@ -59,91 +59,97 @@ export const exportPDF = async (isExporting: boolean, setIsExporting: React.Disp
   if (isExporting) return;
   setIsExporting(true);
   try {
-    const element = document.getElementById('map-export-container');
-    if (!element) throw new Error('Contenedor no encontrado');
+    const mapExportContainer = document.getElementById('map-export-container');
+    if (!mapExportContainer) throw new Error('Contenedor de mapa no encontrado');
 
-    const legendElem = element.querySelector('.legend-glass') as HTMLElement;
-    let originalFilter = '';
-    if (legendElem) {
-      originalFilter = legendElem.style.backdropFilter || '';
-      legendElem.style.backdropFilter = 'none';
+    const mapCanvas = mapExportContainer.querySelector('canvas.mapboxgl-canvas') as HTMLCanvasElement;
+    let imgData = '';
+
+    // MÉTODO 1: Captura directa ultra-rápida y limpia del WebGL Canvas de Mapbox
+    // Esto omite por completo el parser de CSS de html2canvas y sus errores con oklab/oklch/lab.
+    if (mapCanvas) {
+      try {
+        imgData = mapCanvas.toDataURL('image/png');
+      } catch (e) {
+        console.warn("Fallo al obtener toDataURL del canvas de Mapbox:", e);
+      }
     }
 
-    const canvas = await html2canvas(element, {
-      scale: 2.5,
-      useCORS: true,
-      logging: false,
-      backgroundColor: '#ffffff',
-      onclone: (clonedDoc) => {
-        const sanitizeStyle = (style: CSSStyleDeclaration) => {
-          try {
-            const properties = ['color', 'backgroundColor', 'borderColor', 'outlineColor', 'textDecorationColor', 'fill', 'stroke'];
-            for (const prop of properties) {
-              const value = style.getPropertyValue(prop);
-              if (value && (value.includes('oklab') || value.includes('oklch'))) {
-                style.setProperty(prop, '#000000');
-              }
-            }
-            const bgImage = style.getPropertyValue('background-image');
-            if (bgImage && (bgImage.includes('oklab') || bgImage.includes('oklch'))) {
-              style.setProperty('background-image', 'none');
-            }
-          } catch (e) { }
-        };
-
-        // Limpiar estilos de las hojas de estilo (código completo del original)
-        try {
-          const styleSheets = clonedDoc.styleSheets;
-          for (let i = 0; i < styleSheets.length; i++) {
-            try {
-              const sheet = styleSheets[i];
-              let rules: CSSRuleList | null = null;
-              try {
-                rules = sheet.cssRules || sheet.rules;
-              } catch (e) { continue; }
-              if (!rules) continue;
-              for (let j = 0; j < rules.length; j++) {
-                const rule = rules[j];
-                if (rule.type === CSSRule.STYLE_RULE && (rule as CSSStyleRule).style) {
-                  sanitizeStyle((rule as CSSStyleRule).style);
-                }
-                if (rule.type === CSSRule.MEDIA_RULE && (rule as CSSMediaRule).cssRules) {
-                  const mediaRules = (rule as CSSMediaRule).cssRules;
-                  for (let k = 0; k < mediaRules.length; k++) {
-                    const childRule = mediaRules[k];
-                    if (childRule.type === CSSRule.STYLE_RULE && (childRule as CSSStyleRule).style) {
-                      sanitizeStyle((childRule as CSSStyleRule).style);
-                    }
-                  }
-                }
-              }
-            } catch (e) { }
-          }
-        } catch (e) { }
-
-        const allElements = clonedDoc.querySelectorAll('*');
-        allElements.forEach((el: any) => {
-          const inlineStyle = el.getAttribute('style');
-          if (inlineStyle && (inlineStyle.includes('oklab') || inlineStyle.includes('oklch'))) {
-            const cleaned = inlineStyle.replace(/oklab\([^)]+\)/g, '#000').replace(/oklch\([^)]+\)/g, '#000');
-            el.setAttribute('style', cleaned);
-          }
-          if (el.style) sanitizeStyle(el.style);
-        });
+    // MÉTODO 2: Fallback con html2canvas omitiendo hojas de estilo externas si no hay canvas directo
+    if (!imgData) {
+      const legendElem = mapExportContainer.querySelector('.legend-glass') as HTMLElement;
+      let originalFilter = '';
+      if (legendElem) {
+        originalFilter = legendElem.style.backdropFilter || '';
+        legendElem.style.backdropFilter = 'none';
       }
-    });
 
-    if (legendElem) legendElem.style.backdropFilter = originalFilter;
+      const canvas = await html2canvas(mapExportContainer, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#0f172a',
+        ignoreElements: (el) => el.tagName === 'LINK' || el.tagName === 'STYLE'
+      });
 
-    const imgData = canvas.toDataURL('image/png');
+      if (legendElem) legendElem.style.backdropFilter = originalFilter;
+      imgData = canvas.toDataURL('image/png');
+    }
+
+    if (!imgData) throw new Error('No se pudo generar la captura del mapa');
+
     const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
     const pdfWidth = pdf.internal.pageSize.getWidth();
-    const imgWidth = pdfWidth;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight, undefined, 'FAST');
-    pdf.save('mapa_incidencias_ne.pdf');
-  } catch (error) {
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    // Fondo azul marino táctico slate-950
+    pdf.setFillColor(15, 23, 42);
+    pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
+
+    // Captura del mapa ajustada al área principal
+    const headerHeight = 18;
+    const availableHeight = pdfHeight - headerHeight;
+    pdf.addImage(imgData, 'PNG', 0, headerHeight, pdfWidth, availableHeight, undefined, 'FAST');
+
+    // Header Banner táctico superior con el logo institucional
+    try {
+      const loadImage = (url: string): Promise<HTMLImageElement> =>
+        new Promise((resolve, reject) => {
+          const img = new Image();
+          img.crossOrigin = 'Anonymous';
+          img.src = url;
+          img.onload = () => resolve(img);
+          img.onerror = (e) => reject(e);
+        });
+      const logoImg = await loadImage('/Municipios.png');
+      
+      pdf.setFillColor(15, 23, 42);
+      pdf.rect(0, 0, pdfWidth, headerHeight, 'F');
+      pdf.setFillColor(6, 182, 212); // Línea neón cyan
+      pdf.rect(0, headerHeight - 0.8, pdfWidth, 0.8, 'F');
+
+      pdf.setFillColor(6, 182, 212);
+      pdf.circle(10, 9, 5.5, 'F');
+      pdf.setFillColor(255, 255, 255);
+      pdf.circle(10, 9, 4.5, 'F');
+      pdf.addImage(logoImg, 'PNG', 7, 6, 6, 6);
+
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(10);
+      pdf.setTextColor(255, 255, 255);
+      pdf.text('SOGNE REDIMAIN - MAPA TÁCTICO DE GEOINTELIGENCIA', 19, 8);
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(7);
+      pdf.setTextColor(186, 230, 253);
+      pdf.text(`REPORTE DE COBERTURA Y ÁREA TÁCTICA • ${new Date().toLocaleString('es-VE')}`, 19, 14);
+    } catch (e) {
+      console.warn("Logo no disponible para PDF de mapa", e);
+    }
+
+    pdf.save(`reporte_tactico_sogne_${Date.now()}.pdf`);
+  } catch (error: any) {
     console.error('Error al generar PDF:', error);
+    alert('Fallo al exportar reporte PDF: ' + (error?.message || error));
   } finally {
     setIsExporting(false);
   }

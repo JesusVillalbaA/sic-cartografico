@@ -1,6 +1,7 @@
 "use client";
 import React, { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 import { 
   X, User, Users, MapPin, Fingerprint, Activity,
   ShieldCheck, Clock, Navigation, AlertCircle, 
@@ -100,7 +101,7 @@ export const IncidenteCard = ({
           <h4 className="text-xl font-black text-white uppercase italic leading-tight mb-2">
             {data.tipo_incidente || "REPORTE DE TRÁFICO"}
           </h4>
-          <div className="bg-white/2 border-l-2 border-slate-500 p-3 rounded-r-xl">
+          <div className="bg-white/5 border-l-2 border-slate-500 p-3 rounded-r-xl">
             <p className="text-[11px] text-slate-300 font-medium leading-relaxed">
               {data.descripcion || 'Sin narrativa de hechos registrada.'}
             </p>
@@ -109,14 +110,14 @@ export const IncidenteCard = ({
 
         {/* UBICACIÓN Y GEO-POSICIONAMIENTO */}
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+          <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
             <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Jurisdicción</span>
             <div className="flex items-center gap-2">
               <MapPin size={12} className="text-sky-500" />
               <span className="text-[10px] text-slate-200 font-bold uppercase truncate">{data.municipio || 'N/A'}</span>
             </div>
           </div>
-          <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+          <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
             <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Sector / Zona</span>
             <div className="flex items-center gap-2">
               <Navigation size={12} className="text-emerald-500" />
@@ -150,7 +151,7 @@ export const IncidenteCard = ({
               {data._sujetos.map((s: any, i: number) => {
                 const tieneConflicto = s.conflictoIdentidad;
                 return (
-                  <div key={i} className="group flex flex-col bg-white/3 hover:bg-white/6 p-2.5 rounded-xl border border-white/5 transition-colors relative gap-2">
+                  <div key={i} className="group flex flex-col bg-white/5 hover:bg-white/6 p-2.5 rounded-xl border border-white/5 transition-colors relative gap-2">
                     <div className="flex items-center gap-2.5">
                       {s.personas_interes?.url_foto ? (
                         <img src={s.personas_interes.url_foto} className="w-9 h-9 rounded-full object-cover border border-white/10" alt="Foto" />
@@ -264,7 +265,7 @@ export const IncidenteCard = ({
 
         {/* FOOTER: RESPONSABLE Y METADATOS */}
         <div className="mt-4 pt-4 border-t border-white/5 space-y-2">
-          <div className="flex justify-between items-center bg-white/2 p-2 rounded-xl border border-white/5">
+          <div className="flex justify-between items-center bg-white/5 p-2 rounded-xl border border-white/5">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-sky-500/20 flex items-center justify-center border border-sky-500/30">
                 <User size={12} className="text-sky-500" />
@@ -281,7 +282,7 @@ export const IncidenteCard = ({
             </span>
           </div>
 
-          <div className="flex justify-between items-center px-1 text-slate-500">
+          <div className="flex justify-between items-center px-1 text-slate-500 mb-3">
             <div className="flex items-center gap-1.5">
               <Calendar size={11} />
               <span className="text-[9px] font-bold uppercase">Reportado:</span>
@@ -290,6 +291,8 @@ export const IncidenteCard = ({
               {data.fecha_registro ? new Date(data.fecha_registro).toLocaleString('es-VE') : 'FECHA N/A'}
             </span>
           </div>
+
+          <GoogleMapsButton feature={f} className="w-full" />
         </div>
 
         {/* ID DE RASTREO (Trace ID) */}

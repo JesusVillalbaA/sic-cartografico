@@ -118,15 +118,21 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
         <div className="flex items-center px-4 py-3">
           <Search size={18} className={`${isLight ? 'text-slate-500' : 'text-slate-400'}`} />
           <input
+            id="global-search-input"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
-            placeholder="Buscar incidencia, oficial, tipo, banda..."
+            placeholder="Buscar incidencia, oficial, banda... (Ctrl+K)"
             className={`flex-1 bg-transparent border-none outline-none ml-3 text-[13px] font-medium tracking-wide ${
               isLight ? 'text-slate-800 placeholder:text-slate-400' : 'text-white placeholder:text-slate-500'
             }`}
           />
+          {!query && (
+            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[9px] font-mono text-slate-400 bg-white/10 rounded border border-white/10 ml-2">
+              Ctrl+K
+            </kbd>
+          )}
           {query && (
             <button onClick={() => setQuery('')} className="text-slate-400 hover:text-slate-200">
               ✕

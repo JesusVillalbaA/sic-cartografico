@@ -1,6 +1,8 @@
 "use client";
 import React from 'react';
-import { X, Radio, MapPin, Activity, Cpu, Shield, Navigation } from 'lucide-react';
+import { X, Radio, MapPin, Activity, Cpu, Shield, Navigation, FileText, FileSpreadsheet } from 'lucide-react';
+import { exportLayerToPDF, exportLayerToExcel } from '@/app/lib/exportLayerPDF';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 interface AntenaCardProps {
   f: any;
@@ -123,7 +125,7 @@ export const AntenaCard: React.FC<AntenaCardProps> = ({ f, onRemove }) => {
         </div>
 
         {/* Coordenadas */}
-        <div className="bg-slate-950/60 border border-white/5 rounded-2xl p-3 mb-2 space-y-1">
+        <div className="bg-slate-950/60 border border-white/5 rounded-2xl p-3 mb-3 space-y-1">
           {coordenadasDMS && (
             <div className="flex items-center justify-between text-[10px] font-mono text-slate-300">
               <span className="text-slate-500">Coordenadas:</span>
@@ -136,6 +138,28 @@ export const AntenaCard: React.FC<AntenaCardProps> = ({ f, onRemove }) => {
               <span>{Number(coords[1]).toFixed(6)}, {Number(coords[0]).toFixed(6)}</span>
             </div>
           )}
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 mb-2">
+          <GoogleMapsButton feature={f} className="w-full" />
+          <div className="flex gap-1">
+            <button
+              onClick={() => exportLayerToPDF({ layerKey: 'antenas' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-purple-400/30"
+              title="Descargar PDF"
+            >
+              <FileText size={11} />
+              <span>PDF</span>
+            </button>
+            <button
+              onClick={() => exportLayerToExcel({ layerKey: 'antenas' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-emerald-400/30"
+              title="Descargar Excel"
+            >
+              <FileSpreadsheet size={11} />
+              <span>Excel</span>
+            </button>
+          </div>
         </div>
 
         <div className="mt-3 pt-2 flex justify-between items-center border-t border-white/5 opacity-40">

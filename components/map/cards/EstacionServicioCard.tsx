@@ -1,3 +1,7 @@
+import { FileText, FileSpreadsheet } from 'lucide-react';
+import { exportLayerToPDF, exportLayerToExcel } from '@/app/lib/exportLayerPDF';
+import { GoogleMapsButton } from '../GoogleMapsButton';
+
 export const EstacionServicioCard = ({ feature, onRemove }: any) => {
   const props = feature.properties || {};
   const name = props.NAME || props.name || props.nombre || "Estación sin nombre";
@@ -68,6 +72,28 @@ export const EstacionServicioCard = ({ feature, onRemove }: any) => {
               <span>{phone}</span>
             </div>
           )}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2 mt-3">
+        <GoogleMapsButton feature={feature} className="w-full" />
+        <div className="flex gap-1">
+          <button
+            onClick={() => exportLayerToPDF({ layerKey: 'estaciones_combustible' })}
+            className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-emerald-400/30"
+            title="Descargar PDF"
+          >
+            <FileText size={11} />
+            <span>PDF</span>
+          </button>
+          <button
+            onClick={() => exportLayerToExcel({ layerKey: 'estaciones_combustible' })}
+            className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-teal-400/30"
+            title="Descargar Excel"
+          >
+            <FileSpreadsheet size={11} />
+            <span>Excel</span>
+          </button>
         </div>
       </div>
     </div>

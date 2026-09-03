@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { X, User, Shield, Users, MapPin, Calendar, AlertCircle } from 'lucide-react';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 export const ActorInteresCard = ({ f, onRemove }: any) => {
   const p = f.properties || {};
@@ -50,14 +51,14 @@ export const ActorInteresCard = ({ f, onRemove }: any) => {
 
         {/* Grid de datos */}
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+          <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
             <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Afiliación / Grupo</span>
             <div className="flex items-center gap-1.5">
               <Users size={11} className="text-fuchsia-400 shrink-0" />
               <span className="text-[9px] text-slate-200 font-bold leading-tight">{p.afiliacion_o_grupo || 'No registrada'}</span>
             </div>
           </div>
-          <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+          <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
             <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Ubicación</span>
             <div className="flex items-center gap-1.5">
               <MapPin size={11} className="text-fuchsia-400 shrink-0" />
@@ -95,7 +96,7 @@ export const ActorInteresCard = ({ f, onRemove }: any) => {
 
         {/* Oficial a cargo */}
         {p.usuario_nombre && (
-          <div className="bg-white/2 border border-white/5 p-3 rounded-2xl mb-4 flex justify-between items-center">
+          <div className="bg-white/5 border border-white/5 p-3 rounded-2xl mb-4 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center">
                 <User size={12} className="text-fuchsia-400" />
@@ -112,7 +113,7 @@ export const ActorInteresCard = ({ f, onRemove }: any) => {
         )}
 
         {/* Fecha */}
-        <div className="flex justify-between items-center text-slate-500 border-t border-white/5 pt-3">
+        <div className="flex justify-between items-center text-slate-500 border-t border-white/5 pt-3 mb-3">
           <div className="flex items-center gap-1.5">
             <Calendar size={10} />
             <span className="text-[8px] font-bold uppercase">Registrado:</span>
@@ -121,6 +122,8 @@ export const ActorInteresCard = ({ f, onRemove }: any) => {
             {p.fecha_registro ? new Date(p.fecha_registro).toLocaleString('es-VE') : 'N/A'}
           </span>
         </div>
+
+        <GoogleMapsButton feature={f} className="w-full" />
 
         <div className="mt-3 pt-2 flex justify-between items-center border-t border-white/5 opacity-30">
           <span className="text-[7px] font-mono text-white tracking-widest uppercase italic">SOGNE-ACTOR-GEO</span>

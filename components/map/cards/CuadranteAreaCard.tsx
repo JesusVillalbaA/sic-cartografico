@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { MapPin, X, Shield, Phone, Activity, Truck, Navigation } from 'lucide-react';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 export const CuadranteAreaCard = ({ f, onRemove }: any) => {
   const p = f.properties || {};
@@ -64,7 +65,7 @@ export const CuadranteAreaCard = ({ f, onRemove }: any) => {
 
         {/* GRID DE DATOS TÉCNICOS */}
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-white/2 p-4 rounded-[1.8rem] border border-white/5">
+          <div className="bg-white/5 p-4 rounded-[1.8rem] border border-white/5">
             <div className="flex items-center gap-2 mb-2">
               <Activity size={12} className="text-amber-500" />
               <p className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Cuadrante / Zona</p>
@@ -74,7 +75,7 @@ export const CuadranteAreaCard = ({ f, onRemove }: any) => {
             </p>
           </div>
 
-          <div className="bg-white/2 p-4 rounded-[1.8rem] border border-white/5">
+          <div className="bg-white/5 p-4 rounded-[1.8rem] border border-white/5">
             <div className="flex items-center gap-2 mb-2">
               <Truck size={12} className="text-amber-500" />
               <p className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Vehículos asignados</p>
@@ -86,15 +87,16 @@ export const CuadranteAreaCard = ({ f, onRemove }: any) => {
         </div>
 
         {/* ÁREA DE REFERENCIA GEOGRÁFICA */}
-        <div className="bg-amber-500/2 p-4 rounded-2xl border border-dashed border-amber-500/20">
+        <div className="bg-amber-500/5 p-4 rounded-2xl border border-dashed border-amber-500/20">
           <p className="text-[7px] text-amber-500/50 font-black uppercase tracking-[0.2em] mb-2 text-center">Referencia de Ubicación</p>
           <p className="text-[10px] text-slate-400 italic text-center leading-relaxed px-2 line-clamp-3">
             {p.ubicacion_descripcion || p.comuna || 'Ubicación pendiente de verificación'}
           </p>
         </div>
 
-        {/* ACCIÓN DE ENLACE */}
-        <div className="pt-2">
+        {/* ACCIÓN DE ENLACE Y MAPA */}
+        <div className="pt-2 space-y-2">
+          <GoogleMapsButton feature={f} className="w-full" />
           <a 
             href={getWhatsAppLink(p.telefono, p.cuadrante || nombreEntidad)} 
             target="_blank" 
@@ -113,7 +115,7 @@ export const CuadranteAreaCard = ({ f, onRemove }: any) => {
       </div>
 
       {/* FOOTER */}
-      <div className="bg-white/2 py-3 text-center border-t border-white/5">
+      <div className="bg-white/5 py-3 text-center border-t border-white/5">
         <p className="text-[7px] font-black text-white/5 uppercase tracking-[1em] ml-[1em]">
           INTELIGENCIA ESPACIAL • SOGNE
         </p>

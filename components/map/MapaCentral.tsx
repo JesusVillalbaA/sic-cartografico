@@ -1,5 +1,5 @@
 "use client";
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 import { Zap, Flame } from 'lucide-react';
 import { AnalysisPanel } from './AnalysisPanel';
 import { useMapbox } from './useMapbox';
@@ -7,17 +7,40 @@ import { Legend } from './Legend';
 import { BuscadorGlobal } from './BuscadorGlobal';
 import { ModalDiagramaElectrico } from './ModalDiagramaElectrico';
 import { ModalDiagramaGas } from './ModalDiagramaGas';
+import { MapStyleSelector } from './MapStyleSelector';
 import { TacticalToolbar } from './TacticalToolbar';
 import { ZoomControls } from './ZoomControls';
 import { TacticalMapLoader } from './TacticalMapLoader';
 import { exportPDF as exportPDFUtil, toggleState, clearAndReset } from './mapUtils';
 import { supabase } from './supabaseClient';
 
-export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: externalFetch, isZonasLoading, theme }: any, ref) => {
+export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRiesgo: externalFetch, isZonasLoading, theme }: any, ref) => {
   const [selectedFeatures, setSelectedFeatures] = useState<any[]>([]);
   const [isExporting, setIsExporting] = useState(false);
   const [isDiagramaOpen, setIsDiagramaOpen] = useState(false);
   const [isDiagramaGasOpen, setIsDiagramaGasOpen] = useState(false);
+
+  // Atajos de teclado globales (Ctrl+K para buscar, Escape para cerrar modales)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey && e.key.toLowerCase() === 'k') || 
+        (e.key === '/' && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA')
+      ) {
+        e.preventDefault();
+        const searchInput = document.getElementById('global-search-input') as HTMLInputElement;
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      } else if (e.key === 'Escape') {
+        setIsDiagramaOpen(false);
+        setIsDiagramaGasOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Asegurar que layersVisible tenga la propiedad 'estaciones' (si el padre no la pasa, se inicializa)
   const safeLayersVisible = {
@@ -44,8 +67,17 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
 
   const { mapContainer, map, mapReady, loadingStage } = useMapbox(safeLayersVisible, fetchZonasDeRiesgo, setSelectedFeatures, selectedFeatures, theme);
 
+  useEffect(() => {
+    if (map.current && typeof window !== 'undefined') {
+      (window as any)._mapboxMapInstance = map.current;
+    }
+  }, [mapReady]);
+
   const exportPDF = () => exportPDFUtil(isExporting, setIsExporting);
-  useImperativeHandle(ref, () => ({ exportToPDF: exportPDF }));
+  useImperativeHandle(ref, () => ({
+    exportToPDF: exportPDF,
+    getMap: () => map.current,
+  }));
 
   const handleRemove = (feature: any) => {
     const m = map.current;
@@ -136,7 +168,8 @@ export const MapaCentral = forwardRef(({ layersVisible, fetchZonasDeRiesgo: exte
 
       <TacticalToolbar map={map.current} theme={theme} selectedFeatures={selectedFeatures} />
       <BuscadorGlobal map={map.current} onSelectFeature={handleSearchSelect} theme={theme} layersVisible={layersVisible} />
-      <Legend theme={theme} layersVisible={layersVisible} />
+      <Legend theme={theme} layersVisible={layersVisible} onToggle={onToggle} />
+      <MapStyleSelector map={map.current} theme={theme} />
       <ZoomControls map={map.current} theme={theme} />
       {selectedFeatures.length > 0 && (
         <AnalysisPanel 

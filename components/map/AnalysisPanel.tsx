@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { supabase } from '@/app/lib/supabase';
+import { playTacticalClick } from '@/app/lib/tacticalAudio';
 import { Minimize2, Maximize2, X, ChevronDown, Layers } from 'lucide-react';
 
 // Importación de Componentes de Tarjetas

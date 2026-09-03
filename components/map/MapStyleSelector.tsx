@@ -48,10 +48,13 @@ export const MapStyleSelector = ({ map, theme = 'dark' }: MapStyleSelectorProps)
     const nextState = !is3DActive;
     setIs3DActive(nextState);
     if (nextState) {
+      const currentZoom = typeof map.getZoom === 'function' ? map.getZoom() : 11;
+      const targetZoom = Math.max(currentZoom, 15.5);
       map.easeTo({
-        pitch: 60,
-        bearing: -20,
-        duration: 1000
+        pitch: 65,
+        bearing: -25,
+        zoom: targetZoom,
+        duration: 1200
       });
     } else {
       map.easeTo({

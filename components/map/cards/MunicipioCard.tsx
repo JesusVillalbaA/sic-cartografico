@@ -363,7 +363,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
     switch (modalCategory) {
       case 'cuadrantes':
         items = infraItems.cuadrantes;
-        title = 'Cuadrantes de Paz (COMPAS)';
+        title = 'Cuadrantes de Paz';
         icon = <ShieldAlert className="text-amber-400" size={18} />;
         color = 'border-amber-500/40 text-amber-400 bg-amber-500/10';
         break;

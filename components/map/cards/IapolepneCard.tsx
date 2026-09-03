@@ -1,3 +1,5 @@
+import { GoogleMapsButton } from '../GoogleMapsButton';
+
 export const IapolepneCard = ({ feature, onRemove }: any) => {
   const props = feature.properties || {};
   const name = props.NAME || props.name || "Comando policial";
@@ -11,9 +13,11 @@ export const IapolepneCard = ({ feature, onRemove }: any) => {
       <h4 className="text-lg font-bold text-white">{name}</h4>
       {area && <p className="text-xs text-white/60">{area}</p>}
       {perimetro && <p className="text-xs text-white/40">{perimetro}</p>}
-      <p className="text-[10px] text-white/30 mt-2">
-        {feature.geometry.type === "Polygon" ? "📍 Área de influencia" : "📍 Punto de control"}
+      <p className="text-[10px] text-white/30 mt-2 mb-3">
+        {feature.geometry?.type === "Polygon" ? "📍 Área de influencia" : "📍 Punto de control"}
       </p>
+
+      <GoogleMapsButton feature={feature} className="w-full" />
     </div>
   );
 };

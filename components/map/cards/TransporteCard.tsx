@@ -29,9 +29,9 @@ export const TransporteCard = ({ f, onRemove }: any) => {
       <div className="p-5 pl-7">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <div className={`flex items-center gap-2 bg-${colorTheme}-500/10 px-3 py-1 rounded-full border border-${colorTheme}-500/20 shadow-sm`}>
+          <div className="flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-sky-500/30 shadow-md">
             <img src="/transporte.png" alt="Transporte" className="w-5 h-5 object-contain" />
-            <span className="text-[9px] font-black uppercase tracking-widest text-white">
+            <span className="text-[9px] font-black uppercase tracking-widest text-sky-700">
               Gestión de Transporte
             </span>
           </div>

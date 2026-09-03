@@ -1,6 +1,8 @@
 "use client";
 import React from 'react';
-import { X, Droplets, MapPin, Building2, Activity, Waves } from 'lucide-react';
+import { X, Droplets, MapPin, Building2, Activity, Waves, FileText, FileSpreadsheet } from 'lucide-react';
+import { exportLayerToPDF, exportLayerToExcel } from '@/app/lib/exportLayerPDF';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 interface EmbalseCardProps {
   f: any;
@@ -80,7 +82,7 @@ export const EmbalseCard: React.FC<EmbalseCardProps> = ({ f, onRemove }) => {
               </div>
             )}
             {institution && (
-              <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+              <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
                 <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Institución</span>
                 <div className="flex items-center gap-1.5">
                   <Building2 size={11} className="text-teal-400" />
@@ -95,13 +97,13 @@ export const EmbalseCard: React.FC<EmbalseCardProps> = ({ f, onRemove }) => {
         {(municipality || parish) && (
           <div className="grid grid-cols-2 gap-2 mb-4">
             {municipality && (
-              <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+              <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
                 <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Municipio</span>
                 <span className="text-[10px] text-slate-200 font-bold">{municipality}</span>
               </div>
             )}
             {parish && (
-              <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+              <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
                 <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Parroquia</span>
                 <span className="text-[10px] text-slate-200 font-bold">{parish}</span>
               </div>
@@ -113,13 +115,13 @@ export const EmbalseCard: React.FC<EmbalseCardProps> = ({ f, onRemove }) => {
         {(capacidad || superficie) && (
           <div className="grid grid-cols-2 gap-2 mb-4">
             {capacidad && (
-              <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+              <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
                 <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Capacidad</span>
                 <span className="text-[10px] text-slate-200 font-bold">{capacidad}</span>
               </div>
             )}
             {superficie && (
-              <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+              <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
                 <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Superficie</span>
                 <span className="text-[10px] text-slate-200 font-bold">{superficie}</span>
               </div>
@@ -129,7 +131,7 @@ export const EmbalseCard: React.FC<EmbalseCardProps> = ({ f, onRemove }) => {
 
         {/* Ficha Técnica / Datos de Operación */}
         {(afluencia || poblacion || circuito || aporte) && (
-          <div className="bg-white/2 border border-white/5 rounded-2xl p-3 mb-4 space-y-1.5">
+          <div className="bg-white/5 border border-white/5 rounded-2xl p-3 mb-4 space-y-1.5">
             <span className="text-[7px] text-teal-400 font-black uppercase tracking-widest block">Ficha Técnica & Operativa</span>
             {circuito && (
               <div className="flex justify-between text-[10px] border-b border-white/5 pb-1">
@@ -157,6 +159,27 @@ export const EmbalseCard: React.FC<EmbalseCardProps> = ({ f, onRemove }) => {
             )}
           </div>
         )}
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <GoogleMapsButton feature={f} className="w-full" />
+          <div className="flex gap-1">
+            <button
+              onClick={() => exportLayerToPDF({ layerKey: 'agua' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-teal-400/30"
+              title="Descargar PDF"
+            >
+              <FileText size={11} />
+              <span>PDF</span>
+            </button>
+            <button
+              onClick={() => exportLayerToExcel({ layerKey: 'agua' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-emerald-400/30"
+              title="Descargar Excel"
+            >
+              <FileSpreadsheet size={11} />
+              <span>Excel</span>
+            </button>
+          </div>
+        </div>
 
         <div className="mt-3 pt-2 flex justify-between items-center border-t border-white/5 opacity-30">
           <span className="text-[7px] font-mono text-white tracking-widest uppercase italic">SOGNE-AGUA-NE</span>

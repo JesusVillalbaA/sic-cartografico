@@ -1,6 +1,8 @@
 "use client";
 import React from 'react';
-import { X, Zap, Shield, MapPin, Activity, Settings, Users } from 'lucide-react';
+import { X, Zap, Shield, MapPin, Activity, Settings, Users, FileText, FileSpreadsheet } from 'lucide-react';
+import { exportLayerToPDF, exportLayerToExcel } from '@/app/lib/exportLayerPDF';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 interface ElectricoCardProps {
   f: any;
@@ -54,7 +56,7 @@ export const ElectricoCard: React.FC<ElectricoCardProps> = ({ f, onRemove, onOpe
       <div className="p-5 pl-7 relative z-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2 bg-gradient-to-r from-white to-yellow-50 px-3 py-1.5 rounded-full border border-yellow-500/30 shadow-lg shadow-yellow-500/10">
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-yellow-500/30 shadow-md">
             <img src="/electricidad.png" alt="Eléctrico" className="w-5 h-5 object-contain drop-shadow-md" />
             <span className="text-[9px] font-black uppercase tracking-widest text-yellow-700">
               Sistema Eléctrico · NE
@@ -119,14 +121,14 @@ export const ElectricoCard: React.FC<ElectricoCardProps> = ({ f, onRemove, onOpe
         {/* Detalles Adicionales */}
         {!custodia && (
           <div className="grid grid-cols-2 gap-3 mb-4">
-            <div className="bg-white/3 border border-white/5 p-3 rounded-2xl">
+            <div className="bg-white/5 border border-white/5 p-3 rounded-2xl">
               <span className="text-[8px] text-slate-500 font-bold uppercase tracking-wider block mb-1">Operador</span>
               <div className="flex items-center gap-1.5">
                 <Shield size={12} className="text-blue-400" />
                 <span className="text-[10px] text-slate-200 font-bold truncate">{operador}</span>
               </div>
             </div>
-            <div className="bg-white/3 border border-white/5 p-3 rounded-2xl">
+            <div className="bg-white/5 border border-white/5 p-3 rounded-2xl">
               <span className="text-[8px] text-slate-500 font-bold uppercase tracking-wider block mb-1">Capacidad</span>
               <div className="flex items-center gap-1.5">
                 <Zap size={12} className="text-orange-400" />
@@ -138,11 +140,33 @@ export const ElectricoCard: React.FC<ElectricoCardProps> = ({ f, onRemove, onOpe
 
         {/* Comentario o Nota */}
         {descripcion && (
-          <div className="bg-gradient-to-r from-yellow-500/10 to-transparent border-l-2 border-yellow-500 pl-3 py-2.5 rounded-r-xl mb-2">
+          <div className="bg-gradient-to-r from-yellow-500/10 to-transparent border-l-2 border-yellow-500 pl-3 py-2.5 rounded-r-xl mb-3">
             <span className="text-[8px] text-yellow-500/70 font-black uppercase tracking-widest block mb-1">Ubicación / Descripción</span>
             <p className="text-[10px] text-slate-300 font-medium leading-relaxed italic">{descripcion}</p>
           </div>
         )}
+
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <GoogleMapsButton feature={f} className="w-full" />
+          <div className="flex gap-1">
+            <button
+              onClick={() => exportLayerToPDF({ layerKey: 'electricidad' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-yellow-600 to-amber-600 hover:from-yellow-500 hover:to-amber-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-yellow-400/30"
+              title="Descargar PDF"
+            >
+              <FileText size={11} />
+              <span>PDF</span>
+            </button>
+            <button
+              onClick={() => exportLayerToExcel({ layerKey: 'electricidad' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-emerald-400/30"
+              title="Descargar Excel"
+            >
+              <FileSpreadsheet size={11} />
+              <span>Excel</span>
+            </button>
+          </div>
+        </div>
 
         <div className="mt-4 pt-3 flex justify-between items-center border-t border-white/10">
           <span className="text-[8px] font-mono text-yellow-500/50 tracking-widest uppercase italic font-bold">SOGNE-ELECTRICO-NE</span>

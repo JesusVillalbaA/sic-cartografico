@@ -138,7 +138,7 @@ export const ParroquiaCard = ({ feature, onClose, incidenciasDB = [], puntosDB =
           
           <div className="space-y-2 max-h-40 overflow-y-auto custom-scrollbar pr-1">
             {stats.incidencias.slice(0, 8).map((inc: any, idx: number) => (
-              <div key={idx} className="bg-white/2 border-l-2 border-rose-500 p-2.5 rounded-r-xl hover:bg-white/5 transition-colors">
+              <div key={idx} className="bg-white/5 border-l-2 border-rose-500 p-2.5 rounded-r-xl hover:bg-white/5 transition-colors">
                 <div className="flex justify-between items-center mb-1">
                   <p className="text-[9px] font-black text-rose-400 uppercase tracking-tight">{inc.tipo_incidente}</p>
                   <span className="text-[8px] text-slate-500 font-mono">{new Date(inc.fecha_registro).toLocaleDateString()}</span>

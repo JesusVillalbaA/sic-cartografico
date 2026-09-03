@@ -87,7 +87,7 @@ export const InteligenciaCard = ({
         </div>
 
         {/* MODUS OPERANDI */}
-        <div className="bg-white/3 border border-white/5 p-4 rounded-2xl mb-4">
+        <div className="bg-white/5 border border-white/5 p-4 rounded-2xl mb-4">
           <div className="flex items-center gap-2 mb-2">
             <Activity size={12} className="text-emerald-500" />
             <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Modus Operandi</span>

@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { X, Beaker, TrendingUp, MapPin, Radio, Shield, User, Calendar, Activity } from 'lucide-react';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 const TRAFICO_COLOR: Record<string, string> = {
   ALTO: 'text-red-400',
@@ -74,7 +75,7 @@ export const DrogasCard = ({ f, onRemove }: any) => {
             <span className={`text-[10px] font-black uppercase tracking-wider ${colorText}`}>Tráfico {nivel}</span>
           </div>
           {p.estado_actual && (
-            <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border bg-white/3 border-white/5`}>
+            <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border bg-white/5 border-white/5`}>
               <Activity size={12} className={p.estado_actual === 'ACTIVO' ? 'text-lime-400' : 'text-slate-400'} />
               <span className={`text-[10px] font-black uppercase tracking-wider ${p.estado_actual === 'ACTIVO' ? 'text-lime-400' : 'text-slate-400'}`}>
                 {p.estado_actual}
@@ -98,7 +99,7 @@ export const DrogasCard = ({ f, onRemove }: any) => {
             </div>
           )}
           {p.descripcion && (
-            <div className="bg-white/3 border-l-2 border-lime-500/50 pl-3 py-2 rounded-r-xl">
+            <div className="bg-white/5 border-l-2 border-lime-500/50 pl-3 py-2 rounded-r-xl">
               <p className="text-[11px] text-slate-300 leading-relaxed">{p.descripcion}</p>
             </div>
           )}
@@ -113,14 +114,14 @@ export const DrogasCard = ({ f, onRemove }: any) => {
 
         {/* Detalles Geográficos */}
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+          <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
             <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Municipio</span>
             <div className="flex items-center gap-1.5">
               <MapPin size={11} className="text-lime-400" />
               <span className="text-[10px] text-slate-200 font-bold truncate">{p.municipio || 'N/A'}</span>
             </div>
           </div>
-          <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+          <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
             <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Sector</span>
             <div className="flex items-center gap-1.5">
               <Radio size={11} className="text-lime-400" />
@@ -138,7 +139,7 @@ export const DrogasCard = ({ f, onRemove }: any) => {
 
         {/* Oficial a cargo / Operador del sistema */}
         {p.usuario_nombre && (
-          <div className="bg-white/2 border border-white/5 p-3 rounded-2xl mb-4 flex justify-between items-center">
+          <div className="bg-white/5 border border-white/5 p-3 rounded-2xl mb-4 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-lime-500/10 border border-lime-500/20 flex items-center justify-center">
                 <User size={12} className="text-lime-400" />
@@ -155,7 +156,7 @@ export const DrogasCard = ({ f, onRemove }: any) => {
         )}
 
         {/* Fuente y Fecha */}
-        <div className="flex justify-between items-center text-slate-500 border-t border-white/5 pt-3">
+        <div className="flex justify-between items-center text-slate-500 border-t border-white/5 pt-3 mb-3">
           {p.fuente_informacion && (
             <div className="flex gap-1 items-center">
               <span className="text-[8px] font-bold uppercase tracking-wider">Fuente:</span>
@@ -169,6 +170,8 @@ export const DrogasCard = ({ f, onRemove }: any) => {
             </div>
           )}
         </div>
+
+        <GoogleMapsButton feature={f} className="w-full" />
 
         <div className="mt-3 pt-2 flex justify-between items-center border-t border-white/5 opacity-30">
           <span className="text-[7px] font-mono text-white tracking-widest uppercase italic">SOGNE-DROGAS-GEO</span>

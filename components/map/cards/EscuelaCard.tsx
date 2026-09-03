@@ -1,6 +1,8 @@
 "use client";
 import React from 'react';
-import { X, GraduationCap, MapPin, Building, Users, BookOpen, ExternalLink } from 'lucide-react';
+import { X, GraduationCap, MapPin, Building, Users, BookOpen, ExternalLink, FileText, FileSpreadsheet } from 'lucide-react';
+import { exportLayerToPDF, exportLayerToExcel } from '@/app/lib/exportLayerPDF';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 export const EscuelaCard = ({ f, onRemove }: any) => {
   const p = f.properties || {};
@@ -73,7 +75,7 @@ export const EscuelaCard = ({ f, onRemove }: any) => {
         {/* Detalles */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           {estado && (
-            <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+            <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
               <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Estado</span>
               <div className="flex items-center gap-1.5">
                 <Building size={11} className="text-fuchsia-400" />
@@ -82,7 +84,7 @@ export const EscuelaCard = ({ f, onRemove }: any) => {
             </div>
           )}
           {municipio && (
-            <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+            <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
               <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Municipio</span>
               <div className="flex items-center gap-1.5">
                 <MapPin size={11} className="text-fuchsia-400" />
@@ -93,7 +95,7 @@ export const EscuelaCard = ({ f, onRemove }: any) => {
         </div>
 
         {(parroquia || nivel || dependencia || matricula) && (
-          <div className="bg-white/2 border border-white/5 rounded-2xl p-3 mb-4 space-y-1.5">
+          <div className="bg-white/5 border border-white/5 rounded-2xl p-3 mb-4 space-y-1.5">
             <span className="text-[7px] text-fuchsia-400 font-black uppercase tracking-widest block">Información Adicional</span>
             {parroquia && (
               <div className="flex justify-between text-[10px] border-b border-white/5 pb-1">
@@ -125,21 +127,27 @@ export const EscuelaCard = ({ f, onRemove }: any) => {
           </div>
         )}
 
-        {/* Enlace Google Maps */}
-        {mapsUrl && (
-          <a
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-between w-full bg-fuchsia-600/90 hover:bg-fuchsia-500 text-white px-4 py-2.5 rounded-2xl transition-all shadow-[0_0_20px_rgba(217,70,239,0.3)] mb-3 group"
-          >
-            <div className="flex items-center gap-2">
-              <ExternalLink size={13} className="group-hover:scale-110 transition-transform" />
-              <span className="text-[10px] font-black uppercase tracking-wider">Ver en Google Maps</span>
-            </div>
-            <span className="text-[8px] bg-white/20 px-2 py-0.5 rounded-md font-mono">GPS</span>
-          </a>
-        )}
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <GoogleMapsButton feature={f} className="w-full" />
+          <div className="flex gap-1">
+            <button
+              onClick={() => exportLayerToPDF({ layerKey: 'escuelas' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-500 hover:to-purple-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-fuchsia-400/30"
+              title="Descargar PDF"
+            >
+              <FileText size={11} />
+              <span>PDF</span>
+            </button>
+            <button
+              onClick={() => exportLayerToExcel({ layerKey: 'escuelas' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-emerald-400/30"
+              title="Descargar Excel"
+            >
+              <FileSpreadsheet size={11} />
+              <span>Excel</span>
+            </button>
+          </div>
+        </div>
 
         <div className="mt-3 pt-2 flex justify-between items-center border-t border-white/5 opacity-30">
           <span className="text-[7px] font-mono text-white tracking-widest uppercase italic">SOGNE-ESCUELA-NE</span>

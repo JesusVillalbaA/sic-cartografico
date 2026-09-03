@@ -68,13 +68,13 @@ export const PuntoInteresCard = ({ f, onRemove }: any) => {
         {/* Fuente y estado */}
         <div className="grid grid-cols-2 gap-2 mb-3">
           {p.fuente_informacion && (
-            <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+            <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
               <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Fuente</span>
               <span className="text-[9px] text-slate-200 font-bold leading-tight">{p.fuente_informacion}</span>
             </div>
           )}
           {p.estado_actual && (
-            <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+            <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
               <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Estado</span>
               <span className={`text-[9px] font-black uppercase ${p.estado_actual === 'ACTIVO' ? 'text-teal-400' : 'text-slate-400'}`}>
                 {p.estado_actual}
@@ -92,7 +92,7 @@ export const PuntoInteresCard = ({ f, onRemove }: any) => {
 
         {/* Oficial a cargo */}
         {p.usuario_nombre && (
-          <div className="bg-white/2 border border-white/5 p-3 rounded-2xl mb-4 flex justify-between items-center">
+          <div className="bg-white/5 border border-white/5 p-3 rounded-2xl mb-4 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center">
                 <User size={12} className="text-teal-400" />

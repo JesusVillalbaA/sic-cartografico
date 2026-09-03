@@ -4,8 +4,10 @@ import { createPortal } from 'react-dom';
 import { 
   X, Flame, MapPin, Building2, Factory, Info, CheckCircle2, XCircle, 
   Phone, UserCheck, Compass, ShieldCheck, Copy, Check, Camera, 
-  ChevronLeft, ChevronRight, Maximize2, Eye 
+  ChevronLeft, ChevronRight, Maximize2, Eye, FileText, FileSpreadsheet 
 } from 'lucide-react';
+import { exportLayerToPDF, exportLayerToExcel } from '@/app/lib/exportLayerPDF';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 export const EstacionGasCard = ({ f, onRemove, onOpenDiagramaGas }: any) => {
   const p = f?.properties || {};
@@ -98,9 +100,9 @@ export const EstacionGasCard = ({ f, onRemove, onOpenDiagramaGas }: any) => {
       <div className="p-5 pl-7">
         {/* Header Badges */}
         <div className="flex items-center justify-between gap-2 mb-4">
-          <div className="flex items-center gap-2 bg-gradient-to-r from-orange-500/15 to-amber-500/10 px-3 py-1.5 rounded-full border border-orange-500/30 shadow-sm">
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-orange-500/30 shadow-md">
             <img src="/gas.png" alt="Gas" className="w-5 h-5 object-contain" />
-            <span className="text-[9px] font-black uppercase tracking-widest text-orange-400">
+            <span className="text-[9px] font-black uppercase tracking-widest text-orange-600">
               Instalación Crítica · Gas / Hidrocarburos
             </span>
           </div>
@@ -302,7 +304,7 @@ export const EstacionGasCard = ({ f, onRemove, onOpenDiagramaGas }: any) => {
 
         {/* Descripción Técnica */}
         {p.descripcion && (
-          <div className="bg-white/2 border-l-2 border-orange-500/60 pl-3 py-2 rounded-r-xl mb-3">
+          <div className="bg-white/5 border-l-2 border-orange-500/60 pl-3 py-2 rounded-r-xl mb-3">
             <div className="flex items-center gap-1 mb-1">
               <Info size={10} className="text-orange-400" />
               <span className="text-[7px] text-slate-400 font-bold uppercase tracking-wider">Descripción Táctica</span>
@@ -310,6 +312,28 @@ export const EstacionGasCard = ({ f, onRemove, onOpenDiagramaGas }: any) => {
             <p className="text-[11px] text-slate-300 leading-relaxed font-normal">{p.descripcion}</p>
           </div>
         )}
+
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <GoogleMapsButton feature={f} className="w-full" />
+          <div className="flex gap-1">
+            <button
+              onClick={() => exportLayerToPDF({ layerKey: 'estaciongas' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-orange-400/30"
+              title="Descargar PDF"
+            >
+              <FileText size={11} />
+              <span>PDF</span>
+            </button>
+            <button
+              onClick={() => exportLayerToExcel({ layerKey: 'estaciongas' })}
+              className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-[8.5px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-emerald-400/30"
+              title="Descargar Excel"
+            >
+              <FileSpreadsheet size={11} />
+              <span>Excel</span>
+            </button>
+          </div>
+        </div>
 
         {/* Footer */}
         <div className="mt-3 pt-2.5 flex justify-between items-center border-t border-white/10 opacity-40">

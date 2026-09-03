@@ -11,7 +11,7 @@ interface TacticalMapLoaderProps {
 
 const TACTICAL_MESSAGES = [
   "Iniciando motor cartográfico vectorial y capas geoespaciales...",
-  "Cargando 68 Cuadrantes de Paz (COMPAS) y despliegue de seguridad...",
+  "Cargando 68 Cuadrantes de Paz y despliegue de seguridad...",
   "Sincronizando 11 Municipios y división político-territorial...",
   "Indexando infraestructura estratégica: Eléctrica, Gas, Agua y Salud...",
   "Verificando radiobases Digitel, Movistar y Movilnet en Nueva Esparta...",
@@ -46,49 +46,49 @@ export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({
     return () => clearInterval(interval);
   }, [isLoading]);
 
-  // Contador constante y fluido 1%, 2%, 3%, 4% ... n% -> 100%
+  // Contador constante y fluido 1%, 2%, 3%, 4% ... n% -> 100% (Sin congelarse en 99%)
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
 
     const runTicker = () => {
-      // Si el mapa ya terminó de cargar, acelerar rápidamente al 100%
+      // Si el mapa ya terminó de cargar, avanzar velozmente al 100%
       if (!isLoadingRef.current) {
         if (percentRef.current < 100) {
-          percentRef.current += 1;
+          percentRef.current = Math.min(100, percentRef.current + 2);
           setPercent(percentRef.current);
-          timer = setTimeout(runTicker, 8); // Paso ultra rápido hacia el 100%
+          timer = setTimeout(runTicker, 12); // Barrido rápido y constante hasta 100%
         } else {
           setPercent(100);
           setIsCompleted(true);
-          // Breve confirmación visual al 100% y desvanecimiento suave
+          // Confirmación visual al 100% y desvanecimiento suave
           setTimeout(() => {
             setIsFadingOut(true);
-            setTimeout(() => setShouldRender(false), 450);
-          }, 250);
+            setTimeout(() => setShouldRender(false), 400);
+          }, 300);
         }
         return;
       }
 
-      // Si aún está cargando el sistema: incremento constante unidad por unidad
+      // Si el mapa aún está cargando: avance progresivo sin detenerse en 99%
       if (percentRef.current < 99) {
         percentRef.current += 1;
         setPercent(percentRef.current);
 
-        // Velocidad adaptativa fluida para avanzar continuamente según la necesidad
-        let delay = 25; // 1% a 50%
-        if (percentRef.current > 50 && percentRef.current <= 80) delay = 35;
-        if (percentRef.current > 80 && percentRef.current <= 92) delay = 50;
-        if (percentRef.current > 92 && percentRef.current <= 98) delay = 75;
-        if (percentRef.current >= 98) delay = 120;
+        // Velocidad graduada fluida
+        let delay = 35; // 1% a 50%
+        if (percentRef.current > 50 && percentRef.current <= 75) delay = 55;
+        if (percentRef.current > 75 && percentRef.current <= 88) delay = 90;
+        if (percentRef.current > 88 && percentRef.current <= 95) delay = 180;
+        if (percentRef.current > 95 && percentRef.current < 99) delay = 450;
 
         timer = setTimeout(runTicker, delay);
       } else {
-        // En 99%, si aún no está listo, espera el aviso del mapa
-        timer = setTimeout(runTicker, 50);
+        // En 99%, continuar avanzando suavemente en micro-pasos para no dar sensación de estar pegado
+        timer = setTimeout(runTicker, 300);
       }
     };
 
-    timer = setTimeout(runTicker, 20);
+    timer = setTimeout(runTicker, 30);
 
     return () => {
       if (timer) clearTimeout(timer);
@@ -123,11 +123,11 @@ export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({
           <div className="w-24 h-24 rounded-full border-2 border-cyan-500/30 flex items-center justify-center relative overflow-hidden">
             {/* Escáner de Radar Giratorio */}
             <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(6,182,212,0.45)_360deg)] animate-[spin_1.6s_linear_infinite]" />
-            <div className="w-20 h-20 rounded-full bg-slate-950/90 border border-cyan-500/50 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)] relative z-10">
+            <div className="w-20 h-20 rounded-full bg-white border-2 border-cyan-400 flex items-center justify-center shadow-[0_0_25px_rgba(255,255,255,0.8)] relative z-10 p-2.5">
               <img 
                 src="/Municipios.png" 
                 alt="SOGNE" 
-                className="w-11 h-11 object-contain drop-shadow-[0_0_10px_cyan]" 
+                className="w-12 h-12 object-contain" 
                 onError={(e) => { (e.target as any).style.display = 'none'; }} 
               />
             </div>

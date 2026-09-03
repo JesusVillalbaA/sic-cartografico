@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Users, MapPin, AlertTriangle, Calendar, User, Camera } from 'lucide-react';
+import { GoogleMapsButton } from '../GoogleMapsButton';
 
 export const ConcentracionCard = ({ f, onRemove, allSujetos = [] }: any) => {
   const [galleryImages, setGalleryImages] = useState<string[] | null>(null);
@@ -34,7 +35,7 @@ export const ConcentracionCard = ({ f, onRemove, allSujetos = [] }: any) => {
             {p.tipo_incidente || 'MANIFESTACIÓN'}
           </h4>
           {p.descripcion && (
-            <div className="bg-white/2 border-l-2 border-amber-500/60 pl-3 py-2 rounded-r-xl">
+            <div className="bg-white/5 border-l-2 border-amber-500/60 pl-3 py-2 rounded-r-xl">
               <p className="text-[11px] text-slate-300 leading-relaxed">{p.descripcion}</p>
             </div>
           )}
@@ -53,7 +54,7 @@ export const ConcentracionCard = ({ f, onRemove, allSujetos = [] }: any) => {
               </div>
             )}
             {p.presunto_lider && (
-              <div className="bg-white/3 border border-white/5 p-2.5 rounded-2xl">
+              <div className="bg-white/5 border border-white/5 p-2.5 rounded-2xl">
                 <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Líder Gremial</span>
                 <span className="text-[9px] text-slate-200 font-bold leading-tight">{p.presunto_lider}</span>
               </div>
@@ -75,7 +76,7 @@ export const ConcentracionCard = ({ f, onRemove, allSujetos = [] }: any) => {
                 const cedula = s.personas_interes?.cedula || s.cedula || 'Sin Cédula';
                 
                 return (
-                  <div key={i} className="flex flex-col bg-white/3 p-2.5 rounded-xl border border-white/5 gap-2">
+                  <div key={i} className="flex flex-col bg-white/5 p-2.5 rounded-xl border border-white/5 gap-2">
                     <div className="flex items-center gap-2.5">
                       {s.personas_interes?.url_foto ? (
                         <img src={s.personas_interes.url_foto} className="w-9 h-9 rounded-full object-cover border border-white/10" alt="Foto" />
@@ -124,7 +125,7 @@ export const ConcentracionCard = ({ f, onRemove, allSujetos = [] }: any) => {
 
         {/* Consignas */}
         {p.consignas_gremio && p.consignas_gremio !== 'N/A' && (
-          <div className="bg-white/3 border border-white/5 p-3 rounded-2xl mb-4">
+          <div className="bg-white/5 border border-white/5 p-3 rounded-2xl mb-4">
             <span className="text-[7px] text-slate-500 font-bold uppercase block mb-1">Consignas / Motivo</span>
             <p className="text-[10px] text-slate-300 italic leading-relaxed">"{p.consignas_gremio}"</p>
           </div>
@@ -140,7 +141,7 @@ export const ConcentracionCard = ({ f, onRemove, allSujetos = [] }: any) => {
 
         {/* Oficial a cargo */}
         {p.usuario_nombre && (
-          <div className="bg-white/2 border border-white/5 p-3 rounded-2xl mb-4 flex justify-between items-center">
+          <div className="bg-white/5 border border-white/5 p-3 rounded-2xl mb-4 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
                 <User size={12} className="text-amber-400" />
@@ -200,6 +201,8 @@ export const ConcentracionCard = ({ f, onRemove, allSujetos = [] }: any) => {
             </button>
           );
         })()}
+
+        <GoogleMapsButton feature={f} className="w-full mt-3" />
       </div>
 
       {galleryImages && typeof document !== 'undefined' && createPortal(

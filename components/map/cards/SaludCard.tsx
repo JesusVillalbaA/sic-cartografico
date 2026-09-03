@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
-import { Phone, Shield, User, MapPin, ExternalLink } from 'lucide-react';
+import { Phone, Shield, User, MapPin, ExternalLink, FileText } from 'lucide-react';
+import { exportLayerToPDF } from '@/app/lib/exportLayerPDF';
 
 export const SaludCard = ({ feature, onClose }: any) => {
   if (!feature) {
@@ -121,7 +122,7 @@ export const SaludCard = ({ feature, onClose }: any) => {
             { label: 'CAPACIDAD', val: p.beds || p.camas ? `${p.beds || p.camas} UNIDADES` : null, icon: '🛏️' },
             { label: 'UNIDADES MÓVILES', val: p.ambulances || p.ambulancias, icon: '🚑' },
           ].map((item, i) => item.val && (
-            <div key={i} className="flex flex-col p-3 rounded-xl bg-white/3 border border-white/5 hover:bg-white/6 transition-colors">
+            <div key={i} className="flex flex-col p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
               <span className="text-[8px] text-cyan-500 font-bold tracking-tighter mb-1 uppercase opacity-70">{item.label}</span>
               <div className="flex items-center gap-2">
                 <span className="text-xs">{item.icon}</span>
@@ -152,12 +153,20 @@ export const SaludCard = ({ feature, onClose }: any) => {
         )}
 
         {p.description || p.funcion ? (
-          <div className="p-3 rounded-lg bg-linear-to-r from-transparent via-white/5 to-transparent border-y border-white/5">
+          <div className="p-3 rounded-lg bg-linear-to-r from-transparent via-white/5 to-transparent border-y border-white/5 mb-3">
             <p className="text-[11px] text-slate-400 italic leading-relaxed text-center">
               "{p.description || p.funcion}"
             </p>
           </div>
         ) : null}
+
+        <button
+          onClick={() => exportLayerToPDF({ layerKey: isHospital ? 'hospitales' : isClinica ? 'clinicas' : isAmbulatorio ? 'ambulatorios' : isCDI ? 'cdi' : 'salud' })}
+          className="w-full flex items-center justify-center gap-2 py-2 px-3 bg-linear-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-bold text-[10px] uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer active:scale-95 border border-rose-400/30"
+        >
+          <FileText size={13} />
+          <span>Descargar Reporte PDF ({theme.label})</span>
+        </button>
       </div>
 
       <style jsx>{`
