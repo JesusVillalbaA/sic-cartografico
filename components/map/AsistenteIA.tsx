@@ -48,63 +48,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   const [inputQuery, setInputQuery] = useState('');
   const chatBottomRef = useRef<HTMLDivElement>(null);
 
-  // Inicializar Web Speech API para reconocimiento por voz en español
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        const recognition = new SpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = 'es-VE';
-
-        recognition.onstart = () => setIsListening(true);
-        recognition.onend = () => setIsListening(false);
-        recognition.onerror = (e: any) => {
-          console.warn("Error en el reconocimiento por voz:", e);
-          setIsListening(false);
-        };
-        recognition.onresult = (event: any) => {
-          const transcript = event.results[0][0]?.transcript;
-          if (transcript) {
-            handleSendVoiceCommand(transcript);
-          }
-        };
-
-        recognitionRef.current = recognition;
-      }
-    }
-  }, []);
-
-  // Escuchar eventos globales para abrir evaluación de riesgo desde el mapa
-  useEffect(() => {
-    const handleRiskEvent = (e: any) => {
-      if (e.detail?.spatialPayload) {
-        setIsOpen(true);
-        setActiveTab('risk');
-        fetchRiskAssessment(e.detail.spatialPayload);
-      }
-    };
-    window.addEventListener('sogne_open_risk_analysis', handleRiskEvent);
-    return () => window.removeEventListener('sogne_open_risk_analysis', handleRiskEvent);
-  }, []);
-
-  const toggleListening = () => {
-    if (!recognitionRef.current) {
-      alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");
-      return;
-    }
-    if (isListening) {
-      recognitionRef.current.stop();
-    } else {
-      try {
-        recognitionRef.current.start();
-      } catch (e) {
-        console.warn("Error al activar micrófono:", e);
-      }
-    }
-  };
-
+  // Procesar comandos de voz y ejecutar acciones en el mapa
   const handleSendVoiceCommand = async (commandText: string) => {
     if (!commandText.trim()) return;
 
@@ -155,6 +99,66 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
       console.error("Error procesando comando por voz:", err);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  // Inicializar Web Speech API para reconocimiento por voz en español
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'es-VE';
+
+        recognition.onstart = () => setIsListening(true);
+        recognition.onend = () => setIsListening(false);
+        recognition.onerror = (e: any) => {
+          console.warn("Error en el reconocimiento por voz:", e);
+          setIsListening(false);
+        };
+        recognition.onresult = (event: any) => {
+          const transcript = event.results[0][0]?.transcript;
+          if (transcript) {
+            handleSendVoiceCommand(transcript);
+          }
+        };
+
+        recognitionRef.current = recognition;
+      }
+    }
+  }, []);
+
+  // Escuchar eventos globales para abrir evaluación de riesgo desde el mapa
+  useEffect(() => {
+    const handleRiskEvent = (e: any) => {
+      if (e.detail?.spatialPayload) {
+        setIsOpen(true);
+        setActiveTab('risk');
+        fetchRiskAssessment(e.detail.spatialPayload);
+      }
+    };
+    window.addEventListener('sogne_open_risk_analysis', handleRiskEvent);
+    return () => window.removeEventListener('sogne_open_risk_analysis', handleRiskEvent);
+  }, []);
+
+  const toggleListening = () => {
+    if (!recognitionRef.current) {
+      alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");
+      return;
+    }
+    if (isListening) {
+      try { recognitionRef.current.stop(); } catch(e){}
+      setIsListening(false);
+    } else {
+      try {
+        setIsListening(true);
+        recognitionRef.current.start();
+      } catch (e) {
+        console.warn("Error al activar micrófono:", e);
+        setIsListening(false);
+      }
     }
   };
 

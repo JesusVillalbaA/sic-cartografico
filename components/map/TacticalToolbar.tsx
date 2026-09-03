@@ -30,6 +30,65 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   const activeToolRef = React.useRef(activeTool);
   const bufferCenterRef = React.useRef<[number, number] | null>(null);
 
+  // Manejo de Heatmap
+  const toggleHeatmap = React.useCallback(() => {
+    if (!map) return;
+    setIsHeatmapActive(prev => {
+      const nextState = !prev;
+      if (map.getLayer('incidentes-heatmap')) {
+        map.setLayoutProperty('incidentes-heatmap', 'visibility', nextState ? 'visible' : 'none');
+      }
+      return nextState;
+    });
+  }, [map]);
+
+  // Manejo de Vista 3D Táctica
+  const toggle3D = React.useCallback(() => {
+    if (!map) return;
+    setIs3DActive(prev => {
+      const nextState = !prev;
+      if (nextState) {
+        const currentZoom = typeof map.getZoom === 'function' ? map.getZoom() : 11;
+        const targetZoom = Math.max(currentZoom, 15.5);
+        map.easeTo({
+          pitch: 65,
+          bearing: -25,
+          zoom: targetZoom,
+          duration: 1200
+        });
+      } else {
+        map.easeTo({
+          pitch: 0,
+          bearing: 0,
+          duration: 1000
+        });
+      }
+      return nextState;
+    });
+  }, [map]);
+
+  const handleClearAll = React.useCallback(() => {
+    setActiveTool('none');
+    setMeasurePoints([]);
+    setPolygonPoints([]);
+    setTotalDistance(0);
+    setTotalArea(0);
+
+    if (map) {
+      const measureSrc = map.getSource('tactical-measure-source') as mapboxgl.GeoJSONSource;
+      if (measureSrc) measureSrc.setData({ type: 'FeatureCollection', features: [] });
+
+      const bufferSrc = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
+      if (bufferSrc) bufferSrc.setData({ type: 'FeatureCollection', features: [] });
+
+      const polySrc = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
+      if (polySrc) polySrc.setData({ type: 'FeatureCollection', features: [] });
+
+      const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
+      if (maskSrc) maskSrc.setData({ type: 'FeatureCollection', features: [] });
+    }
+  }, [map]);
+
   // Escuchar acciones disparadas por comandos de voz
   useEffect(() => {
     const handleVoiceAction = (e: any) => {
@@ -42,7 +101,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     };
     window.addEventListener('sogne_voice_action', handleVoiceAction);
     return () => window.removeEventListener('sogne_voice_action', handleVoiceAction);
-  }, []);
+  }, [toggle3D, toggleHeatmap, handleClearAll]);
 
   // Escanear espacialmente activos contenidos y disparar la evaluación de riesgo con IA
   const evaluateAreaRiskWithAI = (shapeGeoJSON: any, shapeType: string, areaMetersSq: number) => {
@@ -324,39 +383,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     }
   }, [map, bringTacticalLayersToFront]);
 
-  // Manejo de Heatmap
-  const toggleHeatmap = () => {
-    if (!map) return;
-    const nextState = !isHeatmapActive;
-    setIsHeatmapActive(nextState);
-    if (map.getLayer('incidentes-heatmap')) {
-      map.setLayoutProperty('incidentes-heatmap', 'visibility', nextState ? 'visible' : 'none');
-    }
-  };
 
-  // Manejo de Vista 3D Táctica
-  const toggle3D = () => {
-    if (!map) return;
-    const nextState = !is3DActive;
-    setIs3DActive(nextState);
-    if (nextState) {
-      const currentZoom = typeof map.getZoom === 'function' ? map.getZoom() : 11;
-      const targetZoom = Math.max(currentZoom, 15.5);
-      map.easeTo({
-        pitch: 65,
-        bearing: -25,
-        zoom: targetZoom,
-        duration: 1200
-      });
-    } else {
-      map.easeTo({
-        pitch: 0,
-        bearing: 0,
-        duration: 1000
-      });
-    }
-    setTimeout(bringTacticalLayersToFront, 1300);
-  };
 
   // Manejar mousemove y clics en el mapa según la herramienta activa
   useEffect(() => {
@@ -579,27 +606,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     }
   }, [map, activeTool, bufferRadius, selectedFeatures, drawBufferCircle]);
 
-  const handleClearAll = () => {
-    setActiveTool('none');
-    setMeasurePoints([]);
-    setPolygonPoints([]);
-    setTotalDistance(0);
-    setTotalArea(0);
 
-    if (map) {
-      const measureSrc = map.getSource('tactical-measure-source') as mapboxgl.GeoJSONSource;
-      if (measureSrc) measureSrc.setData({ type: 'FeatureCollection', features: [] });
-
-      const bufferSrc = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
-      if (bufferSrc) bufferSrc.setData({ type: 'FeatureCollection', features: [] });
-
-      const polySrc = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
-      if (polySrc) polySrc.setData({ type: 'FeatureCollection', features: [] });
-
-      const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
-      if (maskSrc) maskSrc.setData({ type: 'FeatureCollection', features: [] });
-    }
-  };
 
   const downloadGeoJSON = () => {
     if (polygonPoints.length < 3) return;
