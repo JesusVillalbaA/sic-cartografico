@@ -143,6 +143,19 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     return () => window.removeEventListener('sogne_open_risk_analysis', handleRiskEvent);
   }, []);
 
+  // Escuchar comando de voz directo enviado desde el botón de la barra de herramientas
+  useEffect(() => {
+    const handleVoiceText = (e: any) => {
+      if (e.detail?.text) {
+        setIsOpen(true);
+        setActiveTab('chat');
+        handleSendVoiceCommand(e.detail.text);
+      }
+    };
+    window.addEventListener('sogne_send_voice_text', handleVoiceText);
+    return () => window.removeEventListener('sogne_send_voice_text', handleVoiceText);
+  }, []);
+
   const toggleListening = () => {
     if (!recognitionRef.current) {
       alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");

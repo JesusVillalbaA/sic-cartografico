@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Ruler, CircleDot, Flame, Trash2, X, Box, Shapes, Download, FileJson, FileText, ShieldAlert } from 'lucide-react';
+import { Ruler, CircleDot, Flame, Trash2, X, Box, Shapes, Download, FileJson, FileText, ShieldAlert, Mic, MicOff } from 'lucide-react';
 import * as turf from '@turf/turf';
 import mapboxgl from 'mapbox-gl';
-import { exportPDF as exportPDFUtil } from './mapUtils';
+import { exportPDF as exportPDFUtil, exportSpatialRiskPDF } from './mapUtils';
 
 interface TacticalToolbarProps {
   map: mapboxgl.Map | null;
@@ -17,8 +17,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   const [isHeatmapActive, setIsHeatmapActive] = useState(false);
   const [is3DActive, setIs3DActive] = useState(false);
   const [isExportingPDF, setIsExportingPDF] = useState(false);
+  const [isVoiceListening, setIsVoiceListening] = useState(false);
   const [measurePoints, setMeasurePoints] = useState<[number, number][]>([]);
   const [polygonPoints, setPolygonPoints] = useState<[number, number][]>([]);
+  const [allPolygons, setAllPolygons] = useState<any[]>([]);
   const [isPolygonFinished, setIsPolygonFinished] = useState(false);
   const [totalDistance, setTotalDistance] = useState<number>(0);
   const [totalArea, setTotalArea] = useState<number>(0);
@@ -26,9 +28,15 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
   const polygonPointsRef = React.useRef<[number, number][]>([]);
   const measurePointsRef = React.useRef<[number, number][]>([]);
+  const allPolygonsRef = React.useRef<any[]>([]);
   const isPolygonFinishedRef = React.useRef(false);
   const activeToolRef = React.useRef(activeTool);
   const bufferCenterRef = React.useRef<[number, number] | null>(null);
+  const recognitionRef = React.useRef<any>(null);
+
+  useEffect(() => {
+    allPolygonsRef.current = allPolygons;
+  }, [allPolygons]);
 
   // Manejo de Heatmap
   const toggleHeatmap = React.useCallback(() => {
@@ -67,10 +75,49 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     });
   }, [map]);
 
+  const toggleVoiceListener = () => {
+    if (typeof window === 'undefined') return;
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("El soporte de voz requiere Web Speech API (disponible en Google Chrome / MS Edge). Por favor revisa los permisos de tu micrófono.");
+      return;
+    }
+
+    if (isVoiceListening && recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch(e){}
+      setIsVoiceListening(false);
+    } else {
+      try {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'es-VE';
+
+        recognition.onstart = () => setIsVoiceListening(true);
+        recognition.onend = () => setIsVoiceListening(false);
+        recognition.onerror = () => setIsVoiceListening(false);
+        recognition.onresult = (event: any) => {
+          const transcript = event.results[0][0]?.transcript;
+          if (transcript) {
+            window.dispatchEvent(new CustomEvent('sogne_send_voice_text', { detail: { text: transcript } }));
+          }
+        };
+
+        recognitionRef.current = recognition;
+        recognition.start();
+        setIsVoiceListening(true);
+      } catch(e) {
+        setIsVoiceListening(false);
+      }
+    }
+  };
+
   const handleClearAll = React.useCallback(() => {
     setActiveTool('none');
     setMeasurePoints([]);
     setPolygonPoints([]);
+    setAllPolygons([]);
+    allPolygonsRef.current = [];
     setTotalDistance(0);
     setTotalArea(0);
 
@@ -175,6 +222,9 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     };
 
     window.dispatchEvent(new CustomEvent('sogne_open_risk_analysis', { detail: { spatialPayload } }));
+    try {
+      exportSpatialRiskPDF(spatialPayload);
+    } catch(e){}
   };
 
   // Sincronizar estado táctico global para evitar reseteos en useMapbox
@@ -716,6 +766,20 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         >
           <Box size={14} className={is3DActive ? "text-slate-950" : "text-cyan-400"} />
           <span className="hidden md:inline">VISTA 3D</span>
+        </button>
+
+        {/* Botón Comando por Voz Directo */}
+        <button
+          onClick={toggleVoiceListener}
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-[11px] font-black tracking-wider transition-all cursor-pointer shadow-md ${
+            isVoiceListening
+              ? 'bg-rose-600 text-white shadow-[0_0_20px_rgba(244,63,94,0.9)] animate-pulse border border-rose-300'
+              : 'bg-gradient-to-r from-cyan-600/30 to-blue-600/30 text-cyan-300 border border-cyan-400/40 hover:from-cyan-600/50 hover:to-blue-600/50'
+          }`}
+          title="Activar Dictado por Voz (Hablar directamente al micrófono)"
+        >
+          {isVoiceListening ? <MicOff size={14} className="animate-spin text-rose-200" /> : <Mic size={14} className="text-cyan-300 animate-bounce" />}
+          <span>{isVoiceListening ? "ESCUCHANDO VOZ..." : "COMANDO DE VOZ"}</span>
         </button>
 
         {/* Botón Limpiar */}

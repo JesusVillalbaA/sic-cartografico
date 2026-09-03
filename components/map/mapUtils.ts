@@ -154,3 +154,96 @@ export const exportPDF = async (isExporting: boolean, setIsExporting: React.Disp
     setIsExporting(false);
   }
 };
+
+export const exportSpatialRiskPDF = async (spatialPayload: any) => {
+  try {
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    // Fondo slate-950
+    pdf.setFillColor(15, 23, 42);
+    pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
+
+    // Captura del mapa si está disponible
+    const mapExportContainer = document.getElementById('map-export-container');
+    const mapCanvas = mapExportContainer?.querySelector('canvas.mapboxgl-canvas') as HTMLCanvasElement;
+    if (mapCanvas) {
+      try {
+        const imgData = mapCanvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 12, 45, pdfWidth - 24, 75, undefined, 'FAST');
+      } catch (e) {}
+    }
+
+    // Header Banner
+    pdf.setFillColor(6, 182, 212);
+    pdf.rect(0, 0, pdfWidth, 2, 'F');
+
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(14);
+    pdf.setTextColor(6, 182, 212);
+    pdf.text('SOGNE IA • EVALUACIÓN ESPACIAL DE RIESGO', 12, 14);
+
+    pdf.setFontSize(9);
+    pdf.setTextColor(203, 213, 225);
+    pdf.text(`INFORME DE VULNERABILIDAD Y COBERTURA TÁCTICA • ${new Date().toLocaleString('es-VE')}`, 12, 20);
+
+    // Caja de Nivel de Riesgo
+    const level = spatialPayload.shapeType || 'Área Analizada';
+    const area = spatialPayload.areaKm2 ? `${spatialPayload.areaKm2.toFixed(2)} km²` : 'N/A';
+    
+    pdf.setFillColor(30, 41, 59);
+    pdf.roundedRect(12, 25, pdfWidth - 24, 16, 2, 2, 'F');
+
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(11);
+    pdf.setTextColor(245, 158, 11);
+    pdf.text(`ZONA EVALUADA: ${level.toUpperCase()} (${area})`, 16, 32);
+
+    pdf.setFontSize(9);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text(`Activos de Infraestructura: ${spatialPayload.antenasCount + spatialPayload.saludCount + spatialPayload.electricoCount + spatialPayload.gasCount + spatialPayload.aguaCount} | Cuadrantes: ${spatialPayload.cuadrantesCount}`, 16, 37);
+
+    // Tabla de Desglose de Infraestructuras
+    let yPos = 125;
+    pdf.setFillColor(30, 41, 59);
+    pdf.roundedRect(12, yPos, pdfWidth - 24, 45, 2, 2, 'F');
+
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(10);
+    pdf.setTextColor(56, 189, 248);
+    pdf.text('DESGLOSE CUANTITATIVO DE INFRAESTRUCTURAS CONTENIDAS', 16, yPos + 7);
+
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(9);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text(`• Subestaciones Eléctricas: ${spatialPayload.electricoCount || 0}`, 16, yPos + 15);
+    pdf.text(`• Centros de Salud (Hospitales/CDI): ${spatialPayload.saludCount || 0}`, 16, yPos + 22);
+    pdf.text(`• Antenas Telecom (Digitel/Movistar/Movilnet): ${spatialPayload.antenasCount || 0}`, 16, yPos + 29);
+    pdf.text(`• Estaciones de Gas y Combustible: ${spatialPayload.gasCount || 0}`, 105, yPos + 15);
+    pdf.text(`• Sistemas de Agua e Hidrología: ${spatialPayload.aguaCount || 0}`, 105, yPos + 22);
+    pdf.text(`• Puntos de Atención de Seguridad / Delitos: ${spatialPayload.incidentesCount || 0}`, 105, yPos + 29);
+
+    // Recomendaciones y Conclusiones
+    yPos = 175;
+    pdf.setFillColor(30, 41, 59);
+    pdf.roundedRect(12, yPos, pdfWidth - 24, 40, 2, 2, 'F');
+
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(10);
+    pdf.setTextColor(52, 211, 153);
+    pdf.text('DIAGNÓSTICO Y RECOMENDACIONES DE DESPLIEGUE TÁCTICO', 16, yPos + 7);
+
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(8.5);
+    pdf.setTextColor(226, 232, 240);
+    pdf.text('1. Reforzar el monitoreo en cuadrantes de paz contenidos y vías de acceso principales.', 16, yPos + 15);
+    pdf.text('2. Mantener canal prioritario de comunicación con los centros de salud asistencial de la zona.', 16, yPos + 22);
+    pdf.text('3. Verificar respaldo eléctrico y antenas de transmisión para evitar aislación táctica.', 16, yPos + 29);
+
+    pdf.save(`evaluacion_riesgo_sogne_${Date.now()}.pdf`);
+  } catch (e: any) {
+    console.error("Error al exportar PDF de riesgo:", e);
+    alert("Fallo al exportar PDF de evaluación de riesgo: " + (e?.message || e));
+  }
+};
