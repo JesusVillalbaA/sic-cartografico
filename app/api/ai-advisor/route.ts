@@ -155,21 +155,47 @@ function parseVoiceCommand(command: string) {
   const actions: string[] = [];
   let responseText = `Comando procesado: "${command}". `;
 
-  // Capas de Infraestructura y Seguridad
+  // ── MÓDULOS DEL SISTEMA ─────────────────────────────────────
+  if (text.includes('modulo 1') || text.includes('módulo 1') || text.includes('modulo uno') || text.includes('módulo uno') || text.includes('primer modulo') || text.includes('primer módulo')) {
+    actions.push('sistemasElectricos', 'servicioAgua.embalses', 'servicioAgua.desalinizadoras', 'servicioAgua.tanques', 'estacionesGas', 'estacionesServicio');
+    responseText += "Activando MÓDULO 1: Infraestructura y Servicios Críticos (Electricidad, Agua, Gas). ";
+  }
+
+  if (text.includes('modulo 2') || text.includes('módulo 2') || text.includes('modulo dos') || text.includes('módulo dos') || text.includes('segundo modulo') || text.includes('segundo módulo')) {
+    actions.push('hospitales', 'cdi', 'ambulatorios', 'clinicas');
+    responseText += "Activando MÓDULO 2: Red Asistencial de Salud (Hospitales, Clínicas, CDI, Ambulatorios). ";
+  }
+
+  if (text.includes('modulo 3') || text.includes('módulo 3') || text.includes('modulo tres') || text.includes('módulo tres') || text.includes('tercer modulo') || text.includes('tercer módulo')) {
+    actions.push('cuadrantesPoligonos', 'cuadrantes', 'incidencias', 'delitosComunes');
+    responseText += "Activando MÓDULO 3: Seguridad Ciudadana y Cuadrantes de Paz. ";
+  }
+
+  if (text.includes('modulo 4') || text.includes('módulo 4') || text.includes('modulo cuatro') || text.includes('módulo cuatro') || text.includes('cuarto modulo') || text.includes('cuarto módulo')) {
+    actions.push('antenasDigitel', 'antenasMovistar', 'antenasMovilnet');
+    responseText += "Activando MÓDULO 4: Red de Telecomunicaciones (Digitel, Movistar, Movilnet). ";
+  }
+
+  if (text.includes('desactivar todo') || text.includes('apagar todo') || text.includes('quitar todo') || text.includes('desactiva todo') || text.includes('limpiar todo') || text.includes('borrar todo')) {
+    actions.push('turn_off_all', 'clear_tools');
+    responseText += "Desactivando todas las capas e infraestructura del mapa. ";
+  }
+
+  // Capas de Infraestructura y Seguridad individuales
   if (text.includes('subestación') || text.includes('subestaciones') || text.includes('eléctric') || text.includes('luz')) {
-    actions.push('sistemasElectricos');
+    if (!actions.includes('sistemasElectricos')) actions.push('sistemasElectricos');
     responseText += "Habilitando Red de Sistemas Eléctricos. ";
   }
   if (text.includes('antena') || text.includes('comunicación') || text.includes('telefonía') || text.includes('celular')) {
-    actions.push('antenasDigitel', 'antenasMovistar', 'antenasMovilnet');
+    if (!actions.includes('antenasDigitel')) actions.push('antenasDigitel', 'antenasMovistar', 'antenasMovilnet');
     responseText += "Activando antenas de telecomunicaciones (Digitel, Movistar, Movilnet). ";
   }
   if (text.includes('salud') || text.includes('hospital') || text.includes('cdi') || text.includes('clínica') || text.includes('médic')) {
-    actions.push('hospitales', 'cdi', 'ambulatorios', 'clinicas');
+    if (!actions.includes('hospitales')) actions.push('hospitales', 'cdi', 'ambulatorios', 'clinicas');
     responseText += "Desplegando Red de Salud Asistencial. ";
   }
   if (text.includes('cuadrante') || text.includes('cuadrantes') || text.includes('patrulla')) {
-    actions.push('cuadrantesPoligonos', 'cuadrantes');
+    if (!actions.includes('cuadrantesPoligonos')) actions.push('cuadrantesPoligonos', 'cuadrantes');
     responseText += "Mostrando Cuadrantes de Paz. ";
   }
   if (text.includes('agua') || text.includes('embalse') || text.includes('pozo') || text.includes('desalinizadora')) {
@@ -208,7 +234,7 @@ function parseVoiceCommand(command: string) {
   }
 
   if (actions.length === 0) {
-    responseText = `Comando interpretado: "${command}". No se detectó ninguna capa específica. Intenta dictar: "Muéstrame las subestaciones eléctricas", "Activa la red de salud" o "Cambia a vista 3D".`;
+    responseText = `Comando interpretado: "${command}". Puedes dictar: "Activar Módulo 1", "Activar Módulo 2", "Activar Módulo 3", "Activar Módulo 4", "Desactivar todo", "Cambia a vista 3D" o "Traza un radio de cobertura".`;
   }
 
   return { actions, responseText };

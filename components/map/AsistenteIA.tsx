@@ -77,10 +77,20 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
       if (data.success) {
         if (data.voiceActions && data.voiceActions.length > 0) {
           data.voiceActions.forEach((actionKey: string) => {
-            if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {
+            if (actionKey === 'turn_off_all') {
+              if (layersVisible) {
+                Object.keys(layersVisible).forEach(k => {
+                  if (layersVisible[k]) {
+                    onToggle(k);
+                  }
+                });
+              }
+            } else if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {
               window.dispatchEvent(new CustomEvent('sogne_voice_action', { detail: { action: actionKey } }));
             } else {
-              onToggle(actionKey);
+              if (layersVisible && !layersVisible[actionKey]) {
+                onToggle(actionKey);
+              }
             }
           });
         }
@@ -130,53 +140,27 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     }
   }, []);
 
-  // Escuchar eventos globales para abrir evaluación de riesgo desde el mapa
-  useEffect(() => {
-    const handleRiskEvent = (e: any) => {
-      if (e.detail?.spatialPayload) {
-        setIsOpen(true);
-        setActiveTab('risk');
-        fetchRiskAssessment(e.detail.spatialPayload);
+  const fetchRiskAssessment = React.useCallback(async (spatialPayload: any) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/ai-advisor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ spatialPayload })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setRiskReportData(data.riskReport);
       }
-    };
-    window.addEventListener('sogne_open_risk_analysis', handleRiskEvent);
-    return () => window.removeEventListener('sogne_open_risk_analysis', handleRiskEvent);
-  }, []);
-
-  // Escuchar comando de voz directo enviado desde el botón de la barra de herramientas
-  useEffect(() => {
-    const handleVoiceText = (e: any) => {
-      if (e.detail?.text) {
-        setIsOpen(true);
-        setActiveTab('chat');
-        handleSendVoiceCommand(e.detail.text);
-      }
-    };
-    window.addEventListener('sogne_send_voice_text', handleVoiceText);
-    return () => window.removeEventListener('sogne_send_voice_text', handleVoiceText);
-  }, []);
-
-  const toggleListening = () => {
-    if (!recognitionRef.current) {
-      alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");
-      return;
+    } catch (e) {
+      console.error("Error evaluando riesgo espacial:", e);
+    } finally {
+      setIsLoading(false);
     }
-    if (isListening) {
-      try { recognitionRef.current.stop(); } catch(e){}
-      setIsListening(false);
-    } else {
-      try {
-        setIsListening(true);
-        recognitionRef.current.start();
-      } catch (e) {
-        console.warn("Error al activar micrófono:", e);
-        setIsListening(false);
-      }
-    }
-  };
+  }, []);
 
   // Cargar diagnóstico cuando cambian capas o características seleccionadas
-  const fetchDiagnostic = async (userMsg?: string) => {
+  const fetchDiagnostic = React.useCallback(async (userMsg?: string) => {
     setIsLoading(true);
     try {
       const res = await fetch('/api/ai-advisor', {
@@ -210,24 +194,50 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [layersVisible, selectedFeatures]);
 
-  const fetchRiskAssessment = async (spatialPayload: any) => {
-    setIsLoading(true);
-    try {
-      const res = await fetch('/api/ai-advisor', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ spatialPayload })
-      });
-      const data = await res.json();
-      if (data.success) {
-        setRiskReportData(data.riskReport);
+  // Escuchar eventos globales para abrir evaluación de riesgo desde el mapa
+  useEffect(() => {
+    const handleRiskEvent = (e: any) => {
+      if (e.detail?.spatialPayload) {
+        setIsOpen(true);
+        setActiveTab('risk');
+        fetchRiskAssessment(e.detail.spatialPayload);
       }
-    } catch (e) {
-      console.error("Error evaluando riesgo espacial:", e);
-    } finally {
-      setIsLoading(false);
+    };
+    window.addEventListener('sogne_open_risk_analysis', handleRiskEvent);
+    return () => window.removeEventListener('sogne_open_risk_analysis', handleRiskEvent);
+  }, [fetchRiskAssessment]);
+
+  // Escuchar comando de voz directo enviado desde el botón de la barra de herramientas
+  useEffect(() => {
+    const handleVoiceText = (e: any) => {
+      if (e.detail?.text) {
+        setIsOpen(true);
+        setActiveTab('chat');
+        handleSendVoiceCommand(e.detail.text);
+      }
+    };
+    window.addEventListener('sogne_send_voice_text', handleVoiceText);
+    return () => window.removeEventListener('sogne_send_voice_text', handleVoiceText);
+  }, [handleSendVoiceCommand]);
+
+  const toggleListening = () => {
+    if (!recognitionRef.current) {
+      alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");
+      return;
+    }
+    if (isListening) {
+      try { recognitionRef.current.stop(); } catch(e){}
+      setIsListening(false);
+    } else {
+      try {
+        setIsListening(true);
+        recognitionRef.current.start();
+      } catch (e) {
+        console.warn("Error al activar micrófono:", e);
+        setIsListening(false);
+      }
     }
   };
 
