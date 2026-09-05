@@ -112,26 +112,55 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     }
   };
 
-  // Inicializar Web Speech API para reconocimiento por voz en español
+  // Inicializar Web Speech API para reconocimiento por voz en español (Modo Continuo y Tolerante)
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       if (SpeechRecognition) {
         const recognition = new SpeechRecognition();
-        recognition.continuous = false;
+        recognition.continuous = true; // Captura de audio en modo continuo
         recognition.interimResults = false;
         recognition.lang = 'es-VE';
 
-        recognition.onstart = () => setIsListening(true);
-        recognition.onend = () => setIsListening(false);
-        recognition.onerror = (e: any) => {
-          console.warn("Error en el reconocimiento por voz:", e);
-          setIsListening(false);
+        let shouldKeepListening = false;
+
+        recognition.onstart = () => {
+          setIsListening(true);
+          shouldKeepListening = true;
         };
+
+        recognition.onend = () => {
+          // Estabilidad: Reiniciar automáticamente si no fue detenido explícitamente por el usuario
+          if (shouldKeepListening && recognitionRef.current === recognition) {
+            try {
+              recognition.start();
+            } catch (err) {
+              console.warn("Reinicio automático de micrófono omitido:", err);
+              setIsListening(false);
+            }
+          } else {
+            setIsListening(false);
+          }
+        };
+
+        recognition.onerror = (e: any) => {
+          console.warn("Advertencia en reconocimiento por voz:", e.error);
+          if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+            shouldKeepListening = false;
+            setIsListening(false);
+          }
+        };
+
         recognition.onresult = (event: any) => {
-          const transcript = event.results[0][0]?.transcript;
-          if (transcript) {
-            handleSendVoiceCommand(transcript);
+          const lastIndex = event.results.length - 1;
+          const rawTranscript = event.results[lastIndex][0]?.transcript;
+          
+          if (rawTranscript) {
+            // Normalización y limpieza de texto: toLowerCase() + trim()
+            const cleanText = rawTranscript.toLowerCase().trim();
+            if (cleanText) {
+              handleSendVoiceCommand(cleanText);
+            }
           }
         };
 
