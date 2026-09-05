@@ -6,6 +6,8 @@ import {
   Mic, MicOff, ShieldAlert, Activity, FileCheck, Radio, Check
 } from 'lucide-react';
 
+import { SogneVoiceController, VoiceRule } from '@/lib/voiceRecognitionModule';
+
 interface AsistenteIAProps {
   layersVisible: any;
   selectedFeatures?: any[];
@@ -34,6 +36,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   
   // Voice control state
   const [isListening, setIsListening] = useState(false);
+  const controllerRef = useRef<SogneVoiceController | null>(null);
   const recognitionRef = useRef<any>(null);
 
   // Chat state
@@ -112,62 +115,38 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     }
   };
 
-  // Inicializar Web Speech API para reconocimiento por voz en español (Modo Continuo y Tolerante)
+  // Inicializar SogneVoiceController para reconocimiento por voz en español (Modo Continuo y Tolerante)
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        const recognition = new SpeechRecognition();
-        recognition.continuous = true; // Captura de audio en modo continuo
-        recognition.interimResults = false;
-        recognition.lang = 'es-VE';
-
-        let shouldKeepListening = false;
-
-        recognition.onstart = () => {
-          setIsListening(true);
-          shouldKeepListening = true;
-        };
-
-        recognition.onend = () => {
-          // Estabilidad: Reiniciar automáticamente si no fue detenido explícitamente por el usuario
-          if (shouldKeepListening && recognitionRef.current === recognition) {
-            try {
-              recognition.start();
-            } catch (err) {
-              console.warn("Reinicio automático de micrófono omitido:", err);
-              setIsListening(false);
-            }
-          } else {
-            setIsListening(false);
-          }
-        };
-
-        recognition.onerror = (e: any) => {
-          console.warn("Advertencia en reconocimiento por voz:", e.error);
-          if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
-            shouldKeepListening = false;
-            setIsListening(false);
-          }
-        };
-
-        recognition.onresult = (event: any) => {
-          const lastIndex = event.results.length - 1;
-          const rawTranscript = event.results[lastIndex][0]?.transcript;
-          
-          if (rawTranscript) {
-            // Normalización y limpieza de texto: toLowerCase() + trim()
-            const cleanText = rawTranscript.toLowerCase().trim();
-            if (cleanText) {
-              handleSendVoiceCommand(cleanText);
-            }
-          }
-        };
-
-        recognitionRef.current = recognition;
+    const controller = new SogneVoiceController({
+      lang: 'es-VE',
+      onStatusChange: (listening) => {
+        setIsListening(listening);
+      },
+      onCommandDetected: (cleanText, matchedRule) => {
+        if (cleanText) {
+          handleSendVoiceCommand(cleanText);
+        }
       }
+    });
+
+    controllerRef.current = controller;
+
+    return () => {
+      controller.stop();
+    };
+  }, [handleSendVoiceCommand]);
+
+  const toggleListening = () => {
+    if (!controllerRef.current) {
+      alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");
+      return;
     }
-  }, []);
+    if (isListening) {
+      controllerRef.current.stop();
+    } else {
+      controllerRef.current.start();
+    }
+  };
 
   const fetchRiskAssessment = React.useCallback(async (spatialPayload: any) => {
     setIsLoading(true);
@@ -250,25 +229,6 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     window.addEventListener('sogne_send_voice_text', handleVoiceText);
     return () => window.removeEventListener('sogne_send_voice_text', handleVoiceText);
   }, [handleSendVoiceCommand]);
-
-  const toggleListening = () => {
-    if (!recognitionRef.current) {
-      alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");
-      return;
-    }
-    if (isListening) {
-      try { recognitionRef.current.stop(); } catch(e){}
-      setIsListening(false);
-    } else {
-      try {
-        setIsListening(true);
-        recognitionRef.current.start();
-      } catch (e) {
-        console.warn("Error al activar micrófono:", e);
-        setIsListening(false);
-      }
-    }
-  };
 
   useEffect(() => {
     if (isOpen && activeTab === 'diagnostic') {
