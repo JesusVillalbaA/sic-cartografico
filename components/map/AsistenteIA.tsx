@@ -268,7 +268,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
       {/* Botón Flotante para abrir la Mini IA */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 right-20 z-40 flex items-center gap-2 bg-slate-900/90 hover:bg-cyan-950/90 text-cyan-400 border border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 group cursor-pointer"
+        className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-slate-900/95 hover:bg-cyan-950/95 text-cyan-400 border border-cyan-500/50 shadow-[0_0_25px_rgba(6,182,212,0.4)] backdrop-blur-xl px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 group cursor-pointer"
         title="Abrir Asistente Táctico SOGNE IA"
       >
         <div className="relative">

@@ -14,6 +14,8 @@ import { TacticalMapLoader } from './TacticalMapLoader';
 import { exportPDF as exportPDFUtil, toggleState, clearAndReset } from './mapUtils';
 import { supabase } from './supabaseClient';
 
+import { AsistenteIA } from './AsistenteIA';
+
 export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRiesgo: externalFetch, isZonasLoading, theme }: any, ref) => {
   const [selectedFeatures, setSelectedFeatures] = useState<any[]>([]);
   const [isExporting, setIsExporting] = useState(false);
@@ -168,6 +170,7 @@ export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRi
 
       <TacticalToolbar map={map.current} theme={theme} selectedFeatures={selectedFeatures} />
       <BuscadorGlobal map={map.current} onSelectFeature={handleSearchSelect} theme={theme} layersVisible={layersVisible} />
+      <AsistenteIA layersVisible={layersVisible} selectedFeatures={selectedFeatures} onToggle={onToggle} theme={theme} />
       <Legend theme={theme} layersVisible={layersVisible} onToggle={onToggle} />
       <MapStyleSelector map={map.current} theme={theme} />
       <ZoomControls map={map.current} theme={theme} />

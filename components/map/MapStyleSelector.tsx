@@ -66,7 +66,7 @@ export const MapStyleSelector = ({ map, theme = 'dark' }: MapStyleSelectorProps)
   };
 
   return (
-    <div className="absolute right-6 bottom-36 z-20 select-none animate-in fade-in slide-in-from-right-4 duration-300">
+    <div className="absolute right-6 bottom-64 z-20 select-none animate-in fade-in slide-in-from-right-4 duration-300">
       <div className="bg-slate-950/85 backdrop-blur-2xl p-1.5 rounded-2xl border border-cyan-500/30 shadow-[0_0_25px_rgba(6,182,212,0.2)] ring-1 ring-white/10 flex flex-col gap-1.5">
         
         {/* Toggle Expandir selector */}

@@ -108,7 +108,7 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
   const isLight = theme === 'light';
 
   return (
-    <div ref={wrapperRef} className="absolute top-4 right-6 z-50 w-80 md:w-96 flex flex-col items-end">
+    <div ref={wrapperRef} className="absolute top-4 right-44 md:right-48 z-40 w-72 md:w-80 flex flex-col items-end">
       {/* Input */}
       <div className={`relative w-full overflow-hidden rounded-2xl border transition-all duration-300 shadow-xl backdrop-blur-md ${
         isFocused 
