@@ -110,7 +110,7 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
         { id: 'municipios', label: 'Municipios', iconSrc: '/Municipios.png', colorDot: '#3b82f6', glowColor: 'rgba(59, 130, 246, 0.4)', desc: 'Límites municipales', toggleKey: 'municipios' },
         { id: 'parroquias', label: 'Parroquias', iconSrc: '/parroquia.png', colorDot: '#ec4899', glowColor: 'rgba(236, 72, 153, 0.4)', desc: 'Límites parroquiales', toggleKey: 'parroquias' },
         { id: 'sectores', label: 'Sectores', iconSrc: '/Sectores.png', colorDot: '#10b981', glowColor: 'rgba(16, 185, 129, 0.4)', desc: 'Comunidades y sectores', toggleKey: 'sectores' },
-        { id: 'cuadrantes', label: 'Cuadrantes de Paz', iconSrc: '/Cuadrantes.png', colorDot: '#f59e0b', glowColor: 'rgba(245, 158, 11, 0.4)', desc: 'Polígonos de patrullaje', toggleKey: 'compas', activeKey: (lv) => !!(lv.cuadrantes || lv.cuadrantesPoligonos || lv.compas) },
+        { id: 'cuadrantes', label: 'Cuadrantes de Paz', iconSrc: '/Cuadrantes.png', colorDot: '#f59e0b', glowColor: 'rgba(245, 158, 11, 0.4)', desc: 'Polígonos de patrullaje', toggleKey: 'cuadrantesPoligonos', activeKey: (lv) => !!(lv.cuadrantes || lv.cuadrantesPoligonos || lv.compas) },
       ]
     },
     {

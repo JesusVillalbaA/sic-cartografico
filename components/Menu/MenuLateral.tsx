@@ -377,7 +377,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                   <MenuItem theme={theme} iconSrc="/Municipios.png" label="MUNICIPIOS" active={layersVisible.municipios} accentColor="#3b82f6" isHovered={isMenuOpen} onClick={() => onToggle('municipios')} />
                   <MenuItem theme={theme} iconSrc="/parroquia.png" label="PARROQUIAS" active={layersVisible.parroquias} accentColor="#ec4899" isHovered={isMenuOpen} onClick={() => onToggle('parroquias')} />
                   <MenuItem theme={theme} iconSrc="/Sectores.png" label="SECTORES" active={layersVisible.sectores} accentColor="#10b981" isHovered={isMenuOpen} onClick={() => onToggle('sectores')} />
-                  <MenuItem theme={theme} iconSrc="/Cuadrantes.png" label="CUADRANTES" active={layersVisible.compas} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => onToggle('compas')} />
+                  <MenuItem theme={theme} iconSrc="/Cuadrantes.png" label="CUADRANTES DE PAZ" active={!!(layersVisible.cuadrantes || layersVisible.cuadrantesPoligonos || layersVisible.compas)} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => onToggle('cuadrantesPoligonos')} />
                 </div>
               )}
             </div>

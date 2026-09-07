@@ -106,6 +106,16 @@ export default function DespachadorPage() {
 
   const handleToggle = (layer: string) => {
     setLayersVisible(prev => {
+      // Sincronización de Cuadrantes de Paz (Nuevos Polígonos + Puntos + COMPAS)
+      if (layer === 'cuadrantes' || layer === 'cuadrantesPoligonos' || layer === 'compas') {
+        const nextVal = !(prev.cuadrantesPoligonos || prev.cuadrantes || prev.compas);
+        return {
+          ...prev,
+          cuadrantes: nextVal,
+          cuadrantesPoligonos: nextVal,
+          compas: nextVal
+        };
+      }
       if (layer.includes('.')) {
         const [parent, child] = layer.split('.');
         const parentKey = parent as keyof typeof prev;
