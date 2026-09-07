@@ -180,7 +180,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             [-65, 10], [-65, 12], [-63, 12], [-63, 10], [-65, 10]
           ]]);
           try {
-            const maskPoly = turf.difference(outerBounds as any, polyGeo as any);
+            const maskPoly = turf.difference(turf.featureCollection([outerBounds as any, polyGeo as any]));
             const maskSource = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
             if (maskSource && maskPoly) {
               maskSource.setData(maskPoly as any);
@@ -275,7 +275,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
               [-65, 10], [-65, 12], [-63, 12], [-63, 10], [-65, 10]
             ]]);
             try {
-              const maskPoly = turf.difference(outerBounds as any, shapeGeo as any);
+              const maskPoly = turf.difference(turf.featureCollection([outerBounds as any, shapeGeo as any]));
               const maskSource = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
               if (maskSource && maskPoly) {
                 maskSource.setData(maskPoly as any);
@@ -297,7 +297,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     return () => window.removeEventListener('sogne_voice_trace_place', handleTracePlace);
   }, [map]);
 
-  // Escanear espacialmente activos contenidos y disparar la evaluación de riesgo con IA
+  // Escanear espacialmente activos contenidos, rutas de salida y zona de influencia exterior (1-2 km)
   const evaluateAreaRiskWithAI = (shapeGeoJSON: any, shapeType: string, areaMetersSq: number) => {
     if (!map || !shapeGeoJSON) return;
 
@@ -310,6 +310,21 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     let conppasCount = 0;
     let incidentesCount = 0;
 
+    const exitRoutesSet = new Set<string>();
+    const internalDetails: string[] = [];
+
+    // Zona de Influencia Exterior (Buffer de 1.5 km alrededor del área)
+    let outerBufferGeoJSON: any = null;
+    try {
+      outerBufferGeoJSON = turf.buffer(shapeGeoJSON, 1.5, { units: 'kilometers' })?.geometry;
+    } catch (_) {}
+
+    let externalSalud = 0;
+    let externalElectrico = 0;
+    let externalGas = 0;
+    let externalAgua = 0;
+    let externalAntenas = 0;
+
     // Obtener dinámicamente todas las capas presentes en el mapa
     const styleLayers = map.getStyle()?.layers || [];
     const activeScanLayers = styleLayers
@@ -319,7 +334,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         id.includes('ambulatorio') || id.includes('clinica') || id.includes('salud') || 
         id.includes('electr') || id.includes('gas') || id.includes('agua') || 
         id.includes('cuadrante') || id.includes('conppa') || id.includes('incident') || 
-        id.includes('delito') || id.includes('riesgo') || id.includes('concentrac')
+        id.includes('delito') || id.includes('riesgo') || id.includes('concentrac') ||
+        id.includes('vialidad') || id.includes('calle') || id.includes('avenida')
       );
 
     const features = map.queryRenderedFeatures(undefined, { 
@@ -329,20 +345,39 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     features.forEach(f => {
       if (f.geometry) {
         let isInside = false;
+        let isInsideOuter = false;
+
         try {
           if (f.geometry.type === 'Point') {
             isInside = turf.booleanPointInPolygon(f.geometry as any, shapeGeoJSON);
+            if (!isInside && outerBufferGeoJSON) {
+              isInsideOuter = turf.booleanPointInPolygon(f.geometry as any, outerBufferGeoJSON);
+            }
           } else {
             const bbox = turf.bbox(f);
             const centerPt = turf.point([(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2]);
             isInside = turf.booleanPointInPolygon(centerPt, shapeGeoJSON);
+            if (!isInside && outerBufferGeoJSON) {
+              isInsideOuter = turf.booleanPointInPolygon(centerPt, outerBufferGeoJSON);
+            }
           }
         } catch (e) {
           isInside = true;
         }
 
+        const layerId = f.layer.id;
+        const p = f.properties || {};
+        const featName = p.nombre || p.NAME || p.nombre_sitio || p.cuadrante || p.highway || p.ref || '';
+
+        // Detección de Rutas de Evacuación y Vías de Salida
+        if (layerId.includes('vialidad') || layerId.includes('calle') || layerId.includes('avenida') || p.highway) {
+          if (featName && featName.trim().length > 2) {
+            exitRoutesSet.add(featName.trim());
+          }
+        }
+
+        // Conteo de elementos Internos vs Exteriores (Buffer 1.5 km)
         if (isInside) {
-          const layerId = f.layer.id;
           if (layerId.includes('antena')) antenasCount++;
           else if (layerId.includes('hospital') || layerId.includes('cdi') || layerId.includes('ambulatorio') || layerId.includes('clinica') || layerId.includes('salud')) saludCount++;
           else if (layerId.includes('electr')) electricoCount++;
@@ -351,9 +386,19 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           else if (layerId.includes('cuadrante')) cuadrantesCount++;
           else if (layerId.includes('conppa')) conppasCount++;
           else if (layerId.includes('delito') || layerId.includes('concentrac') || layerId.includes('incident') || layerId.includes('riesgo')) incidentesCount++;
+
+          if (featName) internalDetails.push(featName);
+        } else if (isInsideOuter) {
+          if (layerId.includes('hospital') || layerId.includes('cdi') || layerId.includes('salud')) externalSalud++;
+          else if (layerId.includes('electr')) externalElectrico++;
+          else if (layerId.includes('gas')) externalGas++;
+          else if (layerId.includes('agua')) externalAgua++;
+          else if (layerId.includes('antena')) externalAntenas++;
         }
       }
     });
+
+    const exitRoutes = Array.from(exitRoutesSet).slice(0, 8);
 
     const spatialPayload = {
       shapeType,
@@ -365,7 +410,16 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       aguaCount,
       cuadrantesCount,
       conppasCount,
-      incidentesCount
+      incidentesCount,
+      exitRoutes,
+      externalAssets: {
+        salud: externalSalud,
+        electrico: externalElectrico,
+        gas: externalGas,
+        agua: externalAgua,
+        antenas: externalAntenas
+      },
+      internalDetails: Array.from(new Set(internalDetails)).slice(0, 15)
     };
 
     window.dispatchEvent(new CustomEvent('sogne_open_risk_analysis', { detail: { spatialPayload } }));

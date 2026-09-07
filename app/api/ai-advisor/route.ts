@@ -70,7 +70,10 @@ function generateSpatialRiskAssessment(payload: any) {
     conppasCount = 0, 
     incidentesCount = 0, 
     areaKm2 = 0,
-    shapeType = 'Polígono Trazado'
+    shapeType = 'Polígono Trazado',
+    exitRoutes = [],
+    externalAssets = { salud: 0, electrico: 0, gas: 0, agua: 0, antenas: 0 },
+    internalDetails = []
   } = payload;
 
   const totalCriticalAssets = antenasCount + saludCount + electricoCount + gasCount + aguaCount;
@@ -98,8 +101,26 @@ function generateSpatialRiskAssessment(payload: any) {
   const vulnerabilities: string[] = [];
   const recommendations: string[] = [];
 
+  // Rutas de evacuación y salidas detectadas
+  if (exitRoutes && exitRoutes.length > 0) {
+    recommendations.push(`Vías de salida y arterias de evacuación identificadas: ${exitRoutes.slice(0, 6).join(', ')}.`);
+  } else {
+    recommendations.push("Establecer señalización y punto de control en las arterias viales perimetrales.");
+  }
+
+  // Activos externos a 1-2 km (Zona de influencia exterior)
+  if (externalAssets.salud > 0) {
+    recommendations.push(`Respaldo asistencial exterior (1-2 km): ${externalAssets.salud} centro(s) de salud detectado(s) fuera del perímetro directo.`);
+  } else if (saludCount === 0) {
+    vulnerabilities.push("Inexistencia de centro asistencial interno ni apoyo médico inmediato en el perímetro exterior de 1-2 km.");
+  }
+
+  if (externalAssets.electrico > 0) {
+    recommendations.push(`Infraestructura eléctrica exterior de respaldo: ${externalAssets.electrico} nodo(s) a menos de 2 km.`);
+  }
+
   if (electricoCount > 0) {
-    vulnerabilities.push(`Contiene ${electricoCount} nodo(s) de la red eléctrica. Un evento adverso en esta zona impactaría el suministro regional.`);
+    vulnerabilities.push(`Contiene ${electricoCount} nodo(s) de la red eléctrica. Un evento adverso en esta zona impactaría la transmisión regional.`);
     recommendations.push("Establecer punto de control preventivo de la FANB/IAPOLEPNE en accesos a instalaciones eléctricas.");
   }
 
@@ -116,7 +137,7 @@ function generateSpatialRiskAssessment(payload: any) {
 
   if (incidentesCount > 0) {
     vulnerabilities.push(`Histórico de ${incidentesCount} incidente(s) o zona de concentración delictiva registrada dentro del área.`);
-    recommendations.push(`Incrementar patrullaje del Cuadrante de Paz con frecuencia de recorrido cada 45 minutos.`);
+    recommendations.push(`Incrementar patrullaje del Cuadrante de Paz en arterias de salida con frecuencia cada 30-45 minutos.`);
   }
 
   if (vulnerabilities.length === 0) {
@@ -124,7 +145,7 @@ function generateSpatialRiskAssessment(payload: any) {
     recommendations.push("Mantener patrullaje de rutina e inspección visual periódica del perímetro.");
   }
 
-  const summaryText = `La zona delimitada (${areaKm2.toFixed(2)} km²) contiene un total de ${totalCriticalAssets} infraestructura(s) crítica(s) y ${incidentesCount} punto(s) de atención de seguridad. El nivel de vulnerabilidad evaluado es ${riskLevel} (${score}/100).`;
+  const summaryText = `La zona delimitada (${areaKm2.toFixed(2)} km²) contiene un total de ${totalCriticalAssets} infraestructuras críticas internas, ${incidentesCount} incidencias registradas, ${exitRoutes.length} vías/rutas de salida perimetrales y ${externalAssets.salud + externalAssets.electrico + externalAssets.gas} activos de respaldo en la zona exterior de 1-2 km. Nivel de vulnerabilidad evaluado: ${riskLevel} (${score}/100).`;
 
   return {
     riskLevel,
@@ -133,6 +154,9 @@ function generateSpatialRiskAssessment(payload: any) {
     shapeType,
     areaKm2: Number(areaKm2.toFixed(2)),
     totalCriticalAssets,
+    exitRoutes,
+    externalAssets,
+    internalDetails,
     breakdown: {
       antenas: antenasCount,
       salud: saludCount,

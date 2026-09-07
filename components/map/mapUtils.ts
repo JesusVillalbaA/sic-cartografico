@@ -207,7 +207,7 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
     // Tabla de Desglose de Infraestructuras
     let yPos = 125;
     pdf.setFillColor(30, 41, 59);
-    pdf.roundedRect(12, yPos, pdfWidth - 24, 45, 2, 2, 'F');
+    pdf.roundedRect(12, yPos, pdfWidth - 24, 42, 2, 2, 'F');
 
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(10);
@@ -215,31 +215,54 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
     pdf.text('DESGLOSE CUANTITATIVO DE INFRAESTRUCTURAS CONTENIDAS', 16, yPos + 7);
 
     pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(9);
+    pdf.setFontSize(8.5);
     pdf.setTextColor(255, 255, 255);
     pdf.text(`• Subestaciones Eléctricas: ${spatialPayload.electricoCount || 0}`, 16, yPos + 15);
     pdf.text(`• Centros de Salud (Hospitales/CDI): ${spatialPayload.saludCount || 0}`, 16, yPos + 22);
     pdf.text(`• Antenas Telecom (Digitel/Movistar/Movilnet): ${spatialPayload.antenasCount || 0}`, 16, yPos + 29);
     pdf.text(`• Estaciones de Gas y Combustible: ${spatialPayload.gasCount || 0}`, 105, yPos + 15);
     pdf.text(`• Sistemas de Agua e Hidrología: ${spatialPayload.aguaCount || 0}`, 105, yPos + 22);
-    pdf.text(`• Puntos de Atención de Seguridad / Delitos: ${spatialPayload.incidentesCount || 0}`, 105, yPos + 29);
+    pdf.text(`• Puntos de Atención / Delitos: ${spatialPayload.incidentesCount || 0}`, 105, yPos + 29);
 
-    // Recomendaciones y Conclusiones
-    yPos = 175;
+    // Sección de Rutas de Evacuación / Vías de Salida y Perímetro Exterior
+    yPos = 172;
     pdf.setFillColor(30, 41, 59);
-    pdf.roundedRect(12, yPos, pdfWidth - 24, 40, 2, 2, 'F');
+    pdf.roundedRect(12, yPos, pdfWidth - 24, 38, 2, 2, 'F');
 
     pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(10);
+    pdf.setFontSize(9.5);
+    pdf.setTextColor(251, 191, 36);
+    pdf.text('VÍAS DE ESCAPE / SALIDA Y ZONA EXTERIOR DE INFLUENCIA (1-2 KM)', 16, yPos + 7);
+
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(8);
+    pdf.setTextColor(226, 232, 240);
+    
+    const routesStr = (spatialPayload.exitRoutes && spatialPayload.exitRoutes.length > 0)
+      ? spatialPayload.exitRoutes.slice(0, 5).join(' • ')
+      : 'Arterias viales principales del perímetro';
+
+    pdf.text(`• Arterias Viales e Intersecciones de Salida: ${routesStr}`, 16, yPos + 15, { maxWidth: pdfWidth - 32 });
+
+    const ext = spatialPayload.externalAssets || {};
+    pdf.text(`• Infraestructura Exterior de Respaldo (Perímetro 1-2 km): Salud: ${ext.salud || 0} | Electricidad: ${ext.electrico || 0} | Gas/Combustible: ${ext.gas || 0} | Antenas: ${ext.antenas || 0}`, 16, yPos + 27);
+
+    // Diagnóstico Táctico Final
+    yPos = 214;
+    pdf.setFillColor(30, 41, 59);
+    pdf.roundedRect(12, yPos, pdfWidth - 24, 36, 2, 2, 'F');
+
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(9.5);
     pdf.setTextColor(52, 211, 153);
     pdf.text('DIAGNÓSTICO Y RECOMENDACIONES DE DESPLIEGUE TÁCTICO', 16, yPos + 7);
 
     pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(8.5);
+    pdf.setFontSize(8);
     pdf.setTextColor(226, 232, 240);
-    pdf.text('1. Reforzar el monitoreo en cuadrantes de paz contenidos y vías de acceso principales.', 16, yPos + 15);
-    pdf.text('2. Mantener canal prioritario de comunicación con los centros de salud asistencial de la zona.', 16, yPos + 22);
-    pdf.text('3. Verificar respaldo eléctrico y antenas de transmisión para evitar aislación táctica.', 16, yPos + 29);
+    pdf.text('1. Control preventivo de la FANB/IAPOLEPNE en intersecciones viales y accesos de escape.', 16, yPos + 15);
+    pdf.text('2. Mantener canal de comunicación directo con la red de salud asistencial interna y exterior.', 16, yPos + 22);
+    pdf.text('3. Monitoreo constante de respaldo eléctrico y radiobases para evitar aislamientos tácticos.', 16, yPos + 29);
 
     pdf.save(`evaluacion_riesgo_sogne_${Date.now()}.pdf`);
   } catch (e: any) {

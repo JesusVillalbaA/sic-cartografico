@@ -470,6 +470,49 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
                       <p className="text-slate-200 text-[11px]">{riskReportData.summaryText}</p>
                     </div>
 
+                    {/* Rutas de Evacuación y Vías de Salida */}
+                    {riskReportData.exitRoutes && riskReportData.exitRoutes.length > 0 && (
+                      <div className="bg-amber-950/30 border border-amber-500/30 rounded-xl p-3 space-y-1.5">
+                        <span className="text-[10px] font-bold text-amber-400 uppercase font-mono flex items-center gap-1.5">
+                          🚗 Rutas de Escape & Vías de Salida Intersectadas:
+                        </span>
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          {riskReportData.exitRoutes.map((r: string, i: number) => (
+                            <span key={i} className="text-[9px] bg-amber-500/10 text-amber-300 border border-amber-500/20 px-2 py-0.5 rounded font-mono">
+                              {r}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Zona de Influencia Exterior 1-2 km */}
+                    {riskReportData.externalAssets && (
+                      <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1.5">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase font-mono block">
+                          🛡️ Zona de Influencia Exterior (Perímetro 1-2 km):
+                        </span>
+                        <div className="grid grid-cols-4 gap-1 text-center text-[9px] font-mono">
+                          <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
+                            <span className="block text-emerald-400 font-bold">{riskReportData.externalAssets.salud || 0}</span>
+                            <span className="text-slate-400 text-[8px]">Salud Ext.</span>
+                          </div>
+                          <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
+                            <span className="block text-cyan-400 font-bold">{riskReportData.externalAssets.electrico || 0}</span>
+                            <span className="text-slate-400 text-[8px]">Luz Ext.</span>
+                          </div>
+                          <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
+                            <span className="block text-purple-400 font-bold">{riskReportData.externalAssets.gas || 0}</span>
+                            <span className="text-slate-400 text-[8px]">Gas Ext.</span>
+                          </div>
+                          <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
+                            <span className="block text-sky-400 font-bold">{riskReportData.externalAssets.antenas || 0}</span>
+                            <span className="text-slate-400 text-[8px]">Antenas Ext.</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Vulnerabilidades Detectadas */}
                     <div className="space-y-2">
                       <span className="text-[11px] font-bold text-rose-400 flex items-center gap-1.5">
