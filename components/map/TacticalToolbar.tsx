@@ -176,17 +176,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             });
           }
 
-          const outerBounds = turf.polygon([[
-            [-65, 10], [-65, 12], [-63, 12], [-63, 10], [-65, 10]
-          ]]);
-          try {
-            const maskPoly = turf.difference(turf.featureCollection([outerBounds as any, polyGeo as any]));
-            const maskSource = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
-            if (maskSource && maskPoly) {
-              maskSource.setData(maskPoly as any);
-            }
-          } catch (_) {}
-
           map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 80, duration: 1500 });
 
           const areaSqM = turf.area(polyGeo);
@@ -271,17 +260,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
           if (shapeGeo) {
             const bbox = turf.bbox(shapeGeo);
-            const outerBounds = turf.polygon([[
-              [-65, 10], [-65, 12], [-63, 12], [-63, 10], [-65, 10]
-            ]]);
-            try {
-              const maskPoly = turf.difference(turf.featureCollection([outerBounds as any, shapeGeo as any]));
-              const maskSource = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
-              if (maskSource && maskPoly) {
-                maskSource.setData(maskPoly as any);
-              }
-            } catch (_) {}
-
             map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 80, duration: 1500 });
 
             const areaSqM = turf.area(shapeGeo);
@@ -325,80 +303,119 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     let externalAgua = 0;
     let externalAntenas = 0;
 
-    // Obtener dinámicamente todas las capas presentes en el mapa
-    const styleLayers = map.getStyle()?.layers || [];
-    const activeScanLayers = styleLayers
-      .map(l => l.id)
-      .filter(id => 
-        id.includes('antena') || id.includes('hospital') || id.includes('cdi') || 
-        id.includes('ambulatorio') || id.includes('clinica') || id.includes('salud') || 
-        id.includes('electr') || id.includes('gas') || id.includes('agua') || 
-        id.includes('cuadrante') || id.includes('conppa') || id.includes('incident') || 
-        id.includes('delito') || id.includes('riesgo') || id.includes('concentrac') ||
-        id.includes('vialidad') || id.includes('calle') || id.includes('avenida')
-      );
+    const processedFeats = new Set<string>();
+    const allFeaturesToProcess: any[] = [];
 
-    const features = map.queryRenderedFeatures(undefined, { 
-      layers: activeScanLayers.length > 0 ? activeScanLayers : undefined 
+    // 1. Escanear directamente de TODAS las fuentes GeoJSON registradas en Mapbox
+    const styleSources = map.getStyle()?.sources || {};
+    Object.keys(styleSources).forEach(sourceId => {
+      try {
+        const srcFeats = map.querySourceFeatures(sourceId);
+        srcFeats.forEach((f: any) => {
+          const featKey = `${f.id || ''}_${f.properties?.nombre || f.properties?.NAME || ''}_${f.geometry?.type}`;
+          if (!processedFeats.has(featKey)) {
+            processedFeats.add(featKey);
+            allFeaturesToProcess.push({ feature: f, sourceId });
+          }
+        });
+      } catch (_) {}
     });
 
-    features.forEach(f => {
-      if (f.geometry) {
-        let isInside = false;
-        let isInsideOuter = false;
+    // 2. Escanear elementos actualmente renderizados en pantalla
+    try {
+      const renderedFeats = map.queryRenderedFeatures();
+      renderedFeats.forEach((f: any) => {
+        const featKey = `${f.id || ''}_${f.properties?.nombre || f.properties?.NAME || ''}_${f.geometry?.type}`;
+        if (!processedFeats.has(featKey)) {
+          processedFeats.add(featKey);
+          allFeaturesToProcess.push({ feature: f, sourceId: f.source || 'rendered' });
+        }
+      });
+    } catch (_) {}
 
-        try {
-          if (f.geometry.type === 'Point') {
-            isInside = turf.booleanPointInPolygon(f.geometry as any, shapeGeoJSON);
-            if (!isInside && outerBufferGeoJSON) {
-              isInsideOuter = turf.booleanPointInPolygon(f.geometry as any, outerBufferGeoJSON);
+    allFeaturesToProcess.forEach(({ feature: f, sourceId }) => {
+      if (!f || !f.geometry) return;
+
+      let isInside = false;
+      let isInsideOuter = false;
+
+      try {
+        if (f.geometry.type === 'Point') {
+          isInside = turf.booleanPointInPolygon(f.geometry as any, shapeGeoJSON);
+          if (!isInside && outerBufferGeoJSON) {
+            isInsideOuter = turf.booleanPointInPolygon(f.geometry as any, outerBufferGeoJSON);
+          }
+        } else if (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon') {
+          try {
+            isInside = turf.booleanIntersects(f as any, shapeGeoJSON as any);
+          } catch (_) {
+            const centerPt = turf.centroid(f as any).geometry;
+            isInside = turf.booleanPointInPolygon(centerPt as any, shapeGeoJSON);
+          }
+          if (!isInside && outerBufferGeoJSON) {
+            try {
+              isInsideOuter = turf.booleanIntersects(f as any, outerBufferGeoJSON as any);
+            } catch (_) {
+              const centerPt = turf.centroid(f as any).geometry;
+              isInsideOuter = turf.booleanPointInPolygon(centerPt as any, outerBufferGeoJSON);
             }
-          } else {
+          }
+        } else if (f.geometry.type === 'LineString' || f.geometry.type === 'MultiLineString') {
+          try {
+            isInside = turf.booleanIntersects(f as any, shapeGeoJSON as any);
+          } catch (_) {
             const bbox = turf.bbox(f);
             const centerPt = turf.point([(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2]);
             isInside = turf.booleanPointInPolygon(centerPt, shapeGeoJSON);
-            if (!isInside && outerBufferGeoJSON) {
-              isInsideOuter = turf.booleanPointInPolygon(centerPt, outerBufferGeoJSON);
-            }
-          }
-        } catch (e) {
-          isInside = true;
-        }
-
-        const layerId = f.layer.id;
-        const p = f.properties || {};
-        const featName = p.nombre || p.NAME || p.nombre_sitio || p.cuadrante || p.highway || p.ref || '';
-
-        // Detección de Rutas de Evacuación y Vías de Salida
-        if (layerId.includes('vialidad') || layerId.includes('calle') || layerId.includes('avenida') || p.highway) {
-          if (featName && featName.trim().length > 2) {
-            exitRoutesSet.add(featName.trim());
           }
         }
+      } catch (_) {}
 
-        // Conteo de elementos Internos vs Exteriores (Buffer 1.5 km)
-        if (isInside) {
-          if (layerId.includes('antena')) antenasCount++;
-          else if (layerId.includes('hospital') || layerId.includes('cdi') || layerId.includes('ambulatorio') || layerId.includes('clinica') || layerId.includes('salud')) saludCount++;
-          else if (layerId.includes('electr')) electricoCount++;
-          else if (layerId.includes('gas') || layerId.includes('servicio')) gasCount++;
-          else if (layerId.includes('agua') || layerId.includes('embalse') || layerId.includes('pozo')) aguaCount++;
-          else if (layerId.includes('cuadrante')) cuadrantesCount++;
-          else if (layerId.includes('conppa')) conppasCount++;
-          else if (layerId.includes('delito') || layerId.includes('concentrac') || layerId.includes('incident') || layerId.includes('riesgo')) incidentesCount++;
+      const layerId = f.layer?.id || '';
+      const p = f.properties || {};
+      const propStr = (Object.values(p).join(' ') + ' ' + layerId + ' ' + sourceId).toLowerCase();
+      const featName = p.nombre || p.NAME || p.nombre_sitio || p.cuadrante || p.highway || p.ref || p.sector || '';
 
-          if (featName) internalDetails.push(featName);
-        } else if (isInsideOuter) {
-          if (layerId.includes('hospital') || layerId.includes('cdi') || layerId.includes('salud')) externalSalud++;
-          else if (layerId.includes('electr')) externalElectrico++;
-          else if (layerId.includes('gas')) externalGas++;
-          else if (layerId.includes('agua')) externalAgua++;
-          else if (layerId.includes('antena')) externalAntenas++;
+      // Rutas de Salida / Evacuación
+      if (propStr.includes('vialidad') || propStr.includes('viabilidad') || propStr.includes('calle') || propStr.includes('avenida') || propStr.includes('highway') || propStr.includes('troncal')) {
+        if (featName && typeof featName === 'string' && featName.trim().length > 2 && isInside) {
+          exitRoutesSet.add(featName.trim());
         }
+      }
+
+      // Clasificación de Capas e Infraestructura
+      if (isInside) {
+        if (propStr.includes('antena') || propStr.includes('digitel') || propStr.includes('movistar') || propStr.includes('movilnet') || propStr.includes('telecom')) {
+          antenasCount++;
+        } else if (propStr.includes('hospital') || propStr.includes('cdi') || propStr.includes('ambulatorio') || propStr.includes('clinica') || propStr.includes('salud') || propStr.includes('medico') || propStr.includes('centrossalud')) {
+          saludCount++;
+        } else if (propStr.includes('electr') || propStr.includes('corpoelec') || propStr.includes('subestacion') || propStr.includes('sistemaelectricone')) {
+          electricoCount++;
+        } else if (propStr.includes('gas') || propStr.includes('pdvsa') || propStr.includes('combustible') || propStr.includes('estaciongasne')) {
+          gasCount++;
+        } else if (propStr.includes('agua') || propStr.includes('embalse') || propStr.includes('pozo') || propStr.includes('hidro') || propStr.includes('desalinizad')) {
+          aguaCount++;
+        } else if (propStr.includes('cuadrante') || propStr.includes('paz') || propStr.includes('poligono')) {
+          cuadrantesCount++;
+        } else if (propStr.includes('conppa') || propStr.includes('compa') || propStr.includes('comuna')) {
+          conppasCount++;
+        } else if (propStr.includes('delito') || propStr.includes('incident') || propStr.includes('riesgo') || propStr.includes('concentrac') || propStr.includes('drogas') || propStr.includes('ciber')) {
+          incidentesCount++;
+        }
+
+        if (featName && typeof featName === 'string' && featName.trim().length > 1) {
+          internalDetails.push(featName.trim());
+        }
+      } else if (isInsideOuter) {
+        if (propStr.includes('hospital') || propStr.includes('cdi') || propStr.includes('ambulatorio') || propStr.includes('clinica') || propStr.includes('salud')) externalSalud++;
+        else if (propStr.includes('electr') || propStr.includes('corpoelec') || propStr.includes('subestacion')) externalElectrico++;
+        else if (propStr.includes('gas')) externalGas++;
+        else if (propStr.includes('agua') || propStr.includes('embalse')) externalAgua++;
+        else if (propStr.includes('antena') || propStr.includes('telecom')) externalAntenas++;
       }
     });
 
-    const exitRoutes = Array.from(exitRoutesSet).slice(0, 8);
+    const exitRoutes = Array.from(exitRoutesSet).slice(0, 10);
 
     const spatialPayload = {
       shapeType,
@@ -419,7 +436,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         agua: externalAgua,
         antenas: externalAntenas
       },
-      internalDetails: Array.from(new Set(internalDetails)).slice(0, 15)
+      internalDetails: Array.from(new Set(internalDetails)).slice(0, 20)
     };
 
     window.dispatchEvent(new CustomEvent('sogne_open_risk_analysis', { detail: { spatialPayload } }));
@@ -483,15 +500,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
       if (src && buffered) {
         src.setData({ type: 'FeatureCollection', features: [buffered] });
-      }
-
-      // Oscurecer dramáticamente el entorno fuera del radio de cobertura
-      if (buffered) {
-        try {
-          const maskData = turf.mask(buffered);
-          const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
-          if (maskSrc) maskSrc.setData(maskData);
-        } catch (e) {}
       }
 
       bringTacticalLayersToFront();
@@ -579,7 +587,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           source: 'tactical-polygon-source',
           paint: {
             'fill-color': '#06b6d4',
-            'fill-opacity': 0 // SIN RELLENO INTERIOR - Solo líneas neón limpias
+            'fill-opacity': 0.15 // Relleno cian traslúcido elegante
           }
         });
         map.addLayer({
@@ -785,7 +793,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const poly = turf.polygon([closedRing]);
       const line = turf.lineString(closedRing); // Perímetro neón cerrado
       const pointFeatures = currentPoints.map(p => turf.point(p));
-      const features: any[] = [...pointFeatures, line]; // SOLO LÍNEAS Y PUNTOS - SIN RELLENO INTERIOR
+      const features: any[] = [poly, ...pointFeatures, line]; // Relleno cian suave traslúcido + bordes neón
 
       const sqMeters = turf.area(poly);
       setTotalArea(sqMeters);
@@ -793,16 +801,13 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const src = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
       if (src) src.setData({ type: 'FeatureCollection', features });
 
-      try {
-        const maskData = turf.mask(poly);
-        const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
-        if (maskSrc) maskSrc.setData(maskData);
-      } catch (e) { }
-
       const bbox = turf.bbox(poly) as [number, number, number, number];
       const currentPitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
-      map.fitBounds(bbox, { padding: 90, pitch: currentPitch > 0 ? currentPitch : 45, duration: 1200 });
+      map.fitBounds(bbox, { padding: 90, pitch: currentPitch > 0 ? currentPitch : 35, duration: 1200 });
       bringTacticalLayersToFront();
+
+      // EVALUAR RIESGO E INICIAR ANÁLISIS AUTOMÁTICO AL CERRAR POLÍGONO
+      evaluateAreaRiskWithAI(poly, "Polígono Trazado", sqMeters);
     };
 
     const handleRightClick = (e: mapboxgl.MapMouseEvent) => {
