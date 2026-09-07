@@ -6,6 +6,7 @@ import {
   Mic, MicOff, ShieldAlert, Activity, FileCheck, Radio, Check
 } from 'lucide-react';
 
+import { exportLayerToPDF } from '@/app/lib/exportLayerPDF';
 import { SogneVoiceController, VoiceRule } from '@/lib/voiceRecognitionModule';
 
 interface AsistenteIAProps {
@@ -103,6 +104,13 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
                     });
                   }
                 });
+              }
+            } else if (actionKey.startsWith('export_pdf:')) {
+              const layerToExport = actionKey.split(':')[1];
+              try {
+                exportLayerToPDF({ layerKey: layerToExport });
+              } catch (e) {
+                console.warn("Error al exportar PDF individual por voz:", e);
               }
             } else if (actionKey.startsWith('trace_municipality:')) {
               const muni = actionKey.split(':')[1];

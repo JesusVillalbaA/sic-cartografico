@@ -365,6 +365,25 @@ function parseVoiceCommand(command: string) {
     responseText += "Limpiando herramientas y filtros del mapa. ";
   }
 
+  // ── GENERACIÓN DE REPORTES PDF INDIVIDUALES POR VOZ ───────────────────────
+  if (text.includes('reporte') || text.includes('pdf') || text.includes('descargar') || text.includes('exportar') || text.includes('imprimir')) {
+    if (text.includes('hospital') || text.includes('hospitales')) actions.push('export_pdf:hospitales');
+    else if (text.includes('clínica') || text.includes('clinica') || text.includes('clínicas')) actions.push('export_pdf:clinicas');
+    else if (text.includes('ambulatorio') || text.includes('ambulatorios')) actions.push('export_pdf:ambulatorios');
+    else if (text.includes('cdi')) actions.push('export_pdf:cdi');
+    else if (text.includes('salud')) actions.push('export_pdf:salud');
+    else if (text.includes('escuela') || text.includes('escuelas') || text.includes('colegio') || text.includes('educación')) actions.push('export_pdf:escuelas');
+    else if (text.includes('subestación') || text.includes('subestaciones') || text.includes('eléctric') || text.includes('electricidad') || text.includes('luz')) actions.push('export_pdf:electricidad');
+    else if (text.includes('gas') || text.includes('gasoducto')) actions.push('export_pdf:estaciongas');
+    else if (text.includes('gasolinera') || text.includes('gasolineras') || text.includes('combustible') || text.includes('estación de servicio')) actions.push('export_pdf:estaciones_combustible');
+    else if (text.includes('agua') || text.includes('embalse') || text.includes('pozo') || text.includes('desalinizadora')) actions.push('export_pdf:agua');
+    else if (text.includes('antena') || text.includes('antenas') || text.includes('digitel') || text.includes('movistar') || text.includes('movilnet') || text.includes('telecomunicación')) actions.push('export_pdf:antenas');
+    else if (text.includes('conppa') || text.includes('conppas') || text.includes('pesca') || text.includes('pesquero')) actions.push('export_pdf:conppas');
+    else if (text.includes('cuadrante') || text.includes('cuadrantes')) actions.push('export_pdf:cuadrantes');
+
+    responseText += "Generando y descargando Reporte PDF Individual. ";
+  }
+
   if (actions.length === 0) {
     responseText = `Comando interpretado: "${command}". Puedes dictar: "Activar Módulo 1", "Activar Módulo 2", "Activar Módulo 3", "Activar Módulo 4", "Desactivar todo", "Cambia a vista 3D" o "Traza un radio de cobertura".`;
   }
