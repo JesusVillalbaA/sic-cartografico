@@ -155,7 +155,12 @@ function parseVoiceCommand(command: string) {
   const actions: string[] = [];
   let responseText = `Comando procesado: "${command}". `;
 
-  // ── MÓDULOS DEL SISTEMA ─────────────────────────────────────
+  // ── MÓDULOS DEL SISTEMA Y CAPAS GENERALES ─────────────────────────────────────
+  if (text.includes('activar todos los modulos') || text.includes('activar todos los módulos') || text.includes('activar todas las capas') || text.includes('encender todo') || text.includes('activar todo')) {
+    actions.push('turn_on_all');
+    responseText += "Activando TODOS los módulos e infraestructuras del mapa. ";
+  }
+
   if (text.includes('modulo 1') || text.includes('módulo 1') || text.includes('modulo uno') || text.includes('módulo uno') || text.includes('primer modulo') || text.includes('primer módulo')) {
     actions.push('sistemasElectricos', 'servicioAgua.embalses', 'servicioAgua.desalinizadoras', 'servicioAgua.tanques', 'estacionesGas', 'estacionesServicio');
     responseText += "Activando MÓDULO 1: Infraestructura y Servicios Críticos (Electricidad, Agua, Gas). ";
@@ -180,6 +185,34 @@ function parseVoiceCommand(command: string) {
     actions.push('turn_off_all', 'clear_tools');
     responseText += "Desactivando todas las capas e infraestructura del mapa. ";
   }
+
+  // ── TRAZADO DE MUNICIPIOS Y SECTORES POR VOZ ──────────────────────────────
+  const municipiosMap: Record<string, string> = {
+    'maneiro': 'Maneiro',
+    'mariño': 'Mariño',
+    'marino': 'Mariño',
+    'arismendi': 'Arismendi',
+    'tubores': 'Tubores',
+    'marcano': 'Marcano',
+    'antolin': 'Antolín del Campo',
+    'antolín': 'Antolín del Campo',
+    'gomez': 'Gómez',
+    'gómez': 'Gómez',
+    'diaz': 'Díaz',
+    'díaz': 'Díaz',
+    'garcia': 'García',
+    'garcía': 'García',
+    'villalba': 'Villalba',
+    'macanao': 'Península de Macanao'
+  };
+
+  Object.keys(municipiosMap).forEach(key => {
+    if (text.includes(key) && (text.includes('trazar') || text.includes('área') || text.includes('area') || text.includes('municipio') || text.includes('analiz') || text.includes('sector'))) {
+      const muniName = municipiosMap[key];
+      actions.push(`trace_municipality:${muniName}`);
+      responseText += `Delimitando y analizando automáticamente el Municipio ${muniName}. `;
+    }
+  });
 
   // Capas de Infraestructura y Seguridad individuales
   if (text.includes('subestación') || text.includes('subestaciones') || text.includes('eléctric') || text.includes('luz')) {
@@ -224,7 +257,7 @@ function parseVoiceCommand(command: string) {
     actions.push('activate_buffer');
     responseText += "Activando herramienta de Radio de Cobertura. ";
   }
-  if (text.includes('trazar') || text.includes('área') || text.includes('zona') || text.includes('polígono')) {
+  if ((text.includes('trazar') || text.includes('área') || text.includes('zona') || text.includes('polígono')) && !actions.some(a => a.startsWith('trace_municipality:'))) {
     actions.push('activate_polygon');
     responseText += "Iniciando herramienta de Trazado de Área. ";
   }

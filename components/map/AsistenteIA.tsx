@@ -83,11 +83,30 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
             if (actionKey === 'turn_off_all') {
               if (layersVisible) {
                 Object.keys(layersVisible).forEach(k => {
-                  if (layersVisible[k]) {
+                  if (typeof layersVisible[k] === 'boolean' && layersVisible[k]) {
                     onToggle(k);
+                  } else if (typeof layersVisible[k] === 'object' && layersVisible[k] !== null) {
+                    Object.keys(layersVisible[k]).forEach(subK => {
+                      if (layersVisible[k][subK]) onToggle(`${k}.${subK}`);
+                    });
                   }
                 });
               }
+            } else if (actionKey === 'turn_on_all') {
+              if (layersVisible) {
+                Object.keys(layersVisible).forEach(k => {
+                  if (typeof layersVisible[k] === 'boolean' && !layersVisible[k]) {
+                    onToggle(k);
+                  } else if (typeof layersVisible[k] === 'object' && layersVisible[k] !== null) {
+                    Object.keys(layersVisible[k]).forEach(subK => {
+                      if (!layersVisible[k][subK]) onToggle(`${k}.${subK}`);
+                    });
+                  }
+                });
+              }
+            } else if (actionKey.startsWith('trace_municipality:')) {
+              const muni = actionKey.split(':')[1];
+              window.dispatchEvent(new CustomEvent('sogne_voice_trace_municipality', { detail: { municipality: muni } }));
             } else if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {
               window.dispatchEvent(new CustomEvent('sogne_voice_action', { detail: { action: actionKey } }));
             } else {

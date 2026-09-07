@@ -150,6 +150,57 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     return () => window.removeEventListener('sogne_voice_action', handleVoiceAction);
   }, [toggle3D, toggleHeatmap, handleClearAll]);
 
+  // Escuchar trazado por voz automático de municipios
+  useEffect(() => {
+    const handleTraceMunicipality = (e: any) => {
+      const muniName = e.detail?.municipality;
+      if (!map || !muniName) return;
+
+      try {
+        const features = map.queryRenderedFeatures(undefined, { layers: ['municipios-fill'] });
+        const matched = features.find((f: any) => {
+          const p = f.properties || {};
+          const n = (p.nombre || p.NAME || p.adm2_name || '').toLowerCase();
+          return n.includes(muniName.toLowerCase());
+        });
+
+        if (matched && matched.geometry) {
+          const bbox = turf.bbox(matched);
+          const polyGeo = matched.geometry;
+
+          const polySource = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
+          if (polySource) {
+            polySource.setData({
+              type: 'FeatureCollection',
+              features: [matched as any]
+            });
+          }
+
+          const outerBounds = turf.polygon([[
+            [-65, 10], [-65, 12], [-63, 12], [-63, 10], [-65, 10]
+          ]]);
+          try {
+            const maskPoly = turf.difference(outerBounds as any, polyGeo as any);
+            const maskSource = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
+            if (maskSource && maskPoly) {
+              maskSource.setData(maskPoly as any);
+            }
+          } catch (_) {}
+
+          map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 80, duration: 1500 });
+
+          const areaSqM = turf.area(polyGeo);
+          evaluateAreaRiskWithAI(polyGeo, `Municipio ${matched.properties?.nombre || matched.properties?.adm2_name || muniName}`, areaSqM);
+        }
+      } catch (err) {
+        console.warn("Error al trazar municipio por voz:", err);
+      }
+    };
+
+    window.addEventListener('sogne_voice_trace_municipality', handleTraceMunicipality);
+    return () => window.removeEventListener('sogne_voice_trace_municipality', handleTraceMunicipality);
+  }, [map]);
+
   // Escanear espacialmente activos contenidos y disparar la evaluación de riesgo con IA
   const evaluateAreaRiskWithAI = (shapeGeoJSON: any, shapeType: string, areaMetersSq: number) => {
     if (!map || !shapeGeoJSON) return;
