@@ -530,7 +530,7 @@ export const useMapbox = (
         } 
       });
 
-      // ── FOCUS MASK (Desactivado para mantener mapa claro y visible sin sombras) ────────────────────
+      // ── FOCUS MASK (Oscurecimiento del entorno para enfocar área trazada) ────────────────────
       m.addSource('focus-mask-source', { type: 'geojson', data: empty });
       m.addLayer({
         id: 'focus-mask-layer',
@@ -538,7 +538,8 @@ export const useMapbox = (
         source: 'focus-mask-source',
         paint: {
           'fill-color': '#000000',
-          'fill-opacity': 0 // Sin oscurecimiento para mantener visión clara del mapa
+          'fill-opacity': 0.75,
+          'fill-opacity-transition': { duration: 800 }
         }
       });
 

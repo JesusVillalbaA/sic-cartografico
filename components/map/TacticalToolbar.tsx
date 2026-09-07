@@ -150,6 +150,27 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     return () => window.removeEventListener('sogne_voice_action', handleVoiceAction);
   }, [toggle3D, toggleHeatmap, handleClearAll]);
 
+  // Aplicar máscara oscura para enfocar y resaltar el área trazada eliminando el entorno del mapa
+  const applyFocusMask = React.useCallback((polyGeoJSON: any) => {
+    if (!map || !polyGeoJSON) return;
+    try {
+      const feature = polyGeoJSON.type === 'Feature' ? polyGeoJSON : { type: 'Feature', geometry: polyGeoJSON, properties: {} };
+      const maskData = turf.mask(feature as any);
+      const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
+      if (maskSrc) maskSrc.setData(maskData);
+    } catch (_) {
+      try {
+        const outerBounds = turf.polygon([[
+          [-66, 9], [-66, 13], [-62, 13], [-62, 9], [-66, 9]
+        ]]);
+        const geom = polyGeoJSON.type === 'Feature' ? polyGeoJSON.geometry : polyGeoJSON;
+        const diff = turf.difference(turf.featureCollection([outerBounds as any, geom as any]));
+        const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
+        if (maskSrc && diff) maskSrc.setData(diff as any);
+      } catch (e) {}
+    }
+  }, [map]);
+
   // Escuchar trazado por voz automático de municipios
   useEffect(() => {
     const handleTraceMunicipality = (e: any) => {
@@ -176,6 +197,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             });
           }
 
+          applyFocusMask(polyGeo);
           map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 80, duration: 1500 });
 
           const areaSqM = turf.area(polyGeo);
@@ -188,7 +210,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
     window.addEventListener('sogne_voice_trace_municipality', handleTraceMunicipality);
     return () => window.removeEventListener('sogne_voice_trace_municipality', handleTraceMunicipality);
-  }, [map]);
+  }, [map, applyFocusMask]);
 
   // Escuchar trazado y radio por voz universal de cualquier lugar o punto
   useEffect(() => {
@@ -259,6 +281,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           }
 
           if (shapeGeo) {
+            applyFocusMask(shapeGeo);
             const bbox = turf.bbox(shapeGeo);
             map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 80, duration: 1500 });
 
@@ -273,7 +296,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
     window.addEventListener('sogne_voice_trace_place', handleTracePlace);
     return () => window.removeEventListener('sogne_voice_trace_place', handleTracePlace);
-  }, [map]);
+  }, [map, applyFocusMask]);
 
   // Escanear espacialmente activos contenidos, rutas de salida y zona de influencia exterior (1-2 km)
   const evaluateAreaRiskWithAI = (shapeGeoJSON: any, shapeType: string, areaMetersSq: number) => {
@@ -500,8 +523,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
       if (src && buffered) {
         src.setData({ type: 'FeatureCollection', features: [buffered] });
+        applyFocusMask(buffered);
       }
-
       bringTacticalLayersToFront();
     } catch (e) {
       console.warn("Error dibujando radio de cobertura:", e);
@@ -616,7 +639,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           paint: {
             'line-color': '#ffffff',
             'line-width': 4.5,
-            'line-opacity': 1.0
+            'line-opacity': 1.0,
+            'line-dasharray': [4, 2] // Rayas tácticas neón de alta visibilidad
           }
         });
         map.addLayer({
@@ -801,6 +825,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const src = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
       if (src) src.setData({ type: 'FeatureCollection', features });
 
+      applyFocusMask(poly);
       const bbox = turf.bbox(poly) as [number, number, number, number];
       const currentPitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
       map.fitBounds(bbox, { padding: 90, pitch: currentPitch > 0 ? currentPitch : 35, duration: 1200 });
