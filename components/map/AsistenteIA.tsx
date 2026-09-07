@@ -30,10 +30,9 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   theme = 'dark'
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'diagnostic' | 'chat' | 'risk'>('diagnostic');
+  const [activeTab, setActiveTab] = useState<'diagnostic' | 'chat'>('diagnostic');
   const [isLoading, setIsLoading] = useState(false);
   const [diagnosticData, setDiagnosticData] = useState<any>(null);
-  const [riskReportData, setRiskReportData] = useState<any>(null);
   
   // Voice control state
   const [isListening, setIsListening] = useState(false);
@@ -45,7 +44,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     {
       id: 'welcome',
       sender: 'ai',
-      text: '¡Hola! Soy SOGNE IA, tu consejero de geointeligencia. Puedes dictarme comandos por voz (ej: "Muéstrame las subestaciones de Maneiro y traza un radio de 3 km"), preguntarme sobre la cartografía o solicitar una Evaluación de Riesgo Espacial.',
+      text: '¡Hola! Soy SOGNE IA, tu consejero de geointeligencia. Puedes dictarme comandos por voz para abrir paneles, trazar áreas o consultar la cartografía.',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -183,25 +182,6 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     }
   };
 
-  const fetchRiskAssessment = React.useCallback(async (spatialPayload: any) => {
-    setIsLoading(true);
-    try {
-      const res = await fetch('/api/ai-advisor', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ spatialPayload })
-      });
-      const data = await res.json();
-      if (data.success) {
-        setRiskReportData(data.riskReport);
-      }
-    } catch (e) {
-      console.error("Error evaluando riesgo espacial:", e);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
   // Cargar diagnóstico cuando cambian capas o características seleccionadas
   const fetchDiagnostic = React.useCallback(async (userMsg?: string) => {
     setIsLoading(true);
@@ -239,18 +219,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     }
   }, [layersVisible, selectedFeatures]);
 
-  // Escuchar eventos globales para abrir evaluación de riesgo desde el mapa
-  useEffect(() => {
-    const handleRiskEvent = (e: any) => {
-      if (e.detail?.spatialPayload) {
-        setIsOpen(true);
-        setActiveTab('risk');
-        fetchRiskAssessment(e.detail.spatialPayload);
-      }
-    };
-    window.addEventListener('sogne_open_risk_analysis', handleRiskEvent);
-    return () => window.removeEventListener('sogne_open_risk_analysis', handleRiskEvent);
-  }, [fetchRiskAssessment]);
+
 
   // Escuchar comando de voz directo enviado desde el botón de la barra de herramientas
   useEffect(() => {
@@ -401,155 +370,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
           <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar text-xs">
             
             {/* 📋 PESTAÑA: EVALUACIÓN DE RIESGO ESPACIAL POR IA */}
-            {activeTab === 'risk' && (
-              <div className="space-y-4">
-                {riskReportData ? (
-                  <>
-                    {/* Header del Riesgo */}
-                    <div className={`p-4 rounded-2xl border flex items-center justify-between ${
-                      riskReportData.riskLevel === 'CRÍTICO' ? 'bg-rose-950/40 border-rose-500/40 text-rose-300' :
-                      riskReportData.riskLevel === 'ALTO' ? 'bg-amber-950/40 border-amber-500/40 text-amber-300' :
-                      riskReportData.riskLevel === 'MEDIO' ? 'bg-sky-950/40 border-sky-500/40 text-sky-300' :
-                      'bg-emerald-950/40 border-emerald-500/40 text-emerald-300'
-                    }`}>
-                      <div>
-                        <span className="text-[10px] uppercase font-mono tracking-widest block opacity-80">Evaluación Táctica de Riesgo:</span>
-                        <h4 className="text-lg font-black tracking-wider uppercase flex items-center gap-2">
-                          {riskReportData.riskLevel}
-                          <span className="text-xs font-mono font-normal">({riskReportData.riskScore}/100)</span>
-                        </h4>
-                        <span className="text-[10px] text-slate-300">{riskReportData.shapeType} • {riskReportData.areaKm2} km²</span>
-                      </div>
-                      <ShieldAlert size={36} className="opacity-90 shrink-0" />
-                    </div>
 
-                    {/* Resumen Cuantitativo de Activos Contenidos */}
-                    <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-mono block">
-                        📊 Infraestructuras Identificadas ({riskReportData.totalCriticalAssets} totales):
-                      </span>
-                      <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono">
-                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                          <span className="block text-cyan-400 font-bold text-sm">{riskReportData.breakdown.electrico}</span>
-                          <span className="text-slate-400">Eléctrico</span>
-                        </div>
-                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                          <span className="block text-emerald-400 font-bold text-sm">{riskReportData.breakdown.salud}</span>
-                          <span className="text-slate-400">Salud</span>
-                        </div>
-                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                          <span className="block text-sky-400 font-bold text-sm">{riskReportData.breakdown.antenas}</span>
-                          <span className="text-slate-400">Antenas</span>
-                        </div>
-                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                          <span className="block text-purple-400 font-bold text-sm">{riskReportData.breakdown.gas}</span>
-                          <span className="text-slate-400">Gas</span>
-                        </div>
-                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                          <span className="block text-blue-400 font-bold text-sm">{riskReportData.breakdown.agua}</span>
-                          <span className="text-slate-400">Agua</span>
-                        </div>
-                        <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                          <span className="block text-rose-400 font-bold text-sm">{riskReportData.breakdown.incidentes}</span>
-                          <span className="text-slate-400">Incidentes</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Resumen Táctico de IA */}
-                    <div className="bg-cyan-950/30 border border-cyan-500/30 rounded-xl p-3 space-y-1 leading-relaxed">
-                      <span className="text-[10px] font-bold text-cyan-400 uppercase font-mono block">Diagnóstico Ejecutivo IA:</span>
-                      <p className="text-slate-200 text-[11px]">{riskReportData.summaryText}</p>
-                    </div>
-
-                    {/* Rutas de Evacuación y Vías de Salida */}
-                    {riskReportData.exitRoutes && riskReportData.exitRoutes.length > 0 && (
-                      <div className="bg-amber-950/30 border border-amber-500/30 rounded-xl p-3 space-y-1.5">
-                        <span className="text-[10px] font-bold text-amber-400 uppercase font-mono flex items-center gap-1.5">
-                          🚗 Rutas de Escape & Vías de Salida Intersectadas:
-                        </span>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {riskReportData.exitRoutes.map((r: string, i: number) => (
-                            <span key={i} className="text-[9px] bg-amber-500/10 text-amber-300 border border-amber-500/20 px-2 py-0.5 rounded font-mono">
-                              {r}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Zona de Influencia Exterior 1-2 km */}
-                    {riskReportData.externalAssets && (
-                      <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-1.5">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase font-mono block">
-                          🛡️ Zona de Influencia Exterior (Perímetro 1-2 km):
-                        </span>
-                        <div className="grid grid-cols-4 gap-1 text-center text-[9px] font-mono">
-                          <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
-                            <span className="block text-emerald-400 font-bold">{riskReportData.externalAssets.salud || 0}</span>
-                            <span className="text-slate-400 text-[8px]">Salud Ext.</span>
-                          </div>
-                          <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
-                            <span className="block text-cyan-400 font-bold">{riskReportData.externalAssets.electrico || 0}</span>
-                            <span className="text-slate-400 text-[8px]">Luz Ext.</span>
-                          </div>
-                          <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
-                            <span className="block text-purple-400 font-bold">{riskReportData.externalAssets.gas || 0}</span>
-                            <span className="text-slate-400 text-[8px]">Gas Ext.</span>
-                          </div>
-                          <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
-                            <span className="block text-sky-400 font-bold">{riskReportData.externalAssets.antenas || 0}</span>
-                            <span className="text-slate-400 text-[8px]">Antenas Ext.</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Vulnerabilidades Detectadas */}
-                    <div className="space-y-2">
-                      <span className="text-[11px] font-bold text-rose-400 flex items-center gap-1.5">
-                        <AlertTriangle size={14} />
-                        Puntos de Vulnerabilidad Crítica
-                      </span>
-                      <div className="space-y-1.5">
-                        {riskReportData.vulnerabilities.map((v: string, i: number) => (
-                          <div key={i} className="p-2.5 bg-slate-900/90 border border-rose-500/30 rounded-xl text-slate-300 text-[11px] flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0 mt-1.5" />
-                            <span>{v}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Recomendaciones Operativas */}
-                    <div className="space-y-2 pt-2 border-t border-slate-800">
-                      <span className="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5">
-                        <FileCheck size={14} />
-                        Recomendaciones de Despliegue Táctico
-                      </span>
-                      <div className="space-y-1.5">
-                        {riskReportData.recommendations.map((r: string, i: number) => (
-                          <div key={i} className="p-2.5 bg-slate-900/90 border border-emerald-500/30 rounded-xl text-slate-300 text-[11px] flex items-start gap-2">
-                            <CheckCircle2 size={13} className="text-emerald-400 shrink-0 mt-0.5" />
-                            <span>{r}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="p-6 text-center space-y-3 bg-slate-900/40 border border-slate-800 rounded-2xl text-slate-400">
-                    <ShieldAlert size={32} className="mx-auto text-amber-400 opacity-60 animate-pulse" />
-                    <div>
-                      <h4 className="font-bold text-slate-200 text-xs">Sin Evaluación de Riesgo Activa</h4>
-                      <p className="text-[11px] text-slate-400 mt-1">
-                        Utiliza el botón <strong>TRAZAR ÁREA</strong> o <strong>RADIO COBERTURA</strong> en el mapa y presiona <strong>EVALUAR RIESGO IA</strong> para generar un análisis cuantitativo de vulnerabilidad.
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
 
             {activeTab === 'diagnostic' && (
               <>
