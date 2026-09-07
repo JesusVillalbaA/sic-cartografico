@@ -735,21 +735,17 @@ export const useMapbox = (
                 }
 
                 const currentPitch = m.getPitch() || 0;
-                const targetPitch = currentPitch > 0 ? currentPitch : 45;
 
                 if (focusPoly) {
                     const bbox = turf.bbox(focusPoly) as [number, number, number, number];
-                    m.fitBounds(bbox, { padding: 80, pitch: targetPitch, duration: 1000 });
-                    const mask = turf.mask(focusPoly);
-                    const maskSrc = m.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
-                    if (maskSrc) maskSrc.setData(mask);
+                    m.fitBounds(bbox, { padding: 80, pitch: currentPitch, duration: 800 });
                 } else {
-                    m.flyTo({ center: e.lngLat, zoom: 14, pitch: targetPitch, duration: 1000 });
+                    m.flyTo({ center: e.lngLat, zoom: 14, pitch: currentPitch, duration: 800 });
                 }
             } catch (err) {
                 console.error("Error al hacer focus:", err);
                 const currentPitch = m.getPitch() || 0;
-                m.flyTo({ center: e.lngLat, zoom: 14, pitch: currentPitch > 0 ? currentPitch : 45, duration: 1000 });
+                m.flyTo({ center: e.lngLat, zoom: 14, pitch: currentPitch, duration: 800 });
             }
         }
         // ---------------------------

@@ -155,6 +155,16 @@ export const exportPDF = async (isExporting: boolean, setIsExporting: React.Disp
   }
 };
 
+const toDMS = (deg: number, isLat: boolean) => {
+  const absolute = Math.abs(deg);
+  const degrees = Math.floor(absolute);
+  const minutesNotTruncated = (absolute - degrees) * 60;
+  const minutes = Math.floor(minutesNotTruncated);
+  const seconds = Math.floor((minutesNotTruncated - minutes) * 60);
+  const direction = isLat ? (deg >= 0 ? 'N' : 'S') : (deg >= 0 ? 'E' : 'W');
+  return `${degrees}° ${minutes}' ${seconds}" ${direction}`;
+};
+
 export const exportSpatialRiskPDF = async (spatialPayload: any) => {
   try {
     const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
@@ -165,7 +175,7 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
     pdf.setFillColor(15, 23, 42);
     pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
 
-    // Captura del mapa si está disponible
+    // Captura limpia del mapa trazado
     const mapExportContainer = document.getElementById('map-export-container');
     const mapCanvas = mapExportContainer?.querySelector('canvas.mapboxgl-canvas') as HTMLCanvasElement;
     if (mapCanvas) {
@@ -175,36 +185,43 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
       } catch (e) {}
     }
 
-    // Header Banner
+    // Header Banner SOGNE REDIMAIN
     pdf.setFillColor(6, 182, 212);
     pdf.rect(0, 0, pdfWidth, 2, 'F');
 
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(14);
     pdf.setTextColor(6, 182, 212);
-    pdf.text('SOGNE IA • EVALUACIÓN ESPACIAL DE RIESGO', 12, 14);
+    pdf.text('SOGNE REDIMAIN • INFORME TÁCTICO DE ÁREA Y COBERTURA', 12, 14);
 
     pdf.setFontSize(9);
     pdf.setTextColor(203, 213, 225);
-    pdf.text(`INFORME DE VULNERABILIDAD Y COBERTURA TÁCTICA • ${new Date().toLocaleString('es-VE')}`, 12, 20);
+    pdf.text(`EVALUACIÓN CUANTITATIVA Y RUTA DE EVACUACIÓN • ${new Date().toLocaleString('es-VE')}`, 12, 20);
 
-    // Caja de Nivel de Riesgo
+    // Coordenadas DMS
+    let coordsText = "Estado Nueva Esparta, Venezuela";
+    if (spatialPayload.centerCoords) {
+      const [lng, lat] = spatialPayload.centerCoords;
+      coordsText = `${toDMS(lat, true)}, ${toDMS(lng, false)}`;
+    }
+
+    // Caja de Resumen Táctico de la Zona
     const level = spatialPayload.shapeType || 'Área Analizada';
     const area = spatialPayload.areaKm2 ? `${spatialPayload.areaKm2.toFixed(2)} km²` : 'N/A';
     
     pdf.setFillColor(30, 41, 59);
-    pdf.roundedRect(12, 25, pdfWidth - 24, 16, 2, 2, 'F');
+    pdf.roundedRect(12, 25, pdfWidth - 24, 18, 2, 2, 'F');
 
     pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(11);
+    pdf.setFontSize(10.5);
     pdf.setTextColor(245, 158, 11);
-    pdf.text(`ZONA EVALUADA: ${level.toUpperCase()} (${area})`, 16, 32);
+    pdf.text(`ZONA EVALUADA: ${level.toUpperCase()} (${area})`, 16, 31);
 
-    pdf.setFontSize(9);
+    pdf.setFontSize(8.5);
     pdf.setTextColor(255, 255, 255);
-    pdf.text(`Activos de Infraestructura: ${spatialPayload.antenasCount + spatialPayload.saludCount + spatialPayload.electricoCount + spatialPayload.gasCount + spatialPayload.aguaCount} | Cuadrantes: ${spatialPayload.cuadrantesCount}`, 16, 37);
+    pdf.text(`Coordenadas Centrales DMS: ${coordsText} | Activos Totales: ${spatialPayload.antenasCount + spatialPayload.saludCount + spatialPayload.electricoCount + spatialPayload.gasCount + spatialPayload.aguaCount}`, 16, 37);
 
-    // Tabla de Desglose de Infraestructuras
+    // Tabla de Desglose Cuantitativo de Infraestructuras
     let yPos = 125;
     pdf.setFillColor(30, 41, 59);
     pdf.roundedRect(12, yPos, pdfWidth - 24, 42, 2, 2, 'F');
@@ -212,17 +229,17 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(10);
     pdf.setTextColor(56, 189, 248);
-    pdf.text('DESGLOSE CUANTITATIVO DE INFRAESTRUCTURAS CONTENIDAS', 16, yPos + 7);
+    pdf.text('DESGLOSE CUANTITATIVO DE INFRAESTRUCTURAS Y MÓDULOS', 16, yPos + 7);
 
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8.5);
     pdf.setTextColor(255, 255, 255);
     pdf.text(`• Subestaciones Eléctricas: ${spatialPayload.electricoCount || 0}`, 16, yPos + 15);
     pdf.text(`• Centros de Salud (Hospitales/CDI): ${spatialPayload.saludCount || 0}`, 16, yPos + 22);
-    pdf.text(`• Antenas Telecom (Digitel/Movistar/Movilnet): ${spatialPayload.antenasCount || 0}`, 16, yPos + 29);
+    pdf.text(`• Telecomunicaciones (Digitel/Movistar/Movilnet): ${spatialPayload.antenasCount || 0}`, 16, yPos + 29);
     pdf.text(`• Estaciones de Gas y Combustible: ${spatialPayload.gasCount || 0}`, 105, yPos + 15);
-    pdf.text(`• Sistemas de Agua e Hidrología: ${spatialPayload.aguaCount || 0}`, 105, yPos + 22);
-    pdf.text(`• Puntos de Atención / Delitos: ${spatialPayload.incidentesCount || 0}`, 105, yPos + 29);
+    pdf.text(`• Red Hídrica y Embalses: ${spatialPayload.aguaCount || 0}`, 105, yPos + 22);
+    pdf.text(`• Cuadrantes de Paz / Incidencias: ${spatialPayload.cuadrantesCount} / ${spatialPayload.incidentesCount || 0}`, 105, yPos + 29);
 
     // Sección de Rutas de Evacuación / Vías de Salida y Perímetro Exterior
     yPos = 172;
@@ -232,20 +249,20 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(9.5);
     pdf.setTextColor(251, 191, 36);
-    pdf.text('VÍAS DE ESCAPE / SALIDA Y ZONA EXTERIOR DE INFLUENCIA (1-2 KM)', 16, yPos + 7);
+    pdf.text('ANÁLISIS DE VÍAS, RUTAS DE SALIDA Y PERÍMETRO EXTERIOR (1-2 KM)', 16, yPos + 7);
 
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8);
     pdf.setTextColor(226, 232, 240);
     
     const routesStr = (spatialPayload.exitRoutes && spatialPayload.exitRoutes.length > 0)
-      ? spatialPayload.exitRoutes.slice(0, 5).join(' • ')
+      ? spatialPayload.exitRoutes.slice(0, 6).join(' • ')
       : 'Arterias viales principales del perímetro';
 
-    pdf.text(`• Arterias Viales e Intersecciones de Salida: ${routesStr}`, 16, yPos + 15, { maxWidth: pdfWidth - 32 });
+    pdf.text(`• Vías, Avenidas y Arterias de Escape Intersectadas: ${routesStr}`, 16, yPos + 15, { maxWidth: pdfWidth - 32 });
 
     const ext = spatialPayload.externalAssets || {};
-    pdf.text(`• Infraestructura Exterior de Respaldo (Perímetro 1-2 km): Salud: ${ext.salud || 0} | Electricidad: ${ext.electrico || 0} | Gas/Combustible: ${ext.gas || 0} | Antenas: ${ext.antenas || 0}`, 16, yPos + 27);
+    pdf.text(`• Infraestructura Exterior de Respaldo (1-2 km): Salud: ${ext.salud || 0} | Electricidad: ${ext.electrico || 0} | Gas: ${ext.gas || 0} | Antenas: ${ext.antenas || 0}`, 16, yPos + 27);
 
     // Diagnóstico Táctico Final
     yPos = 214;
@@ -255,16 +272,16 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(9.5);
     pdf.setTextColor(52, 211, 153);
-    pdf.text('DIAGNÓSTICO Y RECOMENDACIONES DE DESPLIEGUE TÁCTICO', 16, yPos + 7);
+    pdf.text('DIAGNÓSTICO TÁCTICO Y RECOMENDACIONES DE DESPLIEGUE', 16, yPos + 7);
 
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8);
     pdf.setTextColor(226, 232, 240);
-    pdf.text('1. Control preventivo de la FANB/IAPOLEPNE en intersecciones viales y accesos de escape.', 16, yPos + 15);
-    pdf.text('2. Mantener canal de comunicación directo con la red de salud asistencial interna y exterior.', 16, yPos + 22);
-    pdf.text('3. Monitoreo constante de respaldo eléctrico y radiobases para evitar aislamientos tácticos.', 16, yPos + 29);
+    pdf.text('1. Despliegue de puntos de control de la FANB/IAPOLEPNE en vías de escape e intersecciones.', 16, yPos + 15);
+    pdf.text('2. Enlace de emergencias con centros asistenciales internos y de respaldo exterior en 1-2 km.', 16, yPos + 22);
+    pdf.text('3. Asegurar protección perimetral en nodos de subestaciones eléctricas y telecomunicaciones.', 16, yPos + 29);
 
-    pdf.save(`evaluacion_riesgo_sogne_${Date.now()}.pdf`);
+    pdf.save(`informe_tactico_sogne_${Date.now()}.pdf`);
   } catch (e: any) {
     console.error("Error al exportar PDF de riesgo:", e);
     alert("Fallo al exportar PDF de evaluación de riesgo: " + (e?.message || e));

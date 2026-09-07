@@ -440,9 +440,15 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
     const exitRoutes = Array.from(exitRoutesSet).slice(0, 10);
 
+    let centerCoords: [number, number] | null = null;
+    try {
+      centerCoords = turf.centroid(shapeGeoJSON).geometry.coordinates as [number, number];
+    } catch (_) {}
+
     const spatialPayload = {
       shapeType,
       areaKm2: areaMetersSq / 1000000,
+      centerCoords,
       antenasCount,
       saludCount,
       electricoCount,
