@@ -199,9 +199,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
           applyFocusMask(polyGeo);
           map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 80, duration: 1500 });
-
-          const areaSqM = turf.area(polyGeo);
-          evaluateAreaRiskWithAI(polyGeo, `Municipio ${matched.properties?.nombre || matched.properties?.adm2_name || muniName}`, areaSqM);
         }
       } catch (err) {
         console.warn("Error al trazar municipio por voz:", err);
@@ -284,9 +281,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             applyFocusMask(shapeGeo);
             const bbox = turf.bbox(shapeGeo);
             map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 80, duration: 1500 });
-
-            const areaSqM = turf.area(shapeGeo);
-            evaluateAreaRiskWithAI(shapeGeo, shapeTitle, areaSqM);
           }
         }
       } catch (err) {
@@ -709,6 +703,9 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           try {
             const closedRing = [...livePoints, livePoints[0]];
             const poly = turf.polygon([closedRing]);
+            const closedLine = turf.lineString(closedRing);
+            features.push(poly);
+            features.push(closedLine);
             const sqMeters = turf.area(poly);
             setTotalArea(sqMeters);
           } catch (err) { }
@@ -834,11 +831,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       applyFocusMask(poly);
       const bbox = turf.bbox(poly) as [number, number, number, number];
       const currentPitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
-      map.fitBounds(bbox, { padding: 90, pitch: currentPitch > 0 ? currentPitch : 35, duration: 1200 });
+      map.fitBounds(bbox, { padding: 90, pitch: currentPitch, duration: 800 });
       bringTacticalLayersToFront();
-
-      // EVALUAR RIESGO E INICIAR ANÁLISIS AUTOMÁTICO AL CERRAR POLÍGONO
-      evaluateAreaRiskWithAI(poly, "Polígono Trazado", sqMeters);
     };
 
     const handleRightClick = (e: mapboxgl.MapMouseEvent) => {

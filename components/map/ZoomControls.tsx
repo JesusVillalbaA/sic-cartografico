@@ -81,27 +81,7 @@ export const ZoomControls = ({ map, theme = 'dark' }: ZoomControlsProps) => {
         <Compass size={16} className="group-hover:rotate-45 transition-transform text-amber-400" />
       </button>
 
-      <div className="w-full h-[1px] bg-white/10 my-0.5" />
 
-      {/* Botón Vista 3D Rápido */}
-      <button
-        onClick={() => {
-          playTacticalClick();
-          if (!map) return;
-          const currentPitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
-          if (currentPitch > 10) {
-            map.easeTo({ pitch: 0, bearing: 0, duration: 1000 });
-          } else {
-            const currentZoom = typeof map.getZoom === 'function' ? map.getZoom() : 11;
-            const targetZoom = Math.max(currentZoom, 15.5);
-            map.easeTo({ pitch: 65, bearing: -25, zoom: targetZoom, duration: 1200 });
-          }
-        }}
-        title="Activar / Alternar Perspectiva 3D y Edificaciones"
-        className="w-9 h-9 rounded-xl flex items-center justify-center text-xs font-black text-cyan-400 hover:text-white hover:bg-cyan-500/20 active:scale-95 transition-all duration-200 border border-transparent hover:border-cyan-500/30 cursor-pointer shadow-[0_0_10px_rgba(6,182,212,0.2)]"
-      >
-        3D
-      </button>
 
       <div className="w-full h-[1px] bg-white/10 my-0.5" />
 
