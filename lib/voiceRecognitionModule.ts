@@ -58,46 +58,94 @@ export class SogneVoiceController {
   private initDefaultRules() {
     this.rules = [
       {
+        intent: 'abrir_asistente',
+        keywords: ['abrir panel', 'abrir ia', 'abrir asistente', 'sogne ia', 'abrir menu', /abrir\s*(panel|ia|asistente)/i],
+        actionKey: 'open_ia_panel',
+        description: 'Abre el panel flotante de SOGNE IA'
+      },
+      {
+        intent: 'trazar_area',
+        keywords: ['trazar area', 'trazar área', 'trazar poligono', 'trazar polígono', 'dibujar area', 'dibujar zona', 'trazar sector', /trazar\s*([aá]rea|pol[ií]gono|sector)/i],
+        actionKey: 'activate_polygon',
+        description: 'Activa la herramienta manual para trazar un área'
+      },
+      {
+        intent: 'crear_radio',
+        keywords: ['crear radio', 'radio de cobertura', 'crear buffer', 'activar radio', 'radio cobertura', /radio\s*(cobertura|buffer)/i],
+        actionKey: 'activate_buffer',
+        description: 'Activa el círculo o radio de cobertura'
+      },
+      {
+        intent: 'limpiar_mapa',
+        keywords: ['limpiar mapa', 'limpiar todo', 'borrar trazado', 'resetear mapa', 'limpiar herramientas', /limpiar\s*(mapa|todo|trazado)/i],
+        actionKey: 'clear_tools',
+        description: 'Limpia todos los polígonos, radios y trazos del mapa'
+      },
+      {
+        intent: 'activar_salud',
+        keywords: ['salud', 'hospitales', 'cdi', 'ambulatorios', 'capa salud', /activar\s*salud/i],
+        actionKey: 'salud',
+        description: 'Activa la capa de salud'
+      },
+      {
+        intent: 'activar_electricidad',
+        keywords: ['electricidad', 'subestaciones', 'corpoelec', 'capa electricidad', /activar\s*electricidad/i],
+        actionKey: 'sistemas-electricos',
+        description: 'Activa la capa eléctrica'
+      },
+      {
+        intent: 'activar_cuadrantes',
+        keywords: ['cuadrantes', 'cuadrantes de paz', 'policia', 'seguridad', /activar\s*cuadrantes/i],
+        actionKey: 'cuadrantes',
+        description: 'Activa la capa de Cuadrantes de Paz'
+      },
+      {
+        intent: 'activar_telecom',
+        keywords: ['telecomunicaciones', 'antenas', 'digitel', 'movistar', 'movilnet', /activar\s*telecom/i],
+        actionKey: 'antenas',
+        description: 'Activa la capa de telecomunicaciones'
+      },
+      {
+        intent: 'activar_agua',
+        keywords: ['agua', 'embalses', 'pozos', 'red hidrica', /activar\s*agua/i],
+        actionKey: 'agua',
+        description: 'Activa la capa de red hídrica'
+      },
+      {
+        intent: 'activar_gas',
+        keywords: ['gas', 'estaciones de gas', 'combustible', /activar\s*gas/i],
+        actionKey: 'gas',
+        description: 'Activa la capa de estaciones de gas'
+      },
+      {
         intent: 'activar_modulo_1',
-        keywords: ['modulo 1', 'módulo 1', 'modulo uno', 'módulo uno', 'primer modulo', 'primer módulo', /m[oó]dulo\s*(1|uno)/i],
+        keywords: ['modulo 1', 'módulo 1', 'modulo uno', 'módulo uno', /m[oó]dulo\s*(1|uno)/i],
         actionKey: 'module_1',
-        description: 'Activa Mapeo de Infraestructura Básica (Electricidad, Agua, Gas)'
+        description: 'Activa Mapeo de Infraestructura Básica'
       },
       {
         intent: 'activar_modulo_2',
-        keywords: ['modulo 2', 'módulo 2', 'modulo dos', 'módulo dos', 'segundo modulo', 'segundo módulo', /m[oó]dulo\s*(2|dos)/i],
+        keywords: ['modulo 2', 'módulo 2', 'modulo dos', 'módulo dos', /m[oó]dulo\s*(2|dos)/i],
         actionKey: 'module_2',
-        description: 'Activa Red Asistencial de Salud (Hospitales, CDI, Clínicas)'
+        description: 'Activa Red Asistencial de Salud'
       },
       {
         intent: 'activar_modulo_3',
-        keywords: ['modulo 3', 'módulo 3', 'modulo tres', 'módulo tres', 'tercer modulo', 'tercer módulo', /m[oó]dulo\s*(3|tres)/i],
+        keywords: ['modulo 3', 'módulo 3', 'modulo tres', 'módulo tres', /m[oó]dulo\s*(3|tres)/i],
         actionKey: 'module_3',
-        description: 'Activa Seguridad Ciudadana y Cuadrantes de Paz'
+        description: 'Activa Seguridad Ciudadana y Cuadrantes'
       },
       {
         intent: 'activar_modulo_4',
-        keywords: ['modulo 4', 'módulo 4', 'modulo cuatro', 'módulo cuatro', 'cuarto modulo', 'cuarto módulo', /m[oó]dulo\s*(4|cuatro)/i],
+        keywords: ['modulo 4', 'módulo 4', 'modulo cuatro', 'módulo cuatro', /m[oó]dulo\s*(4|cuatro)/i],
         actionKey: 'module_4',
-        description: 'Activa Red de Telecomunicaciones (Digitel, Movistar, Movilnet)'
-      },
-      {
-        intent: 'desactivar_todo',
-        keywords: ['desactivar todo', 'apagar todo', 'quitar todo', 'desactiva todo', 'limpiar todo', 'borrar todo', /desactiv(ar|a)\s*todo/i],
-        actionKey: 'turn_off_all',
-        description: 'Apaga todas las capas del mapa'
-      },
-      {
-        intent: 'vista_3d',
-        keywords: ['3d', 'tres d', 'edificios', 'relieve', /vista\s*3d/i],
-        actionKey: 'toggle_3d',
-        description: 'Cambia a modo tridimensional'
+        description: 'Activa Red de Telecomunicaciones'
       },
       {
         intent: 'mapa_calor',
         keywords: ['calor', 'heatmap', 'incidencias', 'mapa de calor', /mapa\s*de\s*calor/i],
         actionKey: 'toggle_heatmap',
-        description: 'Despliega mapa de calor táctico'
+        description: 'Despliega mapa de calor'
       }
     ];
   }

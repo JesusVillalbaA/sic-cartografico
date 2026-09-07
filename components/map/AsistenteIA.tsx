@@ -121,6 +121,8 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
             } else if (actionKey.startsWith('trace_municipality:')) {
               const muni = actionKey.split(':')[1];
               window.dispatchEvent(new CustomEvent('sogne_voice_trace_municipality', { detail: { municipality: muni } }));
+            } else if (actionKey === 'open_ia_panel') {
+              setIsOpen(true);
             } else if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {
               window.dispatchEvent(new CustomEvent('sogne_voice_action', { detail: { action: actionKey } }));
             } else {
@@ -380,17 +382,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
               <span>Diagnóstico</span>
             </button>
 
-            <button
-              onClick={() => setActiveTab('risk')}
-              className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                activeTab === 'risk'
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)]'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <ShieldAlert size={13} className="text-amber-400" />
-              <span>Riesgo Espacial</span>
-            </button>
+
 
             <button
               onClick={() => setActiveTab('chat')}
