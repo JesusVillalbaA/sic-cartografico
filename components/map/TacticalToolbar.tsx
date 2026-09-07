@@ -201,6 +201,102 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     return () => window.removeEventListener('sogne_voice_trace_municipality', handleTraceMunicipality);
   }, [map]);
 
+  // Escuchar trazado y radio por voz universal de cualquier lugar o punto
+  useEffect(() => {
+    const handleTracePlace = (e: any) => {
+      const { placeName, mode = 'polygon', radiusKm = 2 } = e.detail || {};
+      if (!map || !placeName) return;
+
+      try {
+        const style = map.getStyle();
+        if (!style) return;
+
+        // 1. Buscar en elementos renderizados
+        const allRendered = map.queryRenderedFeatures();
+        let matched = allRendered.find((f: any) => {
+          const p = f.properties || {};
+          const vals = Object.values(p).join(' ').toLowerCase();
+          return vals.includes(placeName.toLowerCase());
+        });
+
+        // 2. Si no está renderizado, buscar en fuentes GeoJSON de Mapbox
+        if (!matched && style.sources) {
+          const sourceIds = Object.keys(style.sources);
+          for (const sId of sourceIds) {
+            try {
+              const feats = map.querySourceFeatures(sId);
+              const found = feats.find((f: any) => {
+                const p = f.properties || {};
+                const vals = Object.values(p).join(' ').toLowerCase();
+                return vals.includes(placeName.toLowerCase());
+              });
+              if (found) {
+                matched = found;
+                break;
+              }
+            } catch (_) {}
+          }
+        }
+
+        if (matched && matched.geometry) {
+          let shapeGeo: any = null;
+          let shapeTitle = `${placeName.toUpperCase()}`;
+
+          if (mode === 'buffer' || matched.geometry.type === 'Point') {
+            const centerPt = matched.geometry.type === 'Point' 
+              ? matched.geometry 
+              : turf.centroid(matched.geometry).geometry;
+            shapeGeo = turf.buffer(centerPt as any, radiusKm, { units: 'kilometers' })?.geometry;
+            shapeTitle = `Radio de ${radiusKm} km en ${matched.properties?.nombre || matched.properties?.NAME || placeName}`;
+
+            const bufSource = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
+            if (bufSource && shapeGeo) {
+              bufSource.setData({
+                type: 'FeatureCollection',
+                features: [{ type: 'Feature', geometry: shapeGeo, properties: {} }]
+              });
+            }
+          } else {
+            shapeGeo = matched.geometry;
+            shapeTitle = `Área Trazada en ${matched.properties?.nombre || matched.properties?.NAME || placeName}`;
+
+            const polySource = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
+            if (polySource && shapeGeo) {
+              polySource.setData({
+                type: 'FeatureCollection',
+                features: [{ type: 'Feature', geometry: shapeGeo, properties: {} }]
+              });
+            }
+          }
+
+          if (shapeGeo) {
+            const bbox = turf.bbox(shapeGeo);
+            const outerBounds = turf.polygon([[
+              [-65, 10], [-65, 12], [-63, 12], [-63, 10], [-65, 10]
+            ]]);
+            try {
+              const maskPoly = turf.difference(outerBounds as any, shapeGeo as any);
+              const maskSource = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
+              if (maskSource && maskPoly) {
+                maskSource.setData(maskPoly as any);
+              }
+            } catch (_) {}
+
+            map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 80, duration: 1500 });
+
+            const areaSqM = turf.area(shapeGeo);
+            evaluateAreaRiskWithAI(shapeGeo, shapeTitle, areaSqM);
+          }
+        }
+      } catch (err) {
+        console.warn("Error al trazar lugar por voz:", err);
+      }
+    };
+
+    window.addEventListener('sogne_voice_trace_place', handleTracePlace);
+    return () => window.removeEventListener('sogne_voice_trace_place', handleTracePlace);
+  }, [map]);
+
   // Escanear espacialmente activos contenidos y disparar la evaluación de riesgo con IA
   const evaluateAreaRiskWithAI = (shapeGeoJSON: any, shapeType: string, areaMetersSq: number) => {
     if (!map || !shapeGeoJSON) return;

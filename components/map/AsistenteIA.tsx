@@ -112,6 +112,12 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
               } catch (e) {
                 console.warn("Error al exportar PDF individual por voz:", e);
               }
+            } else if (actionKey.startsWith('trace_place:')) {
+              const parts = actionKey.split(':');
+              const mode = parts[1];
+              const radiusKm = parseInt(parts[2]) || 2;
+              const placeName = parts.slice(3).join(':');
+              window.dispatchEvent(new CustomEvent('sogne_voice_trace_place', { detail: { placeName, mode, radiusKm } }));
             } else if (actionKey.startsWith('trace_municipality:')) {
               const muni = actionKey.split(':')[1];
               window.dispatchEvent(new CustomEvent('sogne_voice_trace_municipality', { detail: { municipality: muni } }));

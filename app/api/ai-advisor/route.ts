@@ -186,7 +186,24 @@ function parseVoiceCommand(command: string) {
     responseText += "Desactivando todas las capas e infraestructura del mapa. ";
   }
 
-  // ── TRAZADO DE MUNICIPIOS Y SECTORES POR VOZ ──────────────────────────────
+  // ── DETECCIÓN AVANZADA DE RADIOS Y TRAZADOS EN LUGARES ESPECÍFICOS ──────────
+  const radioRegex = /(?:realizar|crear|trazar|hacer|pon|poner)\s+(?:un\s+)?radio\s+(?:de\s+(\d+)\s*km\s+)?(?:en|sobre|de|del|de la)\s+(.+)/i;
+  const radioMatch = text.match(radioRegex);
+  if (radioMatch) {
+    const radiusKm = radioMatch[1] ? parseInt(radioMatch[1]) : 2;
+    const placeName = radioMatch[2].trim();
+    actions.push(`trace_place:buffer:${radiusKm}:${placeName}`);
+    responseText += `Creando radio de cobertura de ${radiusKm} km en "${placeName}", analizando riesgo espacial y descargando reporte PDF. `;
+  }
+
+  const traceRegex = /(?:trazar|traza|analizar|analiza|realizar|hacer)\s+(?:un\s+)?(?:área|area|polígono|poligono|análisis|analisis)\s+(?:en|sobre|de|del|de la)\s+(.+)/i;
+  const traceMatch = text.match(traceRegex);
+  if (traceMatch && !radioMatch) {
+    const placeName = traceMatch[1].trim();
+    actions.push(`trace_place:polygon:0:${placeName}`);
+    responseText += `Trazando área en "${placeName}", realizando diagnóstico de vulnerabilidad y generando reporte PDF. `;
+  }
+
   const municipiosMap: Record<string, string> = {
     'maneiro': 'Maneiro',
     'mariño': 'Mariño',
@@ -207,7 +224,7 @@ function parseVoiceCommand(command: string) {
   };
 
   Object.keys(municipiosMap).forEach(key => {
-    if (text.includes(key) && (text.includes('trazar') || text.includes('área') || text.includes('area') || text.includes('municipio') || text.includes('analiz') || text.includes('sector'))) {
+    if (text.includes(key) && !radioMatch && !traceMatch && (text.includes('trazar') || text.includes('área') || text.includes('area') || text.includes('municipio') || text.includes('analiz') || text.includes('sector'))) {
       const muniName = municipiosMap[key];
       actions.push(`trace_municipality:${muniName}`);
       responseText += `Delimitando y analizando automáticamente el Municipio ${muniName}. `;
