@@ -929,20 +929,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         isLight ? 'bg-white/90 border-slate-300' : 'bg-slate-900/90 border-white/10'
       }`}>
         
-        {/* Botón Medidor */}
-        <button
-          onClick={() => setActiveTool(activeTool === 'measure' ? 'none' : 'measure')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-[11px] font-bold tracking-wider transition-all cursor-pointer ${
-            activeTool === 'measure'
-              ? 'bg-sky-500 text-white shadow-[0_0_15px_rgba(14,165,233,0.5)]'
-              : (isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-slate-300 hover:bg-white/5')
-          }`}
-          title="Regla de Medición de Distancia"
-        >
-          <Ruler size={14} />
-          <span className="hidden md:inline">MEDIR</span>
-        </button>
-
         {/* Botón Cobertura (Buffer) */}
         <button
           onClick={() => setActiveTool(activeTool === 'buffer' ? 'none' : 'buffer')}
@@ -983,20 +969,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         >
           <Flame size={14} className={isHeatmapActive ? "text-amber-300" : ""} />
           <span className="hidden md:inline">MAPA DE CALOR</span>
-        </button>
-
-        {/* Botón Vista 3D Táctica */}
-        <button
-          onClick={toggle3D}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-[11px] font-bold tracking-wider transition-all cursor-pointer ${
-            is3DActive
-              ? 'bg-cyan-500 text-slate-950 shadow-[0_0_15px_rgba(6,182,212,0.6)] font-black'
-              : (isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-slate-300 hover:bg-white/5')
-          }`}
-          title={is3DActive ? "Desactivar Perspectiva 3D" : "Activar Perspectiva 3D y Edificaciones"}
-        >
-          <Box size={14} className={is3DActive ? "text-slate-950" : "text-cyan-400"} />
-          <span className="hidden md:inline">VISTA 3D</span>
         </button>
 
         {/* Botón Comando por Voz Directo */}
