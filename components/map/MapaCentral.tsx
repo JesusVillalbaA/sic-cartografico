@@ -7,7 +7,6 @@ import { Legend } from './Legend';
 import { BuscadorGlobal } from './BuscadorGlobal';
 import { ModalDiagramaElectrico } from './ModalDiagramaElectrico';
 import { ModalDiagramaGas } from './ModalDiagramaGas';
-import { MapStyleSelector } from './MapStyleSelector';
 import { TacticalToolbar } from './TacticalToolbar';
 import { ZoomControls } from './ZoomControls';
 import { TacticalMapLoader } from './TacticalMapLoader';
@@ -172,7 +171,6 @@ export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRi
       <BuscadorGlobal map={map.current} onSelectFeature={handleSearchSelect} theme={theme} layersVisible={layersVisible} />
       <AsistenteIA layersVisible={layersVisible} selectedFeatures={selectedFeatures} onToggle={onToggle} theme={theme} />
       <Legend theme={theme} layersVisible={layersVisible} onToggle={onToggle} />
-      <MapStyleSelector map={map.current} theme={theme} />
       <ZoomControls map={map.current} theme={theme} />
       {selectedFeatures.length > 0 && (
         <AnalysisPanel 
