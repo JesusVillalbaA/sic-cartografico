@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Ruler, CircleDot, Flame, Trash2, X, Box, Shapes, Download, FileJson, FileText, ShieldAlert, Mic, MicOff } from 'lucide-react';
 import * as turf from '@turf/turf';
 import mapboxgl from 'mapbox-gl';
-import { exportPDF as exportPDFUtil, exportSpatialRiskPDF } from './mapUtils';
+import { exportPDF as exportPDFUtil, exportSpatialRiskPDF, setMap3DMode } from './mapUtils';
 
 interface TacticalToolbarProps {
   map: mapboxgl.Map | null;
@@ -55,25 +55,31 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     if (!map) return;
     setIs3DActive(prev => {
       const nextState = !prev;
-      if (nextState) {
-        const currentZoom = typeof map.getZoom === 'function' ? map.getZoom() : 11;
-        const targetZoom = Math.max(currentZoom, 15.5);
-        map.easeTo({
-          pitch: 65,
-          bearing: -25,
-          zoom: targetZoom,
-          duration: 1200
-        });
-      } else {
-        map.easeTo({
-          pitch: 0,
-          bearing: 0,
-          duration: 1000
-        });
-      }
+      setMap3DMode(map, nextState);
       return nextState;
     });
   }, [map]);
+
+  // Sincronizar estado del botón 3D y visibilidad de edificaciones con el pitch del mapa
+  useEffect(() => {
+    if (!map) return;
+    const handlePitchChange = () => {
+      const pitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
+      const isPitchActive = pitch > 15;
+      setIs3DActive(isPitchActive);
+      if (map.getLayer('3d-buildings')) {
+        map.setLayoutProperty('3d-buildings', 'visibility', isPitchActive ? 'visible' : 'none');
+      }
+      if (!isPitchActive) {
+        try { map.setTerrain(null); } catch (e) {}
+      }
+    };
+    map.on('pitch', handlePitchChange);
+    return () => {
+      map.off('pitch', handlePitchChange);
+    };
+  }, [map]);
+
 
   const toggleVoiceListener = () => {
     if (typeof window === 'undefined') return;
@@ -969,6 +975,20 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         >
           <Flame size={14} className={isHeatmapActive ? "text-amber-300" : ""} />
           <span className="hidden md:inline">MAPA DE CALOR</span>
+        </button>
+
+        {/* Botón Vista 3D Táctica */}
+        <button
+          onClick={toggle3D}
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-[11px] font-bold tracking-wider transition-all cursor-pointer ${
+            is3DActive
+              ? 'bg-cyan-500 text-slate-950 shadow-[0_0_15px_rgba(6,182,212,0.6)] font-black'
+              : (isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-slate-300 hover:bg-white/5')
+          }`}
+          title={is3DActive ? "Desactivar Perspectiva 3D" : "Activar Perspectiva 3D y Edificaciones"}
+        >
+          <Box size={14} className={is3DActive ? "text-slate-950" : "text-cyan-400"} />
+          <span className="hidden md:inline">VISTA 3D</span>
         </button>
 
         {/* Botón Comando por Voz Directo */}

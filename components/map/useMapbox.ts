@@ -245,7 +245,7 @@ export const useMapbox = (
             maxzoom: 14
           });
         }
-        m.setTerrain({ source: 'mapbox-dem', exaggeration: 1.25 });
+        // Terreno inicialmente plano (2D) para máxima nitidez y rendimiento satelital
       } catch (err) {
         console.warn('[SIGDI] No se pudo cargar el mapa de elevación 3D DEM:', err);
       }
@@ -271,6 +271,9 @@ export const useMapbox = (
               filter: ['==', 'extrude', 'true'],
               type: 'fill-extrusion',
               minzoom: 14,
+              layout: {
+                visibility: 'none'
+              },
               paint: {
                 'fill-extrusion-color': [
                   'interpolate',

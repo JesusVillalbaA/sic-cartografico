@@ -287,3 +287,51 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
     alert("Fallo al exportar PDF de evaluación de riesgo: " + (e?.message || e));
   }
 };
+
+/**
+ * Control centralizado de perspectiva 3D, terreno DEM y extrusión de edificaciones.
+ * Al desactivar 3D, aplana el terreno y oculta completamente las cajas 3D de las casas
+ * para que se visualicen como imagen satelital real nítida en 2D.
+ */
+export const setMap3DMode = (map: mapboxgl.Map | null, enable: boolean) => {
+  if (!map) return;
+  if (enable) {
+    try {
+      if (!map.getSource('mapbox-dem')) {
+        map.addSource('mapbox-dem', {
+          type: 'raster-dem',
+          url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+          tileSize: 512,
+          maxzoom: 14
+        });
+      }
+      map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.25 });
+    } catch (e) {
+      console.warn('[SIGDI] Error al activar elevación 3D DEM:', e);
+    }
+    if (map.getLayer('3d-buildings')) {
+      map.setLayoutProperty('3d-buildings', 'visibility', 'visible');
+    }
+    const currentZoom = typeof map.getZoom === 'function' ? map.getZoom() : 11;
+    map.easeTo({
+      pitch: 65,
+      bearing: -25,
+      zoom: Math.max(currentZoom, 15.5),
+      duration: 1200
+    });
+  } else {
+    try {
+      map.setTerrain(null);
+    } catch (e) {
+      console.warn('[SIGDI] Error al desactivar elevación 3D:', e);
+    }
+    if (map.getLayer('3d-buildings')) {
+      map.setLayoutProperty('3d-buildings', 'visibility', 'none');
+    }
+    map.easeTo({
+      pitch: 0,
+      bearing: 0,
+      duration: 1000
+    });
+  }
+};
