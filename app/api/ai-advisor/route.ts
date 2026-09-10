@@ -179,35 +179,61 @@ function parseVoiceCommand(command: string) {
   const actions: string[] = [];
   let responseText = `Comando procesado: "${command}". `;
 
-  // ── MÓDULOS DEL SISTEMA Y CAPAS GENERALES ─────────────────────────────────────
+  // Detectar intención: ACTIVAR vs DESACTIVAR
+  const isDeactivate = text.includes('desactivar') || text.includes('apagar') || text.includes('ocultar') || text.includes('quitar') || text.includes('borrar') || text.includes('eliminar') || text.includes('desactiva') || text.includes('apaga') || text.includes('oculta') || text.includes('quita');
+  
+  const turnPrefix = isDeactivate ? 'turn_off:' : 'turn_on:';
+  const verbLabel = isDeactivate ? 'Desactivando' : 'Activando';
+
+  const toggleLayer = (layerKey: string, friendlyName: string) => {
+    actions.push(`${turnPrefix}${layerKey}`);
+    responseText += `${verbLabel} ${friendlyName}. `;
+  };
+
+  // ── 1. MÓDULOS DEL SISTEMA Y CAPAS GENERALES ─────────────────────────────────────
   if (text.includes('activar todos los modulos') || text.includes('activar todos los módulos') || text.includes('activar todas las capas') || text.includes('encender todo') || text.includes('activar todo')) {
     actions.push('turn_on_all');
     responseText += "Activando TODOS los módulos e infraestructuras del mapa. ";
-  }
-
-  if (text.includes('modulo 1') || text.includes('módulo 1') || text.includes('modulo uno') || text.includes('módulo uno') || text.includes('primer modulo') || text.includes('primer módulo')) {
-    actions.push('sistemasElectricos', 'servicioAgua.embalses', 'servicioAgua.desalinizadoras', 'servicioAgua.tanques', 'estacionesGas', 'estacionesServicio');
-    responseText += "Activando MÓDULO 1: Infraestructura y Servicios Críticos (Electricidad, Agua, Gas). ";
-  }
-
-  if (text.includes('modulo 2') || text.includes('módulo 2') || text.includes('modulo dos') || text.includes('módulo dos') || text.includes('segundo modulo') || text.includes('segundo módulo')) {
-    actions.push('hospitales', 'cdi', 'ambulatorios', 'clinicas');
-    responseText += "Activando MÓDULO 2: Red Asistencial de Salud (Hospitales, Clínicas, CDI, Ambulatorios). ";
-  }
-
-  if (text.includes('modulo 3') || text.includes('módulo 3') || text.includes('modulo tres') || text.includes('módulo tres') || text.includes('tercer modulo') || text.includes('tercer módulo')) {
-    actions.push('cuadrantesPoligonos', 'cuadrantes', 'incidencias', 'delitosComunes');
-    responseText += "Activando MÓDULO 3: Seguridad Ciudadana y Cuadrantes de Paz. ";
-  }
-
-  if (text.includes('modulo 4') || text.includes('módulo 4') || text.includes('modulo cuatro') || text.includes('módulo cuatro') || text.includes('cuarto modulo') || text.includes('cuarto módulo')) {
-    actions.push('antenasDigitel', 'antenasMovistar', 'antenasMovilnet');
-    responseText += "Activando MÓDULO 4: Red de Telecomunicaciones (Digitel, Movistar, Movilnet). ";
-  }
-
-  if (text.includes('desactivar todo') || text.includes('apagar todo') || text.includes('quitar todo') || text.includes('desactiva todo') || text.includes('limpiar todo') || text.includes('borrar todo')) {
+  } else if (text.includes('desactivar todo') || text.includes('apagar todo') || text.includes('quitar todo') || text.includes('desactiva todo') || text.includes('limpiar todo') || text.includes('borrar todo')) {
     actions.push('turn_off_all', 'clear_tools');
     responseText += "Desactivando todas las capas e infraestructura del mapa. ";
+  }
+
+  // MÓDULO 1: Infraestructura y Servicios Críticos (Electricidad, Agua, Gas, Estaciones de Servicio)
+  if (text.includes('modulo 1') || text.includes('módulo 1') || text.includes('modulo uno') || text.includes('módulo uno') || text.includes('primer modulo') || text.includes('primer módulo')) {
+    const mod1Layers = [
+      'sistemasElectricos', 
+      'servicioAgua.embalses', 
+      'servicioAgua.desalinizadoras', 
+      'servicioAgua.tanques', 
+      'servicioAgua.tratamiento',
+      'servicioAgua.pozos',
+      'estacionesGas', 
+      'estaciones'
+    ];
+    mod1Layers.forEach(l => actions.push(`${turnPrefix}${l}`));
+    responseText += `${verbLabel} MÓDULO 1: Infraestructura y Servicios Críticos (Electricidad, Agua, Gas, Combustible). `;
+  }
+
+  // MÓDULO 2: Red Asistencial de Salud y Educación (Hospitales, Clínicas, CDI, Ambulatorios, Escuelas)
+  if (text.includes('modulo 2') || text.includes('módulo 2') || text.includes('modulo dos') || text.includes('módulo dos') || text.includes('segundo modulo') || text.includes('segundo módulo')) {
+    const mod2Layers = ['hospitales', 'cdi', 'ambulatorios', 'clinicas', 'escuelas'];
+    mod2Layers.forEach(l => actions.push(`${turnPrefix}${l}`));
+    responseText += `${verbLabel} MÓDULO 2: Red Asistencial de Salud y Educación. `;
+  }
+
+  // MÓDULO 3: Seguridad Ciudadana y Cuadrantes de Paz (Cuadrantes, Delitos, Bandas)
+  if (text.includes('modulo 3') || text.includes('módulo 3') || text.includes('modulo tres') || text.includes('módulo tres') || text.includes('tercer modulo') || text.includes('tercer módulo')) {
+    const mod3Layers = ['cuadrantesPoligonos', 'cuadrantes', 'zonasDeRiesgo.delitosComunes', 'bandasDelictivas'];
+    mod3Layers.forEach(l => actions.push(`${turnPrefix}${l}`));
+    responseText += `${verbLabel} MÓDULO 3: Seguridad Ciudadana y Cuadrantes de Paz. `;
+  }
+
+  // MÓDULO 4: Red de Telecomunicaciones (Digitel, Movistar, Movilnet)
+  if (text.includes('modulo 4') || text.includes('módulo 4') || text.includes('modulo cuatro') || text.includes('módulo cuatro') || text.includes('cuarto modulo') || text.includes('cuarto módulo')) {
+    const mod4Layers = ['antenasDigitel', 'antenasMovistar', 'antenasMovilnet'];
+    mod4Layers.forEach(l => actions.push(`${turnPrefix}${l}`));
+    responseText += `${verbLabel} MÓDULO 4: Red de Telecomunicaciones. `;
   }
 
   // ── DETECCIÓN AVANZADA DE RADIOS Y TRAZADOS EN LUGARES ESPECÍFICOS ──────────
@@ -258,130 +284,114 @@ function parseVoiceCommand(command: string) {
   // ── CAPAS INDIVIDUALES POR NOMBRE Y SINÓNIMOS ──────────────────────────────
   // Capas Territoriales
   if (text.includes('municipio') || text.includes('municipios')) {
-    if (!actions.some(a => a.startsWith('trace_municipality:')) && !actions.includes('municipios')) actions.push('municipios');
-    responseText += "Capa de Municipios activada. ";
+    if (!actions.some(a => a.startsWith('trace_municipality:'))) {
+      toggleLayer('municipios', 'Municipios');
+    }
   }
   if (text.includes('parroquia') || text.includes('parroquias')) {
-    if (!actions.includes('parroquias')) actions.push('parroquias');
-    responseText += "Capa de Parroquias activada. ";
+    toggleLayer('parroquias', 'Parroquias');
   }
   if (text.includes('sector') || text.includes('sectores')) {
-    if (!actions.includes('sectores')) actions.push('sectores');
-    responseText += "Capa de Sectores activada. ";
+    toggleLayer('sectores', 'Sectores');
   }
   if (text.includes('cuadrante') || text.includes('cuadrantes') || text.includes('patrulla')) {
-    if (!actions.includes('cuadrantesPoligonos')) actions.push('cuadrantesPoligonos', 'cuadrantes');
-    responseText += "Cuadrantes de Paz activados. ";
+    actions.push(`${turnPrefix}cuadrantesPoligonos`, `${turnPrefix}cuadrantes`);
+    responseText += `${verbLabel} Cuadrantes de Paz. `;
   }
 
   // Zonas de Riesgo e Inteligencia
   if (text.includes('delito') || text.includes('delitos') || text.includes('incidencia') || text.includes('incidencias')) {
-    if (!actions.includes('zonasDeRiesgo.delitosComunes')) actions.push('zonasDeRiesgo.delitosComunes');
-    responseText += "Delitos Comunes e Incidencias activados. ";
+    toggleLayer('zonasDeRiesgo.delitosComunes', 'Delitos Comunes e Incidencias');
   }
   if (text.includes('cibernetica') || text.includes('cibernética') || text.includes('hacker')) {
-    if (!actions.includes('zonasDeRiesgo.areaCibernetica')) actions.push('zonasDeRiesgo.areaCibernetica');
-    responseText += "Área Cibernética activada. ";
+    toggleLayer('zonasDeRiesgo.areaCibernetica', 'Área Cibernética');
   }
   if (text.includes('concentracion') || text.includes('concentraciones')) {
-    if (!actions.includes('zonasDeRiesgo.concentraciones')) actions.push('zonasDeRiesgo.concentraciones');
-    responseText += "Puntos de Concentración activados. ";
+    toggleLayer('zonasDeRiesgo.concentraciones', 'Puntos de Concentración');
   }
   if (text.includes('droga') || text.includes('drogas')) {
-    if (!actions.includes('geocalizaciones.drogas')) actions.push('geocalizaciones.drogas');
-    responseText += "Geolocalización de Drogas activada. ";
+    toggleLayer('geocalizaciones.drogas', 'Geolocalización de Drogas');
   }
   if (text.includes('actor') || text.includes('actores')) {
-    if (!actions.includes('geocalizaciones.actorInteres')) actions.push('geocalizaciones.actorInteres');
-    responseText += "Actores de Interés activados. ";
+    toggleLayer('geocalizaciones.actorInteres', 'Actores de Interés');
   }
   if (text.includes('punto de interés') || text.includes('puntos de interés') || text.includes('punto de interes')) {
-    if (!actions.includes('geocalizaciones.puntoInteres')) actions.push('geocalizaciones.puntoInteres');
-    responseText += "Puntos de Interés activados. ";
+    toggleLayer('geocalizaciones.puntoInteres', 'Puntos de Interés');
   }
   if (text.includes('banda') || text.includes('bandas') || text.includes('grupo delictivo') || text.includes('grupos delictivos')) {
-    if (!actions.includes('bandasDelictivas')) actions.push('bandasDelictivas');
-    responseText += "Grupos Delictivos activados. ";
+    toggleLayer('bandasDelictivas', 'Grupos Delictivos Organizados');
   }
 
-  // Salud
+  // Salud y Educación
   if (text.includes('hospital') || text.includes('hospitales')) {
-    if (!actions.includes('hospitales')) actions.push('hospitales');
-    responseText += "Red de Hospitales activada. ";
+    toggleLayer('hospitales', 'Red de Hospitales');
   }
   if (text.includes('clínica') || text.includes('clinica') || text.includes('clínicas') || text.includes('clinicas')) {
-    if (!actions.includes('clinicas')) actions.push('clinicas');
-    responseText += "Red de Clínicas activada. ";
+    toggleLayer('clinicas', 'Red de Clínicas Privadas');
   }
   if (text.includes('ambulatorio') || text.includes('ambulatorios')) {
-    if (!actions.includes('ambulatorios')) actions.push('ambulatorios');
-    responseText += "Ambulatorios activados. ";
+    toggleLayer('ambulatorios', 'Ambulatorios');
   }
   if (text.includes('cdi') || text.includes('dispensario') || text.includes('diagnóstico')) {
-    if (!actions.includes('cdi')) actions.push('cdi');
-    responseText += "Centros CDI activados. ";
+    toggleLayer('cdi', 'Centros CDI');
   }
   if (text.includes('escuela') || text.includes('escuelas') || text.includes('colegio') || text.includes('educación')) {
-    if (!actions.includes('escuelas')) actions.push('escuelas');
-    responseText += "Centros Educativos activados. ";
+    toggleLayer('escuelas', 'Centros Educativos');
+  }
+  if (text.includes('centro de votación') || text.includes('centros de votacion') || text.includes('electoral') || text.includes('votación')) {
+    toggleLayer('centrosVotacion', 'Centros de Votación');
   }
   if (text.includes('gasolinera') || text.includes('gasolineras') || text.includes('estación de servicio') || text.includes('estaciones de servicio') || text.includes('combustible')) {
-    if (!actions.includes('estaciones')) actions.push('estaciones');
-    responseText += "Estaciones de Servicio activadas. ";
+    toggleLayer('estaciones', 'Estaciones de Servicio');
   }
 
-  // Servicios Básicos (Agua, Gas, Luz)
+  // Servicios Básicos (Electricidad, Gas, Agua)
   if (text.includes('subestación') || text.includes('subestaciones') || text.includes('eléctric') || text.includes('electricidad') || text.includes('luz')) {
-    if (!actions.includes('sistemasElectricos')) actions.push('sistemasElectricos');
-    responseText += "Sistemas Eléctricos activados. ";
+    toggleLayer('sistemasElectricos', 'Sistemas Eléctricos');
   }
   if (text.includes('gasoducto') || text.includes('estación de gas') || text.includes('estaciones de gas') || text.includes('gas')) {
-    if (!actions.includes('estacionesGas')) actions.push('estacionesGas');
-    responseText += "Estaciones de Gas activadas. ";
+    toggleLayer('estacionesGas', 'Estaciones de Gas');
   }
   if (text.includes('desalinizadora') || text.includes('desalinizadoras')) {
-    if (!actions.includes('servicioAgua.desalinizadoras')) actions.push('servicioAgua.desalinizadoras');
-    responseText += "Plantas Desalinizadoras activadas. ";
+    toggleLayer('servicioAgua.desalinizadoras', 'Plantas Desalinizadoras');
   }
   if (text.includes('tratamiento') || text.includes('planta de tratamiento')) {
-    if (!actions.includes('servicioAgua.tratamiento')) actions.push('servicioAgua.tratamiento');
-    responseText += "Plantas de Tratamiento activadas. ";
+    toggleLayer('servicioAgua.tratamiento', 'Plantas de Tratamiento de Agua');
   }
   if (text.includes('tanque') || text.includes('tanques')) {
-    if (!actions.includes('servicioAgua.tanques')) actions.push('servicioAgua.tanques');
-    responseText += "Tanques de Agua activados. ";
+    toggleLayer('servicioAgua.tanques', 'Tanques de Agua');
   }
   if (text.includes('pozo') || text.includes('pozos')) {
-    if (!actions.includes('servicioAgua.pozos')) actions.push('servicioAgua.pozos');
-    responseText += "Pozos de Agua activados. ";
+    toggleLayer('servicioAgua.pozos', 'Pozos de Agua');
   }
   if (text.includes('embalse') || text.includes('embalses') || text.includes('dique')) {
-    if (!actions.includes('servicioAgua.embalses')) actions.push('servicioAgua.embalses', 'servicioAgua.diques');
-    responseText += "Embalses y Diques activados. ";
+    actions.push(`${turnPrefix}servicioAgua.embalses`, `${turnPrefix}servicioAgua.diques`);
+    responseText += `${verbLabel} Embalses y Diques. `;
   }
 
   // Telecomunicaciones
   if (text.includes('digitel')) {
-    if (!actions.includes('antenasDigitel')) actions.push('antenasDigitel');
-    responseText += "Antenas Digitel activadas. ";
+    toggleLayer('antenasDigitel', 'Antenas Digitel');
   }
   if (text.includes('movistar')) {
-    if (!actions.includes('antenasMovistar')) actions.push('antenasMovistar');
-    responseText += "Antenas Movistar activadas. ";
+    toggleLayer('antenasMovistar', 'Antenas Movistar');
   }
   if (text.includes('movilnet')) {
-    if (!actions.includes('antenasMovilnet')) actions.push('antenasMovilnet');
-    responseText += "Antenas Movilnet activadas. ";
+    toggleLayer('antenasMovilnet', 'Antenas Movilnet');
+  }
+  if (text.includes('antena') || text.includes('antenas') || text.includes('telecomunicación')) {
+    if (!text.includes('digitel') && !text.includes('movistar') && !text.includes('movilnet')) {
+      actions.push(`${turnPrefix}antenasDigitel`, `${turnPrefix}antenasMovistar`, `${turnPrefix}antenasMovilnet`);
+      responseText += `${verbLabel} Red de Telecomunicaciones (Digitel, Movistar, Movilnet). `;
+    }
   }
 
   // Transporte & Pesca
-  if (text.includes('transporte') || text.includes('terminal') || text.includes('terminales') || text.includes('parada')) {
-    if (!actions.includes('transporteGeneral')) actions.push('transporteGeneral');
-    responseText += "Red de Transporte y Terminales activada. ";
+  if (text.includes('transporte') || text.includes('terminal') || text.includes('terminales') || text.includes('parada') || text.includes('bus') || text.includes('buses')) {
+    toggleLayer('transporteGeneral', 'Red de Transporte');
   }
   if (text.includes('conppa') || text.includes('conppas') || text.includes('pesca') || text.includes('pesquero')) {
-    if (!actions.includes('conppas')) actions.push('conppas');
-    responseText += "Sectores Pesqueros (CONPPAS) activados. ";
+    toggleLayer('conppas', 'Sectores Pesqueros (CONPPAS)');
   }
 
   // Modos del Mapa
@@ -397,11 +407,11 @@ function parseVoiceCommand(command: string) {
     actions.push('activate_buffer');
     responseText += "Activando herramienta de Radio de Cobertura. ";
   }
-  if ((text.includes('trazar') || text.includes('área') || text.includes('zona') || text.includes('polígono')) && !actions.some(a => a.startsWith('trace_municipality:'))) {
+  if ((text.includes('trazar') || text.includes('área') || text.includes('zona') || text.includes('polígono')) && !actions.some(a => a.startsWith('trace_municipality:')) && !radioMatch && !traceMatch) {
     actions.push('activate_polygon');
     responseText += "Iniciando herramienta de Trazado de Área. ";
   }
-  if (text.includes('limpiar') || text.includes('reset') || text.includes('borrar')) {
+  if (text.includes('limpiar') || text.includes('reset') || (text.includes('borrar') && !isDeactivate)) {
     actions.push('clear_tools');
     responseText += "Limpiando herramientas y filtros del mapa. ";
   }
@@ -426,7 +436,7 @@ function parseVoiceCommand(command: string) {
   }
 
   if (actions.length === 0) {
-    responseText = `Comando interpretado: "${command}". Puedes dictar: "Activar Módulo 1", "Activar Módulo 2", "Activar Módulo 3", "Activar Módulo 4", "Desactivar todo", "Cambia a vista 3D" o "Traza un radio de cobertura".`;
+    responseText = `Comando interpretado: "${command}". Puedes dictar: "Activar Módulo 1", "Desactivar Módulo 2", "Activar Módulo 3", "Desactivar Módulo 4", "Activar hospitales", "Desactivar cuadrantes", "Desactivar todo", "Vista 3D" o "Traza un radio de cobertura".`;
   }
 
   return { actions, responseText };

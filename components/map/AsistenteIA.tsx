@@ -19,7 +19,18 @@ interface Message {
   sender: 'user' | 'ai';
   text: string;
   timestamp: string;
-}
+const isLayerActive = (layers: any, key: string): boolean => {
+  if (!layers) return false;
+  if (key.includes('.')) {
+    const [parent, child] = key.split('.');
+    return !!layers[parent]?.[child];
+  }
+  if (typeof layers[key] === 'boolean') return layers[key];
+  if (typeof layers[key] === 'object' && layers[key] !== null) {
+    return Object.values(layers[key]).some(v => !!v);
+  }
+  return false;
+};
 
 export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   layersVisible,
@@ -148,6 +159,16 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
                   }
                 });
               }
+            } else if (actionKey.startsWith('turn_off:')) {
+              const layerKey = actionKey.split(':')[1];
+              if (isLayerActive(layersVisible, layerKey)) {
+                onToggle(layerKey);
+              }
+            } else if (actionKey.startsWith('turn_on:')) {
+              const layerKey = actionKey.split(':')[1];
+              if (!isLayerActive(layersVisible, layerKey)) {
+                onToggle(layerKey);
+              }
             } else if (actionKey.startsWith('export_pdf:')) {
               const layerToExport = actionKey.split(':')[1];
               try {
@@ -169,7 +190,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
             } else if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {
               window.dispatchEvent(new CustomEvent('sogne_voice_action', { detail: { action: actionKey } }));
             } else {
-              if (layersVisible && !layersVisible[actionKey]) {
+              if (layersVisible && !isLayerActive(layersVisible, actionKey)) {
                 onToggle(actionKey);
               }
             }
