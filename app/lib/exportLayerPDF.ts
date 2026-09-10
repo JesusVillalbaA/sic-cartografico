@@ -25,19 +25,24 @@ const LAYER_CONFIGS: Record<string, { fileName: string; title: string; entityLab
     entityLabel: 'NOMBRE DEL SECTOR',
   },
   cuadrantes: {
-    fileName: 'cuadrantes',
+    fileName: 'compas',
+    title: 'REGISTRO DE CUADRANTES DE PAZ Y ORGANIZACIÓN TÁCTICA - ESTADO NUEVA ESPARTA',
+    entityLabel: 'CUADRANTE DE PAZ',
+  },
+  cuadrantesPoligonos: {
+    fileName: 'compas',
     title: 'REGISTRO DE CUADRANTES DE PAZ Y ORGANIZACIÓN TÁCTICA - ESTADO NUEVA ESPARTA',
     entityLabel: 'CUADRANTE DE PAZ',
   },
   compas: {
     fileName: 'compas',
-    title: 'DATA DE COMITÉS DE PAZ (COMPAS) REGISTRADOS - ESTADO NUEVA ESPARTA',
-    entityLabel: 'NOMBRE DEL COMPAS',
+    title: 'REGISTRO DE CUADRANTES DE PAZ Y ORGANIZACIÓN TÁCTICA - ESTADO NUEVA ESPARTA',
+    entityLabel: 'CUADRANTE DE PAZ',
   },
   conppas: {
     fileName: 'conppas',
-    title: 'DATA DE VOCEROS DE LOS CONPPAS REGISTRADOS EN EL ESTADO NUEVA ESPARTA - 2026',
-    entityLabel: 'NOMBRE DEL CONPPA',
+    title: 'REGISTRO DE CONPPAS Y SECTOR PESQUERO (52 PUERTOS) - ESTADO NUEVA ESPARTA',
+    entityLabel: 'CONPPA PESQUERO',
   },
   incidencias: {
     fileName: 'incidencias',

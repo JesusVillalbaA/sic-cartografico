@@ -45,6 +45,7 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
         'actores',
         'grupos-bandas',
         'puntos-interes',
+        'compas-source',
         'conppas-source'
       ];
       
