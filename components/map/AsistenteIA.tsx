@@ -59,7 +59,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     {
       id: 'welcome',
       sender: 'ai',
-      text: '¡Hola! Soy SOGNE IA. Puedes dictarme comandos por voz para encender capas, trazar áreas o consultar la cartografía.',
+      text: '¡Hola! Soy SOG. Puedes dictarme comandos por voz para encender capas, trazar áreas o consultar la cartografía.',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -329,20 +329,20 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
         onClick={handleButtonClick}
         style={btnPos ? { left: `${btnPos.x}px`, top: `${btnPos.y}px`, right: 'auto' } : undefined}
         className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-slate-900/95 hover:bg-cyan-950/95 text-cyan-400 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.4)] backdrop-blur-xl px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 group cursor-grab active:cursor-grabbing select-none"
-        title="Arrastra para mover este botón por toda la pantalla | Haz clic para abrir SOGNE IA"
+        title="Arrastra para mover este botón por toda la pantalla | Haz clic para abrir SOG"
       >
         <GripVertical size={14} className="text-cyan-400/50 group-hover:text-cyan-300 shrink-0" />
         <div className="relative">
           <Sparkles size={15} className="text-cyan-400 animate-pulse group-hover:rotate-12 transition-transform" />
           <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
         </div>
-        <span className="hidden sm:inline">SOGNE IA</span>
+        <span className="hidden sm:inline">SOG</span>
         <span className="bg-cyan-500/20 text-cyan-300 text-[9px] px-1.5 py-0.5 rounded font-mono border border-cyan-400/30">
           VOZ & CHAT
         </span>
       </div>
 
-      {/* Panel Deslizable de SOGNE IA (Anclado al Botón o en Posición Superior) */}
+      {/* Panel Deslizable de SOG (Anclado al Botón o en Posición Superior) */}
       {isOpen && (
         <div
           style={
@@ -365,7 +365,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
               </div>
               <div>
                 <h3 className="text-xs font-black tracking-widest text-cyan-300 uppercase flex items-center gap-1.5">
-                  SOGNE IA TÁCTICO
+                  SOG TÁCTICO
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </h3>
                 <p className="text-[9px] text-slate-400 font-mono">Asistente por Voz & Comandos</p>

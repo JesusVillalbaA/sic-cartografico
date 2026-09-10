@@ -661,7 +661,7 @@ function getTacticalAdvice(layers: any, selectedFeatures: any[]) {
 }
 
 function generateGeneralDiagnostic(layers: any, selectedFeatures: any[], activeCount: number): string {
-  let diag = `Analizador SOGNE IA activo. Tienes ${activeCount} capa(s) habilitadas en el mapa actual.`;
+  let diag = `Analizador SOG activo. Tienes ${activeCount} capa(s) habilitadas en el mapa actual.`;
   if (selectedFeatures && selectedFeatures.length > 0) {
     diag += ` Se está analizando la entidad: ${selectedFeatures[0]?.properties?.nombre || selectedFeatures[0]?.properties?.NAME || 'Elemento'}.`;
   } else {
