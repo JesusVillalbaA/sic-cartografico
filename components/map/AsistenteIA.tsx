@@ -332,9 +332,9 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
         title="Arrastra para mover este botón por toda la pantalla | Haz clic para abrir SOG"
       >
         <GripVertical size={14} className="text-cyan-400/50 group-hover:text-cyan-300 shrink-0" />
-        <div className="relative">
-          <Sparkles size={15} className="text-cyan-400 animate-pulse group-hover:rotate-12 transition-transform" />
-          <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+        <div className="relative w-6 h-6 rounded-full bg-white flex items-center justify-center p-0.5 shadow-[0_0_10px_rgba(255,255,255,0.8)] shrink-0 overflow-hidden">
+          <img src="/logo.png" alt="SOG Logo" className="w-full h-full object-contain" />
+          <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
         </div>
         <span className="hidden sm:inline">SOG</span>
         <span className="bg-cyan-500/20 text-cyan-300 text-[9px] px-1.5 py-0.5 rounded font-mono border border-cyan-400/30">
@@ -360,8 +360,8 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
           {/* Encabezado del Panel */}
           <div className="p-3 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/50 to-slate-950 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] shrink-0">
-                <Bot size={18} />
+              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center p-1 shadow-[0_0_12px_rgba(255,255,255,0.9)] border border-cyan-400/50 shrink-0 overflow-hidden">
+                <img src="/logo.png" alt="SOG Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <h3 className="text-xs font-black tracking-widest text-cyan-300 uppercase flex items-center gap-1.5">
