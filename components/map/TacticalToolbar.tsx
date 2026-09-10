@@ -304,9 +304,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     if (!map) return;
     const layers = [
       'focus-mask-layer',
-      'tactical-buffer-fill', 'tactical-buffer-glow', 'tactical-buffer-line', 'tactical-buffer-center',
-      'tactical-polygon-fill', 'tactical-polygon-line-glow', 'tactical-polygon-line', 'tactical-polygon-points',
-      'tactical-measure-line', 'tactical-measure-points'
+      'tactical-buffer-fill', 'tactical-polygon-fill',
+      'tactical-buffer-glow', 'tactical-buffer-line',
+      'tactical-polygon-line-glow', 'tactical-polygon-line',
+      'tactical-measure-line',
+      'tactical-buffer-center', 'tactical-polygon-points', 'tactical-measure-points'
     ];
     layers.forEach(id => {
       if (map.getLayer(id)) {
@@ -324,40 +326,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     });
   };
 
-  // Función para actualizar el círculo de cobertura en vivo y oscurecer el entorno
-  const drawBufferCircle = React.useCallback((center: [number, number], radiusKm: number) => {
+  // Inicializar o limpiar fuentes de herramientas tácticas en el mapa
+  const setupSources = React.useCallback(() => {
     if (!map) return;
     try {
-      bufferCenterRef.current = center;
-      const point = turf.point(center);
-      const buffered = turf.buffer(point, radiusKm, { units: 'kilometers' });
-      const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
-      if (src && buffered) {
-        src.setData({ type: 'FeatureCollection', features: [buffered, point] });
-        applyFocusMask(buffered);
-        try {
-          const bbox = turf.bbox(buffered) as [number, number, number, number];
-          map.fitBounds(bbox, { padding: 80, duration: 500 });
-        } catch (_) {}
-      }
-      bringTacticalLayersToFront();
-    } catch (e) {
-      console.warn("Error dibujando radio de cobertura:", e);
-    }
-  }, [map, bringTacticalLayersToFront, applyFocusMask]);
-
-  // Actualizar el círculo de cobertura cuando cambia el radio (0.5km, 1km, 3km, 5km, 10km)
-  useEffect(() => {
-    if (activeTool === 'buffer' && bufferCenterRef.current) {
-      drawBufferCircle(bufferCenterRef.current, bufferRadius);
-    }
-  }, [bufferRadius, activeTool, drawBufferCircle]);
-
-  // Inicializar o limpiar fuentes de herramientas tácticas en el mapa
-  useEffect(() => {
-    if (!map) return;
-
-    const setupSources = () => {
       // 0. Fuente y Capa de Máscara de Enfoque Oscura
       if (!map.getSource('focus-mask-source')) {
         map.addSource('focus-mask-source', {
@@ -370,9 +342,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'focus-mask-layer',
           type: 'fill',
           source: 'focus-mask-source',
+          layout: { visibility: 'visible' },
           paint: {
             'fill-color': '#030712',
-            'fill-opacity': 0.88
+            'fill-opacity': 0.85
           }
         });
       }
@@ -389,9 +362,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-measure-line',
           type: 'line',
           source: 'tactical-measure-source',
+          layout: { visibility: 'visible', 'line-cap': 'round', 'line-join': 'round' },
           paint: {
             'line-color': '#38bdf8',
-            'line-width': 5
+            'line-width': 6
           }
         });
       }
@@ -400,8 +374,9 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-measure-points',
           type: 'circle',
           source: 'tactical-measure-source',
+          layout: { visibility: 'visible' },
           paint: {
-            'circle-radius': 7,
+            'circle-radius': 8,
             'circle-color': '#38bdf8',
             'circle-stroke-width': 3,
             'circle-stroke-color': '#ffffff'
@@ -421,7 +396,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-buffer-fill',
           type: 'fill',
           source: 'tactical-buffer-source',
-          filter: ['match', ['geometry-type'], ['Polygon', 'MultiPolygon'], true, false],
+          layout: { visibility: 'visible' },
           paint: {
             'fill-color': '#a855f7',
             'fill-opacity': 0.40
@@ -433,12 +408,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-buffer-glow',
           type: 'line',
           source: 'tactical-buffer-source',
-          filter: ['match', ['geometry-type'], ['Polygon', 'MultiPolygon'], true, false],
-          layout: { 'line-cap': 'round', 'line-join': 'round' },
+          layout: { visibility: 'visible', 'line-cap': 'round', 'line-join': 'round' },
           paint: {
             'line-color': '#d8b4fe',
-            'line-width': 10,
-            'line-opacity': 0.85,
+            'line-width': 12,
+            'line-opacity': 0.9,
             'line-blur': 3
           }
         });
@@ -448,12 +422,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-buffer-line',
           type: 'line',
           source: 'tactical-buffer-source',
-          filter: ['match', ['geometry-type'], ['Polygon', 'MultiPolygon'], true, false],
-          layout: { 'line-cap': 'round', 'line-join': 'round' },
+          layout: { visibility: 'visible', 'line-cap': 'round', 'line-join': 'round' },
           paint: {
             'line-color': '#ffffff',
-            'line-width': 4,
-            'line-dasharray': [4, 2]
+            'line-width': 5
           }
         });
       }
@@ -462,9 +434,9 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-buffer-center',
           type: 'circle',
           source: 'tactical-buffer-source',
-          filter: ['match', ['geometry-type'], ['Point', 'MultiPoint'], true, false],
+          layout: { visibility: 'visible' },
           paint: {
-            'circle-radius': 9,
+            'circle-radius': 10,
             'circle-color': '#f0abfc',
             'circle-stroke-width': 3,
             'circle-stroke-color': '#ffffff'
@@ -484,7 +456,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-polygon-fill',
           type: 'fill',
           source: 'tactical-polygon-source',
-          filter: ['match', ['geometry-type'], ['Polygon', 'MultiPolygon'], true, false],
+          layout: { visibility: 'visible' },
           paint: {
             'fill-color': '#06b6d4',
             'fill-opacity': 0.35
@@ -496,15 +468,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-polygon-line-glow',
           type: 'line',
           source: 'tactical-polygon-source',
-          filter: ['match', ['geometry-type'], ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'], true, false],
-          layout: {
-            'line-cap': 'round',
-            'line-join': 'round'
-          },
+          layout: { visibility: 'visible', 'line-cap': 'round', 'line-join': 'round' },
           paint: {
             'line-color': '#00ffff',
-            'line-width': 14,
-            'line-opacity': 0.9,
+            'line-width': 12,
+            'line-opacity': 0.95,
             'line-blur': 3
           }
         });
@@ -514,16 +482,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-polygon-line',
           type: 'line',
           source: 'tactical-polygon-source',
-          filter: ['match', ['geometry-type'], ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'], true, false],
-          layout: {
-            'line-cap': 'round',
-            'line-join': 'round'
-          },
+          layout: { visibility: 'visible', 'line-cap': 'round', 'line-join': 'round' },
           paint: {
             'line-color': '#ffffff',
             'line-width': 5,
-            'line-opacity': 1.0,
-            'line-dasharray': [4, 2]
+            'line-opacity': 1.0
           }
         });
       }
@@ -532,7 +495,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-polygon-points',
           type: 'circle',
           source: 'tactical-polygon-source',
-          filter: ['match', ['geometry-type'], ['Point', 'MultiPoint'], true, false],
+          layout: { visibility: 'visible' },
           paint: {
             'circle-radius': 9,
             'circle-color': '#00ffff',
@@ -543,18 +506,51 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       }
 
       bringTacticalLayersToFront();
-    };
-
-    if (map.isStyleLoaded()) {
-      setupSources();
-    } else {
-      map.once('load', setupSources);
+    } catch (e) {
+      console.warn("Error agregando capas tácticas:", e);
     }
   }, [map, bringTacticalLayersToFront]);
+
+  // Función para actualizar el círculo de cobertura en vivo y oscurecer el entorno
+  const drawBufferCircle = React.useCallback((center: [number, number], radiusKm: number) => {
+    if (!map) return;
+    setupSources();
+    try {
+      bufferCenterRef.current = center;
+      const point = turf.point(center);
+      const buffered = turf.buffer(point, radiusKm, { units: 'kilometers' });
+      const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
+      if (src && buffered) {
+        src.setData({ type: 'FeatureCollection', features: [buffered, point] });
+        applyFocusMask(buffered);
+        try {
+          const bbox = turf.bbox(buffered) as [number, number, number, number];
+          map.fitBounds(bbox, { padding: 80, duration: 500 });
+        } catch (_) {}
+      }
+      bringTacticalLayersToFront();
+    } catch (e) {
+      console.warn("Error dibujando radio de cobertura:", e);
+    }
+  }, [map, setupSources, bringTacticalLayersToFront, applyFocusMask]);
+
+  // Actualizar el círculo de cobertura cuando cambia el radio (0.5km, 1km, 3km, 5km, 10km)
+  useEffect(() => {
+    if (activeTool === 'buffer' && bufferCenterRef.current) {
+      drawBufferCircle(bufferCenterRef.current, bufferRadius);
+    }
+  }, [bufferRadius, activeTool, drawBufferCircle]);
+
+  useEffect(() => {
+    if (!map) return;
+    setupSources();
+  }, [map, activeTool, setupSources]);
 
   // Manejar mousemove y clics en el mapa según la herramienta activa
   useEffect(() => {
     if (!map || activeTool === 'none') return;
+
+    setupSources();
 
     if (activeTool === 'polygon' && map.doubleClickZoom) {
       map.doubleClickZoom.disable();
@@ -563,17 +559,17 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     bringTacticalLayersToFront();
 
     const handleMouseMove = (e: mapboxgl.MapMouseEvent) => {
+      setupSources();
       const currentTool = activeToolRef.current;
       const currentPoints = polygonPointsRef.current;
       const finished = isPolygonFinishedRef.current;
 
       const mouseCoords: [number, number] = [e.lngLat.lng, e.lngLat.lat];
 
-      if (currentTool === 'polygon' && currentPoints.length > 0 && !finished) {
-        const rawLive = [...currentPoints, mouseCoords];
+      if (currentTool === 'polygon' && !finished) {
+        const rawLive = currentPoints.length > 0 ? [...currentPoints, mouseCoords] : [mouseCoords];
         const livePoints = sanitizePoints(rawLive);
-        const pointFeatures = currentPoints.map(p => turf.point(p));
-        pointFeatures.push(turf.point(mouseCoords));
+        const pointFeatures = livePoints.map(p => turf.point(p));
         const features: any[] = [...pointFeatures];
 
         if (livePoints.length >= 2) {
@@ -597,12 +593,23 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
         const src = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
         if (src) src.setData({ type: 'FeatureCollection', features });
+        bringTacticalLayersToFront();
 
-      } else if (currentTool === 'measure' && measurePointsRef.current.length > 0) {
-        const rawLive = [...measurePointsRef.current, mouseCoords];
+      } else if (currentTool === 'buffer') {
+        try {
+          const point = turf.point(mouseCoords);
+          const buffered = turf.buffer(point, bufferRadius, { units: 'kilometers' });
+          const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
+          if (src && buffered) {
+            src.setData({ type: 'FeatureCollection', features: [buffered, point] });
+          }
+          bringTacticalLayersToFront();
+        } catch(e){}
+
+      } else if (currentTool === 'measure') {
+        const rawLive = measurePointsRef.current.length > 0 ? [...measurePointsRef.current, mouseCoords] : [mouseCoords];
         const livePoints = sanitizePoints(rawLive);
-        const pointFeatures = measurePointsRef.current.map(p => turf.point(p));
-        pointFeatures.push(turf.point(mouseCoords));
+        const pointFeatures = livePoints.map(p => turf.point(p));
         const features: any[] = [...pointFeatures];
 
         if (livePoints.length >= 2) {
@@ -616,10 +623,12 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
         const src = map.getSource('tactical-measure-source') as mapboxgl.GeoJSONSource;
         if (src) src.setData({ type: 'FeatureCollection', features });
+        bringTacticalLayersToFront();
       }
     };
 
     const handleMapClick = (e: mapboxgl.MapMouseEvent) => {
+      setupSources();
       const coords: [number, number] = [e.lngLat.lng, e.lngLat.lat];
       const currentTool = activeToolRef.current;
       const finished = isPolygonFinishedRef.current;
@@ -696,6 +705,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     };
 
     const finishPolygon = () => {
+      setupSources();
       const rawPoints = polygonPointsRef.current;
       const currentPoints = sanitizePoints(rawPoints);
       if (currentPoints.length < 3) return;
@@ -756,7 +766,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       if (map.getCanvas()) map.getCanvas().style.cursor = '';
       if (map.doubleClickZoom) map.doubleClickZoom.enable();
     };
-  }, [map, activeTool, bringTacticalLayersToFront, drawBufferCircle, bufferRadius]);
+  }, [map, activeTool, bringTacticalLayersToFront, drawBufferCircle, bufferRadius, setupSources]);
+
 
   // Si hay elementos seleccionados y la herramienta buffer está activa
   useEffect(() => {
