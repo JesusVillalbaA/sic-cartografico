@@ -210,7 +210,7 @@ export async function exportCompletePresentationPDF({
 
   doc.setFontSize(13);
   doc.setTextColor(14, 165, 233);
-  doc.text('DOSSIER ESTRATÉGICO DE GEOINTELIGENCIA POR CAPAS DE INFRAESTRUCTURA', pageWidth / 2, 85, { align: 'center' });
+  doc.text('REPORTE ESTRATÉGICO DE GEOINTELIGENCIA POR CAPAS DE INFRAESTRUCTURA', pageWidth / 2, 85, { align: 'center' });
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(10);
@@ -226,7 +226,7 @@ export async function exportCompletePresentationPDF({
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(255, 255, 255);
-  doc.text('RESUMEN OPERATIVO DEL DOSSIER GEOESPACIAL', pageWidth / 2, 118, { align: 'center' });
+  doc.text('RESUMEN OPERATIVO GEOESPACIAL', pageWidth / 2, 118, { align: 'center' });
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9);
@@ -533,7 +533,7 @@ export async function exportCompletePresentationPDF({
         doc.setTextColor(148, 163, 184);
 
         doc.text(
-          `Página ${data.pageNumber} de ${pageCount} • Dossier Táctico SOGNE REDIMAIN`,
+          `Página ${data.pageNumber} de ${pageCount} • Reporte Táctico SOGNE REDIMAIN`,
           12,
           pageHeight - 6
         );
@@ -560,5 +560,5 @@ export async function exportCompletePresentationPDF({
   }
 
   // Guardar archivo descargable
-  doc.save(`Dossier_Presentacion_SOGNE_REDIMAIN_${Date.now()}.pdf`);
+  doc.save(`Reporte_Presentacion_SOGNE_REDIMAIN_${Date.now()}.pdf`);
 }

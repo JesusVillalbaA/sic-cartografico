@@ -123,7 +123,7 @@ export const ModalExportarPDF: React.FC<ModalExportarPDFProps> = ({
             </div>
             <div>
               <h3 className="text-white text-lg font-black uppercase tracking-wider">
-                GENERADOR DE REPORTES OFICIALES & DOSSIER (PDF / EXCEL)
+                GENERADOR DE REPORTES OFICIALES (PDF / EXCEL)
               </h3>
               <p className="text-slate-400 text-xs font-mono">
                 Descarga de datos tabulados y presentaciones completas por partes / diapositivas
@@ -142,7 +142,7 @@ export const ModalExportarPDF: React.FC<ModalExportarPDFProps> = ({
         {/* Modal Body */}
         <div className="p-6 max-h-[70vh] overflow-y-auto custom-legend-scrollbar space-y-4">
           
-          {/* BANNER DESTACADO: DOSSIER PRESENTACIÓN COMPLETA POR CAPAS */}
+          {/* BANNER DESTACADO: PRESENTACIÓN COMPLETA POR CAPAS */}
           <div className="p-5 rounded-3xl bg-gradient-to-r from-cyan-950/80 via-slate-900 to-indigo-950/80 border border-cyan-500/40 shadow-xl relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity">
               <Presentation size={140} className="text-cyan-400" />
@@ -156,7 +156,7 @@ export const ModalExportarPDF: React.FC<ModalExportarPDFProps> = ({
                   </span>
                 </div>
                 <h4 className="text-white text-base font-black uppercase tracking-wide">
-                  DOSSIER COMPLETO POR CAPAS CON MAPA & INFORMACIÓN
+                  REPORTE COMPLETO POR CAPAS CON MAPA & INFORMACIÓN
                 </h4>
                 <p className="text-slate-300 text-xs leading-relaxed">
                   Genera automáticamente un documento PDF horizontal (A4 / 16:9) con portada oficial y **una diapositiva por cada capa** (Hospitales, CDI, Escuelas, Gas, Electricidad, Agua, Antenas, CONPPAs), incluyendo la **captura del mapa con sus puntos cargados y la tabla analítica**.
@@ -171,7 +171,7 @@ export const ModalExportarPDF: React.FC<ModalExportarPDFProps> = ({
                 {isGeneratingPresentation ? (
                   <>
                     <Loader2 size={18} className="animate-spin text-white" />
-                    <span>GENERANDO DOSSIER...</span>
+                    <span>GENERANDO PRESENTACIÓN...</span>
                   </>
                 ) : (
                   <>
