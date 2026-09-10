@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Ruler, CircleDot, Flame, Trash2, X, Box, Shapes, Download, FileJson, FileText, ShieldAlert, Mic, MicOff } from 'lucide-react';
 import * as turf from '@turf/turf';
 import mapboxgl from 'mapbox-gl';
-import { exportPDF as exportPDFUtil, exportSpatialRiskPDF, setMap3DMode } from './mapUtils';
+import { exportPDF as exportPDFUtil, exportSpatialReportPDF, setMap3DMode } from './mapUtils';
 
 interface TacticalToolbarProps {
   map: mapboxgl.Map | null;
@@ -452,11 +452,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       },
       internalDetails: Array.from(new Set(internalDetails)).slice(0, 20)
     };
-
-    window.dispatchEvent(new CustomEvent('sogne_open_risk_analysis', { detail: { spatialPayload } }));
-    try {
-      exportSpatialRiskPDF(spatialPayload);
-    } catch(e){}
   };
 
   // Sincronizar estado táctico global para evitar reseteos en useMapbox

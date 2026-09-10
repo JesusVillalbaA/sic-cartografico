@@ -165,7 +165,7 @@ const toDMS = (deg: number, isLat: boolean) => {
   return `${degrees}° ${minutes}' ${seconds}" ${direction}`;
 };
 
-export const exportSpatialRiskPDF = async (spatialPayload: any) => {
+export const exportSpatialReportPDF = async (spatialPayload: any) => {
   try {
     const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -196,7 +196,7 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
 
     pdf.setFontSize(9);
     pdf.setTextColor(203, 213, 225);
-    pdf.text(`EVALUACIÓN CUANTITATIVA Y RUTA DE EVACUACIÓN • ${new Date().toLocaleString('es-VE')}`, 12, 20);
+    pdf.text(`DESGLOSE DE INFRAESTRUCTURA Y VÍAS • ${new Date().toLocaleString('es-VE')}`, 12, 20);
 
     // Coordenadas DMS
     let coordsText = "Estado Nueva Esparta, Venezuela";
@@ -215,7 +215,7 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(10.5);
     pdf.setTextColor(245, 158, 11);
-    pdf.text(`ZONA EVALUADA: ${level.toUpperCase()} (${area})`, 16, 31);
+    pdf.text(`ZONA DELIMITADA: ${level.toUpperCase()} (${area})`, 16, 31);
 
     pdf.setFontSize(8.5);
     pdf.setTextColor(255, 255, 255);
@@ -283,8 +283,8 @@ export const exportSpatialRiskPDF = async (spatialPayload: any) => {
 
     pdf.save(`informe_tactico_sogne_${Date.now()}.pdf`);
   } catch (e: any) {
-    console.error("Error al exportar PDF de riesgo:", e);
-    alert("Fallo al exportar PDF de evaluación de riesgo: " + (e?.message || e));
+    console.error("Error al exportar PDF de mapa:", e);
+    alert("Fallo al exportar PDF de informe de mapa: " + (e?.message || e));
   }
 };
 
