@@ -19,6 +19,8 @@ interface Message {
   sender: 'user' | 'ai';
   text: string;
   timestamp: string;
+}
+
 const isLayerActive = (layers: any, key: string): boolean => {
   if (!layers) return false;
   if (key.includes('.')) {
