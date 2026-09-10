@@ -38,16 +38,8 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
   const [searchTerm, setSearchTerm] = useState('');
   const [onlyActiveFilter, setOnlyActiveFilter] = useState(false);
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    base: true,
-    riesgo: true,
-    inteligencia: false,
-    servicios: false,
-    telecom: false,
-    salud: false,
-    transporte: false,
-    pesca: false
-  });
+  const [userToggledSections, setUserToggledSections] = useState<Record<string, boolean>>({});
+  const listContainerRef = React.useRef<HTMLDivElement>(null);
 
   const isLight = theme === 'light';
 
@@ -70,34 +62,20 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
     }
   };
 
-  const toggleSection = (sectionId: string) => {
-    setOpenSections(prev => ({ ...prev, [sectionId]: !prev[sectionId] }));
+  const toggleSection = (sectionId: string, currentlyOpen: boolean) => {
+    setUserToggledSections(prev => ({ ...prev, [sectionId]: !currentlyOpen }));
   };
 
   const expandAll = () => {
-    setOpenSections({
-      base: true,
-      riesgo: true,
-      inteligencia: true,
-      servicios: true,
-      telecom: true,
-      salud: true,
-      transporte: true,
-      pesca: true
-    });
+    const all: Record<string, boolean> = {};
+    categories.forEach(c => { all[c.id] = true; });
+    setUserToggledSections(all);
   };
 
   const collapseAll = () => {
-    setOpenSections({
-      base: false,
-      riesgo: false,
-      inteligencia: false,
-      servicios: false,
-      telecom: false,
-      salud: false,
-      transporte: false,
-      pesca: false
-    });
+    const all: Record<string, boolean> = {};
+    categories.forEach(c => { all[c.id] = false; });
+    setUserToggledSections(all);
   };
 
   const categories: LegendCategory[] = useMemo(() => [
@@ -225,7 +203,16 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
     return count;
   }, [categories, layersVisible]);
 
-  // Filtrar según búsqueda y/o solo activas
+  // Auto-scroll al tope cuando se activa una nueva capa para que el usuario la vea de inmediato
+  const prevCountRef = React.useRef(activeLayersCount);
+  React.useEffect(() => {
+    if (activeLayersCount > prevCountRef.current && listContainerRef.current) {
+      listContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    prevCountRef.current = activeLayersCount;
+  }, [activeLayersCount]);
+
+  // Filtrar y PRIORIZAR: Las capas y categorías activas suben automáticamente al inicio
   const filteredCategories = useMemo(() => {
     const cleanSearch = searchTerm.toLowerCase().trim();
     
@@ -239,12 +226,35 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
           return matchesSearch && matchesActive;
         });
 
+        // Ordenar ítems: Las capas activas se posicionan primero dentro de la categoría
+        const sortedItems = [...items].sort((a, b) => {
+          const aActive = isLayerActive(a) ? 1 : 0;
+          const bActive = isLayerActive(b) ? 1 : 0;
+          return bActive - aActive;
+        });
+
+        const activeCount = sortedItems.filter(it => isLayerActive(it)).length;
+
         return {
           ...cat,
-          items
+          items: sortedItems,
+          activeCount
         };
       })
-      .filter(cat => cat.items.length > 0);
+      .filter(cat => cat.items.length > 0)
+      .sort((a, b) => {
+        // Las categorías con capas activas van primero (arriba)
+        const aHasActive = a.activeCount > 0 ? 1 : 0;
+        const bHasActive = b.activeCount > 0 ? 1 : 0;
+        if (bHasActive !== aHasActive) {
+          return bHasActive - aHasActive;
+        }
+        // Si ambas tienen capas activas, ordenar por mayor número de capas activas
+        if (aHasActive && bHasActive && b.activeCount !== a.activeCount) {
+          return b.activeCount - a.activeCount;
+        }
+        return 0; // mantener orden relativo original
+      });
   }, [categories, searchTerm, onlyActiveFilter, layersVisible]);
 
   const handleToggleItem = (item: LegendItem) => {
@@ -429,7 +439,7 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
           </div>
 
           {/* LISTA DE CATEGORÍAS Y SÍMBOLOS */}
-          <div className="p-3 space-y-2.5 overflow-y-auto max-h-[52vh] custom-legend-scrollbar">
+          <div ref={listContainerRef} className="p-3 space-y-2.5 overflow-y-auto max-h-[52vh] custom-legend-scrollbar">
             {filteredCategories.length === 0 ? (
               <div className={`text-center py-6 text-[11px] font-mono ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
                 No se encontraron capas para {onlyActiveFilter ? 'activas' : ''} "{searchTerm}"
@@ -437,23 +447,31 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
             ) : (
               filteredCategories.map((cat) => {
                 const IconComponent = cat.icon;
-                const isOpen = searchTerm || onlyActiveFilter ? true : !!openSections[cat.id];
-                const activeInCat = cat.items.filter(it => isLayerActive(it)).length;
+                const activeInCat = cat.activeCount;
+                const isCatOpen = searchTerm || onlyActiveFilter 
+                  ? true 
+                  : userToggledSections[cat.id] !== undefined 
+                    ? userToggledSections[cat.id] 
+                    : (activeInCat > 0 || cat.id === 'base');
 
                 return (
                   <div 
                     key={cat.id} 
                     className={`rounded-2xl border overflow-hidden transition-all duration-300 ${
-                      isLight 
-                        ? 'bg-slate-50/70 border-slate-200 hover:border-slate-300' 
-                        : 'bg-white/5 border-white/5 hover:border-white/10'
+                      activeInCat > 0
+                        ? (isLight 
+                            ? 'bg-sky-50/90 border-sky-400/60 shadow-[0_4px_16px_rgba(14,165,233,0.15)] ring-1 ring-sky-400/30' 
+                            : 'bg-cyan-950/25 border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.15)] ring-1 ring-cyan-500/30')
+                        : (isLight 
+                            ? 'bg-slate-50/70 border-slate-200 hover:border-slate-300' 
+                            : 'bg-white/5 border-white/5 hover:border-white/10')
                     }`}
                   >
                     {/* Header de Categoría */}
                     <button
-                      onClick={() => !searchTerm && !onlyActiveFilter && toggleSection(cat.id)}
+                      onClick={() => !searchTerm && !onlyActiveFilter && toggleSection(cat.id, isCatOpen)}
                       className={`w-full flex items-center justify-between p-2.5 text-left transition-colors cursor-pointer ${
-                        isOpen 
+                        isCatOpen 
                           ? (isLight ? 'bg-slate-100/80' : 'bg-white/5') 
                           : (isLight ? 'hover:bg-slate-100/50' : 'hover:bg-white/5')
                       }`}
@@ -479,26 +497,27 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
                       <div className="flex items-center gap-1.5 shrink-0 ml-2">
                         {activeInCat > 0 && (
                           <span 
-                            className="px-1.5 py-0.5 rounded-full text-[8px] font-black font-mono"
+                            className="px-2 py-0.5 rounded-full text-[8px] font-black font-mono animate-pulse flex items-center gap-1"
                             style={{ 
                               backgroundColor: `${cat.color}25`, 
                               color: cat.color,
-                              border: `1px solid ${cat.color}40`
+                              border: `1px solid ${cat.color}60`
                             }}
                           >
-                            {activeInCat} ON
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                            {activeInCat} {activeInCat === 1 ? 'ACTIVA' : 'ACTIVAS'}
                           </span>
                         )}
                         {!searchTerm && !onlyActiveFilter && (
                           <span className={`${isLight ? 'text-slate-400' : 'text-slate-500'} transition-transform duration-300`}>
-                            {isOpen ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+                            {isCatOpen ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
                           </span>
                         )}
                       </div>
                     </button>
 
                     {/* Elementos de la Categoría */}
-                    {isOpen && (
+                    {isCatOpen && (
                       <div className={`p-2 pt-1.5 space-y-1 border-t animate-in fade-in slide-in-from-top-1 duration-200 ${
                         isLight ? 'border-slate-200 bg-white/60' : 'border-white/5 bg-slate-950/40'
                       }`}>
