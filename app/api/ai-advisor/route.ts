@@ -477,7 +477,11 @@ function parseVoiceCommand(command: string) {
     else if (text.includes('cuadrante') || text.includes('cuadrantes')) actions.push('export_pdf:cuadrantes');
     else if (text.includes('compa') || text.includes('compas')) actions.push('export_pdf:compas');
     else if (text.includes('incidencia') || text.includes('incidencias')) actions.push('export_pdf:incidencias');
-    else if (text.includes('cibernetica') || text.includes('cibernética')) actions.push('export_pdf:cibernetica');
+    else if (text.includes('concentración') || text.includes('concentraciones')) actions.push('export_pdf:concentraciones');
+    else if (text.includes('digitel')) actions.push('export_pdf:digitel');
+    else if (text.includes('movistar')) actions.push('export_pdf:movistar');
+    else if (text.includes('movilnet')) actions.push('export_pdf:movilnet');
+    else if (text.includes('antena') || text.includes('antenas') || text.includes('telecomunicación')) actions.push('export_pdf:antenas');
     else if (text.includes('delito') || text.includes('delitos') || text.includes('comunes')) actions.push('export_pdf:delitos');
     else if (text.includes('banda') || text.includes('bandas') || text.includes('delictivo')) actions.push('export_pdf:bandas');
     else if (text.includes('droga') || text.includes('drogas')) actions.push('export_pdf:drogas');
