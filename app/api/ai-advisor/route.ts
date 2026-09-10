@@ -224,10 +224,10 @@ function parseVoiceCommand(command: string) {
   // ── 2. GENERACIÓN Y DESCARGA DE REPORTES PDF INDIVIDUALES POR VOZ ───────────────────
   if (text.includes('reporte') || text.includes('pdf') || text.includes('descargar') || text.includes('exportar') || text.includes('imprimir') || text.includes('generar')) {
     let pdfExecuted = false;
-    if (text.includes('conppa') || text.includes('conppas') || text.includes('conpas') || text.includes('comppa') || text.includes('pesca') || text.includes('pesquero') || text.includes('puerto pesquero') || text.includes('pescadores')) {
+    if ((text.includes('conppa') || text.includes('conppas') || text.includes('conpas') || text.includes('compas') || text.includes('comppa') || text.includes('pesca') || text.includes('pesquero') || text.includes('puerto pesquero') || text.includes('pescadores')) && !text.includes('cuadrante') && !text.includes('cuadrantes')) {
       actions.push('export_pdf:conppas');
       pdfExecuted = true;
-    } else if (text.includes('cuadrante') || text.includes('compas') || text.includes('poligono de paz') || text.includes('paz')) {
+    } else if (text.includes('cuadrante') || text.includes('cuadrantes') || text.includes('poligono de paz') || text.includes('paz')) {
       actions.push('export_pdf:compas');
       pdfExecuted = true;
     } else if (text.includes('municipio')) { actions.push('export_pdf:municipios'); pdfExecuted = true; }
@@ -312,12 +312,13 @@ function parseVoiceCommand(command: string) {
   });
 
   // ── 4. ACTIVAR / DESACTIVAR CONPPAS SECTOR PESQUERO (conppas.geojson) ─────────────
+  // "compas" o "conppas" activa CONPPAS (conppas.geojson)
   const isConppasCommand = (
-    text.includes('conppa') || text.includes('conppas') || text.includes('conpas') || text.includes('comppa') ||
+    text.includes('conppa') || text.includes('conppas') || text.includes('conpas') || 
+    text.includes('comppa') || text.includes('compas') || text.includes('compa') ||
     text.includes('pesca') || text.includes('pesquero') || text.includes('puerto pesquero') || 
-    text.includes('puertos pesqueros') || text.includes('pescadores') || text.includes('52 puertos') ||
-    ((text.includes('compas') || text.includes('compa')) && (text.includes('pesca') || text.includes('pesquero') || text.includes('puerto') || text.includes('mar')))
-  );
+    text.includes('puertos pesqueros') || text.includes('pescadores') || text.includes('52 puertos')
+  ) && !text.includes('cuadrante') && !text.includes('cuadrantes');
 
   if (isConppasCommand) {
     if (!text.includes('reporte') && !text.includes('pdf')) {
@@ -326,13 +327,13 @@ function parseVoiceCommand(command: string) {
   }
 
   // ── 5. ACTIVAR / DESACTIVAR CUADRANTES DE PAZ (compas.geojson) ─────────────────────
-  const isCuadrantesCommand = !isConppasCommand && (
+  // "cuadrantes" o "cuadrantes de paz" activa Cuadrantes (compas.geojson)
+  const isCuadrantesCommand = (
     text.includes('cuadrante') || text.includes('cuadrantes') || 
-    text.includes('compas') || text.includes('compa') || 
     text.includes('cuadrante de paz') || text.includes('cuadrantes de paz') ||
     text.includes('poligono de paz') || text.includes('polígonos de paz') ||
     text.includes('comite de paz') || text.includes('comités de paz') ||
-    text.includes('patrullaje')
+    text.includes('patrullaje') || text.includes('cuadrantes de seguridad')
   );
 
   if (isCuadrantesCommand) {
