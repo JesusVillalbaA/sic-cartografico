@@ -187,6 +187,9 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
             } else if (actionKey.startsWith('trace_municipality:')) {
               const muni = actionKey.split(':')[1];
               window.dispatchEvent(new CustomEvent('sogne_voice_trace_municipality', { detail: { municipality: muni } }));
+            } else if (actionKey.startsWith('open_feature:')) {
+              const featName = actionKey.split(':')[1];
+              window.dispatchEvent(new CustomEvent('sogne_voice_open_feature', { detail: { name: featName } }));
             } else if (actionKey === 'open_ia_panel') {
               setIsOpen(true);
             } else if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {

@@ -1,5 +1,6 @@
 "use client";
 import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
+import * as turf from '@turf/turf';
 import { Zap, Flame } from 'lucide-react';
 import { AnalysisPanel } from './AnalysisPanel';
 import { useMapbox } from './useMapbox';
@@ -98,17 +99,21 @@ export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRi
     }
   };
 
-  const handleSearchSelect = (feature: any) => {
+  const handleSearchSelect = React.useCallback((feature: any) => {
     const m = map.current;
     if (!m) return;
     
     // Fly to feature
-    if (feature.geometry && feature.geometry.coordinates) {
-      if (feature.geometry.type === 'Point') {
-        m.flyTo({ center: feature.geometry.coordinates as [number, number], zoom: 14, pitch: 45, duration: 1500 });
-      } else if (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon') {
-        const coords = feature.geometry.type === 'Polygon' ? feature.geometry.coordinates[0][0] : feature.geometry.coordinates[0][0][0];
-        m.flyTo({ center: coords as [number, number], zoom: 12, pitch: 0, duration: 1500 });
+    if (feature.geometry) {
+      try {
+        if (feature.geometry.type === 'Point') {
+          m.flyTo({ center: feature.geometry.coordinates as [number, number], zoom: 14, pitch: 45, duration: 1500 });
+        } else {
+          const bbox = turf.bbox(feature);
+          m.fitBounds(bbox as [number, number, number, number], { padding: 90, maxZoom: 15, duration: 1500 });
+        }
+      } catch(_) {
+        m.flyTo({ zoom: 12, duration: 1200 });
       }
     }
     
@@ -120,7 +125,55 @@ export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRi
       const filtered = prev.filter(sf => (sf.properties?.id || sf.properties?.id_punto || sf.properties?.id_incidencia || sf.properties?.id_persona_interes || sf.properties?.cuadrante || sf.properties?.nombre || sf.properties?.adm2_name || sf.properties?.NAME) !== id);
       return [feature, ...filtered];
     });
-  };
+  }, [map]);
+
+  useEffect(() => {
+    const handleVoiceOpenFeature = (e: any) => {
+      const targetName = e.detail?.name;
+      const m = map.current;
+      if (!m || !targetName) return;
+
+      try {
+        const cleanTarget = targetName.toLowerCase().trim();
+
+        // 1. Buscar en queryRenderedFeatures
+        const allRendered = m.queryRenderedFeatures();
+        let matched = allRendered.find((f: any) => {
+          const p = f.properties || {};
+          const vals = Object.values(p).join(' ').toLowerCase();
+          return vals.includes(cleanTarget);
+        });
+
+        // 2. Si no se encuentra en pantalla, buscar en fuentes GeoJSON de Mapbox
+        if (!matched && m.getStyle()?.sources) {
+          const sourceIds = Object.keys(m.getStyle().sources);
+          for (const sId of sourceIds) {
+            try {
+              const feats = m.querySourceFeatures(sId);
+              const found = feats.find((f: any) => {
+                const p = f.properties || {};
+                const vals = Object.values(p).join(' ').toLowerCase();
+                return vals.includes(cleanTarget);
+              });
+              if (found) {
+                matched = found;
+                break;
+              }
+            } catch (_) {}
+          }
+        }
+
+        if (matched) {
+          handleSearchSelect(matched);
+        }
+      } catch (err) {
+        console.warn("Error al abrir panel por voz:", err);
+      }
+    };
+
+    window.addEventListener('sogne_voice_open_feature', handleVoiceOpenFeature);
+    return () => window.removeEventListener('sogne_voice_open_feature', handleVoiceOpenFeature);
+  }, [map, handleSearchSelect]);
 
   const hasElectricalSelected = selectedFeatures.some(f => (f.layer?.id || "").includes('electric') || f.properties?.categoria?.includes('ELECTRICA') || f.properties?.gpxx_Categ?.includes('ELECTRICAS'));
   const isElectricoActive = safeLayersVisible.sistemasElectricos || hasElectricalSelected;

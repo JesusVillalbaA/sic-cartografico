@@ -281,6 +281,27 @@ function parseVoiceCommand(command: string) {
     }
   });
 
+  // ── ABRIR PANELES DE MUNICIPIOS, SECTORES Y ENTIDADES POR VOZ ───────────────────
+  const openRegex = /(?:abrir|abre|ábreme|abreme|panel|ficha|ver|mostrar)\s+(?:el\s+)?(?:panel\s+de\s+|ficha\s+de\s+|municipio\s+|sector\s+)?(.+)/i;
+  const openMatch = text.match(openRegex);
+  if (openMatch && !radioMatch && !traceMatch && !text.includes('reporte') && !text.includes('pdf') && !text.includes('activar') && !text.includes('desactivar') && !text.includes('trazar') && !text.includes('crear')) {
+    const targetName = openMatch[1].trim();
+    if (targetName.length > 1 && !['todo', 'todas', '3d', 'mapa', 'calor'].includes(targetName)) {
+      actions.push(`open_feature:${targetName}`);
+      responseText += `Abriendo panel situacional e indicadores de "${targetName}". `;
+    }
+  }
+
+  Object.keys(municipiosMap).forEach(key => {
+    if (text.includes(key) && (text.includes('abre') || text.includes('abrir') || text.includes('ver') || text.includes('panel') || text.includes('ficha'))) {
+      const muniName = municipiosMap[key];
+      if (!actions.some(a => a.startsWith('open_feature:'))) {
+        actions.push(`open_feature:${muniName}`);
+        responseText += `Abriendo panel situacional del Municipio ${muniName}. `;
+      }
+    }
+  });
+
   // ── CAPAS INDIVIDUALES UNO POR UNO ─────────────────────────────────────────
   // Capas Territoriales
   if (text.includes('municipio') || text.includes('municipios')) {
