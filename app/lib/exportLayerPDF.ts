@@ -9,15 +9,75 @@ export interface LayerExportOptions {
 
 /** Map of layer keys to their public file names and clean titles */
 const LAYER_CONFIGS: Record<string, { fileName: string; title: string; entityLabel: string }> = {
+  municipios: {
+    fileName: 'ven_admin2',
+    title: 'REGISTRO Y DELIMITACIÓN DE MUNICIPIOS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'MUNICIPIO',
+  },
+  parroquias: {
+    fileName: 'ven_admin3',
+    title: 'REGISTRO DE PARROQUIAS TERRITORIALES - ESTADO NUEVA ESPARTA',
+    entityLabel: 'PARROQUIA',
+  },
+  sectores: {
+    fileName: 'sectores',
+    title: 'REGISTRO DE SECTORES Y COMUNIDADES - ESTADO NUEVA ESPARTA',
+    entityLabel: 'NOMBRE DEL SECTOR',
+  },
+  cuadrantes: {
+    fileName: 'cuadrantes',
+    title: 'REGISTRO DE CUADRANTES DE PAZ Y ORGANIZACIÓN TÁCTICA - ESTADO NUEVA ESPARTA',
+    entityLabel: 'CUADRANTE DE PAZ',
+  },
+  compas: {
+    fileName: 'compas',
+    title: 'DATA DE COMITÉS DE PAZ (COMPAS) REGISTRADOS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'NOMBRE DEL COMPAS',
+  },
   conppas: {
     fileName: 'conppas',
     title: 'DATA DE VOCEROS DE LOS CONPPAS REGISTRADOS EN EL ESTADO NUEVA ESPARTA - 2026',
     entityLabel: 'NOMBRE DEL CONPPA',
   },
-  compas: {
-    fileName: 'conppas',
-    title: 'DATA DE VOCEROS DE LOS CONPPAS REGISTRADOS EN EL ESTADO NUEVA ESPARTA - 2026',
-    entityLabel: 'NOMBRE DEL CONPPA',
+  incidencias: {
+    fileName: 'incidencias',
+    title: 'REPORTE ESTRATÉGICO DE INCIDENCIAS Y DELITOS COMUNES - ESTADO NUEVA ESPARTA',
+    entityLabel: 'TIPO DE INCIDENCIA / DELITO',
+  },
+  delitos: {
+    fileName: 'incidencias',
+    title: 'REGISTRO DE DELITOS COMUNES Y FOCOS DE INSEGURIDAD - ESTADO NUEVA ESPARTA',
+    entityLabel: 'REGISTRO DE DELITO',
+  },
+  cibernetica: {
+    fileName: 'cibernetica',
+    title: 'DIAGNÓSTICO TÁCTICO DE DELITOS CIBERNÉTICOS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'INCIDENCIA CIBERNÉTICA',
+  },
+  concentraciones: {
+    fileName: 'concentraciones',
+    title: 'REGISTRO DE PUNTOS DE CONCENTRACIÓN Y EVENTOS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'PUNTO DE CONCENTRACIÓN',
+  },
+  drogas: {
+    fileName: 'drogas',
+    title: 'REPORTE DE INCAUTACIÓN Y GEOLOCALIZACIÓN DE DROGAS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'PROCEDIMIENTO / INCAUTACIÓN',
+  },
+  actores: {
+    fileName: 'actores',
+    title: 'REGISTRO DE ACTORES Y PERSONAS DE INTERÉS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'ACTOR DE INTERÉS',
+  },
+  puntos: {
+    fileName: 'puntos',
+    title: 'REGISTRO DE LUGARES Y PUNTOS DE INTERÉS TÁCTICO - ESTADO NUEVA ESPARTA',
+    entityLabel: 'PUNTO DE INTERÉS',
+  },
+  bandas: {
+    fileName: 'bandas',
+    title: 'DIAGNÓSTICO DE GRUPOS DELICTIVOS ORGANIZADOS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'GRUPO / BANDA DELICTIVA',
   },
   hospitales: {
     fileName: 'hospitales',
@@ -48,6 +108,11 @@ const LAYER_CONFIGS: Record<string, { fileName: string; title: string; entityLab
     fileName: 'escuelas',
     title: 'REGISTRO DE INSTITUCIONES EDUCATIVAS Y CIRCUITOS ESCOLARES - ESTADO NUEVA ESPARTA',
     entityLabel: 'NOMBRE DEL CENTRO EDUCATIVO',
+  },
+  centrosvotacion: {
+    fileName: 'centrosvotacion',
+    title: 'REGISTRO DE CENTROS DE VOTACIÓN Y ELECTORALES - ESTADO NUEVA ESPARTA',
+    entityLabel: 'CENTRO DE VOTACIÓN',
   },
   estaciongas: {
     fileName: 'estaciongasNE',
@@ -84,6 +149,26 @@ const LAYER_CONFIGS: Record<string, { fileName: string; title: string; entityLab
     title: 'REGISTRO DE ESTACIONES Y EMBALSES DE AGUA POTABLE - ESTADO NUEVA ESPARTA',
     entityLabel: 'INSTALACIÓN DE AGUA',
   },
+  desalinizadoras: {
+    fileName: 'estacionagua',
+    title: 'REGISTRO DE PLANTAS DESALINIZADORAS DE AGUA - ESTADO NUEVA ESPARTA',
+    entityLabel: 'PLANTA DESALINIZADORA',
+  },
+  tanques: {
+    fileName: 'estacionagua',
+    title: 'REGISTRO DE TANQUES Y ALMACENAMIENTO DE AGUA - ESTADO NUEVA ESPARTA',
+    entityLabel: 'TANQUE DE AGUA',
+  },
+  pozos: {
+    fileName: 'estacionagua',
+    title: 'REGISTRO DE POZOS DE AGUA POTABLE - ESTADO NUEVA ESPARTA',
+    entityLabel: 'POZO DE AGUA',
+  },
+  tratamiento: {
+    fileName: 'estacionagua',
+    title: 'REGISTRO DE PLANTAS DE TRATAMIENTO DE AGUA - ESTADO NUEVA ESPARTA',
+    entityLabel: 'PLANTA DE TRATAMIENTO',
+  },
   embalses: {
     fileName: 'EmbalsesNE',
     title: 'REGISTRO DE EMBALSES Y FUENTES HÍDRICAS - ESTADO NUEVA ESPARTA',
@@ -118,6 +203,16 @@ const LAYER_CONFIGS: Record<string, { fileName: string; title: string; entityLab
     fileName: 'estacionservicio',
     title: 'REGISTRO DE ESTACIONES DE SERVICIO Y COMBUSTIBLE - ESTADO NUEVA ESPARTA',
     entityLabel: 'ESTACIÓN DE SERVICIO (E/S)',
+  },
+  transporte: {
+    fileName: 'transporte',
+    title: 'REGISTRO DE RED DE TRANSPORTE Y RUTAS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'UNIDAD / RUTA DE TRANSPORTE',
+  },
+  terminales: {
+    fileName: 'transporte',
+    title: 'REGISTRO DE TERMINALES DE PASAJEROS - ESTADO NUEVA ESPARTA',
+    entityLabel: 'TERMINAL DE PASAJEROS',
   },
 };
 
