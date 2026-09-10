@@ -553,7 +553,7 @@ export const useMapbox = (
         source: 'focus-mask-source',
         paint: {
           'fill-color': '#000000',
-          'fill-opacity': 0.75,
+          'fill-opacity': 0.88,
           'fill-opacity-transition': { duration: 800 }
         }
       });
