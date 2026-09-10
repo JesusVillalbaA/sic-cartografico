@@ -1,13 +1,11 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Sparkles, Bot, X, RefreshCw, Send, CheckCircle2, 
-  AlertTriangle, Lightbulb, PlusCircle, Layers, ChevronRight, MessageSquare, Zap,
-  Mic, MicOff, ShieldAlert, Activity, FileCheck, Radio, Check
+  Sparkles, Bot, X, Send, Mic, MicOff, Radio, MessageSquare 
 } from 'lucide-react';
 
 import { exportLayerToPDF } from '@/app/lib/exportLayerPDF';
-import { SogneVoiceController, VoiceRule } from '@/lib/voiceRecognitionModule';
+import { SogneVoiceController } from '@/lib/voiceRecognitionModule';
 
 interface AsistenteIAProps {
   layersVisible: any;
@@ -30,21 +28,18 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   theme = 'dark'
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'diagnostic' | 'chat'>('diagnostic');
   const [isLoading, setIsLoading] = useState(false);
-  const [diagnosticData, setDiagnosticData] = useState<any>(null);
   
   // Voice control state
   const [isListening, setIsListening] = useState(false);
   const controllerRef = useRef<SogneVoiceController | null>(null);
-  const recognitionRef = useRef<any>(null);
 
   // Chat state
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
       sender: 'ai',
-      text: '¡Hola! Soy SOGNE IA, tu consejero de geointeligencia. Puedes dictarme comandos por voz para abrir paneles, trazar áreas o consultar la cartografía.',
+      text: '¡Hola! Soy SOGNE IA. Puedes dictarme comandos por voz para encender capas, trazar áreas o consultar la cartografía.',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -149,14 +144,14 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     }
   };
 
-  // Inicializar SogneVoiceController para reconocimiento por voz en español (Modo Continuo y Tolerante)
+  // Inicializar SogneVoiceController para reconocimiento por voz en español
   useEffect(() => {
     const controller = new SogneVoiceController({
       lang: 'es-VE',
       onStatusChange: (listening) => {
         setIsListening(listening);
       },
-      onCommandDetected: (cleanText, matchedRule) => {
+      onCommandDetected: (cleanText) => {
         if (cleanText) {
           handleSendVoiceCommand(cleanText);
         }
@@ -172,7 +167,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
 
   const toggleListening = () => {
     if (!controllerRef.current) {
-      alert("El reconocimiento por voz utiliza la API Web Speech. Por favor, asegúrate de otorgar permisos de micrófono en Google Chrome o Microsoft Edge.");
+      alert("El reconocimiento por voz utiliza Web Speech API (disponible en Google Chrome o Microsoft Edge). Por favor revisa los permisos de micrófono.");
       return;
     }
     if (isListening) {
@@ -182,8 +177,8 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     }
   };
 
-  // Cargar diagnóstico cuando cambian capas o características seleccionadas
-  const fetchDiagnostic = React.useCallback(async (userMsg?: string) => {
+  // Obtener respuesta de SOGNE IA para preguntas de chat
+  const fetchAIResponse = React.useCallback(async (userMsg: string) => {
     setIsLoading(true);
     try {
       const res = await fetch('/api/ai-advisor', {
@@ -192,41 +187,34 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
         body: JSON.stringify({
           layersVisible,
           selectedFeatures,
-          message: userMsg || ''
+          message: userMsg
         })
       });
 
       const data = await res.json();
-      if (data.success) {
-        setDiagnosticData(data);
-
-        if (userMsg) {
-          setMessages(prev => [
-            ...prev,
-            {
-              id: Date.now().toString(),
-              sender: 'ai',
-              text: data.response,
-              timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            }
-          ]);
-        }
+      if (data.success && data.response) {
+        setMessages(prev => [
+          ...prev,
+          {
+            id: Date.now().toString(),
+            sender: 'ai',
+            text: data.response,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          }
+        ]);
       }
     } catch (err) {
-      console.error("Error obteniendo recomendación de SOGNE IA:", err);
+      console.error("Error obteniendo respuesta de SOGNE IA:", err);
     } finally {
       setIsLoading(false);
     }
   }, [layersVisible, selectedFeatures]);
-
-
 
   // Escuchar comando de voz directo enviado desde el botón de la barra de herramientas
   useEffect(() => {
     const handleVoiceText = (e: any) => {
       if (e.detail?.text) {
         setIsOpen(true);
-        setActiveTab('chat');
         handleSendVoiceCommand(e.detail.text);
       }
     };
@@ -235,16 +223,10 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   }, [handleSendVoiceCommand]);
 
   useEffect(() => {
-    if (isOpen && activeTab === 'diagnostic') {
-      fetchDiagnostic();
-    }
-  }, [isOpen, activeTab, layersVisible, selectedFeatures]);
-
-  useEffect(() => {
-    if (activeTab === 'chat') {
+    if (isOpen) {
       chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, activeTab]);
+  }, [messages, isOpen]);
 
   const handleSendMessage = (textToSend?: string) => {
     const query = textToSend || inputQuery;
@@ -260,301 +242,157 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     setMessages(prev => [...prev, userMessage]);
     if (!textToSend) setInputQuery('');
 
-    fetchDiagnostic(query);
+    fetchAIResponse(query);
   };
-
-  const selectedName = selectedFeatures.length > 0
-    ? (selectedFeatures[0]?.properties?.nombre || selectedFeatures[0]?.properties?.NAME || selectedFeatures[0]?.properties?.adm2_name || selectedFeatures[0]?.properties?.cuadrante)
-    : null;
 
   return (
     <>
-      {/* Botón Flotante para abrir la Mini IA */}
+      {/* Botón Flotante para abrir SOGNE IA (Compacto) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-slate-900/95 hover:bg-cyan-950/95 text-cyan-400 border border-cyan-500/50 shadow-[0_0_25px_rgba(6,182,212,0.4)] backdrop-blur-xl px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 group cursor-pointer"
+        className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-slate-900/95 hover:bg-cyan-950/95 text-cyan-400 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.4)] backdrop-blur-xl px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 group cursor-pointer"
         title="Abrir Asistente Táctico SOGNE IA"
       >
         <div className="relative">
-          <Sparkles size={16} className="text-cyan-400 animate-pulse group-hover:rotate-12 transition-transform" />
+          <Sparkles size={15} className="text-cyan-400 animate-pulse group-hover:rotate-12 transition-transform" />
           <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
         </div>
         <span className="hidden sm:inline">SOGNE IA</span>
-        <span className="bg-cyan-500/20 text-cyan-300 text-[10px] px-1.5 py-0.5 rounded font-mono border border-cyan-400/30">
-          VOZ & RIESGO
+        <span className="bg-cyan-500/20 text-cyan-300 text-[9px] px-1.5 py-0.5 rounded font-mono border border-cyan-400/30">
+          VOZ & CHAT
         </span>
       </button>
 
-      {/* Panel Deslizable de SOGNE IA */}
+      {/* Panel Deslizable de SOGNE IA (Compacto y Ligero) */}
       {isOpen && (
-        <div className="fixed top-16 right-4 z-40 w-[420px] max-w-[calc(100vw-2rem)] h-[calc(100vh-5rem)] max-h-[680px] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_45px_rgba(6,182,212,0.3)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden">
+        <div className="fixed top-16 right-4 z-40 w-[310px] sm:w-[340px] h-[430px] max-h-[500px] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_35px_rgba(6,182,212,0.3)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden">
           
           {/* Encabezado del Panel */}
-          <div className="p-4 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/50 to-slate-950 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-                <Bot size={22} />
+          <div className="p-3 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/50 to-slate-950 flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)]">
+                <Bot size={18} />
               </div>
               <div>
-                <h3 className="text-xs font-black tracking-widest text-cyan-300 uppercase flex items-center gap-2">
+                <h3 className="text-xs font-black tracking-widest text-cyan-300 uppercase flex items-center gap-1.5">
                   SOGNE IA TÁCTICO
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </h3>
-                <p className="text-[10px] text-slate-400 font-mono">Consejero por Voz & Riesgo Espacial</p>
+                <p className="text-[9px] text-slate-400 font-mono">Asistente por Voz & Comandos</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1">
               {/* Botón de Micrófono por Voz */}
               <button
                 onClick={toggleListening}
-                className={`p-2 rounded-xl border transition-all cursor-pointer flex items-center gap-1 text-[10px] font-bold ${
+                className={`p-1.5 rounded-lg border transition-all cursor-pointer flex items-center gap-1 text-[10px] font-bold ${
                   isListening
-                    ? 'bg-rose-600 text-white border-rose-400 animate-pulse shadow-[0_0_15px_rgba(225,29,72,0.6)]'
+                    ? 'bg-rose-600 text-white border-rose-400 animate-pulse shadow-[0_0_12px_rgba(225,29,72,0.6)]'
                     : 'bg-slate-900 text-cyan-400 border-cyan-500/40 hover:bg-cyan-950'
                 }`}
                 title={isListening ? "Detener micrófono" : "Dictar comando por voz en español"}
               >
-                {isListening ? <MicOff size={15} /> : <Mic size={15} />}
-                <span className="hidden sm:inline">{isListening ? 'Escuchando...' : 'Voz'}</span>
+                {isListening ? <MicOff size={13} /> : <Mic size={13} />}
+                <span className="hidden sm:inline text-[9px]">{isListening ? 'Escuchando' : 'Voz'}</span>
               </button>
 
               <button
-                onClick={() => fetchDiagnostic()}
-                disabled={isLoading}
-                className="p-2 text-slate-400 hover:text-cyan-300 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
-                title="Actualizar diagnóstico"
-              >
-                <RefreshCw size={14} className={isLoading ? 'animate-spin text-cyan-400' : ''} />
-              </button>
-              <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+                className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
                 title="Cerrar"
               >
-                <X size={16} />
+                <X size={15} />
               </button>
             </div>
           </div>
 
-          {/* Pestañas de Navegación */}
-          <div className="flex border-b border-slate-800 bg-slate-900/60 p-1 text-[11px] font-bold">
-            <button
-              onClick={() => setActiveTab('diagnostic')}
-              className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                activeTab === 'diagnostic'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_10px_rgba(6,182,212,0.2)]'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <Lightbulb size={13} />
-              <span>Diagnóstico</span>
-            </button>
-
-
-
-            <button
-              onClick={() => setActiveTab('chat')}
-              className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                activeTab === 'chat'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_10px_rgba(6,182,212,0.2)]'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <MessageSquare size={13} />
-              <span>Voz & Chat</span>
-            </button>
-          </div>
-
-          {/* Contenido del Panel */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar text-xs">
+          {/* Contenido del Panel (Solo Voz & Chat) */}
+          <div className="flex-1 flex flex-col overflow-hidden p-3 space-y-2.5 text-xs">
             
-            {/* 📋 PESTAÑA: EVALUACIÓN DE RIESGO ESPACIAL POR IA */}
+            {/* Controles de Voz Interactivos */}
+            <div className="p-2.5 bg-slate-900/80 border border-slate-800 rounded-xl space-y-1.5 shrink-0">
+              <div className="flex items-center justify-between text-[10px]">
+                <span className="font-bold text-cyan-400 flex items-center gap-1">
+                  <Radio size={12} className={isListening ? "animate-ping text-rose-400" : ""} />
+                  Comandos por Voz Tácticos
+                </span>
+                <span className="text-[8px] font-mono text-slate-500">Web Speech</span>
+              </div>
+              <button
+                onClick={toggleListening}
+                className={`w-full py-1.5 rounded-lg font-bold text-[10px] transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                  isListening
+                    ? 'bg-rose-600 hover:bg-rose-500 text-white shadow-[0_0_12px_rgba(225,29,72,0.5)] animate-pulse'
+                    : 'bg-cyan-600 hover:bg-cyan-500 text-white shadow-[0_0_12px_rgba(6,182,212,0.3)]'
+                }`}
+              >
+                {isListening ? <MicOff size={13} /> : <Mic size={13} />}
+                <span>{isListening ? 'DETENER MICRÓFONO' : 'DICTAR COMANDO POR VOZ'}</span>
+              </button>
+            </div>
 
-
-            {activeTab === 'diagnostic' && (
-              <>
-                {/* Banner de Entidad Seleccionada si aplica */}
-                {selectedName && (
-                  <div className="bg-cyan-950/40 border border-cyan-500/30 rounded-xl p-3 flex items-center gap-3">
-                    <Zap size={16} className="text-cyan-400 shrink-0 animate-pulse" />
-                    <div>
-                      <span className="text-[10px] text-cyan-400 font-mono block uppercase tracking-wider">Foco Seleccionado:</span>
-                      <span className="font-bold text-slate-100">{selectedName}</span>
-                    </div>
-                  </div>
-                )}
-
-                {/* 1. ¿Qué capas / datos faltan? */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-[11px] font-bold text-amber-400">
-                    <span className="flex items-center gap-1.5">
-                      <AlertTriangle size={14} />
-                      ¿Qué Capas / Datos te Faltan?
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-mono font-normal">Sugerencias inteligentes</span>
-                  </div>
-
-                  <div className="space-y-2">
-                    {diagnosticData?.missingRecommendations?.map((rec: any, idx: number) => (
-                      <div 
-                        key={idx} 
-                        className="p-3 bg-slate-900/80 border border-slate-800 hover:border-amber-500/40 rounded-xl transition-all flex flex-col gap-2 group"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className="font-bold text-slate-200 text-xs flex items-center gap-1.5">
-                            <Layers size={13} className="text-amber-400" />
-                            {rec.label}
-                          </span>
-                          <span className="text-[9px] bg-amber-500/10 text-amber-300 border border-amber-500/20 px-1.5 py-0.5 rounded font-mono uppercase">
-                            {rec.category}
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-slate-400 leading-relaxed">{rec.reason}</p>
-                        
-                        <button
-                          onClick={() => onToggle(rec.id)}
-                          className="self-start mt-1 flex items-center gap-1 text-[10px] font-bold text-cyan-400 hover:text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 px-2.5 py-1 rounded-lg transition-all cursor-pointer"
-                        >
-                          <PlusCircle size={12} />
-                          <span>Activar esta capa ahora</span>
-                        </button>
-                      </div>
-                    ))}
-
-                    {(!diagnosticData?.missingRecommendations || diagnosticData?.missingRecommendations.length === 0) && (
-                      <div className="p-3 bg-slate-900/40 border border-slate-800 rounded-xl text-center text-slate-400 text-xs">
-                        <CheckCircle2 size={18} className="text-emerald-400 mx-auto mb-1" />
-                        ¡Excelente configuración de capas activa! Tienes los datos clave visibles.
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* 2. Consejos Tácticos de Geointeligencia */}
-                <div className="space-y-2 pt-2 border-t border-slate-800">
-                  <div className="text-[11px] font-bold text-cyan-400 flex items-center gap-1.5">
-                    <Lightbulb size={14} />
-                    Consejos & Recomendaciones Operativas
-                  </div>
-
-                  <div className="space-y-2">
-                    {diagnosticData?.tacticalAdvice?.map((tip: any, idx: number) => (
-                      <div key={idx} className="p-3 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1">
-                        <h4 className="font-bold text-slate-200 text-[11px] flex items-center gap-1.5">
-                          <ChevronRight size={12} className="text-cyan-400" />
-                          {tip.title}
-                        </h4>
-                        <p className="text-[11px] text-slate-400 leading-relaxed">{tip.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 3. Sugerencias de Próximos Pasos */}
-                <div className="p-3 bg-cyan-950/20 border border-cyan-500/20 rounded-xl space-y-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 font-mono block">
-                    ⚡ Próximos Pasos Recomendados:
-                  </span>
-                  <ul className="text-[11px] text-slate-300 space-y-1 list-disc list-inside">
-                    <li>Exportar Reporte Situacional en PDF desde el Menú de Herramientas.</li>
-                    <li>Utilizar el Medidor de Distancia (Regla Táctica) entre incidentes y hospitales.</li>
-                    <li>Generar Zona de Influencia (Buffer) alrededor de infraestructuras clave.</li>
-                  </ul>
-                </div>
-              </>
-            )}
-
-            {activeTab === 'chat' && (
-              <div className="flex flex-col h-full space-y-3">
-                {/* Controles de Voz Interactivos */}
-                <div className="p-3 bg-slate-900/80 border border-slate-800 rounded-xl space-y-2">
-                  <div className="flex items-center justify-between text-[11px]">
-                    <span className="font-bold text-cyan-400 flex items-center gap-1.5">
-                      <Radio size={13} className={isListening ? "animate-ping text-rose-400" : ""} />
-                      Comandos por Voz Tácticos
-                    </span>
-                    <span className="text-[9px] font-mono text-slate-400">Web Speech API</span>
-                  </div>
-                  <p className="text-[10px] text-slate-400 leading-relaxed">
-                    Presiona el botón de voz para dictar comandos como: <em>"Muéstrame las subestaciones de Maneiro"</em> o <em>"Cambia a vista 3D"</em>.
-                  </p>
+            {/* Preguntas Frecuentes Rápidas */}
+            <div className="shrink-0 space-y-1">
+              <span className="text-[9px] font-mono text-slate-500">Sugerencias rápidas:</span>
+              <div className="flex flex-wrap gap-1">
+                {[
+                  "Subestaciones eléctricas",
+                  "Red de salud",
+                  "Cambia a vista 3D",
+                  "Apagar todas las capas"
+                ].map((promptText, i) => (
                   <button
-                    onClick={toggleListening}
-                    className={`w-full py-2 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer ${
-                      isListening
-                        ? 'bg-rose-600 hover:bg-rose-500 text-white shadow-[0_0_15px_rgba(225,29,72,0.5)] animate-pulse'
-                        : 'bg-cyan-600 hover:bg-cyan-500 text-white shadow-[0_0_15px_rgba(6,182,212,0.3)]'
+                    key={i}
+                    onClick={() => handleSendMessage(promptText)}
+                    className="text-[9px] bg-slate-900 hover:bg-cyan-950 text-slate-300 hover:text-cyan-300 border border-slate-800 hover:border-cyan-500/40 px-2 py-0.5 rounded-md transition-all cursor-pointer text-left"
+                  >
+                    {promptText}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Historial de Mensajes */}
+            <div className="flex-1 overflow-y-auto space-y-2 custom-scrollbar pr-1">
+              {messages.map((m) => (
+                <div
+                  key={m.id}
+                  className={`flex flex-col ${m.sender === 'user' ? 'items-end' : 'items-start'}`}
+                >
+                  <div
+                    className={`max-w-[88%] p-2.5 rounded-xl text-[11px] leading-relaxed ${
+                      m.sender === 'user'
+                        ? 'bg-cyan-600 text-white rounded-br-none shadow-sm'
+                        : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-bl-none shadow-sm'
                     }`}
                   >
-                    {isListening ? <MicOff size={15} /> : <Mic size={15} />}
-                    <span>{isListening ? 'DETENER MICRÓFONO' : 'DICTAR COMANDO POR VOZ'}</span>
-                  </button>
-                </div>
-
-                {/* Preguntas Frecuentes Rápidas */}
-                <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-slate-400">Preguntas sugeridas:</span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {[
-                      "Muéstrame las subestaciones eléctricas",
-                      "Activa la red de salud",
-                      "Cambia a vista 3D",
-                      "¿Qué cuadrantes revisar primero?"
-                    ].map((promptText, i) => (
-                      <button
-                        key={i}
-                        onClick={() => handleSendMessage(promptText)}
-                        className="text-[10px] bg-slate-900 hover:bg-cyan-950 text-slate-300 hover:text-cyan-300 border border-slate-800 hover:border-cyan-500/40 px-2.5 py-1 rounded-lg transition-all cursor-pointer text-left"
-                      >
-                        {promptText}
-                      </button>
-                    ))}
+                    {m.text}
                   </div>
+                  <span className="text-[8px] font-mono text-slate-500 mt-0.5 px-1">{m.timestamp}</span>
                 </div>
+              ))}
+              <div ref={chatBottomRef} />
+            </div>
 
-                {/* Historial de Mensajes */}
-                <div className="flex-1 space-y-2.5 min-h-[220px]">
-                  {messages.map((m) => (
-                    <div
-                      key={m.id}
-                      className={`flex flex-col ${m.sender === 'user' ? 'items-end' : 'items-start'}`}
-                    >
-                      <div
-                        className={`max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed ${
-                          m.sender === 'user'
-                            ? 'bg-cyan-600 text-white rounded-br-none shadow-md'
-                            : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-bl-none shadow-sm'
-                        }`}
-                      >
-                        {m.text}
-                      </div>
-                      <span className="text-[9px] font-mono text-slate-500 mt-1 px-1">{m.timestamp}</span>
-                    </div>
-                  ))}
-                  <div ref={chatBottomRef} />
-                </div>
-
-                {/* Input de Mensaje */}
-                <div className="pt-2 border-t border-slate-800 flex gap-2">
-                  <input
-                    type="text"
-                    value={inputQuery}
-                    onChange={(e) => setInputQuery(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                    placeholder="Hazle una consulta a SOGNE IA..."
-                    className="flex-1 bg-slate-900 border border-slate-800 focus:border-cyan-500/60 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 outline-none transition-colors"
-                  />
-                  <button
-                    onClick={() => handleSendMessage()}
-                    disabled={isLoading || !inputQuery.trim()}
-                    className="bg-cyan-600 hover:bg-cyan-500 disabled:opacity-40 text-white p-2.5 rounded-xl transition-all cursor-pointer flex items-center justify-center shrink-0"
-                  >
-                    <Send size={14} />
-                  </button>
-                </div>
-              </div>
-            )}
+            {/* Input de Mensaje */}
+            <div className="pt-2 border-t border-slate-800 flex gap-1.5 shrink-0">
+              <input
+                type="text"
+                value={inputQuery}
+                onChange={(e) => setInputQuery(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                placeholder="Escribe un comando o consulta..."
+                className="flex-1 bg-slate-900 border border-slate-800 focus:border-cyan-500/60 rounded-lg px-2.5 py-1.5 text-[11px] text-white placeholder-slate-500 outline-none transition-colors"
+              />
+              <button
+                onClick={() => handleSendMessage()}
+                disabled={isLoading || !inputQuery.trim()}
+                className="bg-cyan-600 hover:bg-cyan-500 disabled:opacity-40 text-white p-2 rounded-lg transition-all cursor-pointer flex items-center justify-center shrink-0"
+              >
+                <Send size={13} />
+              </button>
+            </div>
 
           </div>
 

@@ -283,176 +283,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     return () => window.removeEventListener('sogne_voice_trace_place', handleTracePlace);
   }, [map, applyFocusMask]);
 
-  // Escanear espacialmente activos contenidos, rutas de salida y zona de influencia exterior (1-2 km)
-  const evaluateAreaRiskWithAI = (shapeGeoJSON: any, shapeType: string, areaMetersSq: number) => {
-    if (!map || !shapeGeoJSON) return;
 
-    let antenasCount = 0;
-    let saludCount = 0;
-    let electricoCount = 0;
-    let gasCount = 0;
-    let aguaCount = 0;
-    let cuadrantesCount = 0;
-    let conppasCount = 0;
-    let incidentesCount = 0;
-
-    const exitRoutesSet = new Set<string>();
-    const internalDetails: string[] = [];
-
-    // Zona de Influencia Exterior (Buffer de 1.5 km alrededor del área)
-    let outerBufferGeoJSON: any = null;
-    try {
-      outerBufferGeoJSON = turf.buffer(shapeGeoJSON, 1.5, { units: 'kilometers' })?.geometry;
-    } catch (_) {}
-
-    let externalSalud = 0;
-    let externalElectrico = 0;
-    let externalGas = 0;
-    let externalAgua = 0;
-    let externalAntenas = 0;
-
-    const processedFeats = new Set<string>();
-    const allFeaturesToProcess: any[] = [];
-
-    // 1. Escanear directamente de TODAS las fuentes GeoJSON registradas en Mapbox
-    const styleSources = map.getStyle()?.sources || {};
-    Object.keys(styleSources).forEach(sourceId => {
-      try {
-        const srcFeats = map.querySourceFeatures(sourceId);
-        srcFeats.forEach((f: any) => {
-          const featKey = `${f.id || ''}_${f.properties?.nombre || f.properties?.NAME || ''}_${f.geometry?.type}`;
-          if (!processedFeats.has(featKey)) {
-            processedFeats.add(featKey);
-            allFeaturesToProcess.push({ feature: f, sourceId });
-          }
-        });
-      } catch (_) {}
-    });
-
-    // 2. Escanear elementos actualmente renderizados en pantalla
-    try {
-      const renderedFeats = map.queryRenderedFeatures();
-      renderedFeats.forEach((f: any) => {
-        const featKey = `${f.id || ''}_${f.properties?.nombre || f.properties?.NAME || ''}_${f.geometry?.type}`;
-        if (!processedFeats.has(featKey)) {
-          processedFeats.add(featKey);
-          allFeaturesToProcess.push({ feature: f, sourceId: f.source || 'rendered' });
-        }
-      });
-    } catch (_) {}
-
-    allFeaturesToProcess.forEach(({ feature: f, sourceId }) => {
-      if (!f || !f.geometry) return;
-
-      let isInside = false;
-      let isInsideOuter = false;
-
-      try {
-        if (f.geometry.type === 'Point') {
-          isInside = turf.booleanPointInPolygon(f.geometry as any, shapeGeoJSON);
-          if (!isInside && outerBufferGeoJSON) {
-            isInsideOuter = turf.booleanPointInPolygon(f.geometry as any, outerBufferGeoJSON);
-          }
-        } else if (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon') {
-          try {
-            isInside = turf.booleanIntersects(f as any, shapeGeoJSON as any);
-          } catch (_) {
-            const centerPt = turf.centroid(f as any).geometry;
-            isInside = turf.booleanPointInPolygon(centerPt as any, shapeGeoJSON);
-          }
-          if (!isInside && outerBufferGeoJSON) {
-            try {
-              isInsideOuter = turf.booleanIntersects(f as any, outerBufferGeoJSON as any);
-            } catch (_) {
-              const centerPt = turf.centroid(f as any).geometry;
-              isInsideOuter = turf.booleanPointInPolygon(centerPt as any, outerBufferGeoJSON);
-            }
-          }
-        } else if (f.geometry.type === 'LineString' || f.geometry.type === 'MultiLineString') {
-          try {
-            isInside = turf.booleanIntersects(f as any, shapeGeoJSON as any);
-          } catch (_) {
-            const bbox = turf.bbox(f);
-            const centerPt = turf.point([(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2]);
-            isInside = turf.booleanPointInPolygon(centerPt, shapeGeoJSON);
-          }
-        }
-      } catch (_) {}
-
-      const layerId = f.layer?.id || '';
-      const p = f.properties || {};
-      const propStr = (Object.values(p).join(' ') + ' ' + layerId + ' ' + sourceId).toLowerCase();
-      const featName = p.nombre || p.NAME || p.nombre_sitio || p.cuadrante || p.highway || p.ref || p.sector || '';
-
-      // Rutas de Salida / Evacuación
-      if (propStr.includes('vialidad') || propStr.includes('viabilidad') || propStr.includes('calle') || propStr.includes('avenida') || propStr.includes('highway') || propStr.includes('troncal')) {
-        if (featName && typeof featName === 'string' && featName.trim().length > 2 && isInside) {
-          exitRoutesSet.add(featName.trim());
-        }
-      }
-
-      // Clasificación de Capas e Infraestructura
-      if (isInside) {
-        if (propStr.includes('antena') || propStr.includes('digitel') || propStr.includes('movistar') || propStr.includes('movilnet') || propStr.includes('telecom')) {
-          antenasCount++;
-        } else if (propStr.includes('hospital') || propStr.includes('cdi') || propStr.includes('ambulatorio') || propStr.includes('clinica') || propStr.includes('salud') || propStr.includes('medico') || propStr.includes('centrossalud')) {
-          saludCount++;
-        } else if (propStr.includes('electr') || propStr.includes('corpoelec') || propStr.includes('subestacion') || propStr.includes('sistemaelectricone')) {
-          electricoCount++;
-        } else if (propStr.includes('gas') || propStr.includes('pdvsa') || propStr.includes('combustible') || propStr.includes('estaciongasne')) {
-          gasCount++;
-        } else if (propStr.includes('agua') || propStr.includes('embalse') || propStr.includes('pozo') || propStr.includes('hidro') || propStr.includes('desalinizad')) {
-          aguaCount++;
-        } else if (propStr.includes('cuadrante') || propStr.includes('paz') || propStr.includes('poligono')) {
-          cuadrantesCount++;
-        } else if (propStr.includes('conppa') || propStr.includes('compa') || propStr.includes('comuna')) {
-          conppasCount++;
-        } else if (propStr.includes('delito') || propStr.includes('incident') || propStr.includes('riesgo') || propStr.includes('concentrac') || propStr.includes('drogas') || propStr.includes('ciber')) {
-          incidentesCount++;
-        }
-
-        if (featName && typeof featName === 'string' && featName.trim().length > 1) {
-          internalDetails.push(featName.trim());
-        }
-      } else if (isInsideOuter) {
-        if (propStr.includes('hospital') || propStr.includes('cdi') || propStr.includes('ambulatorio') || propStr.includes('clinica') || propStr.includes('salud')) externalSalud++;
-        else if (propStr.includes('electr') || propStr.includes('corpoelec') || propStr.includes('subestacion')) externalElectrico++;
-        else if (propStr.includes('gas')) externalGas++;
-        else if (propStr.includes('agua') || propStr.includes('embalse')) externalAgua++;
-        else if (propStr.includes('antena') || propStr.includes('telecom')) externalAntenas++;
-      }
-    });
-
-    const exitRoutes = Array.from(exitRoutesSet).slice(0, 10);
-
-    let centerCoords: [number, number] | null = null;
-    try {
-      centerCoords = turf.centroid(shapeGeoJSON).geometry.coordinates as [number, number];
-    } catch (_) {}
-
-    const spatialPayload = {
-      shapeType,
-      areaKm2: areaMetersSq / 1000000,
-      centerCoords,
-      antenasCount,
-      saludCount,
-      electricoCount,
-      gasCount,
-      aguaCount,
-      cuadrantesCount,
-      conppasCount,
-      incidentesCount,
-      exitRoutes,
-      externalAssets: {
-        salud: externalSalud,
-        electrico: externalElectrico,
-        gas: externalGas,
-        agua: externalAgua,
-        antenas: externalAntenas
-      },
-      internalDetails: Array.from(new Set(internalDetails)).slice(0, 20)
-    };
-  };
 
   // Sincronizar estado táctico global para evitar reseteos en useMapbox
   useEffect(() => {
@@ -510,12 +341,14 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       if (src && buffered) {
         src.setData({ type: 'FeatureCollection', features: [buffered] });
         applyFocusMask(buffered);
+        const bbox = turf.bbox(buffered) as [number, number, number, number];
+        map.fitBounds(bbox, { padding: 80, duration: 800 });
       }
       bringTacticalLayersToFront();
     } catch (e) {
       console.warn("Error dibujando radio de cobertura:", e);
     }
-  }, [map, bringTacticalLayersToFront]);
+  }, [map, bringTacticalLayersToFront, applyFocusMask]);
 
   // Actualizar el círculo de cobertura cuando cambia el radio (0.5km, 1km, 3km, 5km, 10km)
   useEffect(() => {
@@ -1034,23 +867,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             </button>
           ))}
           <span className="text-[10px] opacity-80 border-l border-white/20 pl-2">Área: {bufferArea} km²</span>
-
-          {bufferCenterRef.current && (
-            <button
-              onClick={() => {
-                if (bufferCenterRef.current) {
-                  const pt = turf.point(bufferCenterRef.current);
-                  const buf = turf.buffer(pt, bufferRadius, { units: 'kilometers' });
-                  evaluateAreaRiskWithAI(buf, `Radio de Cobertura (${bufferRadius} km)`, Number(bufferArea) * 1000000);
-                }
-              }}
-              className="ml-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 px-2 py-0.5 rounded-lg text-[10px] font-black uppercase transition-all shadow-[0_0_10px_rgba(245,158,11,0.5)] cursor-pointer flex items-center gap-1"
-              title="Evaluar vulnerabilidad espacial de esta zona con SOGNE IA"
-            >
-              <ShieldAlert size={12} />
-              <span>EVALUAR RIESGO IA</span>
-            </button>
-          )}
         </div>
       )}
 
@@ -1091,19 +907,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
           {polygonPoints.length >= 3 && (
             <div className="flex items-center gap-1.5 ml-1 border-l border-white/20 pl-2">
-              <button
-                onClick={() => {
-                  const closedRing = [...polygonPoints, polygonPoints[0]];
-                  const poly = turf.polygon([closedRing]);
-                  evaluateAreaRiskWithAI(poly, "Polígono Trazado", totalArea);
-                }}
-                className="bg-amber-500 hover:bg-amber-400 text-slate-950 px-2 py-0.5 rounded-lg text-[10px] font-black uppercase transition-all shadow-[0_0_10px_rgba(245,158,11,0.5)] cursor-pointer flex items-center gap-1"
-                title="Evaluar vulnerabilidad espacial del área trazada con SOGNE IA"
-              >
-                <ShieldAlert size={12} />
-                <span>EVALUAR RIESGO IA</span>
-              </button>
-
               <button
                 onClick={downloadGeoJSON}
                 className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-2 py-0.5 rounded-lg text-[10px] font-black uppercase transition-all shadow-[0_0_10px_rgba(6,182,212,0.4)] cursor-pointer flex items-center gap-1"
