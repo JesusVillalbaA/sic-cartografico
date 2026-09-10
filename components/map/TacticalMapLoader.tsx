@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { Activity, Cpu, CheckCircle2 } from 'lucide-react';
+import { APP_VERSION } from '@/lib/version';
 
 interface TacticalMapLoaderProps {
   isLoading: boolean;
@@ -143,8 +144,9 @@ export const TacticalMapLoader: React.FC<TacticalMapLoaderProps> = ({
         <h2 className="text-2xl sm:text-3xl font-black text-white uppercase italic tracking-tight leading-tight">
           {isCompleted ? "Geointeligencia Lista" : "Cargando Geointeligencia"}
         </h2>
-        <p className="text-xs font-mono text-slate-400 mt-1">
-          Centro de Orientación Geoespacial y Comando Estratégico
+        <p className="text-xs font-mono text-slate-400 mt-1 flex items-center justify-center gap-2">
+          <span>Centro de Orientación Geoespacial y Comando Estratégico</span>
+          <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30 text-[9px] font-mono">{APP_VERSION}</span>
         </p>
 
         {/* Barra de Progreso Fluida en Tiempo Real (1% -> 100%) */}

@@ -7,6 +7,7 @@ import {
   Radio, Zap, HeartPulse, Bus, Eye, Anchor, Download, Loader2, Filter, Check
 } from 'lucide-react';
 import { exportLayerToPDF } from '@/app/lib/exportLayerPDF';
+import { APP_VERSION } from '@/lib/version';
 
 interface LegendProps {
   theme?: string;
@@ -632,7 +633,10 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
               <Sparkles size={10} className={`${isLight ? 'text-sky-600' : 'text-cyan-400'} animate-spin`} style={{ animationDuration: '6s' }} />
               <span className={`uppercase tracking-widest font-black ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>SOGNE SISTEMA GEOGRÁFICO</span>
             </div>
-            <span className={isLight ? 'text-sky-700 font-bold' : 'text-cyan-400/80'}>INTERACTIVO</span>
+            <div className="flex items-center gap-2">
+              <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30 text-[9px] font-mono">{APP_VERSION}</span>
+              <span className={isLight ? 'text-sky-700 font-bold' : 'text-cyan-400/80'}>INTERACTIVO</span>
+            </div>
           </div>
 
         </div>

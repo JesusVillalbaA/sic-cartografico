@@ -6,6 +6,7 @@ import {
 
 import { exportLayerToPDF } from '@/app/lib/exportLayerPDF';
 import { SogneVoiceController } from '@/lib/voiceRecognitionModule';
+import { APP_VERSION } from '@/lib/version';
 
 interface AsistenteIAProps {
   layersVisible: any;
@@ -337,8 +338,8 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
           <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
         </div>
         <span className="hidden sm:inline">SOG</span>
-        <span className="bg-cyan-500/20 text-cyan-300 text-[9px] px-1.5 py-0.5 rounded font-mono border border-cyan-400/30">
-          VOZ & CHAT
+        <span className="bg-cyan-500/20 text-cyan-300 text-[8px] px-1 py-0.5 rounded font-mono border border-cyan-400/30">
+          {APP_VERSION}
         </span>
       </div>
 
