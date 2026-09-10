@@ -11,6 +11,7 @@ interface ZoomControlsProps {
 
 export const ZoomControls = ({ map, theme = 'dark' }: ZoomControlsProps) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [is3DActive, setIs3DActive] = useState(false);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -18,6 +19,14 @@ export const ZoomControls = ({ map, theme = 'dark' }: ZoomControlsProps) => {
     };
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  useEffect(() => {
+    const handle3DEvent = (e: any) => {
+      setIs3DActive(!!e.detail?.active);
+    };
+    window.addEventListener('sigdi_3d_mode', handle3DEvent);
+    return () => window.removeEventListener('sigdi_3d_mode', handle3DEvent);
   }, []);
 
   const handleZoomIn = () => {
@@ -92,11 +101,14 @@ export const ZoomControls = ({ map, theme = 'dark' }: ZoomControlsProps) => {
         onClick={() => {
           playTacticalClick();
           if (!map) return;
-          const currentPitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
-          setMap3DMode(map, currentPitch <= 10);
+          setMap3DMode(map, !is3DActive);
         }}
         title="Alternar Perspectiva 3D"
-        className="w-9 h-9 rounded-xl flex items-center justify-center text-xs font-black text-cyan-400 hover:text-white hover:bg-cyan-500/20 active:scale-95 transition-all duration-200 border border-transparent hover:border-cyan-500/30 cursor-pointer shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+        className={`w-9 h-9 rounded-xl flex items-center justify-center text-xs font-black transition-all duration-200 border cursor-pointer ${
+          is3DActive
+            ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.6)] font-black'
+            : 'text-cyan-400 hover:text-white hover:bg-cyan-500/20 border-transparent hover:border-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.2)]'
+        }`}
       >
         3D
       </button>

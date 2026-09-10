@@ -53,32 +53,17 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   // Manejo de Vista 3D Táctica
   const toggle3D = React.useCallback(() => {
     if (!map) return;
-    setIs3DActive(prev => {
-      const nextState = !prev;
-      setMap3DMode(map, nextState);
-      return nextState;
-    });
-  }, [map]);
+    setMap3DMode(map, !is3DActive);
+  }, [map, is3DActive]);
 
-  // Sincronizar estado del botón 3D y visibilidad de edificaciones con el pitch del mapa
+  // Sincronizar estado del botón 3D con el evento unificado de la aplicación
   useEffect(() => {
-    if (!map) return;
-    const handlePitchChange = () => {
-      const pitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
-      const isPitchActive = pitch > 15;
-      setIs3DActive(isPitchActive);
-      if (map.getLayer('3d-buildings')) {
-        map.setLayoutProperty('3d-buildings', 'visibility', isPitchActive ? 'visible' : 'none');
-      }
-      if (!isPitchActive) {
-        try { map.setTerrain(null); } catch (e) {}
-      }
+    const handle3DEvent = (e: any) => {
+      setIs3DActive(!!e.detail?.active);
     };
-    map.on('pitch', handlePitchChange);
-    return () => {
-      map.off('pitch', handlePitchChange);
-    };
-  }, [map]);
+    window.addEventListener('sigdi_3d_mode', handle3DEvent);
+    return () => window.removeEventListener('sigdi_3d_mode', handle3DEvent);
+  }, []);
 
 
   const toggleVoiceListener = () => {

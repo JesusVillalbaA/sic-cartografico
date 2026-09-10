@@ -308,6 +308,18 @@ export const useMapbox = (
         console.warn('[SIGDI] No se pudo agregar la capa 3d-buildings:', err);
       }
 
+      // Ocultar cualquier capa nativa de edificios de Mapbox para que las casas sean 100% foto satelital real plana
+      try {
+        const styleLayers = m.getStyle().layers;
+        if (styleLayers) {
+          styleLayers.forEach((l: any) => {
+            if (l.id !== '3d-buildings' && (l.id.includes('building') || l['source-layer'] === 'building')) {
+              m.setLayoutProperty(l.id, 'visibility', 'none');
+            }
+          });
+        }
+      } catch (err) {}
+
       // ── CAPAS ─────────────────────────────────────────────────────────────
 
       // IAPOLENE — AZUL OPERATIVO (#2563eb)
@@ -320,7 +332,7 @@ export const useMapbox = (
       m.addLayer({ id: 'municipios-local', type: 'line', source: 'municipios-source', filter: ['==', ['get', 'adm1_name'], 'Nueva Esparta'], paint: { 'line-color': '#06b6d4', 'line-width': 1.8, 'line-opacity': 0.8 } });
 
       // Sectores — VERDE ESMERALDA (#10b981)
-      m.addLayer({ id: 'sectores-api', type: 'circle', source: 'composite', 'source-layer': 'place_label', filter: ['match', ['get', 'class'], ['settlement', 'suburb', 'neighbourhood'], true, false], layout: { visibility: 'visible' }, paint: { 'circle-radius': 5.5, 'circle-color': '#10b981', 'circle-stroke-width': 1.5, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.9 } });
+      m.addLayer({ id: 'sectores-api', type: 'circle', source: 'composite', 'source-layer': 'place_label', filter: ['match', ['get', 'class'], ['settlement', 'suburb', 'neighbourhood'], true, false], layout: { visibility: 'none' }, paint: { 'circle-radius': 5.5, 'circle-color': '#10b981', 'circle-stroke-width': 1.5, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.9 } });
 
       // Cuadrantes polígonos — ORO BRILLANTE (#fbbf24)
       m.addLayer({ id: 'poligonos-fill',   type: 'fill',   source: 'poligonos-source', layout: { visibility: 'none' }, paint: { 'fill-color': '#fbbf24', 'fill-opacity': 0.2, 'fill-outline-color': '#b45309' } });
@@ -812,6 +824,7 @@ export const useMapbox = (
     set('vialidad-layer',    !!layersVisible.vialidad);
     set('municipios-local',  !!layersVisible.municipios);
     set('municipios-fill',   !!layersVisible.municipios);
+    set('sectores-api',      !!layersVisible.sectores);
     const isCuadrantesActive = !!(layersVisible.cuadrantes || layersVisible.cuadrantesPoligonos || layersVisible.compas);
     set('cuadrantes-layer',  isCuadrantesActive);
     set('cuadrantes-glow',   isCuadrantesActive);

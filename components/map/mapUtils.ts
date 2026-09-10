@@ -325,13 +325,26 @@ export const setMap3DMode = (map: mapboxgl.Map | null, enable: boolean) => {
     } catch (e) {
       console.warn('[SIGDI] Error al desactivar elevación 3D:', e);
     }
-    if (map.getLayer('3d-buildings')) {
-      map.setLayoutProperty('3d-buildings', 'visibility', 'none');
-    }
+    try {
+      const styleLayers = map.getStyle()?.layers;
+      if (styleLayers) {
+        styleLayers.forEach((l: any) => {
+          if (l.id.includes('building') || l['source-layer'] === 'building') {
+            if (map.getLayer(l.id)) {
+              map.setLayoutProperty(l.id, 'visibility', 'none');
+            }
+          }
+        });
+      }
+    } catch (e) {}
     map.easeTo({
       pitch: 0,
       bearing: 0,
       duration: 1000
     });
+  }
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('sigdi_3d_mode', { detail: { active: enable } }));
   }
 };
