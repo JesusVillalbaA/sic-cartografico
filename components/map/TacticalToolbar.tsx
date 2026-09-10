@@ -355,9 +355,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     if (activeTool === 'buffer' && bufferCenterRef.current) {
       drawBufferCircle(bufferCenterRef.current, bufferRadius);
     }
-  }, [bufferRadius, activeTool, drawBufferCircle]);
-
-  // Inicializar o limpiar fuentes de herramientas tácticas en el mapa
+  }, [bufferRadius, activeTool, drawBu  // Inicializar o limpiar fuentes de herramientas tácticas en el mapa
   useEffect(() => {
     if (!map) return;
 
@@ -368,6 +366,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           type: 'geojson',
           data: { type: 'FeatureCollection', features: [] }
         });
+      }
+      if (!map.getLayer('tactical-measure-line')) {
         map.addLayer({
           id: 'tactical-measure-line',
           type: 'line',
@@ -377,6 +377,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             'line-width': 5
           }
         });
+      }
+      if (!map.getLayer('tactical-measure-points')) {
         map.addLayer({
           id: 'tactical-measure-points',
           type: 'circle',
@@ -396,34 +398,40 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           type: 'geojson',
           data: { type: 'FeatureCollection', features: [] }
         });
+      }
+      if (!map.getLayer('tactical-buffer-fill')) {
         map.addLayer({
           id: 'tactical-buffer-fill',
           type: 'fill',
           source: 'tactical-buffer-source',
-          filter: ['==', ['geometry-type'], 'Polygon'],
+          filter: ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']],
           paint: {
             'fill-color': '#a855f7',
-            'fill-opacity': 0.35
+            'fill-opacity': 0.40
           }
         });
+      }
+      if (!map.getLayer('tactical-buffer-glow')) {
         map.addLayer({
           id: 'tactical-buffer-glow',
           type: 'line',
           source: 'tactical-buffer-source',
-          filter: ['==', ['geometry-type'], 'Polygon'],
+          filter: ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']],
           layout: { 'line-cap': 'round', 'line-join': 'round' },
           paint: {
             'line-color': '#d8b4fe',
             'line-width': 10,
-            'line-opacity': 0.8,
+            'line-opacity': 0.85,
             'line-blur': 3
           }
         });
+      }
+      if (!map.getLayer('tactical-buffer-line')) {
         map.addLayer({
           id: 'tactical-buffer-line',
           type: 'line',
           source: 'tactical-buffer-source',
-          filter: ['==', ['geometry-type'], 'Polygon'],
+          filter: ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']],
           layout: { 'line-cap': 'round', 'line-join': 'round' },
           paint: {
             'line-color': '#ffffff',
@@ -431,13 +439,15 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             'line-dasharray': [4, 2]
           }
         });
+      }
+      if (!map.getLayer('tactical-buffer-center')) {
         map.addLayer({
           id: 'tactical-buffer-center',
           type: 'circle',
           source: 'tactical-buffer-source',
-          filter: ['==', ['geometry-type'], 'Point'],
+          filter: ['any', ['==', ['geometry-type'], 'Point'], ['==', ['geometry-type'], 'MultiPoint']],
           paint: {
-            'circle-radius': 8,
+            'circle-radius': 9,
             'circle-color': '#f0abfc',
             'circle-stroke-width': 3,
             'circle-stroke-color': '#ffffff'
@@ -451,20 +461,25 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           type: 'geojson',
           data: { type: 'FeatureCollection', features: [] }
         });
+      }
+      if (!map.getLayer('tactical-polygon-fill')) {
         map.addLayer({
           id: 'tactical-polygon-fill',
           type: 'fill',
           source: 'tactical-polygon-source',
-          filter: ['==', ['geometry-type'], 'Polygon'],
+          filter: ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']],
           paint: {
             'fill-color': '#06b6d4',
-            'fill-opacity': 0.30
+            'fill-opacity': 0.35
           }
         });
+      }
+      if (!map.getLayer('tactical-polygon-line-glow')) {
         map.addLayer({
           id: 'tactical-polygon-line-glow',
           type: 'line',
           source: 'tactical-polygon-source',
+          filter: ['any', ['==', ['geometry-type'], 'LineString'], ['==', ['geometry-type'], 'MultiLineString'], ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']],
           layout: {
             'line-cap': 'round',
             'line-join': 'round'
@@ -476,10 +491,13 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             'line-blur': 3
           }
         });
+      }
+      if (!map.getLayer('tactical-polygon-line')) {
         map.addLayer({
           id: 'tactical-polygon-line',
           type: 'line',
           source: 'tactical-polygon-source',
+          filter: ['any', ['==', ['geometry-type'], 'LineString'], ['==', ['geometry-type'], 'MultiLineString'], ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']],
           layout: {
             'line-cap': 'round',
             'line-join': 'round'
@@ -491,11 +509,13 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             'line-dasharray': [4, 2]
           }
         });
+      }
+      if (!map.getLayer('tactical-polygon-points')) {
         map.addLayer({
           id: 'tactical-polygon-points',
           type: 'circle',
           source: 'tactical-polygon-source',
-          filter: ['==', ['geometry-type'], 'Point'],
+          filter: ['any', ['==', ['geometry-type'], 'Point'], ['==', ['geometry-type'], 'MultiPoint']],
           paint: {
             'circle-radius': 9,
             'circle-color': '#00ffff',
@@ -514,8 +534,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       map.once('load', setupSources);
     }
   }, [map, bringTacticalLayersToFront]);
-
-
 
   // Manejar mousemove y clics en el mapa según la herramienta activa
   useEffect(() => {
