@@ -310,7 +310,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     if (!map) return;
     const layers = [
       'focus-mask-layer',
-      'tactical-buffer-fill', 'tactical-buffer-line', 
+      'tactical-buffer-fill', 'tactical-buffer-glow', 'tactical-buffer-line', 'tactical-buffer-center',
       'tactical-polygon-fill', 'tactical-polygon-line-glow', 'tactical-polygon-line', 'tactical-polygon-points',
       'tactical-measure-line', 'tactical-measure-points'
     ];
@@ -339,7 +339,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const buffered = turf.buffer(point, radiusKm, { units: 'kilometers' });
       const src = map.getSource('tactical-buffer-source') as mapboxgl.GeoJSONSource;
       if (src && buffered) {
-        src.setData({ type: 'FeatureCollection', features: [buffered] });
+        src.setData({ type: 'FeatureCollection', features: [buffered, point] });
         applyFocusMask(buffered);
         const bbox = turf.bbox(buffered) as [number, number, number, number];
         map.fitBounds(bbox, { padding: 80, duration: 800 });
@@ -374,7 +374,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           source: 'tactical-measure-source',
           paint: {
             'line-color': '#38bdf8',
-            'line-width': 4.5
+            'line-width': 5
           }
         });
         map.addLayer({
@@ -382,15 +382,15 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           type: 'circle',
           source: 'tactical-measure-source',
           paint: {
-            'circle-radius': 6,
+            'circle-radius': 7,
             'circle-color': '#38bdf8',
-            'circle-stroke-width': 2.5,
+            'circle-stroke-width': 3,
             'circle-stroke-color': '#ffffff'
           }
         });
       }
 
-      // 2. Fuente de buffer
+      // 2. Fuente de buffer (Radio de Cobertura)
       if (!map.getSource('tactical-buffer-source')) {
         map.addSource('tactical-buffer-source', {
           type: 'geojson',
@@ -400,24 +400,52 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-buffer-fill',
           type: 'fill',
           source: 'tactical-buffer-source',
+          filter: ['==', ['geometry-type'], 'Polygon'],
           paint: {
             'fill-color': '#a855f7',
-            'fill-opacity': 0.25
+            'fill-opacity': 0.35
+          }
+        });
+        map.addLayer({
+          id: 'tactical-buffer-glow',
+          type: 'line',
+          source: 'tactical-buffer-source',
+          filter: ['==', ['geometry-type'], 'Polygon'],
+          layout: { 'line-cap': 'round', 'line-join': 'round' },
+          paint: {
+            'line-color': '#d8b4fe',
+            'line-width': 10,
+            'line-opacity': 0.8,
+            'line-blur': 3
           }
         });
         map.addLayer({
           id: 'tactical-buffer-line',
           type: 'line',
           source: 'tactical-buffer-source',
+          filter: ['==', ['geometry-type'], 'Polygon'],
+          layout: { 'line-cap': 'round', 'line-join': 'round' },
           paint: {
-            'line-color': '#c084fc',
-            'line-width': 3,
-            'line-dasharray': [3, 2]
+            'line-color': '#ffffff',
+            'line-width': 4,
+            'line-dasharray': [4, 2]
+          }
+        });
+        map.addLayer({
+          id: 'tactical-buffer-center',
+          type: 'circle',
+          source: 'tactical-buffer-source',
+          filter: ['==', ['geometry-type'], 'Point'],
+          paint: {
+            'circle-radius': 8,
+            'circle-color': '#f0abfc',
+            'circle-stroke-width': 3,
+            'circle-stroke-color': '#ffffff'
           }
         });
       }
 
-      // 3. Fuente de polígono / área personalizada
+      // 3. Fuente de polígono / área personalizada (Trazar Área)
       if (!map.getSource('tactical-polygon-source')) {
         map.addSource('tactical-polygon-source', {
           type: 'geojson',
@@ -427,9 +455,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           id: 'tactical-polygon-fill',
           type: 'fill',
           source: 'tactical-polygon-source',
+          filter: ['==', ['geometry-type'], 'Polygon'],
           paint: {
             'fill-color': '#06b6d4',
-            'fill-opacity': 0.15 // Relleno cian traslúcido elegante
+            'fill-opacity': 0.30
           }
         });
         map.addLayer({
@@ -442,8 +471,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           },
           paint: {
             'line-color': '#00ffff',
-            'line-width': 12,
-            'line-opacity': 0.8,
+            'line-width': 14,
+            'line-opacity': 0.9,
             'line-blur': 3
           }
         });
@@ -457,17 +486,18 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           },
           paint: {
             'line-color': '#ffffff',
-            'line-width': 4.5,
+            'line-width': 5,
             'line-opacity': 1.0,
-            'line-dasharray': [4, 2] // Rayas tácticas neón de alta visibilidad
+            'line-dasharray': [4, 2]
           }
         });
         map.addLayer({
           id: 'tactical-polygon-points',
           type: 'circle',
           source: 'tactical-polygon-source',
+          filter: ['==', ['geometry-type'], 'Point'],
           paint: {
-            'circle-radius': 8,
+            'circle-radius': 9,
             'circle-color': '#00ffff',
             'circle-stroke-width': 3,
             'circle-stroke-color': '#ffffff'
@@ -617,6 +647,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             try {
               const closedRing = [...newPoints, newPoints[0]];
               const poly = turf.polygon([closedRing]);
+              features.push(poly);
+              features.push(turf.lineString(closedRing));
               setTotalArea(turf.area(poly));
             } catch (e) {}
           }
