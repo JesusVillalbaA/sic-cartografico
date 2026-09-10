@@ -140,7 +140,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
       const data = await res.json();
       if (data.success) {
         if (data.voiceActions && data.voiceActions.length > 0) {
-          data.voiceActions.forEach((actionKey: string) => {
+          for (const actionKey of data.voiceActions) {
             if (actionKey === 'turn_off_all') {
               if (layersVisible) {
                 Object.keys(layersVisible).forEach(k => {
@@ -214,7 +214,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
                 onToggle(actionKey);
               }
             }
-          });
+          }
         }
 
         setMessages(prev => [
