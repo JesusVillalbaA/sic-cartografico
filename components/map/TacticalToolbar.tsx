@@ -355,7 +355,9 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     if (activeTool === 'buffer' && bufferCenterRef.current) {
       drawBufferCircle(bufferCenterRef.current, bufferRadius);
     }
-  }, [bufferRadius, activeTool, drawBu  // Inicializar o limpiar fuentes de herramientas tácticas en el mapa
+  }, [bufferRadius, activeTool, drawBufferCircle]);
+
+  // Inicializar o limpiar fuentes de herramientas tácticas en el mapa
   useEffect(() => {
     if (!map) return;
 
