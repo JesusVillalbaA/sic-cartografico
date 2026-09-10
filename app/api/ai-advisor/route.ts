@@ -294,12 +294,9 @@ function parseVoiceCommand(command: string) {
   if (text.includes('sector') || text.includes('sectores')) {
     toggleLayer('sectores', 'Sectores');
   }
-  if (text.includes('cuadrante') || text.includes('cuadrantes') || text.includes('patrulla')) {
-    actions.push(`${turnPrefix}cuadrantesPoligonos`, `${turnPrefix}cuadrantes`);
-    responseText += `${verbLabel} Cuadrantes de Paz. `;
-  }
-  if (text.includes('compa') || text.includes('compas') || text.includes('comité de paz') || text.includes('comités de paz') || text.includes('comite de paz')) {
-    toggleLayer('compas', 'Comités de Paz (COMPAS)');
+  if (text.includes('cuadrante') || text.includes('cuadrantes') || text.includes('patrulla') || text.includes('compa') || text.includes('compas') || text.includes('comité de paz') || text.includes('comités de paz') || text.includes('comite de paz')) {
+    actions.push(`${turnPrefix}cuadrantesPoligonos`, `${turnPrefix}compas`);
+    responseText += `${verbLabel} Cuadrantes de Paz (Polígonos detallados). `;
   }
 
   // Zonas de Riesgo e Inteligencia
@@ -443,8 +440,8 @@ function parseVoiceCommand(command: string) {
   if (text.includes('taxi') || text.includes('taxis')) {
     toggleLayer('taxis', 'Líneas de Taxis');
   }
-  if (text.includes('conppa') || text.includes('conppas') || text.includes('pesca') || text.includes('pesquero')) {
-    toggleLayer('conppas', 'Sectores Pesqueros (CONPPAS)');
+  if (text.includes('conppa') || text.includes('conppas') || text.includes('pesca') || text.includes('pesquero') || text.includes('puerto pesquero') || text.includes('pescadores')) {
+    toggleLayer('conppas', 'CONPPAS y Sector Pesquero (52 Puertos)');
   }
 
   // Modos del Mapa
