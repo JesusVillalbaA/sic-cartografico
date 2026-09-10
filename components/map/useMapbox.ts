@@ -339,10 +339,10 @@ export const useMapbox = (
       m.addLayer({ id: 'poligonos-line',   type: 'line',   source: 'poligonos-source', layout: { visibility: 'none' }, paint: { 'line-color': '#b45309', 'line-width': 2 } });
       m.addLayer({ id: 'poligonos-labels', type: 'symbol', source: 'poligonos-source', layout: { ...MAP_LAYERS.cuadrantesPoligonos.label.layout, 'text-field': ['coalesce', ['get', 'comuna'], ['concat', 'C-', ['get', 'cuadrante']]] } as any, paint: { 'text-color': '#b45309', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // Cuadrantes de Paz — Polígonos Detallados Exclusivos (compas-source)
-      m.addLayer({ id: 'compas-fill',   type: 'fill',   source: 'compas-source', layout: { visibility: 'none' }, paint: { 'fill-color': '#f59e0b', 'fill-opacity': 0.22, 'fill-outline-color': '#b45309' } });
-      m.addLayer({ id: 'compas-line',   type: 'line',   source: 'compas-source', layout: { visibility: 'none', 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#fbbf24', 'line-width': 2.2, 'line-opacity': 0.95 } });
-      m.addLayer({ id: 'compas-labels', type: 'symbol', source: 'compas-source', layout: { visibility: 'none', 'text-field': ['coalesce', ['get', 'name'], ['get', 'comuna'], ['concat', 'C-', ['get', 'cuadrante']]], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-anchor': 'center' }, paint: { 'text-color': '#fbbf24', 'text-halo-color': '#030712', 'text-halo-width': 2 } });
+      // Cuadrantes de Paz — Polígonos Detallados Rojo Vinotinto (compas-source)
+      m.addLayer({ id: 'compas-fill',   type: 'fill',   source: 'compas-source', layout: { visibility: 'none' }, paint: { 'fill-color': '#800020', 'fill-opacity': 0.35, 'fill-outline-color': '#b91c1c' } });
+      m.addLayer({ id: 'compas-line',   type: 'line',   source: 'compas-source', layout: { visibility: 'none', 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#991b1b', 'line-width': 2.5, 'line-opacity': 0.95 } });
+      m.addLayer({ id: 'compas-labels', type: 'symbol', source: 'compas-source', layout: { visibility: 'none' }, paint: {} });
 
       // Cuadrantes puntos
       m.addLayer({ id: 'cuadrantes-glow',   type: 'circle', source: 'cuadrantes-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 16, 'circle-color': '#fbbf24', 'circle-blur': 1.8, 'circle-opacity': 0.5 } });
@@ -834,7 +834,7 @@ export const useMapbox = (
     set('poligonos-labels',  false);
     set('compas-fill',       isCuadrantesActive);
     set('compas-line',       isCuadrantesActive);
-    set('compas-labels',     isCuadrantesActive);
+    set('compas-labels',     false);
     set('estaciones-layer',  !!layersVisible.estaciones);
     set('estaciones-labels', !!layersVisible.estaciones);
 
