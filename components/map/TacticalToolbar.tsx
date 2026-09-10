@@ -148,17 +148,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       const feature = polyGeoJSON.type === 'Feature' ? polyGeoJSON : { type: 'Feature', geometry: polyGeoJSON, properties: {} };
       const maskData = turf.mask(feature as any);
       const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
-      if (maskSrc) maskSrc.setData(maskData);
-    } catch (_) {
-      try {
-        const outerBounds = turf.polygon([[
-          [-66, 9], [-66, 13], [-62, 13], [-62, 9], [-66, 9]
-        ]]);
-        const geom = polyGeoJSON.type === 'Feature' ? polyGeoJSON.geometry : polyGeoJSON;
-        const diff = turf.difference(turf.featureCollection([outerBounds as any, geom as any]));
-        const maskSrc = map.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
-        if (maskSrc && diff) maskSrc.setData(diff as any);
-      } catch (e) {}
+      if (maskSrc && maskData) {
+        maskSrc.setData(maskData);
+      }
+    } catch (e) {
+      console.warn("No se pudo aplicar la máscara de enfoque:", e);
     }
   }, [map]);
 
@@ -341,8 +335,10 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       if (src && buffered) {
         src.setData({ type: 'FeatureCollection', features: [buffered, point] });
         applyFocusMask(buffered);
-        const bbox = turf.bbox(buffered) as [number, number, number, number];
-        map.fitBounds(bbox, { padding: 80, duration: 800 });
+        try {
+          const bbox = turf.bbox(buffered) as [number, number, number, number];
+          map.fitBounds(bbox, { padding: 80, duration: 500 });
+        } catch (_) {}
       }
       bringTacticalLayersToFront();
     } catch (e) {
@@ -706,22 +702,29 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       setIsPolygonFinished(true);
       isPolygonFinishedRef.current = true;
 
-      const closedRing = [...currentPoints, currentPoints[0]];
-      const poly = turf.polygon([closedRing]);
-      const line = turf.lineString(closedRing); // Perímetro neón cerrado
-      const pointFeatures = currentPoints.map(p => turf.point(p));
-      const features: any[] = [poly, ...pointFeatures, line]; // Relleno cian suave traslúcido + bordes neón
+      try {
+        const closedRing = [...currentPoints, currentPoints[0]];
+        const poly = turf.polygon([closedRing]);
+        const line = turf.lineString(closedRing); // Perímetro neón cerrado
+        const pointFeatures = currentPoints.map(p => turf.point(p));
+        const features: any[] = [poly, ...pointFeatures, line]; // Relleno cian suave traslúcido + bordes neón
 
-      const sqMeters = turf.area(poly);
-      setTotalArea(sqMeters);
+        const sqMeters = turf.area(poly);
+        setTotalArea(sqMeters);
 
-      const src = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
-      if (src) src.setData({ type: 'FeatureCollection', features });
+        const src = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
+        if (src) src.setData({ type: 'FeatureCollection', features });
 
-      applyFocusMask(poly);
-      const bbox = turf.bbox(poly) as [number, number, number, number];
-      const currentPitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
-      map.fitBounds(bbox, { padding: 90, pitch: currentPitch, duration: 800 });
+        applyFocusMask(poly);
+
+        try {
+          const bbox = turf.bbox(poly) as [number, number, number, number];
+          const currentPitch = typeof map.getPitch === 'function' ? map.getPitch() : 0;
+          map.fitBounds(bbox, { padding: 90, pitch: currentPitch, duration: 500 });
+        } catch (_) {}
+      } catch (e) {
+        console.warn("Error al finalizar polígono:", e);
+      }
       bringTacticalLayersToFront();
     };
 
