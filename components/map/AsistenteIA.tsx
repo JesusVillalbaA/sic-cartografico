@@ -24,6 +24,9 @@ interface Message {
 
 const isLayerActive = (layers: any, key: string): boolean => {
   if (!layers) return false;
+  if (key === 'compas' || key === 'cuadrantesPoligonos' || key === 'cuadrantes') {
+    return !!(layers.compas || layers.cuadrantesPoligonos || layers.cuadrantes);
+  }
   if (key.includes('.')) {
     const [parent, child] = key.split('.');
     return !!layers[parent]?.[child];
