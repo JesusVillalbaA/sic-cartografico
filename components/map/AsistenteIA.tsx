@@ -176,11 +176,22 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
                 onToggle(layerKey);
               }
             } else if (actionKey.startsWith('export_pdf:')) {
-              const layerToExport = actionKey.split(':')[1];
+              let layerToExport = actionKey.split(':')[1];
+              if (layerToExport === 'auto' || layerToExport === 'general') {
+                if (layersVisible?.conppas) layerToExport = 'conppas';
+                else if (layersVisible?.compas || layersVisible?.cuadrantesPoligonos || layersVisible?.cuadrantes) layerToExport = 'compas';
+                else if (layersVisible?.antenasDigitel || layersVisible?.antenasMovistar || layersVisible?.antenasMovilnet) layerToExport = 'antenas';
+                else if (layersVisible?.hospitales || layersVisible?.clinicas || layersVisible?.ambulatorios || layersVisible?.cdi) layerToExport = 'hospitales';
+                else if (layersVisible?.sistemasElectricos) layerToExport = 'electricidad';
+                else if (layersVisible?.estacionesGas) layerToExport = 'estaciongas';
+                else if (layersVisible?.municipios) layerToExport = 'municipios';
+                else if (layersVisible?.sectores) layerToExport = 'sectores';
+                else layerToExport = 'compas';
+              }
               try {
-                exportLayerToPDF({ layerKey: layerToExport });
-              } catch (e) {
-                console.warn("Error al exportar PDF individual por voz:", e);
+                await exportLayerToPDF({ layerKey: layerToExport });
+              } catch (e: any) {
+                console.warn("Error al exportar PDF por voz:", e);
               }
             } else if (actionKey.startsWith('trace_place:')) {
               const parts = actionKey.split(':');

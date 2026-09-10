@@ -256,9 +256,13 @@ function parseVoiceCommand(command: string) {
     else if (text.includes('banda') || text.includes('grupo delictivo')) { actions.push('export_pdf:bandas'); pdfExecuted = true; }
     else if (text.includes('droga')) { actions.push('export_pdf:drogas'); pdfExecuted = true; }
     else if (text.includes('transporte') || text.includes('terminal')) { actions.push('export_pdf:transporte'); pdfExecuted = true; }
+    else {
+      actions.push('export_pdf:auto');
+      pdfExecuted = true;
+    }
 
     if (pdfExecuted) {
-      responseText += "Generando y descargando Reporte PDF Individual. ";
+      responseText += "Generando y descargando automáticamente el Reporte PDF en formato oficial A4. ";
     }
   }
 
