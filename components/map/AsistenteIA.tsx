@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Sparkles, Bot, X, Send, Mic, MicOff, Radio, MessageSquare 
+  Sparkles, Bot, X, Send, Mic, MicOff, Radio, GripVertical
 } from 'lucide-react';
 
 import { exportLayerToPDF } from '@/app/lib/exportLayerPDF';
@@ -30,6 +30,12 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
+  // Posición arrastrable del panel
+  const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
+  const isDraggingRef = useRef(false);
+  const dragOffsetRef = useRef({ x: 0, y: 0 });
+  const panelRef = useRef<HTMLDivElement>(null);
+
   // Voice control state
   const [isListening, setIsListening] = useState(false);
   const controllerRef = useRef<SogneVoiceController | null>(null);
@@ -45,6 +51,36 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   ]);
   const [inputQuery, setInputQuery] = useState('');
   const chatBottomRef = useRef<HTMLDivElement>(null);
+
+  // Manejador de Arrastre (Drag & Drop) del Panel por toda la pantalla
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('button, input, textarea')) return;
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const rect = panel.getBoundingClientRect();
+    dragOffsetRef.current = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+    isDraggingRef.current = true;
+
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      if (!isDraggingRef.current) return;
+      const newX = Math.max(10, Math.min(window.innerWidth - 320, moveEvent.clientX - dragOffsetRef.current.x));
+      const newY = Math.max(10, Math.min(window.innerHeight - 300, moveEvent.clientY - dragOffsetRef.current.y));
+      setPosition({ x: newX, y: newY });
+    };
+
+    const handleMouseUp = () => {
+      isDraggingRef.current = false;
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
 
   // Procesar comandos de voz y ejecutar acciones en el mapa
   const handleSendVoiceCommand = async (commandText: string) => {
@@ -263,14 +299,23 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
         </span>
       </button>
 
-      {/* Panel Deslizable de SOGNE IA (Compacto y Ligero) */}
+      {/* Panel Deslizable Arrastrable de SOGNE IA */}
       {isOpen && (
-        <div className="fixed top-16 right-4 z-40 w-[310px] sm:w-[340px] h-[430px] max-h-[500px] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_35px_rgba(6,182,212,0.3)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden">
+        <div
+          ref={panelRef}
+          style={position ? { left: `${position.x}px`, top: `${position.y}px`, right: 'auto' } : undefined}
+          className="fixed top-16 right-4 z-40 w-[310px] sm:w-[340px] h-[430px] max-h-[500px] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_35px_rgba(6,182,212,0.3)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden"
+        >
           
-          {/* Encabezado del Panel */}
-          <div className="p-3 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/50 to-slate-950 flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)]">
+          {/* Encabezado del Panel (Arrastrable con el Mouse) */}
+          <div
+            onMouseDown={handleMouseDown}
+            className="p-3 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/50 to-slate-950 flex items-center justify-between shrink-0 cursor-grab active:cursor-grabbing select-none"
+            title="Arrastra para mover la ventana por la pantalla"
+          >
+            <div className="flex items-center gap-2">
+              <GripVertical size={16} className="text-cyan-400/60 hover:text-cyan-300 shrink-0" />
+              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] shrink-0">
                 <Bot size={18} />
               </div>
               <div>
