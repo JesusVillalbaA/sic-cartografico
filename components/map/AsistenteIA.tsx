@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Sparkles, Bot, X, Send, Mic, MicOff, Radio, GripVertical
+  Sparkles, Bot, X, Send, Mic, MicOff, Radio, GripVertical 
 } from 'lucide-react';
 
 import { exportLayerToPDF } from '@/app/lib/exportLayerPDF';
@@ -29,12 +29,13 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
-  // Posición arrastrable del panel
-  const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
-  const isDraggingRef = useRef(false);
-  const dragOffsetRef = useRef({ x: 0, y: 0 });
-  const panelRef = useRef<HTMLDivElement>(null);
+
+  // Posición Arrastrable del BOTÓN de SOGNE IA por toda la pantalla
+  const [btnPos, setBtnPos] = useState<{ x: number; y: number } | null>(null);
+  const isDraggingBtnRef = useRef(false);
+  const startPosRef = useRef({ x: 0, y: 0 });
+  const btnOffsetRef = useRef({ x: 0, y: 0 });
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   // Voice control state
   const [isListening, setIsListening] = useState(false);
@@ -52,34 +53,46 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
   const [inputQuery, setInputQuery] = useState('');
   const chatBottomRef = useRef<HTMLDivElement>(null);
 
-  // Manejador de Arrastre (Drag & Drop) del Panel por toda la pantalla
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest('button, input, textarea')) return;
-    const panel = panelRef.current;
-    if (!panel) return;
+  // Manejador de Arrastre (Drag & Drop) del BOTÓN SOGNE IA
+  const handleButtonMouseDown = (e: React.MouseEvent) => {
+    startPosRef.current = { x: e.clientX, y: e.clientY };
+    const btn = buttonRef.current;
+    if (!btn) return;
 
-    const rect = panel.getBoundingClientRect();
-    dragOffsetRef.current = {
+    const rect = btn.getBoundingClientRect();
+    btnOffsetRef.current = {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top
     };
-    isDraggingRef.current = true;
+    isDraggingBtnRef.current = false;
 
     const handleMouseMove = (moveEvent: MouseEvent) => {
-      if (!isDraggingRef.current) return;
-      const newX = Math.max(10, Math.min(window.innerWidth - 320, moveEvent.clientX - dragOffsetRef.current.x));
-      const newY = Math.max(10, Math.min(window.innerHeight - 300, moveEvent.clientY - dragOffsetRef.current.y));
-      setPosition({ x: newX, y: newY });
+      const dx = Math.abs(moveEvent.clientX - startPosRef.current.x);
+      const dy = Math.abs(moveEvent.clientY - startPosRef.current.y);
+      if (dx > 4 || dy > 4) {
+        isDraggingBtnRef.current = true;
+        const newX = Math.max(10, Math.min(window.innerWidth - 170, moveEvent.clientX - btnOffsetRef.current.x));
+        const newY = Math.max(10, Math.min(window.innerHeight - 50, moveEvent.clientY - btnOffsetRef.current.y));
+        setBtnPos({ x: newX, y: newY });
+      }
     };
 
     const handleMouseUp = () => {
-      isDraggingRef.current = false;
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  const handleButtonClick = (e: React.MouseEvent) => {
+    if (isDraggingBtnRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    setIsOpen(prev => !prev);
   };
 
   // Procesar comandos de voz y ejecutar acciones en el mapa
@@ -283,12 +296,16 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
 
   return (
     <>
-      {/* Botón Flotante para abrir SOGNE IA (Compacto) */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-slate-900/95 hover:bg-cyan-950/95 text-cyan-400 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.4)] backdrop-blur-xl px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 group cursor-pointer"
-        title="Abrir Asistente Táctico SOGNE IA"
+      {/* Botón Flotante Arrastrable de SOGNE IA */}
+      <div
+        ref={buttonRef}
+        onMouseDown={handleButtonMouseDown}
+        onClick={handleButtonClick}
+        style={btnPos ? { left: `${btnPos.x}px`, top: `${btnPos.y}px`, right: 'auto' } : undefined}
+        className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-slate-900/95 hover:bg-cyan-950/95 text-cyan-400 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.4)] backdrop-blur-xl px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 group cursor-grab active:cursor-grabbing select-none"
+        title="Arrastra para mover este botón por toda la pantalla | Haz clic para abrir SOGNE IA"
       >
+        <GripVertical size={14} className="text-cyan-400/50 group-hover:text-cyan-300 shrink-0" />
         <div className="relative">
           <Sparkles size={15} className="text-cyan-400 animate-pulse group-hover:rotate-12 transition-transform" />
           <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
@@ -297,24 +314,26 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
         <span className="bg-cyan-500/20 text-cyan-300 text-[9px] px-1.5 py-0.5 rounded font-mono border border-cyan-400/30">
           VOZ & CHAT
         </span>
-      </button>
+      </div>
 
-      {/* Panel Deslizable Arrastrable de SOGNE IA */}
+      {/* Panel Deslizable de SOGNE IA (Anclado al Botón o en Posición Superior) */}
       {isOpen && (
         <div
-          ref={panelRef}
-          style={position ? { left: `${position.x}px`, top: `${position.y}px`, right: 'auto' } : undefined}
+          style={
+            btnPos
+              ? {
+                  left: `${Math.max(10, Math.min(window.innerWidth - 350, btnPos.x))}px`,
+                  top: `${Math.min(window.innerHeight - 450, btnPos.y + 45)}px`,
+                  right: 'auto'
+                }
+              : undefined
+          }
           className="fixed top-16 right-4 z-40 w-[310px] sm:w-[340px] h-[430px] max-h-[500px] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_35px_rgba(6,182,212,0.3)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden"
         >
           
-          {/* Encabezado del Panel (Arrastrable con el Mouse) */}
-          <div
-            onMouseDown={handleMouseDown}
-            className="p-3 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/50 to-slate-950 flex items-center justify-between shrink-0 cursor-grab active:cursor-grabbing select-none"
-            title="Arrastra para mover la ventana por la pantalla"
-          >
+          {/* Encabezado del Panel */}
+          <div className="p-3 border-b border-cyan-500/20 bg-gradient-to-r from-slate-950 via-cyan-950/50 to-slate-950 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
-              <GripVertical size={16} className="text-cyan-400/60 hover:text-cyan-300 shrink-0" />
               <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] shrink-0">
                 <Bot size={18} />
               </div>
