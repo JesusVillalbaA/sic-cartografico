@@ -109,7 +109,7 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
   const isLight = theme === 'light';
 
   return (
-    <div ref={wrapperRef} className="absolute top-4 right-44 md:right-48 z-40 w-72 md:w-80 flex flex-col items-end">
+    <div ref={wrapperRef} className="absolute top-4 right-16 md:right-48 z-40 w-[calc(100vw-5rem)] md:w-80 max-w-[260px] md:max-w-none flex flex-col items-end">
       {/* Input */}
       <div className={`relative w-full overflow-hidden rounded-2xl border transition-all duration-300 shadow-xl backdrop-blur-md ${
         isFocused 
@@ -136,7 +136,7 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
           )}
           {query && (
             <button onClick={() => setQuery('')} className="text-slate-400 hover:text-slate-200">
-              ✕
+              âœ•
             </button>
           )}
         </div>
@@ -152,7 +152,7 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
               {results.map((f, i) => {
                 const p = f.properties || {};
                 const name = p.nombre || p.NAME || p.adm2_name || p.alias || p.nombre_banda || (p.cuadrante ? `Cuadrante ${p.cuadrante}` : (p.cedula_oficial_campo ? `Registro de Ofic. ${p.cedula_oficial_campo}` : 'Registro de Zona'));
-                const tipo = p.tipo_incidente || p.CATEGORIA || p.tipo || f.source || 'Punto de Interés';
+                const tipo = p.tipo_incidente || p.CATEGORIA || p.tipo || f.source || 'Punto de InterÃ©s';
                 const extra = p.municipio || p.sector || p.ADDRESS || p.descripcion || '';
 
                 return (

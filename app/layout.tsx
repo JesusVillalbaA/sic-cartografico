@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SOGNE - Sistema de Orientacion de Geointeligencia de Nueva Esparta",
-  description: "Sistema de georreferenciación y análisis táctico de incidentes e infraestructura de seguridad.",
+  title: "SIC - Sistema Cartográfico Digital",
+  description: "Sistema Cartográfico Digital",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

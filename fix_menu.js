@@ -1,4 +1,5 @@
-"use client";
+﻿const fs = require('fs');
+const content = use client;
 import React, { useState } from 'react';
 import { Sun, Moon, Layers, Building2, Zap, Map as MapIcon, Pin, PinOff } from 'lucide-react';
 import { MenuItem } from './MenuItem';
@@ -19,13 +20,7 @@ export const MenuLateral = ({ layersVisible, onToggle, theme, setTheme, isMobile
       )}
 
       <aside 
-        className={`fixed md:relative z-50 h-[100dvh] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] border-r shadow-2xl flex flex-col ${
-          theme === 'light' 
-            ? 'bg-slate-100/90 border-slate-300 shadow-slate-300/50' 
-            : 'bg-slate-950/90 border-blue-900/30 shadow-blue-900/20'
-        } backdrop-blur-2xl ${
-          isMobileMenuOpen ? 'translate-x-0 w-[80vw] sm:w-72' : '-translate-x-full md:translate-x-0'
-        } ${isHovered || isPinned ? 'md:w-72' : 'md:w-20 w-[80vw] sm:w-72'}`}
+        className={\ixed md:relative z-50 h-[100dvh] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] border-r shadow-2xl flex flex-col \ backdrop-blur-2xl \ \\}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -43,7 +38,7 @@ export const MenuLateral = ({ layersVisible, onToggle, theme, setTheme, isMobile
           )}
 
           {/* Contenedor del Logo Animado */}
-          <div className={`relative flex items-center justify-center transition-all duration-700 ease-out ${isMenuOpen ? 'w-16 h-16 mb-4' : 'w-12 h-12'} group-hover:scale-110`}>
+          <div className={\elative flex items-center justify-center transition-all duration-700 ease-out \ group-hover:scale-110\}>
             <div className="absolute inset-[-4px] rounded-full border border-blue-500/30 border-dashed animate-[spin_10s_linear_infinite] opacity-50 group-hover:border-blue-400/80" />
             <div className="absolute inset-[-8px] rounded-full border border-indigo-500/20 border-dotted animate-[spin_15s_linear_infinite_reverse] opacity-30 group-hover:border-indigo-400/60" />
             <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full group-hover:bg-blue-400/40 transition-colors duration-500" />
@@ -73,7 +68,7 @@ export const MenuLateral = ({ layersVisible, onToggle, theme, setTheme, isMobile
           )}
         </div>
 
-        <div className="px-4"><hr className={`my-2 ${theme === 'light' ? 'border-slate-300' : 'border-blue-900/30'}`} /></div>
+        <div className="px-4"><hr className={\my-2 \\} /></div>
 
         {/* Contenedor de Capas */}
         <div className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar py-2">
@@ -88,7 +83,7 @@ export const MenuLateral = ({ layersVisible, onToggle, theme, setTheme, isMobile
             ) : (
               <div className="flex justify-center mb-2" title="Capas Base"><Layers size={18} className="text-blue-500" /></div>
             )}
-            <div className={`space-y-1 ${isMenuOpen ? 'px-2' : 'px-1'}`}>
+            <div className={\space-y-1 \\}>
               <MenuItem theme={theme} iconSrc="/Municipios.png" label="MUNICIPIOS" active={layersVisible.municipios} accentColor="#3b82f6" isHovered={isMenuOpen} onClick={() => onToggle('municipios')} />
               <MenuItem theme={theme} iconSrc="/parroquia.png" label="PARROQUIAS" active={layersVisible.parroquias} accentColor="#ec4899" isHovered={isMenuOpen} onClick={() => onToggle('parroquias')} />
               <MenuItem theme={theme} iconSrc="/Sectores.png" label="SECTORES" active={layersVisible.sectores} accentColor="#10b981" isHovered={isMenuOpen} onClick={() => onToggle('sectores')} />
@@ -105,7 +100,7 @@ export const MenuLateral = ({ layersVisible, onToggle, theme, setTheme, isMobile
             ) : (
               <div className="flex justify-center mb-2" title="Infraestructura"><Building2 size={18} className="text-indigo-500" /></div>
             )}
-            <div className={`space-y-1 ${isMenuOpen ? 'px-2' : 'px-1'}`}>
+            <div className={\space-y-1 \\}>
               <MenuItem theme={theme} iconSrc="/hospital.png" label="HOSPITALES" active={layersVisible.hospitales} accentColor="#6366f1" isHovered={isMenuOpen} onClick={() => onToggle('hospitales')} />
               <MenuItem theme={theme} iconSrc="/clinica.png" label="CLÍNICAS" active={layersVisible.clinicas} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => onToggle('clinicas')} />
               <MenuItem theme={theme} iconSrc="/ambulatorio.png" label="AMBULATORIOS" active={layersVisible.ambulatorios} accentColor="#f43f5e" isHovered={isMenuOpen} onClick={() => onToggle('ambulatorios')} />
@@ -124,7 +119,7 @@ export const MenuLateral = ({ layersVisible, onToggle, theme, setTheme, isMobile
             ) : (
               <div className="flex justify-center mb-2" title="Servicios Básicos"><Zap size={18} className="text-amber-500" /></div>
             )}
-            <div className={`space-y-1 ${isMenuOpen ? 'px-2' : 'px-1'}`}>
+            <div className={\space-y-1 \\}>
               <MenuItem theme={theme} iconSrc="/gas.png" label="PLANTAS DE GAS" active={layersVisible.estacionesGas} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => onToggle('estacionesGas')} />
               <MenuItem theme={theme} iconSrc="/electricidad.png" label="ELÉCTRICO" active={layersVisible.sistemasElectricos} accentColor="#facc15" isHovered={isMenuOpen} onClick={() => onToggle('sistemasElectricos')} />
             </div>
@@ -132,15 +127,13 @@ export const MenuLateral = ({ layersVisible, onToggle, theme, setTheme, isMobile
 
         </div>
 
-        <div className="px-4"><hr className={`my-2 ${theme === 'light' ? 'border-slate-300' : 'border-blue-900/30'}`} /></div>
+        <div className="px-4"><hr className={\my-2 \\} /></div>
 
         {/* Footer (Tema) */}
         <div className="pb-6 pt-2 px-3 flex justify-center">
           <button 
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} 
-            className={`flex items-center gap-3 p-3 rounded-2xl transition-all w-full cursor-pointer overflow-hidden ${
-              theme === 'light' ? 'bg-blue-100 hover:bg-blue-200 text-blue-900' : 'bg-blue-900/20 hover:bg-blue-900/40 text-blue-300 border border-blue-800/30'
-            }`}
+            className={\lex items-center gap-3 p-3 rounded-2xl transition-all w-full cursor-pointer overflow-hidden \\}
             title="Cambiar Tema"
           >
             <div className="shrink-0 flex items-center justify-center">
@@ -157,4 +150,5 @@ export const MenuLateral = ({ layersVisible, onToggle, theme, setTheme, isMobile
       </aside>
     </>
   );
-};
+};;
+fs.writeFileSync('c:/Users/jesus/sic-sistema-cartografico/components/Menu/MenuLateral.tsx', "\" + content.substring(1), 'utf8');

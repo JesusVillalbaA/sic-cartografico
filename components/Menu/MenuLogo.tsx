@@ -21,7 +21,7 @@ export const MenuLogo = ({ isHovered }: { isHovered: boolean }) => (
       <div className="relative w-full h-full group">
         <Image 
           src="/logo.png" 
-          alt="SOGNE Logo" 
+          alt="SIC Logo" 
           fill 
           priority 
           sizes="(max-width: 768px) 56px, 96px" 
@@ -37,10 +37,10 @@ export const MenuLogo = ({ isHovered }: { isHovered: boolean }) => (
         {/* SIGDI - Reducido un poco de 6xl a 5xl para ganar espacio vertical */}
         <h1 className="text-5xl font-black tracking-tighter text-white leading-none relative">
           <span className="relative z-10 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)] animate-[textPulse_4s_ease-in-out_infinite]">
-            SOGNE
+            SIC
           </span>
-          <span className="absolute inset-0 text-white blur-md opacity-50 select-none">SOGNE</span>
-          <span className="absolute inset-0 text-blue-500 blur-[30px] opacity-40 select-none animate-pulse">SOGNE</span>
+          <span className="absolute inset-0 text-white blur-md opacity-50 select-none">SIC</span>
+          <span className="absolute inset-0 text-blue-500 blur-[30px] opacity-40 select-none animate-pulse">SIC</span>
         </h1>
         
         {/* Línea Divisora - Reducido my-5 a my-3 */}
@@ -50,8 +50,8 @@ export const MenuLogo = ({ isHovered }: { isHovered: boolean }) => (
         </div>
         
         {/* Nueva Esparta */}
-        <span className="text-[13px] text-blue-300 font-black tracking-[0.6em] uppercase italic drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]">
-          Nueva Esparta
+        <span className="text-[11px] text-blue-300 font-black tracking-[0.2em] uppercase italic drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]">
+          Sistema Cartográfico
         </span>
       </div>
     )}

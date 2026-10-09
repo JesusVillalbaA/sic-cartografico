@@ -50,13 +50,13 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     });
   }, [map]);
 
-  // Manejo de Vista 3D Táctica
+  // Manejo de Vista 3D TÃ¡ctica
   const toggle3D = React.useCallback(() => {
     if (!map) return;
     setMap3DMode(map, !is3DActive);
   }, [map, is3DActive]);
 
-  // Sincronizar estado del botón 3D con el evento unificado de la aplicación
+  // Sincronizar estado del botÃ³n 3D con el evento unificado de la aplicaciÃ³n
   useEffect(() => {
     const handle3DEvent = (e: any) => {
       setIs3DActive(!!e.detail?.active);
@@ -70,7 +70,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     if (typeof window === 'undefined') return;
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      alert("El soporte de voz requiere Web Speech API (disponible en Google Chrome / MS Edge). Por favor revisa los permisos de tu micrófono.");
+      alert("El soporte de voz requiere Web Speech API (disponible en Google Chrome / MS Edge). Por favor revisa los permisos de tu micrÃ³fono.");
       return;
     }
 
@@ -141,7 +141,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     return () => window.removeEventListener('sogne_voice_action', handleVoiceAction);
   }, [toggle3D, toggleHeatmap, handleClearAll]);
 
-  // Aplicar máscara oscura para enfocar y resaltar el área trazada eliminando el entorno del mapa
+  // Aplicar mÃ¡scara oscura para enfocar y resaltar el Ã¡rea trazada eliminando el entorno del mapa
   const applyFocusMask = React.useCallback((polyGeoJSON: any) => {
     if (!map || !polyGeoJSON) return;
     try {
@@ -152,11 +152,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         maskSrc.setData(maskData);
       }
     } catch (e) {
-      console.warn("No se pudo aplicar la máscara de enfoque:", e);
+      console.warn("No se pudo aplicar la mÃ¡scara de enfoque:", e);
     }
   }, [map]);
 
-  // Escuchar trazado por voz automático de municipios
+  // Escuchar trazado por voz automÃ¡tico de municipios
   useEffect(() => {
     const handleTraceMunicipality = (e: any) => {
       const muniName = e.detail?.municipality;
@@ -212,7 +212,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           return vals.includes(placeName.toLowerCase());
         });
 
-        // 2. Si no está renderizado, buscar en fuentes GeoJSON de Mapbox
+        // 2. Si no estÃ¡ renderizado, buscar en fuentes GeoJSON de Mapbox
         if (!matched && style.sources) {
           const sourceIds = Object.keys(style.sources);
           for (const sId of sourceIds) {
@@ -251,7 +251,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             }
           } else {
             shapeGeo = matched.geometry;
-            shapeTitle = `Área Trazada en ${matched.properties?.nombre || matched.properties?.NAME || placeName}`;
+            shapeTitle = `Ãrea Trazada en ${matched.properties?.nombre || matched.properties?.NAME || placeName}`;
 
             const polySource = map.getSource('tactical-polygon-source') as mapboxgl.GeoJSONSource;
             if (polySource && shapeGeo) {
@@ -279,7 +279,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
 
 
-  // Sincronizar estado táctico global para evitar reseteos en useMapbox
+  // Sincronizar estado tÃ¡ctico global para evitar reseteos en useMapbox
   useEffect(() => {
     activeToolRef.current = activeTool;
     if (typeof window !== 'undefined') {
@@ -299,7 +299,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     isPolygonFinishedRef.current = isPolygonFinished;
   }, [isPolygonFinished]);
 
-  // Función para mover capas neón tácticas al frente absoluto sobre edificaciones y terreno 3D
+  // FunciÃ³n para mover capas neÃ³n tÃ¡cticas al frente absoluto sobre edificaciones y terreno 3D
   const bringTacticalLayersToFront = React.useCallback(() => {
     if (!map) return;
     const layers = [
@@ -317,7 +317,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     });
   }, [map]);
 
-  // Función para limpiar puntos duplicados consecutivos y evitar crash en turf.lineString
+  // FunciÃ³n para limpiar puntos duplicados consecutivos y evitar crash en turf.lineString
   const sanitizePoints = (pts: [number, number][]): [number, number][] => {
     return pts.filter((p, i) => {
       if (i === 0) return true;
@@ -326,11 +326,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     });
   };
 
-  // Inicializar o limpiar fuentes de herramientas tácticas en el mapa
+  // Inicializar o limpiar fuentes de herramientas tÃ¡cticas en el mapa
   const setupSources = React.useCallback(() => {
     if (!map) return;
     try {
-      // 0. Fuente y Capa de Máscara de Enfoque Oscura
+      // 0. Fuente y Capa de MÃ¡scara de Enfoque Oscura
       if (!map.getSource('focus-mask-source')) {
         map.addSource('focus-mask-source', {
           type: 'geojson',
@@ -350,7 +350,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         });
       }
 
-      // 1. Fuente de medición
+      // 1. Fuente de mediciÃ³n
       if (!map.getSource('tactical-measure-source')) {
         map.addSource('tactical-measure-source', {
           type: 'geojson',
@@ -444,7 +444,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         });
       }
 
-      // 3. Fuente de polígono / área personalizada (Trazar Área)
+      // 3. Fuente de polÃ­gono / Ã¡rea personalizada (Trazar Ãrea)
       if (!map.getSource('tactical-polygon-source')) {
         map.addSource('tactical-polygon-source', {
           type: 'geojson',
@@ -507,11 +507,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
       bringTacticalLayersToFront();
     } catch (e) {
-      console.warn("Error agregando capas tácticas:", e);
+      console.warn("Error agregando capas tÃ¡cticas:", e);
     }
   }, [map, bringTacticalLayersToFront]);
 
-  // Función para actualizar el círculo de cobertura en vivo y oscurecer el entorno
+  // FunciÃ³n para actualizar el cÃ­rculo de cobertura en vivo y oscurecer el entorno
   const drawBufferCircle = React.useCallback((center: [number, number], radiusKm: number) => {
     if (!map) return;
     setupSources();
@@ -534,7 +534,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     }
   }, [map, setupSources, bringTacticalLayersToFront, applyFocusMask]);
 
-  // Actualizar el círculo de cobertura cuando cambia el radio (0.5km, 1km, 3km, 5km, 10km)
+  // Actualizar el cÃ­rculo de cobertura cuando cambia el radio (0.5km, 1km, 3km, 5km, 10km)
   useEffect(() => {
     if (activeTool === 'buffer' && bufferCenterRef.current) {
       drawBufferCircle(bufferCenterRef.current, bufferRadius);
@@ -546,7 +546,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     setupSources();
   }, [map, activeTool, setupSources]);
 
-  // Manejar mousemove y clics en el mapa según la herramienta activa
+  // Manejar mousemove y clics en el mapa segÃºn la herramienta activa
   useEffect(() => {
     if (!map || activeTool === 'none') return;
 
@@ -715,9 +715,9 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
       try {
         const closedRing = [...currentPoints, currentPoints[0]];
         const poly = turf.polygon([closedRing]);
-        const line = turf.lineString(closedRing); // Perímetro neón cerrado
+        const line = turf.lineString(closedRing); // PerÃ­metro neÃ³n cerrado
         const pointFeatures = currentPoints.map(p => turf.point(p));
-        const features: any[] = [poly, ...pointFeatures, line]; // Relleno cian suave traslúcido + bordes neón
+        const features: any[] = [poly, ...pointFeatures, line]; // Relleno cian suave traslÃºcido + bordes neÃ³n
 
         const sqMeters = turf.area(poly);
         setTotalArea(sqMeters);
@@ -733,7 +733,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           map.fitBounds(bbox, { padding: 90, pitch: currentPitch, duration: 500 });
         } catch (_) {}
       } catch (e) {
-        console.warn("Error al finalizar polígono:", e);
+        console.warn("Error al finalizar polÃ­gono:", e);
       }
       bringTacticalLayersToFront();
     };
@@ -769,7 +769,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   }, [map, activeTool, bringTacticalLayersToFront, drawBufferCircle, bufferRadius, setupSources]);
 
 
-  // Si hay elementos seleccionados y la herramienta buffer está activa
+  // Si hay elementos seleccionados y la herramienta buffer estÃ¡ activa
   useEffect(() => {
     if (!map || activeTool !== 'buffer' || !selectedFeatures.length) return;
     const selected = selectedFeatures[0];
@@ -798,7 +798,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     try {
       const closedRing = [...polygonPoints, polygonPoints[0]];
       const poly = turf.polygon([closedRing], {
-        nombre: "Zona Táctica Trazada SOGNE",
+        nombre: "Zona TÃ¡ctica Trazada SOGNE",
         area_km2: Number((totalArea / 1000000).toFixed(2)),
         area_ha: Number((totalArea / 10000).toFixed(1)),
         vertices_count: polygonPoints.length,
@@ -828,12 +828,12 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   const bufferArea = (Math.PI * Math.pow(bufferRadius, 2)).toFixed(2);
 
   return (
-    <div className="absolute top-4 left-24 z-30 flex items-center gap-2 select-none flex-wrap max-w-[calc(100vw-120px)]">
+    <div className="absolute top-16 md:top-4 left-4 md:left-24 z-30 flex items-center gap-2 select-none flex-wrap max-w-[calc(100vw-2rem)] md:max-w-[calc(100vw-120px)]">
       <div className={`flex items-center gap-1.5 p-1.5 rounded-2xl border backdrop-blur-xl shadow-2xl transition-all ${
         isLight ? 'bg-white/90 border-slate-300' : 'bg-slate-900/90 border-white/10'
       }`}>
         
-        {/* Botón Cobertura (Buffer) */}
+        {/* BotÃ³n Cobertura (Buffer) */}
         <button
           onClick={() => setActiveTool(activeTool === 'buffer' ? 'none' : 'buffer')}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-[11px] font-bold tracking-wider transition-all cursor-pointer ${
@@ -841,13 +841,13 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
               ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)]'
               : (isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-slate-300 hover:bg-white/5')
           }`}
-          title="Radio de Cobertura / Anillo Táctico Circular"
+          title="Radio de Cobertura / Anillo TÃ¡ctico Circular"
         >
           <CircleDot size={14} />
           <span className="hidden md:inline">RADIO COBERTURA</span>
         </button>
 
-        {/* Botón Trazar Polígono / Área */}
+        {/* BotÃ³n Trazar PolÃ­gono / Ãrea */}
         <button
           onClick={() => setActiveTool(activeTool === 'polygon' ? 'none' : 'polygon')}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-[11px] font-bold tracking-wider transition-all cursor-pointer ${
@@ -855,13 +855,13 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
               ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.6)]'
               : (isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-slate-300 hover:bg-white/5')
           }`}
-          title="Trazar Polígono y Calcular Área Personalizada"
+          title="Trazar PolÃ­gono y Calcular Ãrea Personalizada"
         >
           <Shapes size={14} />
-          <span className="hidden md:inline">TRAZAR ÁREA</span>
+          <span className="hidden md:inline">TRAZAR ÃREA</span>
         </button>
 
-        {/* Botón Mapa de Calor (Heatmap) */}
+        {/* BotÃ³n Mapa de Calor (Heatmap) */}
         <button
           onClick={toggleHeatmap}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-[11px] font-bold tracking-wider transition-all cursor-pointer ${
@@ -875,7 +875,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           <span className="hidden md:inline">MAPA DE CALOR</span>
         </button>
 
-        {/* Botón Vista 3D Táctica */}
+        {/* BotÃ³n Vista 3D TÃ¡ctica */}
         <button
           onClick={toggle3D}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-[11px] font-bold tracking-wider transition-all cursor-pointer ${
@@ -889,33 +889,19 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           <span className="hidden md:inline">VISTA 3D</span>
         </button>
 
-        {/* Botón Comando por Voz Directo */}
-        <button
-          onClick={toggleVoiceListener}
-          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-[11px] font-black tracking-wider transition-all cursor-pointer shadow-md ${
-            isVoiceListening
-              ? 'bg-rose-600 text-white shadow-[0_0_20px_rgba(244,63,94,0.9)] animate-pulse border border-rose-300'
-              : 'bg-gradient-to-r from-cyan-600/30 to-blue-600/30 text-cyan-300 border border-cyan-400/40 hover:from-cyan-600/50 hover:to-blue-600/50'
-          }`}
-          title="Activar Dictado por Voz (Hablar directamente al micrófono)"
-        >
-          {isVoiceListening ? <MicOff size={14} className="animate-spin text-rose-200" /> : <Mic size={14} className="text-cyan-300 animate-bounce" />}
-          <span>{isVoiceListening ? "ESCUCHANDO VOZ..." : "COMANDO DE VOZ"}</span>
-        </button>
-
-        {/* Botón Limpiar */}
+        {/* BotÃ³n Limpiar */}
         {(activeTool !== 'none' || measurePoints.length > 0 || polygonPoints.length > 0) && (
           <button
             onClick={handleClearAll}
             className="p-1.5 rounded-xl text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
-            title="Limpiar herramientas tácticas"
+            title="Limpiar herramientas tÃ¡cticas"
           >
             <Trash2 size={14} />
           </button>
         )}
       </div>
 
-      {/* Info Flotante de Medición */}
+      {/* Info Flotante de MediciÃ³n */}
       {activeTool === 'measure' && (
         <div className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border backdrop-blur-xl shadow-lg text-[11px] font-mono font-bold animate-in fade-in slide-in-from-left-2 ${
           isLight ? 'bg-white/95 border-sky-300 text-sky-800' : 'bg-slate-900/95 border-sky-500/40 text-sky-400'
@@ -951,11 +937,11 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
               {r} km
             </button>
           ))}
-          <span className="text-[10px] opacity-80 border-l border-white/20 pl-2">Área: {bufferArea} km²</span>
+          <span className="text-[10px] opacity-80 border-l border-white/20 pl-2">Ãrea: {bufferArea} kmÂ²</span>
         </div>
       )}
 
-      {/* Info Flotante de Trazado de Área (Polígono) */}
+      {/* Info Flotante de Trazado de Ãrea (PolÃ­gono) */}
       {activeTool === 'polygon' && (
         <div className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border backdrop-blur-xl shadow-2xl text-[11px] font-mono font-bold animate-in fade-in slide-in-from-left-2 flex-wrap ${
           isLight ? 'bg-white/95 border-emerald-300 text-emerald-800' : 'bg-slate-900/95 border-emerald-500/50 text-emerald-400'
@@ -964,8 +950,8 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
             {polygonPoints.length === 0
               ? 'Haz clic en el mapa para iniciar trazado'
               : isPolygonFinished
-              ? `Área Cerrada (${polygonPoints.length} vértices): ${(totalArea / 1000000).toFixed(2)} km² (${(totalArea / 10000).toFixed(1)} ha)`
-              : `Vértices: ${polygonPoints.length} | Área aprox: ${(totalArea / 1000000).toFixed(2)} km² (Clic derecho / Doble clic para cerrar)`}
+              ? `Ãrea Cerrada (${polygonPoints.length} vÃ©rtices): ${(totalArea / 1000000).toFixed(2)} kmÂ² (${(totalArea / 10000).toFixed(1)} ha)`
+              : `VÃ©rtices: ${polygonPoints.length} | Ãrea aprox: ${(totalArea / 1000000).toFixed(2)} kmÂ² (Clic derecho / Doble clic para cerrar)`}
           </span>
 
           {polygonPoints.length >= 3 && !isPolygonFinished && (
@@ -984,7 +970,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
                 if (maskSrc) maskSrc.setData(maskData);
               }}
               className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase transition-all shadow-[0_0_10px_rgba(16,185,129,0.5)] cursor-pointer ml-1"
-              title="Cerrar polígono y enfocar área"
+              title="Cerrar polÃ­gono y enfocar Ã¡rea"
             >
               CERRAR Y ENFOCAR
             </button>
@@ -1022,7 +1008,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
               if (src) src.setData({ type: 'FeatureCollection', features: [] });
               const maskSrc = map?.getSource('focus-mask-source') as mapboxgl.GeoJSONSource;
               if (maskSrc) maskSrc.setData({ type: 'FeatureCollection', features: [] });
-            }} className="text-slate-400 hover:text-white ml-1 cursor-pointer" title="Reiniciar polígono">
+            }} className="text-slate-400 hover:text-white ml-1 cursor-pointer" title="Reiniciar polÃ­gono">
               <X size={12} />
             </button>
           )}
@@ -1032,3 +1018,5 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     </div>
   );
 };
+
+

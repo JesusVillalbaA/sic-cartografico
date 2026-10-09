@@ -90,6 +90,8 @@ export function getGoogleMapsUrl(feature: any): string | null {
 }
 
 interface GoogleMapsButtonProps {
+  theme?: 'dark' | 'light';
+  label?: string;
   feature?: any;
   lat?: number | null;
   lng?: number | null;
@@ -99,6 +101,8 @@ interface GoogleMapsButtonProps {
 }
 
 export const GoogleMapsButton: React.FC<GoogleMapsButtonProps> = ({
+  theme = 'dark',
+  label,
   feature,
   lat,
   lng,
@@ -125,10 +129,10 @@ export const GoogleMapsButton: React.FC<GoogleMapsButtonProps> = ({
         target="_blank"
         rel="noopener noreferrer"
         onClick={(e) => e.stopPropagation()}
-        className={`p-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 hover:text-white transition-all duration-200 shadow-xs flex items-center justify-center cursor-pointer ${className}`}
-        title="Ver ubicación en Google Maps"
+        className={`p-2 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-300 hover:text-white transition-all duration-200 shadow-xs flex items-center justify-center cursor-pointer ${className}`}
+        title="Ver ubicaciÃ³n en Google Maps"
       >
-        <MapPin size={14} className="text-cyan-400" />
+        <MapPin size={14} className="text-blue-400" />
       </a>
     );
   }
@@ -140,11 +144,11 @@ export const GoogleMapsButton: React.FC<GoogleMapsButtonProps> = ({
         target="_blank"
         rel="noopener noreferrer"
         onClick={(e) => e.stopPropagation()}
-        className={`inline-flex items-center justify-center gap-1 px-2.5 py-1 bg-cyan-950/80 hover:bg-cyan-900/90 text-cyan-300 hover:text-white rounded-lg font-bold text-[8.5px] uppercase tracking-wider border border-cyan-500/30 hover:border-cyan-400 transition-all duration-200 active:scale-95 cursor-pointer ${className}`}
+        className={`inline-flex items-center justify-center gap-1 px-2.5 py-1 bg-blue-950/80 hover:bg-blue-900/90 text-blue-300 hover:text-white rounded-lg font-bold text-[8.5px] uppercase tracking-wider border border-blue-500/30 hover:border-blue-400 transition-all duration-200 active:scale-95 cursor-pointer ${className}`}
       >
-        <MapPin size={11} className="text-cyan-400 shrink-0" />
+        <MapPin size={11} className="text-blue-400 shrink-0" />
         <span>Maps</span>
-        <ExternalLink size={9} className="text-cyan-400/70 shrink-0" />
+        <ExternalLink size={9} className="text-blue-400/70 shrink-0" />
       </a>
     );
   }
@@ -155,11 +159,11 @@ export const GoogleMapsButton: React.FC<GoogleMapsButtonProps> = ({
       target="_blank"
       rel="noopener noreferrer"
       onClick={(e) => e.stopPropagation()}
-      className={`inline-flex items-center justify-center gap-1.5 py-1.5 px-3 bg-cyan-950/80 hover:bg-cyan-900/90 text-cyan-300 hover:text-white rounded-xl font-bold text-[9px] uppercase tracking-wider border border-cyan-500/30 hover:border-cyan-400 shadow-md transition-all duration-200 active:scale-95 cursor-pointer ${className}`}
+      className={`inline-flex items-center justify-center gap-1.5 py-1.5 px-3 bg-blue-950/80 hover:bg-blue-900/90 text-blue-300 hover:text-white rounded-xl font-bold text-[9px] uppercase tracking-wider border border-blue-500/30 hover:border-blue-400 shadow-md transition-all duration-200 active:scale-95 cursor-pointer ${className}`}
     >
-      <MapPin size={12} className="text-cyan-400 shrink-0" />
-      <span>Ver en Google Maps</span>
-      <ExternalLink size={10} className="text-cyan-400/70 shrink-0 ml-0.5" />
+      <MapPin size={12} className="text-blue-400 shrink-0" />
+      <span>{label || "Ver en Google Maps"}</span>
+      <ExternalLink size={10} className="text-blue-400/70 shrink-0 ml-0.5" />
     </a>
   );
 };

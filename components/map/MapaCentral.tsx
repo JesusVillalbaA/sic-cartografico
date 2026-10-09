@@ -4,24 +4,17 @@ import * as turf from '@turf/turf';
 import { Zap, Flame } from 'lucide-react';
 import { AnalysisPanel } from './AnalysisPanel';
 import { useMapbox } from './useMapbox';
-import { Legend } from './Legend';
 import { BuscadorGlobal } from './BuscadorGlobal';
-import { ModalDiagramaElectrico } from './ModalDiagramaElectrico';
-import { ModalDiagramaGas } from './ModalDiagramaGas';
 import { TacticalToolbar } from './TacticalToolbar';
 import { ZoomControls } from './ZoomControls';
 import { TacticalMapLoader } from './TacticalMapLoader';
 import { exportPDF as exportPDFUtil, toggleState, clearAndReset } from './mapUtils';
 import { supabase } from './supabaseClient';
 
-import { AsistenteIA } from './AsistenteIA';
 
 export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRiesgo: externalFetch, isZonasLoading, theme }: any, ref) => {
   const [selectedFeatures, setSelectedFeatures] = useState<any[]>([]);
   const [isExporting, setIsExporting] = useState(false);
-  const [isDiagramaOpen, setIsDiagramaOpen] = useState(false);
-  const [isDiagramaGasOpen, setIsDiagramaGasOpen] = useState(false);
-
   // Atajos de teclado globales (Ctrl+K para buscar, Escape para cerrar modales)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -35,10 +28,7 @@ export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRi
           searchInput.focus();
           searchInput.select();
         }
-      } else if (e.key === 'Escape') {
-        setIsDiagramaOpen(false);
-        setIsDiagramaGasOpen(false);
-      }
+      } else if (e.key === 'Escape') {      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -183,7 +173,7 @@ export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRi
 
   return (
     <div id="map-export-container" className="relative w-full h-full overflow-hidden">
-      {/* Animación Táctica de Carga Inicial con Progreso Real en Vivo */}
+      {/* AnimaciÃ³n TÃ¡ctica de Carga Inicial con Progreso Real en Vivo */}
       <TacticalMapLoader 
         isLoading={!mapReady} 
         theme={theme} 
@@ -193,52 +183,18 @@ export const MapaCentral = forwardRef(({ layersVisible, onToggle, fetchZonasDeRi
 
       <div ref={mapContainer} className="w-full h-full" />
       
-      {/* Botones de Acceso Flotante Condicionados a la Activación de la Capa en el Menú */}
-      <div className="absolute top-24 left-6 z-30 flex flex-col gap-2">
-        {/* Diagrama Eléctrico - Solo visible si está activo el servicio eléctrico */}
-        {isElectricoActive && (
-          <button
-            onClick={() => setIsDiagramaOpen(true)}
-            className="flex items-center gap-2 bg-[#0a0a05]/95 hover:bg-yellow-950/95 text-yellow-400 hover:text-white px-4 py-2.5 rounded-2xl border border-yellow-500/50 shadow-[0_0_25px_rgba(234,179,8,0.3)] backdrop-blur-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 animate-in fade-in slide-in-from-left-4 hover:scale-105 group cursor-pointer"
-            title="Ver Diagrama Unifilar del Sistema Eléctrico"
-          >
-            <Zap size={14} className="text-yellow-400 animate-pulse group-hover:scale-110 transition-transform" />
-            <span>Ver Diagrama Unifilar</span>
-          </button>
-        )}
-
-        {/* Esquema del Gasoducto - Solo visible si está activo el servicio de gas */}
-        {isGasActive && (
-          <button
-            onClick={() => setIsDiagramaGasOpen(true)}
-            className="flex items-center gap-2 bg-[#0c0602]/95 hover:bg-orange-950/95 text-orange-400 hover:text-white px-4 py-2.5 rounded-2xl border border-orange-500/50 shadow-[0_0_25px_rgba(249,115,22,0.3)] backdrop-blur-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 animate-in fade-in slide-in-from-left-4 hover:scale-105 group cursor-pointer"
-            title="Ver Esquema del Gasoducto Nororiental"
-          >
-            <Flame size={14} className="text-orange-400 animate-pulse group-hover:scale-110 transition-transform" />
-            <span>Ver Esquema Gasoducto</span>
-          </button>
-        )}
-      </div>
+      
 
       <TacticalToolbar map={map.current} theme={theme} selectedFeatures={selectedFeatures} />
-      <BuscadorGlobal map={map.current} onSelectFeature={handleSearchSelect} theme={theme} layersVisible={layersVisible} />
-      <AsistenteIA layersVisible={layersVisible} selectedFeatures={selectedFeatures} onToggle={onToggle} theme={theme} />
-      <Legend theme={theme} layersVisible={layersVisible} onToggle={onToggle} />
-      <ZoomControls map={map.current} theme={theme} />
+      <BuscadorGlobal map={map.current} onSelectFeature={handleSearchSelect} theme={theme} layersVisible={layersVisible} />      <ZoomControls map={map.current} theme={theme} />
       {selectedFeatures.length > 0 && (
         <AnalysisPanel 
           features={selectedFeatures} 
           onRemove={handleRemove} 
           onClear={handleClear} 
           theme={theme}
-          onOpenDiagrama={() => setIsDiagramaOpen(true)}
-          onOpenDiagramaGas={() => setIsDiagramaGasOpen(true)}
         />
-      )}
-
-      <ModalDiagramaElectrico isOpen={isDiagramaOpen} onClose={() => setIsDiagramaOpen(false)} />
-      <ModalDiagramaGas isOpen={isDiagramaGasOpen} onClose={() => setIsDiagramaGasOpen(false)} />
-    </div>
+      )}    </div>
   );
 });
 
