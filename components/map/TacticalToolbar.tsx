@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { Ruler, Box, Download, Cpu } from 'lucide-react';
-import { exportMapToPDF } from '@/app/lib/exportMapPDF';
+import { exportPDF as exportPDFUtil } from './mapUtils';
 
 interface TacticalToolbarProps {
   map: mapboxgl.Map | null;
@@ -93,7 +93,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     if (!map) return;
     setIsExportingPDF(true);
     try {
-      await exportMapToPDF(map, selectedFeatures);
+      exportPDFUtil(isExportingPDF, setIsExportingPDF);
     } catch (e) {
       console.error(e);
     }
@@ -128,7 +128,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
                 ? 'bg-indigo-600 text-white shadow-[0_0_15px_rgba(79,70,229,0.5)]' 
                 : (isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-slate-300 hover:bg-white/5')
             }`}
-            title={is3DActive ? "Volver a 2D" : "Activar 3D Táctico"}
+            title={is3DActive ? "Volver a 2D" : "Activar 3D TÃ¡ctico"}
           >
             <Box size={14} />
             <span className="hidden md:inline">VISTA 3D</span>
@@ -155,7 +155,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
       {activeTool === 'measure' && (
         <div className="absolute top-28 md:top-20 left-4 md:left-24 z-30 bg-blue-950/90 text-blue-300 px-4 py-2 rounded-xl text-xs font-mono font-bold animate-pulse border border-blue-500/30">
-          Haz clic en el mapa para trazar una línea
+          Haz clic en el mapa para trazar una lÃ­nea
         </div>
       )}
     </>
