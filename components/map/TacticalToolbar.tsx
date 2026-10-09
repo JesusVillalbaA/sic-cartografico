@@ -81,7 +81,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     setIs3DActive(prev => {
       const next = !prev;
       if (next) {
-        map.easeTo({ pitch: 65, bearing: 15, duration: 2500, curve: 1 });
+        map.easeTo({ pitch: 65, bearing: 15, duration: 2500,  });
       } else {
         map.easeTo({ pitch: 0, bearing: 0, duration: 1500 });
       }
@@ -128,7 +128,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
                 ? 'bg-indigo-600 text-white shadow-[0_0_15px_rgba(79,70,229,0.5)]' 
                 : (isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-slate-300 hover:bg-white/5')
             }`}
-            title={is3DActive ? "Volver a 2D" : "Activar 3D TÃ¡ctico"}
+            title={is3DActive ? "Volver a 2D" : "Activar 3D TÃƒÂ¡ctico"}
           >
             <Box size={14} />
             <span className="hidden md:inline">VISTA 3D</span>
@@ -155,7 +155,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
 
       {activeTool === 'measure' && (
         <div className="absolute top-28 md:top-20 left-4 md:left-24 z-30 bg-blue-950/90 text-blue-300 px-4 py-2 rounded-xl text-xs font-mono font-bold animate-pulse border border-blue-500/30">
-          Haz clic en el mapa para trazar una lÃ­nea
+          Haz clic en el mapa para trazar una lÃƒÂ­nea
         </div>
       )}
     </>
