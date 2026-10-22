@@ -1012,7 +1012,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           MINI-MODAL INTERACTIVO DE DESGLOSE TÁCTICO
           ========================================================================= */}
       {modalCategory && (
-        <div className="absolute inset-0 z-50 bg-slate-950/95 backdrop-blur-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+        <div className="absolute inset-[1.5%] z-50 rounded-2xl bg-slate-950/95 backdrop-blur-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200 border border-cyan-500/40 shadow-2xl">
           
           {/* Header del Modal */}
           <div className="p-4 bg-slate-900 border-b border-white/10 flex items-center justify-between shrink-0">

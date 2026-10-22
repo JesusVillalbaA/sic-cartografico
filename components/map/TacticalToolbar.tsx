@@ -828,7 +828,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
   const bufferArea = (Math.PI * Math.pow(bufferRadius, 2)).toFixed(2);
 
   return (
-    <div className="absolute top-4 left-24 z-30 flex items-center gap-2 select-none flex-wrap max-w-[calc(100vw-120px)]">
+    <div className="absolute top-[1%] sm:top-[1.2%] left-[15%] sm:left-[10%] md:left-[5.5rem] z-30 flex items-center gap-1.5 sm:gap-2 select-none flex-wrap max-w-[83%] sm:max-w-[88%] md:max-w-[70%]">
       <div className={`flex items-center gap-1.5 p-1.5 rounded-2xl border backdrop-blur-xl shadow-2xl transition-all ${
         isLight ? 'bg-white/90 border-slate-300' : 'bg-slate-900/90 border-white/10'
       }`}>
@@ -886,7 +886,7 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
           title="Activar Dictado por Voz (Hablar directamente al micrófono)"
         >
           {isVoiceListening ? <MicOff size={14} className="animate-spin text-rose-200" /> : <Mic size={14} className="text-cyan-300 animate-bounce" />}
-          <span>{isVoiceListening ? "ESCUCHANDO VOZ..." : "COMANDO DE VOZ"}</span>
+          <span>{isVoiceListening ? "ESCUCHANDO..." : <><span className="hidden sm:inline">COMANDO DE </span>VOZ</>}</span>
         </button>
 
         {/* Botón Limpiar */}

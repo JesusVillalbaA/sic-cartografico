@@ -45,11 +45,11 @@ export const TransporteCard = ({ f, onRemove }: any) => {
   }
   
   return (
-    <div className={`relative w-full overflow-hidden backdrop-blur-xl bg-[#0a0c0a]/95 border border-${colorTheme}-500/40 rounded-[2.5rem] shadow-2xl animate-in slide-in-from-right-5`}>
+    <div className={`relative w-full overflow-hidden backdrop-blur-xl bg-[#0a0c0a]/95 border border-${colorTheme}-500/40 rounded-3xl sm:rounded-[2.5rem] shadow-2xl animate-in slide-in-from-right-5`}>
       <div className={`absolute left-0 top-0 bottom-0 w-1.5 bg-${colorTheme}-500`} />
       <div className={`absolute top-0 right-0 w-36 h-36 blur-[90px] opacity-25 bg-${colorTheme}-500`} />
 
-      <div className="p-5 pl-7">
+      <div className="p-4 sm:p-5 sm:pl-7">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-sky-500/30 shadow-md">

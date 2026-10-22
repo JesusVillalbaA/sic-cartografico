@@ -369,7 +369,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
                 }
               : undefined
           }
-          className="fixed top-16 right-4 z-40 w-[310px] sm:w-[340px] h-[430px] max-h-[500px] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_35px_rgba(6,182,212,0.3)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden"
+          className="fixed top-[4.5rem] sm:top-16 right-[3%] sm:right-4 z-40 w-[94%] sm:w-[340px] max-w-[94%] h-[68%] sm:h-[450px] max-h-[82%] flex flex-col rounded-2xl border border-cyan-500/30 bg-slate-950/95 shadow-[0_0_35px_rgba(6,182,212,0.3)] backdrop-blur-2xl text-slate-200 animate-in fade-in slide-in-from-right-5 overflow-hidden"
         >
           
           {/* Encabezado del Panel */}

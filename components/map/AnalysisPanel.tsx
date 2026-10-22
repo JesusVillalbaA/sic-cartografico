@@ -281,7 +281,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       : `${features.length} PANELES ACTIVOS`;
 
     return (
-      <div className="fixed top-24 right-6 z-40 animate-in fade-in slide-in-from-top-3 duration-300">
+      <div className="fixed top-[4.5rem] sm:top-[5.5rem] right-[2%] sm:right-[3%] max-w-[94%] z-40 animate-in fade-in slide-in-from-top-3 duration-300">
         <div className={`p-3 rounded-2xl shadow-2xl border flex items-center gap-3 backdrop-blur-2xl transition-all ${
           theme === 'light' 
             ? 'bg-white/95 border-slate-300 text-slate-800' 
@@ -380,7 +380,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       <div 
         ref={scrollContainerRef}
         id="analysis-panel-content" 
-        className="p-3 sm:p-5 space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth touch-pan-y overscroll-contain"
+        className="p-[3%] sm:p-[4%] space-y-3 sm:space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth touch-pan-y overscroll-contain"
       >
         {/* Banner Táctico Informativo durante Cargas */}
         {isLoadingAny && (
