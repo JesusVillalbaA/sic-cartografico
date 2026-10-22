@@ -89,6 +89,10 @@ export default function DespachadorPage() {
 
     // Transporte
     transporteGeneral: false,
+    transporteMaritimo: false,
+    transporteAereo: false,
+    transporteES: false,
+    transporteTerrestre: false,
     paradasPasajeros: false,
     terminales: false,
     recorridoBusesPublicos: false,

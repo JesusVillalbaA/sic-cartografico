@@ -1,373 +1,753 @@
-{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.850530740506606,
-          10.957908197030264
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús",
-        "nombre": "Parada de Bus Playa El Agua",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Punto de salida/parada para las unidades que van hacia la zona hotelera y turística de Playa El Agua.",
-        "id": "transporte_0"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.863349318900724,
-          10.952569403489834
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús",
-        "nombre": "Parada CB Vencemos",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Parada de transporte en las inmediaciones o ruta hacia la cementera Vencemos.",
-        "id": "transporte_1"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.856361126822556,
-          10.959369617808997
-        ]
-      },
-      "properties": {
-        "tipo": "Terminal Principal",
-        "nombre": "Terminal de pasajeros de Porlamar",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Terminal principal de transporte terrestre en Porlamar.",
-        "id": "transporte_2"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.964514955264654,
-          11.081175548128627
-        ]
-      },
-      "properties": {
-        "tipo": "Terminal Principal",
-        "nombre": "Terminal de Pasajeros 'Ciudad de Juangriego'",
-        "ubicacion": "Juan Griego, Isla de Margarita, Venezuela",
-        "descripcion": "Terminal que conecta el norte de la isla con otras localidades.",
-        "id": "transporte_3"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.84782360143827,
-          10.957729465966292
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús / Línea de Transporte",
-        "nombre": "Parada Línea Matasiete",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Estación de la línea de transporte público Matasiete.",
-        "id": "transporte_4"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.84590755840224,
-          10.968432744707899
-        ]
-      },
-      "properties": {
-        "tipo": "Histórico / Antiguo Terminal",
-        "nombre": "Antiguo Terminal de Pasajeros de Margarita",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Antigua estación de autobuses de la ciudad.",
-        "id": "transporte_5"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.85183545314054,
-          10.957792113267377
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús",
-        "nombre": "Parada Bus del Valle del Espíritu Santo",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Ruta específica que conecta Porlamar con el Valle del Espíritu Santo (Basílica de la Virgen del Valle).",
-        "id": "transporte_6"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.85203312170976,
-          10.954652733364211
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús",
-        "nombre": "Parada de Buses Valle Verde",
-        "ubicacion": "Sector Valle Verde, Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Punto de parada para rutas locales hacia Valle Verde.",
-        "id": "transporte_7"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.86026857188409,
-          10.953274466996787
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús / Referencia",
-        "nombre": "Parada Bomba Nueva Cádiz",
-        "ubicacion": "Av. Juan Bautista Arismendi (cerca de la Estación de Servicio Nueva Cádiz), Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Parada de transporte público ubicada en las inmediaciones de la estación de servicio.",
-        "id": "transporte_8"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.86976189004134,
-          10.957122105737795
-        ]
-      },
-      "properties": {
-        "tipo": "Terminal de Autobuses",
-        "nombre": "Terminal Pasajeros Bus Margarita",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Estación vinculada al sistema de transporte superficial Bus Margarita.",
-        "id": "transporte_9"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.85170628278805,
-          10.957401200665224
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús",
-        "nombre": "Parada Línea Buses Juangriego",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Punto en Porlamar para abordar los autobuses con destino a Juan Griego.",
-        "id": "transporte_10"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.846909538076495,
-          10.957014660913364
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús / Colectivos",
-        "nombre": "Parada Porlamar-Pampatar",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Punto de conexión directa entre las ciudades de Porlamar y Pampatar.",
-        "id": "transporte_11"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.87178728217402,
-          10.954912285465266
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús",
-        "nombre": "Parada Grupo Leiros / GUAO",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Parada de transporte con referencia al Grupo Leiros.",
-        "id": "transporte_12"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.867270261226736,
-          10.960707161977993
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús",
-        "nombre": "Parada Mercado de Los Conejeros / Prolicor",
-        "ubicacion": "Sector Los Conejeros, Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Parada estratégica para usuarios del Mercado de Los Conejeros.",
-        "id": "transporte_13"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.86857981771985,
-          10.958638907178393
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Autobús",
-        "nombre": "Parada Prosein / Traki",
-        "ubicacion": "Av. Santiago Mariño / Av. Bolívar, Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Parada de referencia comercial frente a las tiendas Prosein y Traki.",
-        "id": "transporte_14"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "crs": {
-          "type": "name",
-          "properties": {
-            "name": "EPSG:4326"
-          }
-        },
-        "coordinates": [
-          -63.85345985394421,
-          10.95792556169983
-        ]
-      },
-      "properties": {
-        "tipo": "Parada de Carros por Puesto",
-        "nombre": "Parada de carros Porlamar-Manzanillo",
-        "ubicacion": "Porlamar, Isla de Margarita, Venezuela",
-        "descripcion": "Zona de carga para vehículos por puesto de la ruta Porlamar - Manzanillo.",
-        "id": "transporte_15"
-      }
-    }
-  ]
+﻿{
+    "type":  "FeatureCollection",
+    "features":  [
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.850530740506606,
+                                                              10.957908197030264
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs",
+                                            "nombre":  "Parada de Bus Playa El Agua",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Punto de salida/parada para las unidades que van hacia la zona hotelera y turÃ­stica de Playa El Agua.",
+                                            "id":  "transporte_0"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.863349318900724,
+                                                              10.952569403489834
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs",
+                                            "nombre":  "Parada CB Vencemos",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Parada de transporte en las inmediaciones o ruta hacia la cementera Vencemos.",
+                                            "id":  "transporte_1"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.856361126822556,
+                                                              10.959369617808997
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Terminal Principal",
+                                            "nombre":  "Terminal de pasajeros de Porlamar",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Terminal principal de transporte terrestre en Porlamar.",
+                                            "id":  "transporte_2"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.964514955264654,
+                                                              11.081175548128627
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Terminal Principal",
+                                            "nombre":  "Terminal de Pasajeros \u0027Ciudad de Juangriego\u0027",
+                                            "ubicacion":  "Juan Griego, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Terminal que conecta el norte de la isla con otras localidades.",
+                                            "id":  "transporte_3"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.84782360143827,
+                                                              10.957729465966292
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs / LÃ­nea de Transporte",
+                                            "nombre":  "Parada LÃ­nea Matasiete",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "EstaciÃ³n de la lÃ­nea de transporte pÃºblico Matasiete.",
+                                            "id":  "transporte_4"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.84590755840224,
+                                                              10.968432744707899
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "HistÃ³rico / Antiguo Terminal",
+                                            "nombre":  "Antiguo Terminal de Pasajeros de Margarita",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Antigua estaciÃ³n de autobuses de la ciudad.",
+                                            "id":  "transporte_5"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.85183545314054,
+                                                              10.957792113267377
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs",
+                                            "nombre":  "Parada Bus del Valle del EspÃ­ritu Santo",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Ruta especÃ­fica que conecta Porlamar con el Valle del EspÃ­ritu Santo (BasÃ­lica de la Virgen del Valle).",
+                                            "id":  "transporte_6"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.85203312170976,
+                                                              10.954652733364211
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs",
+                                            "nombre":  "Parada de Buses Valle Verde",
+                                            "ubicacion":  "Sector Valle Verde, Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Punto de parada para rutas locales hacia Valle Verde.",
+                                            "id":  "transporte_7"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.86026857188409,
+                                                              10.953274466996787
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs / Referencia",
+                                            "nombre":  "Parada Bomba Nueva CÃ¡diz",
+                                            "ubicacion":  "Av. Juan Bautista Arismendi (cerca de la EstaciÃ³n de Servicio Nueva CÃ¡diz), Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Parada de transporte pÃºblico ubicada en las inmediaciones de la estaciÃ³n de servicio.",
+                                            "id":  "transporte_8"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.86976189004134,
+                                                              10.957122105737795
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Terminal de Autobuses",
+                                            "nombre":  "Terminal Pasajeros Bus Margarita",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "EstaciÃ³n vinculada al sistema de transporte superficial Bus Margarita.",
+                                            "id":  "transporte_9"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.85170628278805,
+                                                              10.957401200665224
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs",
+                                            "nombre":  "Parada LÃ­nea Buses Juangriego",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Punto en Porlamar para abordar los autobuses con destino a Juan Griego.",
+                                            "id":  "transporte_10"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.846909538076495,
+                                                              10.957014660913364
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs / Colectivos",
+                                            "nombre":  "Parada Porlamar-Pampatar",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Punto de conexiÃ³n directa entre las ciudades de Porlamar y Pampatar.",
+                                            "id":  "transporte_11"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.87178728217402,
+                                                              10.954912285465266
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs",
+                                            "nombre":  "Parada Grupo Leiros / GUAO",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Parada de transporte con referencia al Grupo Leiros.",
+                                            "id":  "transporte_12"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.867270261226736,
+                                                              10.960707161977993
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs",
+                                            "nombre":  "Parada Mercado de Los Conejeros / Prolicor",
+                                            "ubicacion":  "Sector Los Conejeros, Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Parada estratÃ©gica para usuarios del Mercado de Los Conejeros.",
+                                            "id":  "transporte_13"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.86857981771985,
+                                                              10.958638907178393
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de AutobÃºs",
+                                            "nombre":  "Parada Prosein / Traki",
+                                            "ubicacion":  "Av. Santiago MariÃ±o / Av. BolÃ­var, Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Parada de referencia comercial frente a las tiendas Prosein y Traki.",
+                                            "id":  "transporte_14"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "crs":  {
+                                                      "type":  "name",
+                                                      "properties":  {
+                                                                         "name":  "EPSG:4326"
+                                                                     }
+                                                  },
+                                          "coordinates":  [
+                                                              -63.85345985394421,
+                                                              10.95792556169983
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "tipo":  "Parada de Carros por Puesto",
+                                            "nombre":  "Parada de carros Porlamar-Manzanillo",
+                                            "ubicacion":  "Porlamar, Isla de Margarita, Venezuela",
+                                            "descripcion":  "Zona de carga para vehÃ­culos por puesto de la ruta Porlamar - Manzanillo.",
+                                            "id":  "transporte_15"
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -63.931178,
+                                                              10.892533
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_16",
+                                            "tipo":  "Terminal Marítimo",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Terminal de Pasajeros La Isleta",
+                                            "ubicacion":  "La Isleta, Municipio García",
+                                            "que_transporta":  "Solo personas hacia la Isla de Coche (Lugar de llegada: Muelle San Pedro de Coche)",
+                                            "descripcion":  "Terminal marítimo de lanchas de pasajeros hacia la Isla de Coche."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -63.848244,
+                                                              10.949675
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_17",
+                                            "tipo":  "Terminal Marítimo",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Terminal Muelle de La Puntilla",
+                                            "ubicacion":  "La Puntilla, Porlamar, Municipio Mariño",
+                                            "que_transporta":  "Solo pasajeros. Destinos: Chacopata, Carúpano e Isla de Coche",
+                                            "descripcion":  "Embarcadero y muelle de pasajeros con conexión hacia Sucre e Isla de Coche."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.095028,
+                                                              10.898533
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_18",
+                                            "tipo":  "Terminal de Ferrys",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle Conferry Punta de Piedras",
+                                            "ubicacion":  "Punta de Piedras, Municipio Tubores",
+                                            "que_transporta":  "Pasajeros, transporte liviano y carga pesada (Rutas: Cumaná, Isla de Coche, Guanta, Pto La Cruz, La Guaira)",
+                                            "descripcion":  "Terminal marítimo principal de ferris Conferry en Punta de Piedras."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.098456,
+                                                              10.899458
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_19",
+                                            "tipo":  "Terminal de Ferrys",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle Naviarca Punta de Piedras",
+                                            "ubicacion":  "Punta de Piedras, Municipio Tubores",
+                                            "que_transporta":  "Pasajeros, vehículos livianos y carga pesada (Destinos: Pto La Cruz, Guanta, Cumaná)",
+                                            "descripcion":  "Muelle y terminal de operaciones navales de Naviarca / Gran Cacique."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.097483,
+                                                              10.899289
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_20",
+                                            "tipo":  "Terminal de Ferrys",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle Navibus Punta de Piedras",
+                                            "ubicacion":  "Punta de Piedras, Municipio Tubores",
+                                            "que_transporta":  "Pasajeros, vehículos livianos y carga pesada (Destinos: Pto La Cruz, Cumaná, Guanta, Isla de Coche)",
+                                            "descripcion":  "Terminal de ferris Navibus en Punta de Piedras."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.060656,
+                                                              10.865239
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_21",
+                                            "tipo":  "Puerto Internacional",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle Internacional El Guamache",
+                                            "ubicacion":  "Puerto Internacional El Guamache, Municipio Tubores",
+                                            "que_transporta":  "Pasajeros, carga liviana y carga pesada (Destinos: Puerto La Cruz, Guanta, La Guaira)",
+                                            "descripcion":  "Puerto marítimo de aguas profundas y terminal de carga intermodal."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.063139,
+                                                              10.864661
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_22",
+                                            "tipo":  "Muelle de Cruceros",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle Crucero Internacional El Guamache",
+                                            "ubicacion":  "Puerto Internacional El Guamache, Municipio Tubores",
+                                            "que_transporta":  "Destinos y buques de cruceros internacionales",
+                                            "descripcion":  "Terminal para recepción y atraque de cruceros turísticos internacionales."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.098456,
+                                                              10.899458
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_23",
+                                            "tipo":  "Muelle Turístico",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle Naviarca Turismo Punta de Piedras",
+                                            "ubicacion":  "Punta de Piedras, Municipio Tubores",
+                                            "que_transporta":  "Catamaranes turísticos (Destinos: Isla de Cubagua e Isla de Coche)",
+                                            "descripcion":  "Embarque de catamaranes turísticos hacia las islas de Coche y Cubagua."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -63.991578,
+                                                              10.790581
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_24",
+                                            "tipo":  "Terminal Marítimo",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle San Pedro de Coche",
+                                            "ubicacion":  "San Pedro de Coche, Isla de Coche, Municipio Villalba",
+                                            "que_transporta":  "Pasajeros, vehículos livianos, vehículos de carga y turismo (Destinos: Punta de Piedras, La Isleta, La Puntilla)",
+                                            "descripcion":  "Muelle y terminal marítimo principal de la Isla de Coche."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.158767,
+                                                              10.833181
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_25",
+                                            "tipo":  "Muelle Turístico",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle Charagato Isla de Cubagua",
+                                            "ubicacion":  "Playa Charagato, Isla de Cubagua, Municipio Tubores",
+                                            "que_transporta":  "Solo turismo en catamaranes",
+                                            "descripcion":  "Punto de desembarque turístico para catamaranes en Playa Charagato."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.163017,
+                                                              10.825747
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_26",
+                                            "tipo":  "Muelle Turístico",
+                                            "categoria":  "maritimo",
+                                            "nombre":  "Muelle Antigua Salle de Cubagua",
+                                            "ubicacion":  "Sector Antigua Salle, Isla de Cubagua, Municipio Tubores",
+                                            "que_transporta":  "Solo turismo en catamaranes",
+                                            "descripcion":  "Muelle histórico y turístico en la costa sur de Cubagua."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -63.849511,
+                                                              10.948133
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_27",
+                                            "tipo":  "Estación de Servicio Marina",
+                                            "categoria":  "estacion",
+                                            "nombre":  "E/S Marina Faro La Puntilla",
+                                            "ubicacion":  "Faro La Puntilla, Porlamar, Municipio Mariño",
+                                            "que_transporta":  "Suministro de combustible marino para embarcaciones pesqueras y de pasajeros",
+                                            "descripcion":  "Estación de servicio marina de abastecimiento de combustible en La Puntilla."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.094319,
+                                                              10.897675
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_28",
+                                            "tipo":  "Estación de Servicio Marina",
+                                            "categoria":  "estacion",
+                                            "nombre":  "E/S Marina Planta de Hielo Punta de Piedras",
+                                            "ubicacion":  "Sector Planta de Hielo, Punta de Piedras, Municipio Tubores",
+                                            "que_transporta":  "Suministro de combustible marino para ferris y barcos pesqueros",
+                                            "descripcion":  "Estación de servicio marina estratégica para la flota pesquera y de transporte."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.374667,
+                                                              11.024842
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_29",
+                                            "tipo":  "Estación de Servicio Marina",
+                                            "categoria":  "estacion",
+                                            "nombre":  "E/S Marina Robledal",
+                                            "ubicacion":  "El Robledal, Península de Macanao",
+                                            "que_transporta":  "Suministro de combustible marino para la flota artesanal e industrial de Macanao",
+                                            "descripcion":  "Estación de servicio marina que atiende la zona pesquera occidental de la isla."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -63.976344,
+                                                              11.085431
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_30",
+                                            "tipo":  "Estación de Servicio Marina",
+                                            "categoria":  "estacion",
+                                            "nombre":  "E/S Marina Lonja Pesquera Juan Griego",
+                                            "ubicacion":  "Bahía de Juan Griego, Municipio Marcano",
+                                            "que_transporta":  "Suministro de combustible marino para embarcaciones de pesca y turismo",
+                                            "descripcion":  "Estación de servicio marina en la bahía histórica de Juan Griego."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.022294,
+                                                              10.997406
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_31",
+                                            "tipo":  "Estación de Servicio Marina y Terrestre",
+                                            "categoria":  "estacion",
+                                            "nombre":  "E/S Marina Terrestre La Guardia",
+                                            "ubicacion":  "La Guardia, Municipio Díaz",
+                                            "que_transporta":  "Suministro dual de combustible: embarcaciones marinas y transporte terrestre",
+                                            "descripcion":  "Estación de servicio multimodal en el sector costero de La Guardia."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -63.845989,
+                                                              11.118825
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_32",
+                                            "tipo":  "Estación de Servicio Marina",
+                                            "categoria":  "estacion",
+                                            "nombre":  "E/S Marina El Tirano",
+                                            "ubicacion":  "Puerto Real de El Tirano, Municipio Antolín del Campo",
+                                            "que_transporta":  "Suministro de combustible para lanchas turísticas y pescadores artesanales",
+                                            "descripcion":  "Estación marina de servicio en el puerto pesquero y turístico de El Tirano."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -64.157917,
+                                                              10.958261
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_33",
+                                            "tipo":  "Estación de Servicio Marina (Privada)",
+                                            "categoria":  "estacion",
+                                            "nombre":  "E/S Marina Muelle Chacachacare (Servicio Privado)",
+                                            "ubicacion":  "Muelle Chacachacare, Municipio Tubores",
+                                            "que_transporta":  "Suministro de combustible marino para flota e instalaciones privadas",
+                                            "descripcion":  "Estación marina privada en el muelle de Chacachacare."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -63.968994,
+                                                              10.916489
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_34",
+                                            "tipo":  "Terminal Aéreo Nacional",
+                                            "categoria":  "aereo",
+                                            "nombre":  "Aeropuerto Internacional Santiago Mariño - Terminal Nacional",
+                                            "ubicacion":  "El Yaque, Municipio Díaz",
+                                            "que_transporta":  "Vuelos comerciales nacionales de pasajeros y transporte de carga aérea",
+                                            "descripcion":  "Terminal aéreo para conexiones nacionales de la Isla de Margarita."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              -63.967758,
+                                                              10.91715
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "transporte_35",
+                                            "tipo":  "Terminal Aéreo Internacional",
+                                            "categoria":  "aereo",
+                                            "nombre":  "Aeropuerto Internacional Santiago Mariño - Terminal Internacional",
+                                            "ubicacion":  "El Yaque, Municipio Díaz",
+                                            "que_transporta":  "Vuelos comerciales internacionales y vuelos chárter turísticos",
+                                            "descripcion":  "Terminal para operaciones y vuelos de conexión aérea internacional."
+                                        }
+                     }
+                 ]
 }

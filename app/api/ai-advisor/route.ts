@@ -450,7 +450,7 @@ function parseVoiceCommand(command: string) {
 
   const traceRegex = /(?:trazar|traza|analizar|analiza|realizar|hacer)\s+(?:un\s+)?(?:área|area|polígono|poligono|análisis|analisis)\s+(?:en|sobre|de|del|de la)\s+(.+)/i;
   const traceMatch = text.match(traceRegex);
-  if (traceMatch && !radioMatch) {
+  if (traceMatch ) {
     const placeName = traceMatch[1].trim();
     actions.push(`trace_place:polygon:0:${placeName}`);
     responseText += `Trazando área y analizando vulnerabilidad en "${placeName}". `;
@@ -464,11 +464,8 @@ function parseVoiceCommand(command: string) {
     actions.push('toggle_heatmap');
     responseText += "Desplegando Mapa de Calor Táctico. ";
   }
-  if (text.includes('herramienta de radio') || text.includes('buffer')) {
-    actions.push('activate_buffer');
-    responseText += "Activando herramienta de Radio de Cobertura. ";
-  }
-  if ((text.includes('trazar area') || text.includes('trazar polígono') || text.includes('herramienta de trazado')) && !radioMatch && !traceMatch) {
+  
+  if ((text.includes('trazar area') || text.includes('trazar polígono') || text.includes('herramienta de trazado'))  && !traceMatch) {
     actions.push('activate_polygon');
     responseText += "Iniciando herramienta de Trazado de Polígono. ";
   }
@@ -633,3 +630,4 @@ function generateAnswerToUser(query: string, layers: any, selectedFeatures: any[
 
   return `Entendido. Como consejero de geointeligencia SOGNE, te sugiero revisar las capas de infraestructura crítica o dictar comandos por voz para controlar la cartografía.`;
 }
+

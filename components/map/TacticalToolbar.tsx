@@ -833,20 +833,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         isLight ? 'bg-white/90 border-slate-300' : 'bg-slate-900/90 border-white/10'
       }`}>
         
-        {/* Botón Cobertura (Buffer) */}
-        <button
-          onClick={() => setActiveTool(activeTool === 'buffer' ? 'none' : 'buffer')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-[11px] font-bold tracking-wider transition-all cursor-pointer ${
-            activeTool === 'buffer'
-              ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)]'
-              : (isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-slate-300 hover:bg-white/5')
-          }`}
-          title="Radio de Cobertura / Anillo Táctico Circular"
-        >
-          <CircleDot size={14} />
-          <span className="hidden md:inline">RADIO COBERTURA</span>
-        </button>
-
         {/* Botón Trazar Polígono / Área */}
         <button
           onClick={() => setActiveTool(activeTool === 'polygon' ? 'none' : 'polygon')}
@@ -934,27 +920,6 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
         </div>
       )}
 
-      {/* Selector de Radio de Cobertura */}
-      {activeTool === 'buffer' && (
-        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border backdrop-blur-xl shadow-lg text-[11px] font-bold animate-in fade-in slide-in-from-left-2 ${
-          isLight ? 'bg-white/95 border-purple-300 text-purple-800' : 'bg-slate-900/95 border-purple-500/40 text-purple-300'
-        }`}>
-          <span>Radio:</span>
-          {[0.5, 1, 3, 5, 10].map(r => (
-            <button
-              key={r}
-              onClick={() => setBufferRadius(r)}
-              className={`px-2 py-0.5 rounded-md text-[10px] transition-all cursor-pointer ${
-                bufferRadius === r ? 'bg-purple-600 text-white font-bold' : 'bg-white/10 hover:bg-white/20'
-              }`}
-            >
-              {r} km
-            </button>
-          ))}
-          <span className="text-[10px] opacity-80 border-l border-white/20 pl-2">Área: {bufferArea} km²</span>
-        </div>
-      )}
-
       {/* Info Flotante de Trazado de Área (Polígono) */}
       {activeTool === 'polygon' && (
         <div className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border backdrop-blur-xl shadow-2xl text-[11px] font-mono font-bold animate-in fade-in slide-in-from-left-2 flex-wrap ${
@@ -1032,3 +997,4 @@ export const TacticalToolbar: React.FC<TacticalToolbarProps> = ({ map, theme = '
     </div>
   );
 };
+

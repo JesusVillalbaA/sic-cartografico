@@ -10,6 +10,7 @@ import { ModalCrearUsuario } from './ModalCrearUsuario';
 import { ModalGenerarCodigo } from './ModalGenerarCodigo';
 import { ModalExportarPDF } from './ModalExportarPDF';
 import { ModalGeoJsonEditor } from './ModalGeoJsonEditor';
+import { ModalEnProceso } from './ModalEnProceso';
 
 export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, isMobileMenuOpen, setIsMobileMenuOpen }: any) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -29,7 +30,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         setCustomModules(data || []);
       }
     } catch (err) {
-      console.warn('Error obteniendo módulos personalizados:', err);
+      console.warn('Error obteniendo mÃ³dulos personalizados:', err);
     }
   };
 
@@ -68,14 +69,14 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
       const res = await fetch(`/api/map/custom-modules?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
-        showExitoModal(`Módulo "${name}" eliminado exitosamente del proyecto.`);
+        showExitoModal(`MÃ³dulo "${name}" eliminado exitosamente del proyecto.`);
         setModuleToDelete(null);
         fetchCustomModules();
       } else {
         throw new Error('No se pudo eliminar');
       }
     } catch (err) {
-      showErrorModal('Error al eliminar el módulo del proyecto.');
+      showErrorModal('Error al eliminar el mÃ³dulo del proyecto.');
     }
   };
   
@@ -101,6 +102,8 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
   const [showGeocalizacionesSub, setShowGeocalizacionesSub] = useState(false);
   const [showTransportePublicoSub, setShowTransportePublicoSub] = useState(false);
   const [showTransportePrivadoSub, setShowTransportePrivadoSub] = useState(false);
+  const [showTransporteRutas, setShowTransporteRutas] = useState(false);
+  const [modalEnProcesoData, setModalEnProcesoData] = useState<{ isOpen: boolean; modulo: string; descripcion?: string }>({ isOpen: false, modulo: '', descripcion: '' });
   const [showServicioAguaSub, setShowServicioAguaSub] = useState(false);
 
   const [userRol, setUserRol] = useState('REDES');
@@ -177,7 +180,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
       doc.text("SOGNE REDIMAIN", 40, 22);
       doc.setFontSize(9);
       doc.setTextColor(186, 230, 253);
-      doc.text("REPORTE OPERATIVO • ESTADO NUEVA ESPARTA", 40, 30);
+      doc.text("REPORTE OPERATIVO â€¢ ESTADO NUEVA ESPARTA", 40, 30);
 
       if (mapRef?.current) {
         // Obtenemos el canvas original de Mapbox
@@ -185,7 +188,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         
         if (mapboxCanvas) {
           const imgData = mapboxCanvas.toDataURL('image/png');
-          // Añadimos la captura del mapa al PDF
+          // AÃ±adimos la captura del mapa al PDF
           doc.addImage(imgData, 'PNG', 15, 40, 180, 100);
           doc.setDrawColor(203, 213, 225);
           doc.rect(15, 40, 180, 100);
@@ -222,10 +225,10 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         yPos += (layersText.length * 5) + 10;
       }
 
-      // == INFORMACIÓN DE PANELES ==
+      // == INFORMACIÃ“N DE PANELES ==
       doc.setFontSize(14);
       doc.setTextColor(30, 41, 59);
-      doc.text("Información de Elementos (Paneles)", 15, yPos);
+      doc.text("InformaciÃ³n de Elementos (Paneles)", 15, yPos);
       yPos += 10;
 
       doc.setFontSize(9);
@@ -233,15 +236,15 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
       
       const panelContent = document.getElementById('analysis-panel-content');
       if (panelContent && panelContent.innerText.trim().length > 0) {
-        // Limpiamos un poco el texto (quitar botones '✕', saltos excesivos)
+        // Limpiamos un poco el texto (quitar botones 'âœ•', saltos excesivos)
         const text = panelContent.innerText
-          .replace(/✕/g, '')
+          .replace(/âœ•/g, '')
           .replace(/\n\s*\n/g, '\n')
           .trim();
           
         const lines = doc.splitTextToSize(text, 180);
         
-        // Si el texto es muy largo, lo cortamos para que quepa en la primera página o lo paginamos
+        // Si el texto es muy largo, lo cortamos para que quepa en la primera pÃ¡gina o lo paginamos
         for (let i = 0; i < lines.length; i++) {
           if (yPos > 270) {
             doc.addPage();
@@ -308,9 +311,15 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
     setShowServicioAguaSub(false);
   };
 
+  const flyToTransportPoint = (coords: [number, number], name: string) => {
+    window.dispatchEvent(new CustomEvent('sigdi_focus_transport', {
+      detail: { coords, name }
+    }));
+  };
+
   return (
     <>
-      {/* Overlay para móvil */}
+      {/* Overlay para mÃ³vil */}
       {isMobileMenuOpen && (
         <div 
           className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
@@ -340,7 +349,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                 }
               }}
               className="absolute top-0 right-4 p-2 text-white/30 hover:text-white transition-colors"
-              title={isLockedOpen || isAnySubmenuOpen ? "Forzar cierre del menú" : "Fijar menú abierto"}
+              title={isLockedOpen || isAnySubmenuOpen ? "Forzar cierre del menÃº" : "Fijar menÃº abierto"}
             >
               {isLockedOpen || isAnySubmenuOpen ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -420,9 +429,9 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                         </button>
                         <button onClick={() => onToggleSub('zonasDeRiesgo', 'areaCibernetica')} className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${layersVisible.zonasDeRiesgo?.areaCibernetica ? 'text-red-500' : (theme === 'light' ? 'text-[#172554]/70 hover:text-[#172554]' : 'text-slate-500 hover:text-slate-300')}`}>
                           <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                            <img src="/hacker.png" className="w-4 h-4 object-contain" alt="Cibernética" />
+                            <img src="/hacker.png" className="w-4 h-4 object-contain" alt="CibernÃ©tica" />
                           </div>
-                          <span className="text-[10px] font-bold tracking-widest">Área cibernética</span>
+                          <span className="text-[10px] font-bold tracking-widest">Ãrea cibernÃ©tica</span>
                         </button>
                         <button onClick={() => onToggleSub('zonasDeRiesgo', 'concentraciones')} className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${layersVisible.zonasDeRiesgo?.concentraciones ? 'text-red-500' : (theme === 'light' ? 'text-[#172554]/70 hover:text-[#172554]' : 'text-slate-500 hover:text-slate-300')}`}>
                           <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
@@ -456,15 +465,15 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                         </button>
                         <button onClick={() => onToggleSub('geocalizaciones', 'actorInteres')} className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${layersVisible.geocalizaciones?.actorInteres ? 'text-purple-500' : (theme === 'light' ? 'text-[#172554]/70 hover:text-[#172554]' : 'text-slate-500 hover:text-slate-300')}`}>
                           <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                            <img src="/actor.png" className="w-4 h-4 object-contain" alt="Actor de interés" />
+                            <img src="/actor.png" className="w-4 h-4 object-contain" alt="Actor de interÃ©s" />
                           </div>
-                          <span className="text-[10px] font-bold tracking-widest">Actor de interés</span>
+                          <span className="text-[10px] font-bold tracking-widest">Actor de interÃ©s</span>
                         </button>
                         <button onClick={() => onToggleSub('geocalizaciones', 'puntoInteres')} className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${layersVisible.geocalizaciones?.puntoInteres ? 'text-purple-500' : (theme === 'light' ? 'text-[#172554]/70 hover:text-[#172554]' : 'text-slate-500 hover:text-slate-300')}`}>
                           <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                            <img src="/punto.png" className="w-4 h-4 object-contain" alt="Punto de interés" />
+                            <img src="/punto.png" className="w-4 h-4 object-contain" alt="Punto de interÃ©s" />
                           </div>
-                          <span className="text-[10px] font-bold tracking-widest">Punto de interés</span>
+                          <span className="text-[10px] font-bold tracking-widest">Punto de interÃ©s</span>
                         </button>
                       </div>
                     )}
@@ -501,7 +510,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               {isMenuOpen && showInfraestructura && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   <MenuItem theme={theme} iconSrc="/hospital.png" label="HOSPITALES" active={layersVisible.hospitales} accentColor="#6366f1" isHovered={isMenuOpen} onClick={() => onToggle('hospitales')} />
-                  <MenuItem theme={theme} iconSrc="/clinica.png" label="CLÍNICAS" active={layersVisible.clinicas} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => onToggle('clinicas')} />
+                  <MenuItem theme={theme} iconSrc="/clinica.png" label="CLÃNICAS" active={layersVisible.clinicas} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => onToggle('clinicas')} />
                   <MenuItem theme={theme} iconSrc="/ambulatorio.png" label="AMBULATORIOS" active={layersVisible.ambulatorios} accentColor="#f43f5e" isHovered={isMenuOpen} onClick={() => onToggle('ambulatorios')} />
                   <MenuItem theme={theme} iconSrc="/dispensario.png" label="CDI" active={layersVisible.cdi} accentColor="#d946ef" isHovered={isMenuOpen} onClick={() => onToggle('cdi')} />
                   <MenuItem theme={theme} iconSrc="/gasolinera.png" label="ESTACIONES DE SERVICIO" active={layersVisible.estaciones} accentColor="#f97316" isHovered={isMenuOpen} onClick={() => onToggle('estaciones')} />
@@ -510,15 +519,15 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               )}
             </div>
 
-            {/* ==================== SERVICIOS BÁSICOS ==================== */}
+            {/* ==================== SERVICIOS BÃSICOS ==================== */}
             <div className="space-y-3">
               <button onClick={() => isMenuOpen && setShowServiciosBasicos(!showServiciosBasicos)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showServiciosBasicos ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
                 <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
-                  <img src="/serviciobasico.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Servicios Básicos" />
+                  <img src="/serviciobasico.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Servicios BÃ¡sicos" />
                 </div>
                 {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
-                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>SERVICIOS BÁSICOS</span>
+                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>SERVICIOS BÃSICOS</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showServiciosBasicos ? 'rotate-180' : ''}`} />
                   </div>
                 )}
@@ -590,7 +599,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                     )}
                   </div>
                   <MenuItem theme={theme} iconSrc="/gas.png" label="ESTACIONES DE GAS" active={layersVisible.estacionesGas} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => onToggle('estacionesGas')} />
-                  <MenuItem theme={theme} iconSrc="/electricidad.png" label="SUB-ESTACIONES ELÉCTRICAS" active={layersVisible.sistemasElectricos} accentColor="#facc15" isHovered={isMenuOpen} onClick={() => onToggle('sistemasElectricos')} />
+                  <MenuItem theme={theme} iconSrc="/electricidad.png" label="SUB-ESTACIONES ELÃ‰CTRICAS" active={layersVisible.sistemasElectricos} accentColor="#facc15" isHovered={isMenuOpen} onClick={() => onToggle('sistemasElectricos')} />
                 </div>
               )}
             </div>
@@ -617,7 +626,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               )}
             </div>
 
-            {/* ==================== TRANSPORTE (PÚBLICO Y PRIVADO) ==================== */}
+            {/* ==================== TRANSPORTE (PÃšBLICO Y PRIVADO) ==================== */}
             <div className="space-y-3">
               <button onClick={() => isMenuOpen && setShowTransporte(!showTransporte)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showTransporte ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
                 <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
@@ -670,7 +679,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
             <div className="px-6"><hr className="border-white/10" /></div>
 
-            {/* ==================== GESTIÓN ==================== */}
+            {/* ==================== GESTIÃ“N ==================== */}
             <div className="space-y-3">
               <button onClick={() => isMenuOpen && setShowGestion(!showGestion)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showGestion ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
                 <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
@@ -678,7 +687,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                 </div>
                 {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
-                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>GESTIÓN</span>
+                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>GESTIÃ“N</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showGestion ? 'rotate-180' : ''}`} />
                   </div>
                 )}
@@ -686,16 +695,16 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               {isMenuOpen && showGestion && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   <MenuItem theme={theme} iconSrc="/usuario.png" label="CREAR USUARIO" active={showModalUsuario} accentColor="#10b981" isHovered={isMenuOpen} onClick={handleOpenCrearUsuario} />
-                  <MenuItem theme={theme} iconSrc="/codigo.png" label="GENERAR CÓDIGO" active={layersVisible.generarClave} accentColor="#06b6d4" isHovered={isMenuOpen} onClick={() => { if (userRol === 'REDES') onToggle('generarClave'); else setShowAccesoDenegado(true); }} />
+                  <MenuItem theme={theme} iconSrc="/codigo.png" label="GENERAR CÃ“DIGO" active={layersVisible.generarClave} accentColor="#06b6d4" isHovered={isMenuOpen} onClick={() => { if (userRol === 'REDES') onToggle('generarClave'); else setShowAccesoDenegado(true); }} />
                   <MenuItem theme={theme} iconSrc="/pdf.png" label={isGenerating ? "SINCRONIZANDO..." : "GENERAR REPORTE"} active={false} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => setShowModalExportPDF(true)} />
                   <MenuItem theme={theme} iconSrc="/cuadrantes.png" label="IMPORTADOR GIS (GEOJSON.IO)" active={showModalGisEditor} accentColor="#00f0ff" isHovered={isMenuOpen} onClick={() => setShowModalGisEditor(true)} />
 
-                  {/* Lista de Módulos Personalizados Creados por el Usuario */}
+                  {/* Lista de MÃ³dulos Personalizados Creados por el Usuario */}
                   {customModules.length > 0 && (
                     <div className="pt-3 border-t border-white/10 space-y-2">
                       <div className="text-[10px] font-black uppercase text-cyan-400 tracking-widest flex items-center gap-1.5">
                         <Layers size={12} />
-                        <span>Módulos de Usuario ({customModules.length})</span>
+                        <span>MÃ³dulos de Usuario ({customModules.length})</span>
                       </div>
                       {customModules.map((mod: any) => {
                         const isActive = !!activeCustomModules[mod.id];
@@ -714,14 +723,14 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                                   {mod.name}
                                 </span>
                                 <span className="text-[9px] text-slate-400 font-mono block">
-                                  {mod.featuresCount || 0} elem • {mod.category}
+                                  {mod.featuresCount || 0} elem â€¢ {mod.category}
                                 </span>
                               </div>
                             </button>
                             <button
                               onClick={() => setModuleToDelete(mod)}
                               className="text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
-                              title="Eliminar módulo del proyecto"
+                              title="Eliminar mÃ³dulo del proyecto"
                             >
                               <Trash2 size={13} />
                             </button>
@@ -788,7 +797,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         showErrorModal={showErrorModal}
       />
 
-      {/* Modal de Doble Confirmación para Eliminar un Módulo */}
+      {/* Modal de Doble ConfirmaciÃ³n para Eliminar un MÃ³dulo */}
       {moduleToDelete && (
         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md animate-in fade-in duration-200">
           <div className="w-full max-w-md bg-slate-900 border-2 border-red-500/50 rounded-3xl p-6 space-y-5 shadow-[0_0_50px_rgba(239,68,68,0.3)] text-slate-100">
@@ -798,19 +807,19 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               </div>
               <div>
                 <h3 className="text-sm font-black uppercase text-red-400 tracking-wider">
-                  ELIMINAR MÓDULO DEL PROYECTO
+                  ELIMINAR MÃ“DULO DEL PROYECTO
                 </h3>
                 <p className="text-[10px] text-slate-400 font-mono">
-                  Esta acción desinstalará la capa del sistema SOGNE
+                  Esta acciÃ³n desinstalarÃ¡ la capa del sistema SOGNE
                 </p>
               </div>
             </div>
 
             <p className="text-xs text-slate-300 font-mono leading-relaxed">
-              ¿Estás seguro de que deseas eliminar permanentemente el módulo <strong className="text-white">"{moduleToDelete.name}"</strong>?
+              Â¿EstÃ¡s seguro de que deseas eliminar permanentemente el mÃ³dulo <strong className="text-white">"{moduleToDelete.name}"</strong>?
               <br />
               <span className="text-slate-400 text-[11px] block mt-2">
-                Se borrará el archivo <code>{moduleToDelete.id}.geojson</code> del proyecto y se removerá del menú.
+                Se borrarÃ¡ el archivo <code>{moduleToDelete.id}.geojson</code> del proyecto y se removerÃ¡ del menÃº.
               </span>
             </p>
 
@@ -825,12 +834,18 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                 onClick={confirmDeleteCustomModule}
                 className="px-5 py-2.5 rounded-xl bg-red-500 hover:bg-red-400 text-white font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all cursor-pointer"
               >
-                Sí, Eliminar Módulo
+                SÃ­, Eliminar MÃ³dulo
               </button>
             </div>
           </div>
         </div>
       )}
+      <ModalEnProceso
+        isOpen={modalEnProcesoData.isOpen}
+        onClose={() => setModalEnProcesoData({ isOpen: false, modulo: '' })}
+        modulo={modalEnProcesoData.modulo}
+        descripcion={modalEnProcesoData.descripcion}
+      />
     </>
   );
 };

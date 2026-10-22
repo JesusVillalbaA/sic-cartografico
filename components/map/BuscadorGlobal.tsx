@@ -46,7 +46,8 @@ export const BuscadorGlobal = ({ map, onSelectFeature, theme, layersVisible }: a
         'grupos-bandas',
         'puntos-interes',
         'compas-source',
-        'conppas-source'
+        'conppas-source',
+        'transporte-source'
       ];
       
       let featuresRaw: any[] = [];
