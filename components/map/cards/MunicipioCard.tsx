@@ -571,7 +571,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           </div>
 
           {/* Resumen táctico rápido en píldoras */}
-          <div className="grid grid-cols-4 gap-2 pt-1.5 border-t border-white/10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1.5 border-t border-white/10">
             <div className="bg-slate-900/80 p-2 rounded-xl border border-white/5 text-center">
               <span className="text-[8px] font-bold text-slate-400 block uppercase">Cuadrantes</span>
               <span className="text-sm font-black text-amber-400">{stats.cuadrantes}</span>
@@ -593,7 +593,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       ) : (
         <>
           {/* HEADER TÁCTICO EXPANDIDO */}
-          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/80 p-5 sm:p-6 relative overflow-hidden border-b border-white/10 shrink-0">
+          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/80 p-4 sm:p-5 relative overflow-hidden border-b border-white/10 shrink-0">
             <div className="absolute top-0 right-0 p-4 opacity-15 pointer-events-none">
               <img src="/Municipios.png" className="w-24 sm:w-28 h-24 sm:h-28 object-contain" alt="Fondo" />
             </div>
@@ -628,7 +628,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
               </div>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight italic leading-tight">
+            <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight italic leading-tight">
               MUNICIPIO {stats.nombre}
             </h2>
             <p className="text-[11px] sm:text-xs font-mono text-cyan-400/90 mt-0.5">
@@ -637,7 +637,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
           </div>
 
           {/* CONTENIDO PRINCIPAL SCROLLEABLE */}
-          <div className="p-4 sm:p-6 space-y-5 overflow-y-auto max-h-[calc(90vh-140px)] custom-scrollbar">
+          <div className="p-3.5 sm:p-5 space-y-4">
             
             {/* =========================================================================
                 SECCIÓN: INFRAESTRUCTURA ESTRATÉGICA Y SERVICIOS CON CLICK INTERACTIVO
@@ -676,7 +676,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                   </div>
                 </div>
               ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
                 
                 {/* 1. ESCUELAS */}
                 <button

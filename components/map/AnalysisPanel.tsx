@@ -327,11 +327,14 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
 
   // ── MODO CONTENEDOR EXPANDIDO ──
   return (
-    <div className={`fixed bottom-0 left-0 right-0 w-full max-h-[88vh] rounded-t-3xl md:absolute md:top-14 md:bottom-4 md:right-6 ${
-      hasMunicipio ? 'md:w-[38rem] lg:w-[44rem] xl:w-[48rem] max-w-[96vw]' : 'md:w-[28rem] lg:w-[32rem]'
-    } md:rounded-[2.5rem] md:left-auto md:max-h-[92vh] shadow-2xl overflow-hidden flex flex-col z-40 transition-all duration-500 border ${
+    <div className={`fixed bottom-2 left-2 right-2 max-w-[calc(100vw-1rem)] mx-auto max-h-[72vh] rounded-3xl md:fixed md:top-14 md:bottom-4 md:right-6 md:left-auto md:max-h-[90vh] ${
+      hasMunicipio ? 'w-full md:w-[26rem] lg:w-[28rem] xl:w-[32rem]' : 'w-full md:w-[24rem] lg:w-[26rem]'
+    } md:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col z-40 transition-all duration-500 border ${
       theme === 'light' ? 'bg-white/95 border-slate-300 light-theme' : 'bg-slate-950/95 border-white/10 backdrop-blur-2xl'
     }`}>
+
+      {/* Barra táctica indicadora en móvil */}
+      <div className="w-12 h-1.5 rounded-full bg-white/25 mx-auto mt-2 mb-0.5 md:hidden shrink-0" />
 
       {/* Header Táctico con Botón de Minimizar Contenedor */}
       <div className="p-4 sm:p-5 border-b border-white/5 flex justify-between items-center bg-slate-900/70 shrink-0">
@@ -377,7 +380,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       <div 
         ref={scrollContainerRef}
         id="analysis-panel-content" 
-        className="p-4 sm:p-5 space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth"
+        className="p-3 sm:p-5 space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth touch-pan-y overscroll-contain"
       >
         {/* Banner Táctico Informativo durante Cargas */}
         {isLoadingAny && (
