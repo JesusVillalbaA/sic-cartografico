@@ -12,6 +12,56 @@ import { ModalExportarPDF } from './ModalExportarPDF';
 import { ModalGeoJsonEditor } from './ModalGeoJsonEditor';
 import { ModalEnProceso } from './ModalEnProceso';
 
+
+// ─── DATOS DE TERMINALES, MUELLES, E/S MARINAS Y RUTAS (SOGNE) ───────────────
+const TERMINALES_MARITIMOS_DATA = [
+  { name: "Terminal de Pasajeros La Isleta", coords: [-63.931178, 10.892533] as [number, number], ruta: "Solo personas hacia Isla de Coche (Muelle San Pedro)", badge: "Lanchas / Pasajeros" },
+  { name: "Terminal Muelle de La Puntilla", coords: [-63.848244, 10.949675] as [number, number], ruta: "Destinos: Chacopata, Carúpano e Isla de Coche", badge: "Pasajeros" },
+  { name: "Muelle Conferry Punta de Piedras", coords: [-64.095028, 10.898533] as [number, number], ruta: "Cumaná, Coche, Guanta, Pto La Cruz, La Guaira (Carga y Pasajeros)", badge: "Ferry Principal" },
+  { name: "Muelle Naviarca Punta de Piedras", coords: [-64.098456, 10.899458] as [number, number], ruta: "Pto La Cruz, Guanta, Cumaná (Vehículos y Carga)", badge: "Ferry / Carga" },
+  { name: "Muelle Navibus Punta de Piedras", coords: [-64.097483, 10.899289] as [number, number], ruta: "Pto La Cruz, Cumaná, Guanta, Isla de Coche", badge: "Ferry / Vehículos" },
+  { name: "Muelle Internacional El Guamache", coords: [-64.060656, 10.865239] as [number, number], ruta: "Carga liviana y pesada: Puerto La Cruz, Guanta, La Guaira", badge: "Puerto Carga" },
+  { name: "Muelle Crucero Internacional El Guamache", coords: [-64.063139, 10.864661] as [number, number], ruta: "Destinos y buques de cruceros internacionales", badge: "Cruceros Internacionales" },
+  { name: "Muelle Naviarca Turismo Punta de Piedras", coords: [-64.098456, 10.899458] as [number, number], ruta: "Catamaranes turísticos hacia Isla de Cubagua e Isla de Coche", badge: "Turismo Catamarán" },
+  { name: "Muelle San Pedro de Coche", coords: [-63.991578, 10.790581] as [number, number], ruta: "Conexión Punta de Piedras, La Isleta y La Puntilla", badge: "Isla de Coche" },
+  { name: "Muelle Charagato Isla de Cubagua", coords: [-64.158767, 10.833181] as [number, number], ruta: "Solo turismo en catamaranes", badge: "Isla de Cubagua" },
+  { name: "Muelle Antigua Salle de Cubagua", coords: [-64.163017, 10.825747] as [number, number], ruta: "Solo turismo en catamaranes", badge: "Isla de Cubagua" }
+];
+
+const TERMINALES_AEREOS_DATA = [
+  { name: "Aeropuerto Internacional Santiago Mariño - Terminal Nacional", coords: [-63.968994, 10.916489] as [number, number], ruta: "Vuelos comerciales nacionales y transporte de carga aérea", badge: "Terminal Nacional" },
+  { name: "Aeropuerto Internacional Santiago Mariño - Terminal Internacional", coords: [-63.967758, 10.91715] as [number, number], ruta: "Vuelos comerciales internacionales y vuelos chárter turísticos", badge: "Terminal Internacional" }
+];
+
+const ESTACIONES_MARINAS_DATA = [
+  { name: "E/S Marina Faro La Puntilla", coords: [-63.849511, 10.948133] as [number, number], ruta: "Suministro marino para embarcaciones pesqueras y de pasajeros", badge: "Porlamar" },
+  { name: "E/S Marina Planta de Hielo Punta de Piedras", coords: [-64.094319, 10.897675] as [number, number], ruta: "Suministro marino para ferris y barcos pesqueros", badge: "Punta de Piedras" },
+  { name: "E/S Marina Robledal", coords: [-64.374667, 11.024842] as [number, number], ruta: "Flota artesanal e industrial de Macanao", badge: "Macanao" },
+  { name: "E/S Marina Lonja Pesquera Juan Griego", coords: [-63.976344, 11.085431] as [number, number], ruta: "Embarcaciones de pesca y turismo en el norte", badge: "Juan Griego" },
+  { name: "E/S Marina Terrestre La Guardia", coords: [-64.022294, 10.997406] as [number, number], ruta: "Suministro dual: embarcaciones marinas y transporte terrestre", badge: "La Guardia" },
+  { name: "E/S Marina El Tirano", coords: [-63.845989, 11.118825] as [number, number], ruta: "Lanchas turísticas y pescadores artesanales", badge: "El Tirano" },
+  { name: "E/S Marina Muelle Chacachacare (Servicio Privado)", coords: [-64.157917, 10.958261] as [number, number], ruta: "Suministro marino para flota e instalaciones privadas", badge: "Privada" }
+];
+
+const TERMINALES_TERRESTRES_DATA = [
+  { name: "Terminal de pasajeros de Porlamar", coords: [-63.856361, 10.95937] as [number, number], ruta: "Eje central metropolitano hacia toda la isla", badge: "Porlamar" },
+  { name: "Terminal de Pasajeros 'Ciudad de Juangriego'", coords: [-63.964515, 11.081176] as [number, number], ruta: "Conexión norte con Porlamar y La Asunción", badge: "Juan Griego" },
+  { name: "Terminal Pasajeros Bus Margarita", coords: [-63.863156, 10.954203] as [number, number], ruta: "Líneas troncales y alimentadoras Bus Margarita", badge: "Bus Margarita" },
+  { name: "Parada Línea Matasiete", coords: [-63.860128, 10.95689] as [number, number], ruta: "Ruta La Asunción - Porlamar - Pampatar", badge: "Línea Matasiete" },
+  { name: "Parada de Bus Playa El Agua", coords: [-63.850531, 10.957908] as [number, number], ruta: "Ruta turística hacia Playa El Agua y Manzanillo", badge: "Antolín del Campo" },
+  { name: "Parada Porlamar-Pampatar", coords: [-63.85801, 10.95811] as [number, number], ruta: "Ruta interurbana Porlamar - Pampatar", badge: "Maneiro" }
+];
+
+const RUTAS_ESTRATEGICAS_DATA = [
+  { id: "ruta_isleta_coche", name: "Ruta La Isleta ↔ Isla de Coche", coords: [-63.931178, 10.892533] as [number, number], pointName: "Terminal de Pasajeros La Isleta", desc: "Lanchas de pasajeros hacia Muelle San Pedro de Coche", color: "#06b6d4" },
+  { id: "ruta_puntilla_chacopata", name: "Ruta La Puntilla ↔ Chacopata / Carúpano / Coche", coords: [-63.848244, 10.949675] as [number, number], pointName: "Terminal Muelle de La Puntilla", desc: "Zarpe de pasajeros hacia tierra firme (Sucre) e Isla de Coche", color: "#0284c7" },
+  { id: "ruta_punta_piedras", name: "Ruta Ferrys Punta de Piedras ↔ Puerto La Cruz / Cumaná / Guanta / La Guaira", coords: [-64.095028, 10.898533] as [number, number], pointName: "Muelle Conferry Punta de Piedras", desc: "Conferry, Naviarca y Navibus: pasajeros, vehículos y carga pesada", color: "#38bdf8" },
+  { id: "ruta_guamache_carga", name: "Ruta Carga El Guamache ↔ Puerto La Cruz / Guanta / La Guaira", coords: [-64.060656, 10.865239] as [number, number], pointName: "Muelle Internacional El Guamache", desc: "Terminal de carga intermodal y abastecimiento insular", color: "#0ea5e9" },
+  { id: "ruta_guamache_cruceros", name: "Ruta Internacional Cruceros El Guamache", coords: [-64.063139, 10.864661] as [number, number], pointName: "Muelle Crucero Internacional El Guamache", desc: "Buques de turismo internacional y cruceros del Caribe", color: "#818cf8" },
+  { id: "ruta_turismo_catamaranes", name: "Rutas Turísticas Catamaranes Cubagua y Coche", coords: [-64.098456, 10.899458] as [number, number], pointName: "Muelle Naviarca Turismo Punta de Piedras", desc: "Catamaranes turísticos hacia Charagato, La Salle y Coche", color: "#10b981" },
+  { id: "ruta_aerea_santiago_marino", name: "Rutas Aéreas Santiago Mariño (Nacional e Internacional)", coords: [-63.968994, 10.916489] as [number, number], pointName: "Aeropuerto Internacional Santiago Mariño - Terminal Nacional", desc: "Conexión aérea regular nacional e internacional", color: "#a855f7" }
+];
+
 export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, isMobileMenuOpen, setIsMobileMenuOpen }: any) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -103,6 +153,10 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
   const [showTransportePublicoSub, setShowTransportePublicoSub] = useState(false);
   const [showTransportePrivadoSub, setShowTransportePrivadoSub] = useState(false);
   const [showTransporteRutas, setShowTransporteRutas] = useState(false);
+  const [showTransMaritimoSub, setShowTransMaritimoSub] = useState(false);
+  const [showTransAereoSub, setShowTransAereoSub] = useState(false);
+  const [showTransESSub, setShowTransESSub] = useState(false);
+  const [showTransTerrestreSub, setShowTransTerrestreSub] = useState(false);
   const [modalEnProcesoData, setModalEnProcesoData] = useState<{ isOpen: boolean; modulo: string; descripcion?: string }>({ isOpen: false, modulo: '', descripcion: '' });
   const [showServicioAguaSub, setShowServicioAguaSub] = useState(false);
 
@@ -315,6 +369,15 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
     window.dispatchEvent(new CustomEvent('sigdi_focus_transport', {
       detail: { coords, name }
     }));
+  };
+
+  const handleSelectTransportItem = (coords: [number, number], name: string, sublayerKey?: string) => {
+    if (sublayerKey && !layersVisible[sublayerKey] && !layersVisible.transporteGeneral) {
+      onToggle(sublayerKey);
+    } else if (!layersVisible.transporteGeneral && !layersVisible.transporteMaritimo && !layersVisible.transporteAereo && !layersVisible.transporteES && !layersVisible.transporteTerrestre) {
+      onToggle('transporteGeneral');
+    }
+    flyToTransportPoint(coords, name);
   };
 
   return (
@@ -626,23 +689,351 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               )}
             </div>
 
-            {/* ==================== TRANSPORTE (PÃšBLICO Y PRIVADO) ==================== */}
+            {/* ==================== TRANSPORTE (PÚBLICO Y PRIVADO) ==================== */}
             <div className="space-y-3">
-              <button onClick={() => isMenuOpen && setShowTransporte(!showTransporte)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showTransporte ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
+              <button 
+                onClick={() => isMenuOpen && setShowTransporte(!showTransporte)} 
+                className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${
+                  isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'
+                } ${showTransporte ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}
+              >
                 <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
                   <img src="/transporte.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Transporte" />
                 </div>
                 {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
-                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>TRANSPORTE</span>
+                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>
+                      TRANSPORTE
+                    </span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showTransporte ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </button>
+
               {isMenuOpen && showTransporte && (
-                <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
+                <div className="ml-6 space-y-2 border-l-2 border-white/5 pl-3 mt-2 animate-in slide-in-from-top-3 duration-300">
                   
-                  <MenuItem theme={theme} iconSrc="/transporte_publico.png" label="TERMINALES Y PARADAS" active={layersVisible.transporteGeneral} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => onToggle('transporteGeneral')} />
+                  {/* TOGGLE GENERAL: TODA LA RED */}
+                  <div className="pb-1 mb-1 border-b border-white/5">
+                    <MenuItem 
+                      theme={theme} 
+                      iconSrc="/transporte_publico.png" 
+                      label="VER TODA LA RED EN MAPA" 
+                      active={layersVisible.transporteGeneral} 
+                      accentColor="#0ea5e9" 
+                      isHovered={isMenuOpen} 
+                      onClick={() => onToggle('transporteGeneral')} 
+                    />
+                  </div>
+
+                  {/* 1. SUBMÓDULO: TERMINALES MARÍTIMOS */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between group">
+                      <div className="flex-1" onClick={() => setShowTransMaritimoSub(!showTransMaritimoSub)}>
+                        <MenuItem 
+                          theme={theme} 
+                          iconSrc="/icons/terminal-maritimo.svg" 
+                          label="TERMINALES MARÍTIMOS (11)" 
+                          active={layersVisible.transporteMaritimo || layersVisible.transporteGeneral} 
+                          accentColor="#06b6d4" 
+                          isHovered={isMenuOpen} 
+                          onClick={() => {}} 
+                        />
+                      </div>
+                      <div className="flex items-center gap-1 pl-1">
+                        <button
+                          onClick={() => onToggle('transporteMaritimo')}
+                          className={`px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all border ${
+                            layersVisible.transporteMaritimo
+                              ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.4)]'
+                              : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
+                          }`}
+                          title="Activar/Desactivar capa en mapa"
+                        >
+                          {layersVisible.transporteMaritimo ? 'ON' : 'CAPA'}
+                        </button>
+                        <button
+                          onClick={() => setShowTransMaritimoSub(!showTransMaritimoSub)}
+                          className="p-1 text-slate-400 hover:text-white transition-colors"
+                        >
+                          <ChevronDown size={14} className={`transition-transform duration-200 ${showTransMaritimoSub ? 'rotate-180' : ''}`} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {showTransMaritimoSub && (
+                      <div className="ml-5 pl-2 border-l border-cyan-500/30 space-y-1 py-1 animate-in fade-in slide-in-from-top-2">
+                        {TERMINALES_MARITIMOS_DATA.map((item, idx) => (
+                          <div 
+                            key={idx}
+                            onClick={() => handleSelectTransportItem(item.coords, item.name, 'transporteMaritimo')}
+                            className="p-1.5 rounded-xl bg-slate-900/60 hover:bg-cyan-950/70 border border-white/5 hover:border-cyan-500/40 cursor-pointer transition-all group flex flex-col gap-0.5"
+                          >
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="text-[10px] font-bold text-white group-hover:text-cyan-300 truncate">
+                                ⚓ {item.name}
+                              </span>
+                              <span className="text-[8px] font-mono text-cyan-400 bg-cyan-500/10 px-1.5 py-0.2 rounded border border-cyan-500/30 shrink-0">
+                                {item.badge}
+                              </span>
+                            </div>
+                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-300 leading-tight">
+                              {item.ruta}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 2. SUBMÓDULO: TERMINALES AÉREOS */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between group">
+                      <div className="flex-1" onClick={() => setShowTransAereoSub(!showTransAereoSub)}>
+                        <MenuItem 
+                          theme={theme} 
+                          iconSrc="/icons/terminal-aereo.svg" 
+                          label="TERMINALES AÉREOS (2)" 
+                          active={layersVisible.transporteAereo || layersVisible.transporteGeneral} 
+                          accentColor="#a855f7" 
+                          isHovered={isMenuOpen} 
+                          onClick={() => {}} 
+                        />
+                      </div>
+                      <div className="flex items-center gap-1 pl-1">
+                        <button
+                          onClick={() => onToggle('transporteAereo')}
+                          className={`px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all border ${
+                            layersVisible.transporteAereo
+                              ? 'bg-purple-500 text-white border-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.4)]'
+                              : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
+                          }`}
+                          title="Activar/Desactivar capa en mapa"
+                        >
+                          {layersVisible.transporteAereo ? 'ON' : 'CAPA'}
+                        </button>
+                        <button
+                          onClick={() => setShowTransAereoSub(!showTransAereoSub)}
+                          className="p-1 text-slate-400 hover:text-white transition-colors"
+                        >
+                          <ChevronDown size={14} className={`transition-transform duration-200 ${showTransAereoSub ? 'rotate-180' : ''}`} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {showTransAereoSub && (
+                      <div className="ml-5 pl-2 border-l border-purple-500/30 space-y-1 py-1 animate-in fade-in slide-in-from-top-2">
+                        {TERMINALES_AEREOS_DATA.map((item, idx) => (
+                          <div 
+                            key={idx}
+                            onClick={() => handleSelectTransportItem(item.coords, item.name, 'transporteAereo')}
+                            className="p-1.5 rounded-xl bg-slate-900/60 hover:bg-purple-950/70 border border-white/5 hover:border-purple-500/40 cursor-pointer transition-all group flex flex-col gap-0.5"
+                          >
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="text-[10px] font-bold text-white group-hover:text-purple-300 truncate">
+                                ✈️ {item.name}
+                              </span>
+                              <span className="text-[8px] font-mono text-purple-400 bg-purple-500/10 px-1.5 py-0.2 rounded border border-purple-500/30 shrink-0">
+                                {item.badge}
+                              </span>
+                            </div>
+                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-300 leading-tight">
+                              {item.ruta}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 3. SUBMÓDULO: ESTACIONES DE SERVICIO MARINAS */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between group">
+                      <div className="flex-1" onClick={() => setShowTransESSub(!showTransESSub)}>
+                        <MenuItem 
+                          theme={theme} 
+                          iconSrc="/icons/estacion-marina.svg" 
+                          label="E/S MARINAS (7)" 
+                          active={layersVisible.transporteES || layersVisible.transporteGeneral} 
+                          accentColor="#f59e0b" 
+                          isHovered={isMenuOpen} 
+                          onClick={() => {}} 
+                        />
+                      </div>
+                      <div className="flex items-center gap-1 pl-1">
+                        <button
+                          onClick={() => onToggle('transporteES')}
+                          className={`px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all border ${
+                            layersVisible.transporteES
+                              ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.4)]'
+                              : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
+                          }`}
+                          title="Activar/Desactivar capa en mapa"
+                        >
+                          {layersVisible.transporteES ? 'ON' : 'CAPA'}
+                        </button>
+                        <button
+                          onClick={() => setShowTransESSub(!showTransESSub)}
+                          className="p-1 text-slate-400 hover:text-white transition-colors"
+                        >
+                          <ChevronDown size={14} className={`transition-transform duration-200 ${showTransESSub ? 'rotate-180' : ''}`} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {showTransESSub && (
+                      <div className="ml-5 pl-2 border-l border-amber-500/30 space-y-1 py-1 animate-in fade-in slide-in-from-top-2">
+                        {ESTACIONES_MARINAS_DATA.map((item, idx) => (
+                          <div 
+                            key={idx}
+                            onClick={() => handleSelectTransportItem(item.coords, item.name, 'transporteES')}
+                            className="p-1.5 rounded-xl bg-slate-900/60 hover:bg-amber-950/70 border border-white/5 hover:border-amber-500/40 cursor-pointer transition-all group flex flex-col gap-0.5"
+                          >
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="text-[10px] font-bold text-white group-hover:text-amber-300 truncate">
+                                ⛽ {item.name}
+                              </span>
+                              <span className="text-[8px] font-mono text-amber-400 bg-amber-500/10 px-1.5 py-0.2 rounded border border-amber-500/30 shrink-0">
+                                {item.badge}
+                              </span>
+                            </div>
+                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-300 leading-tight">
+                              {item.ruta}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 4. SUBMÓDULO: TERMINALES Y PARADAS TERRESTRES */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between group">
+                      <div className="flex-1" onClick={() => setShowTransTerrestreSub(!showTransTerrestreSub)}>
+                        <MenuItem 
+                          theme={theme} 
+                          iconSrc="/icons/terminal-icon.png" 
+                          label="TERMINALES TERRESTRES (16)" 
+                          active={layersVisible.transporteTerrestre || layersVisible.transporteGeneral} 
+                          accentColor="#3b82f6" 
+                          isHovered={isMenuOpen} 
+                          onClick={() => {}} 
+                        />
+                      </div>
+                      <div className="flex items-center gap-1 pl-1">
+                        <button
+                          onClick={() => onToggle('transporteTerrestre')}
+                          className={`px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all border ${
+                            layersVisible.transporteTerrestre
+                              ? 'bg-blue-500 text-white border-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.4)]'
+                              : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
+                          }`}
+                          title="Activar/Desactivar capa en mapa"
+                        >
+                          {layersVisible.transporteTerrestre ? 'ON' : 'CAPA'}
+                        </button>
+                        <button
+                          onClick={() => setShowTransTerrestreSub(!showTransTerrestreSub)}
+                          className="p-1 text-slate-400 hover:text-white transition-colors"
+                        >
+                          <ChevronDown size={14} className={`transition-transform duration-200 ${showTransTerrestreSub ? 'rotate-180' : ''}`} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {showTransTerrestreSub && (
+                      <div className="ml-5 pl-2 border-l border-blue-500/30 space-y-1 py-1 animate-in fade-in slide-in-from-top-2">
+                        {TERMINALES_TERRESTRES_DATA.map((item, idx) => (
+                          <div 
+                            key={idx}
+                            onClick={() => handleSelectTransportItem(item.coords, item.name, 'transporteTerrestre')}
+                            className="p-1.5 rounded-xl bg-slate-900/60 hover:bg-blue-950/70 border border-white/5 hover:border-blue-500/40 cursor-pointer transition-all group flex flex-col gap-0.5"
+                          >
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="text-[10px] font-bold text-white group-hover:text-blue-300 truncate">
+                                🚌 {item.name}
+                              </span>
+                              <span className="text-[8px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.2 rounded border border-blue-500/30 shrink-0">
+                                {item.badge}
+                              </span>
+                            </div>
+                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-300 leading-tight">
+                              {item.ruta}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 5. SUBMÓDULO: RUTAS DE PASAJEROS Y CARGA */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between group">
+                      <div className="flex-1" onClick={() => setShowTransporteRutas(!showTransporteRutas)}>
+                        <MenuItem 
+                          theme={theme} 
+                          iconSrc="/icons/ruta-maritima.svg" 
+                          label="RUTAS DE PASAJEROS Y CARGA" 
+                          active={showTransporteRutas} 
+                          accentColor="#10b981" 
+                          isHovered={isMenuOpen} 
+                          onClick={() => {}} 
+                        />
+                      </div>
+                      <button
+                        onClick={() => setShowTransporteRutas(!showTransporteRutas)}
+                        className="p-1 text-slate-400 hover:text-white transition-colors"
+                      >
+                        <ChevronDown size={14} className={`transition-transform duration-200 ${showTransporteRutas ? 'rotate-180' : ''}`} />
+                      </button>
+                    </div>
+
+                    {showTransporteRutas && (
+                      <div className="ml-5 pl-2 border-l border-emerald-500/30 space-y-1.5 py-1 animate-in fade-in slide-in-from-top-2">
+                        {RUTAS_ESTRATEGICAS_DATA.map((ruta) => (
+                          <div 
+                            key={ruta.id}
+                            onClick={() => handleSelectTransportItem(ruta.coords, ruta.pointName)}
+                            className="p-2 rounded-xl bg-slate-900/80 hover:bg-emerald-950/70 border border-white/10 hover:border-emerald-500/50 cursor-pointer transition-all group flex flex-col gap-1 shadow-sm"
+                          >
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="text-[10px] font-black text-white group-hover:text-emerald-300 leading-tight">
+                                🧭 {ruta.name}
+                              </span>
+                            </div>
+                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-200 leading-tight">
+                              {ruta.desc}
+                            </span>
+                            <div className="flex items-center justify-between pt-1 border-t border-white/5 text-[8px] font-mono text-emerald-400">
+                              <span>Terminal: {ruta.pointName.replace('Aeropuerto Internacional ', '')}</span>
+                              <span className="group-hover:translate-x-0.5 transition-transform font-bold">&rarr;</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 6. APARTADO COMPLEMENTARIO: TRANSPORTE PRIVADO Y FLOTAS (MODAL EN PROCESO) */}
+                  <div 
+                    onClick={() => setModalEnProcesoData({
+                      isOpen: true,
+                      modulo: 'Transporte Privado, Líneas Suburbanas y Flotas',
+                      descripcion: 'El sistema de telemetría y geocercas para unidades privadas y suburbanas se incorporará en la próxima actualización de SOGNE REDIMAIN.'
+                    })}
+                    className="cursor-pointer opacity-75 hover:opacity-100 transition-opacity pt-1"
+                  >
+                    <MenuItem 
+                      theme={theme} 
+                      iconSrc="/icons/minibus-transporte.png" 
+                      label="TRANSPORTE PRIVADO & FLOTAS" 
+                      active={false} 
+                      accentColor="#94a3b8" 
+                      isHovered={isMenuOpen} 
+                      onClick={() => {}} 
+                    />
+                  </div>
+
                 </div>
               )}
             </div>

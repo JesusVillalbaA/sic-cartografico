@@ -44,7 +44,8 @@ export async function GET(request: Request) {
       }
 
       // Si fue modificado o no está en caché, leer directamente del disco
-      const fileContent = fs.readFileSync(targetPath, 'utf8');
+      const rawContent = fs.readFileSync(targetPath, 'utf8');
+      const fileContent = rawContent.charCodeAt(0) === 0xFEFF ? rawContent.slice(1) : rawContent;
       const data = JSON.parse(fileContent);
       memoryCache.set(nombre, { data, mtime });
 
