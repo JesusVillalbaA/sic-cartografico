@@ -80,7 +80,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         setCustomModules(data || []);
       }
     } catch (err) {
-      console.warn('Error obteniendo mÃ³dulos personalizados:', err);
+      console.warn('Error obteniendo módulos personalizados:', err);
     }
   };
 
@@ -119,14 +119,14 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
       const res = await fetch(`/api/map/custom-modules?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
-        showExitoModal(`MÃ³dulo "${name}" eliminado exitosamente del proyecto.`);
+        showExitoModal(`Módulo "${name}" eliminado exitosamente del proyecto.`);
         setModuleToDelete(null);
         fetchCustomModules();
       } else {
         throw new Error('No se pudo eliminar');
       }
     } catch (err) {
-      showErrorModal('Error al eliminar el mÃ³dulo del proyecto.');
+      showErrorModal('Error al eliminar el módulo del proyecto.');
     }
   };
   
@@ -234,7 +234,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
       doc.text("SOGNE REDIMAIN", 40, 22);
       doc.setFontSize(9);
       doc.setTextColor(186, 230, 253);
-      doc.text("REPORTE OPERATIVO â€¢ ESTADO NUEVA ESPARTA", 40, 30);
+      doc.text("REPORTE OPERATIVO • ESTADO NUEVA ESPARTA", 40, 30);
 
       if (mapRef?.current) {
         // Obtenemos el canvas original de Mapbox
@@ -242,7 +242,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         
         if (mapboxCanvas) {
           const imgData = mapboxCanvas.toDataURL('image/png');
-          // AÃ±adimos la captura del mapa al PDF
+          // Añadimos la captura del mapa al PDF
           doc.addImage(imgData, 'PNG', 15, 40, 180, 100);
           doc.setDrawColor(203, 213, 225);
           doc.rect(15, 40, 180, 100);
@@ -279,10 +279,10 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         yPos += (layersText.length * 5) + 10;
       }
 
-      // == INFORMACIÃ“N DE PANELES ==
+      // == INFORMACIÓN DE PANELES ==
       doc.setFontSize(14);
       doc.setTextColor(30, 41, 59);
-      doc.text("InformaciÃ³n de Elementos (Paneles)", 15, yPos);
+      doc.text("Información de Elementos (Paneles)", 15, yPos);
       yPos += 10;
 
       doc.setFontSize(9);
@@ -290,15 +290,15 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
       
       const panelContent = document.getElementById('analysis-panel-content');
       if (panelContent && panelContent.innerText.trim().length > 0) {
-        // Limpiamos un poco el texto (quitar botones 'âœ•', saltos excesivos)
+        // Limpiamos un poco el texto (quitar botones '✕', saltos excesivos)
         const text = panelContent.innerText
-          .replace(/âœ•/g, '')
+          .replace(/✕/g, '')
           .replace(/\n\s*\n/g, '\n')
           .trim();
           
         const lines = doc.splitTextToSize(text, 180);
         
-        // Si el texto es muy largo, lo cortamos para que quepa en la primera pÃ¡gina o lo paginamos
+        // Si el texto es muy largo, lo cortamos para que quepa en la primera página o lo paginamos
         for (let i = 0; i < lines.length; i++) {
           if (yPos > 270) {
             doc.addPage();
@@ -382,7 +382,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
   return (
     <>
-      {/* Overlay para mÃ³vil */}
+      {/* Overlay para móvil */}
       {isMobileMenuOpen && (
         <div 
           className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
@@ -412,7 +412,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                 }
               }}
               className="absolute top-0 right-4 p-2 text-white/30 hover:text-white transition-colors"
-              title={isLockedOpen || isAnySubmenuOpen ? "Forzar cierre del menÃº" : "Fijar menÃº abierto"}
+              title={isLockedOpen || isAnySubmenuOpen ? "Forzar cierre del menú" : "Fijar menú abierto"}
             >
               {isLockedOpen || isAnySubmenuOpen ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -492,9 +492,9 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                         </button>
                         <button onClick={() => onToggleSub('zonasDeRiesgo', 'areaCibernetica')} className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${layersVisible.zonasDeRiesgo?.areaCibernetica ? 'text-red-500' : (theme === 'light' ? 'text-[#172554]/70 hover:text-[#172554]' : 'text-slate-500 hover:text-slate-300')}`}>
                           <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                            <img src="/hacker.png" className="w-4 h-4 object-contain" alt="CibernÃ©tica" />
+                            <img src="/hacker.png" className="w-4 h-4 object-contain" alt="Cibernética" />
                           </div>
-                          <span className="text-[10px] font-bold tracking-widest">Ãrea cibernÃ©tica</span>
+                          <span className="text-[10px] font-bold tracking-widest">Área cibernética</span>
                         </button>
                         <button onClick={() => onToggleSub('zonasDeRiesgo', 'concentraciones')} className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${layersVisible.zonasDeRiesgo?.concentraciones ? 'text-red-500' : (theme === 'light' ? 'text-[#172554]/70 hover:text-[#172554]' : 'text-slate-500 hover:text-slate-300')}`}>
                           <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
@@ -528,15 +528,15 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                         </button>
                         <button onClick={() => onToggleSub('geocalizaciones', 'actorInteres')} className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${layersVisible.geocalizaciones?.actorInteres ? 'text-purple-500' : (theme === 'light' ? 'text-[#172554]/70 hover:text-[#172554]' : 'text-slate-500 hover:text-slate-300')}`}>
                           <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                            <img src="/actor.png" className="w-4 h-4 object-contain" alt="Actor de interÃ©s" />
+                            <img src="/actor.png" className="w-4 h-4 object-contain" alt="Actor de interés" />
                           </div>
-                          <span className="text-[10px] font-bold tracking-widest">Actor de interÃ©s</span>
+                          <span className="text-[10px] font-bold tracking-widest">Actor de interés</span>
                         </button>
                         <button onClick={() => onToggleSub('geocalizaciones', 'puntoInteres')} className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${layersVisible.geocalizaciones?.puntoInteres ? 'text-purple-500' : (theme === 'light' ? 'text-[#172554]/70 hover:text-[#172554]' : 'text-slate-500 hover:text-slate-300')}`}>
                           <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                            <img src="/punto.png" className="w-4 h-4 object-contain" alt="Punto de interÃ©s" />
+                            <img src="/punto.png" className="w-4 h-4 object-contain" alt="Punto de interés" />
                           </div>
-                          <span className="text-[10px] font-bold tracking-widest">Punto de interÃ©s</span>
+                          <span className="text-[10px] font-bold tracking-widest">Punto de interés</span>
                         </button>
                       </div>
                     )}
@@ -573,7 +573,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               {isMenuOpen && showInfraestructura && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   <MenuItem theme={theme} iconSrc="/hospital.png" label="HOSPITALES" active={layersVisible.hospitales} accentColor="#6366f1" isHovered={isMenuOpen} onClick={() => onToggle('hospitales')} />
-                  <MenuItem theme={theme} iconSrc="/clinica.png" label="CLÃNICAS" active={layersVisible.clinicas} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => onToggle('clinicas')} />
+                  <MenuItem theme={theme} iconSrc="/clinica.png" label="CLÍNICAS" active={layersVisible.clinicas} accentColor="#0ea5e9" isHovered={isMenuOpen} onClick={() => onToggle('clinicas')} />
                   <MenuItem theme={theme} iconSrc="/ambulatorio.png" label="AMBULATORIOS" active={layersVisible.ambulatorios} accentColor="#f43f5e" isHovered={isMenuOpen} onClick={() => onToggle('ambulatorios')} />
                   <MenuItem theme={theme} iconSrc="/dispensario.png" label="CDI" active={layersVisible.cdi} accentColor="#d946ef" isHovered={isMenuOpen} onClick={() => onToggle('cdi')} />
                   <MenuItem theme={theme} iconSrc="/gasolinera.png" label="ESTACIONES DE SERVICIO" active={layersVisible.estaciones} accentColor="#f97316" isHovered={isMenuOpen} onClick={() => onToggle('estaciones')} />
@@ -582,15 +582,15 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               )}
             </div>
 
-            {/* ==================== SERVICIOS BÃSICOS ==================== */}
+            {/* ==================== SERVICIOS BÁSICOS ==================== */}
             <div className="space-y-3">
               <button onClick={() => isMenuOpen && setShowServiciosBasicos(!showServiciosBasicos)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showServiciosBasicos ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
                 <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
-                  <img src="/serviciobasico.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Servicios BÃ¡sicos" />
+                  <img src="/serviciobasico.png" className="w-7 h-7 object-contain transition-transform duration-500 group-hover:rotate-12" alt="Servicios Básicos" />
                 </div>
                 {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
-                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>SERVICIOS BÃSICOS</span>
+                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>SERVICIOS BÁSICOS</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showServiciosBasicos ? 'rotate-180' : ''}`} />
                   </div>
                 )}
@@ -662,7 +662,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                     )}
                   </div>
                   <MenuItem theme={theme} iconSrc="/gas.png" label="ESTACIONES DE GAS" active={layersVisible.estacionesGas} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => onToggle('estacionesGas')} />
-                  <MenuItem theme={theme} iconSrc="/electricidad.png" label="SUB-ESTACIONES ELÃ‰CTRICAS" active={layersVisible.sistemasElectricos} accentColor="#facc15" isHovered={isMenuOpen} onClick={() => onToggle('sistemasElectricos')} />
+                  <MenuItem theme={theme} iconSrc="/electricidad.png" label="SUB-ESTACIONES ELÉCTRICAS" active={layersVisible.sistemasElectricos} accentColor="#facc15" isHovered={isMenuOpen} onClick={() => onToggle('sistemasElectricos')} />
                 </div>
               )}
             </div>
@@ -709,326 +709,230 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                   </div>
                 )}
               </button>
-
               {isMenuOpen && showTransporte && (
-                <div className="ml-6 space-y-2 border-l-2 border-white/5 pl-3 mt-2 animate-in slide-in-from-top-3 duration-300">
+                <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   
-                  {/* TOGGLE GENERAL: TODA LA RED */}
-                  <div className="pb-1 mb-1 border-b border-white/5">
-                    <MenuItem 
-                      theme={theme} 
-                      iconSrc="/transporte_publico.png" 
-                      label="VER TODA LA RED EN MAPA" 
-                      active={layersVisible.transporteGeneral} 
-                      accentColor="#0ea5e9" 
-                      isHovered={isMenuOpen} 
-                      onClick={() => onToggle('transporteGeneral')} 
-                    />
-                  </div>
+                  {/* RED GENERAL */}
+                  <MenuItem 
+                    theme={theme} 
+                    iconSrc="/transporte_publico.png" 
+                    label="TERMINALES Y PARADAS" 
+                    active={layersVisible.transporteGeneral} 
+                    accentColor="#0ea5e9" 
+                    isHovered={isMenuOpen} 
+                    onClick={() => onToggle('transporteGeneral')} 
+                  />
 
-                  {/* 1. SUBMÓDULO: TERMINALES MARÍTIMOS */}
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between group">
-                      <div className="flex-1" onClick={() => setShowTransMaritimoSub(!showTransMaritimoSub)}>
-                        <MenuItem 
-                          theme={theme} 
-                          iconSrc="/icons/terminal-maritimo.svg" 
-                          label="TERMINALES MARÍTIMOS (11)" 
-                          active={layersVisible.transporteMaritimo || layersVisible.transporteGeneral} 
-                          accentColor="#06b6d4" 
-                          isHovered={isMenuOpen} 
-                          onClick={() => {}} 
-                        />
-                      </div>
-                      <div className="flex items-center gap-1 pl-1">
-                        <button
-                          onClick={() => onToggle('transporteMaritimo')}
-                          className={`px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all border ${
-                            layersVisible.transporteMaritimo
-                              ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.4)]'
-                              : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
-                          }`}
-                          title="Activar/Desactivar capa en mapa"
-                        >
-                          {layersVisible.transporteMaritimo ? 'ON' : 'CAPA'}
-                        </button>
-                        <button
-                          onClick={() => setShowTransMaritimoSub(!showTransMaritimoSub)}
-                          className="p-1 text-slate-400 hover:text-white transition-colors"
-                        >
-                          <ChevronDown size={14} className={`transition-transform duration-200 ${showTransMaritimoSub ? 'rotate-180' : ''}`} />
-                        </button>
-                      </div>
+                  {/* TERMINALES MARÍTIMOS */}
+                  <div>
+                    <div onClick={() => setShowTransMaritimoSub(!showTransMaritimoSub)} className="cursor-pointer">
+                      <MenuItem 
+                        theme={theme} 
+                        iconSrc="/icons/terminal-maritimo.svg" 
+                        label="TERMINALES MARÍTIMOS" 
+                        active={layersVisible.transporteMaritimo} 
+                        accentColor="#06b6d4" 
+                        isHovered={isMenuOpen} 
+                        onClick={() => onToggle('transporteMaritimo')} 
+                      />
                     </div>
-
                     {showTransMaritimoSub && (
-                      <div className="ml-5 pl-2 border-l border-cyan-500/30 space-y-1 py-1 animate-in fade-in slide-in-from-top-2">
+                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
                         {TERMINALES_MARITIMOS_DATA.map((item, idx) => (
-                          <div 
+                          <button
                             key={idx}
-                            onClick={() => handleSelectTransportItem(item.coords, item.name, 'transporteMaritimo')}
-                            className="p-1.5 rounded-xl bg-slate-900/60 hover:bg-cyan-950/70 border border-white/5 hover:border-cyan-500/40 cursor-pointer transition-all group flex flex-col gap-0.5"
+                            onClick={() => {
+                              if (!layersVisible.transporteMaritimo && !layersVisible.transporteGeneral) onToggle('transporteMaritimo');
+                              flyToTransportPoint(item.coords, item.name);
+                            }}
+                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
+                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                            }`}
                           >
-                            <div className="flex items-center justify-between gap-1">
-                              <span className="text-[10px] font-bold text-white group-hover:text-cyan-300 truncate">
-                                ⚓ {item.name}
-                              </span>
-                              <span className="text-[8px] font-mono text-cyan-400 bg-cyan-500/10 px-1.5 py-0.2 rounded border border-cyan-500/30 shrink-0">
-                                {item.badge}
-                              </span>
+                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
+                              <img src="/icons/terminal-maritimo.svg" className="w-4.5 h-4.5 object-contain" alt={item.name} />
                             </div>
-                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-300 leading-tight">
-                              {item.ruta}
-                            </span>
-                          </div>
+                            <div className="flex flex-col text-left truncate">
+                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{item.name}</span>
+                              <span className="text-[8px] text-cyan-400 font-mono truncate">{item.ruta}</span>
+                            </div>
+                          </button>
                         ))}
                       </div>
                     )}
                   </div>
 
-                  {/* 2. SUBMÓDULO: TERMINALES AÉREOS */}
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between group">
-                      <div className="flex-1" onClick={() => setShowTransAereoSub(!showTransAereoSub)}>
-                        <MenuItem 
-                          theme={theme} 
-                          iconSrc="/icons/terminal-aereo.svg" 
-                          label="TERMINALES AÉREOS (2)" 
-                          active={layersVisible.transporteAereo || layersVisible.transporteGeneral} 
-                          accentColor="#a855f7" 
-                          isHovered={isMenuOpen} 
-                          onClick={() => {}} 
-                        />
-                      </div>
-                      <div className="flex items-center gap-1 pl-1">
-                        <button
-                          onClick={() => onToggle('transporteAereo')}
-                          className={`px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all border ${
-                            layersVisible.transporteAereo
-                              ? 'bg-purple-500 text-white border-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.4)]'
-                              : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
-                          }`}
-                          title="Activar/Desactivar capa en mapa"
-                        >
-                          {layersVisible.transporteAereo ? 'ON' : 'CAPA'}
-                        </button>
-                        <button
-                          onClick={() => setShowTransAereoSub(!showTransAereoSub)}
-                          className="p-1 text-slate-400 hover:text-white transition-colors"
-                        >
-                          <ChevronDown size={14} className={`transition-transform duration-200 ${showTransAereoSub ? 'rotate-180' : ''}`} />
-                        </button>
-                      </div>
+                  {/* TERMINALES AÉREOS */}
+                  <div>
+                    <div onClick={() => setShowTransAereoSub(!showTransAereoSub)} className="cursor-pointer">
+                      <MenuItem 
+                        theme={theme} 
+                        iconSrc="/icons/terminal-aereo.svg" 
+                        label="TERMINALES AÉREOS" 
+                        active={layersVisible.transporteAereo} 
+                        accentColor="#a855f7" 
+                        isHovered={isMenuOpen} 
+                        onClick={() => onToggle('transporteAereo')} 
+                      />
                     </div>
-
                     {showTransAereoSub && (
-                      <div className="ml-5 pl-2 border-l border-purple-500/30 space-y-1 py-1 animate-in fade-in slide-in-from-top-2">
+                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
                         {TERMINALES_AEREOS_DATA.map((item, idx) => (
-                          <div 
+                          <button
                             key={idx}
-                            onClick={() => handleSelectTransportItem(item.coords, item.name, 'transporteAereo')}
-                            className="p-1.5 rounded-xl bg-slate-900/60 hover:bg-purple-950/70 border border-white/5 hover:border-purple-500/40 cursor-pointer transition-all group flex flex-col gap-0.5"
+                            onClick={() => {
+                              if (!layersVisible.transporteAereo && !layersVisible.transporteGeneral) onToggle('transporteAereo');
+                              flyToTransportPoint(item.coords, item.name);
+                            }}
+                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
+                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                            }`}
                           >
-                            <div className="flex items-center justify-between gap-1">
-                              <span className="text-[10px] font-bold text-white group-hover:text-purple-300 truncate">
-                                ✈️ {item.name}
-                              </span>
-                              <span className="text-[8px] font-mono text-purple-400 bg-purple-500/10 px-1.5 py-0.2 rounded border border-purple-500/30 shrink-0">
-                                {item.badge}
-                              </span>
+                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
+                              <img src="/icons/terminal-aereo.svg" className="w-4.5 h-4.5 object-contain" alt={item.name} />
                             </div>
-                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-300 leading-tight">
-                              {item.ruta}
-                            </span>
-                          </div>
+                            <div className="flex flex-col text-left truncate">
+                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{item.name}</span>
+                              <span className="text-[8px] text-purple-400 font-mono truncate">{item.ruta}</span>
+                            </div>
+                          </button>
                         ))}
                       </div>
                     )}
                   </div>
 
-                  {/* 3. SUBMÓDULO: ESTACIONES DE SERVICIO MARINAS */}
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between group">
-                      <div className="flex-1" onClick={() => setShowTransESSub(!showTransESSub)}>
-                        <MenuItem 
-                          theme={theme} 
-                          iconSrc="/icons/estacion-marina.svg" 
-                          label="E/S MARINAS (7)" 
-                          active={layersVisible.transporteES || layersVisible.transporteGeneral} 
-                          accentColor="#f59e0b" 
-                          isHovered={isMenuOpen} 
-                          onClick={() => {}} 
-                        />
-                      </div>
-                      <div className="flex items-center gap-1 pl-1">
-                        <button
-                          onClick={() => onToggle('transporteES')}
-                          className={`px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all border ${
-                            layersVisible.transporteES
-                              ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.4)]'
-                              : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
-                          }`}
-                          title="Activar/Desactivar capa en mapa"
-                        >
-                          {layersVisible.transporteES ? 'ON' : 'CAPA'}
-                        </button>
-                        <button
-                          onClick={() => setShowTransESSub(!showTransESSub)}
-                          className="p-1 text-slate-400 hover:text-white transition-colors"
-                        >
-                          <ChevronDown size={14} className={`transition-transform duration-200 ${showTransESSub ? 'rotate-180' : ''}`} />
-                        </button>
-                      </div>
+                  {/* ESTACIONES DE SERVICIO MARINAS */}
+                  <div>
+                    <div onClick={() => setShowTransESSub(!showTransESSub)} className="cursor-pointer">
+                      <MenuItem 
+                        theme={theme} 
+                        iconSrc="/icons/estacion-marina.svg" 
+                        label="E/S MARINAS" 
+                        active={layersVisible.transporteES} 
+                        accentColor="#f59e0b" 
+                        isHovered={isMenuOpen} 
+                        onClick={() => onToggle('transporteES')} 
+                      />
                     </div>
-
                     {showTransESSub && (
-                      <div className="ml-5 pl-2 border-l border-amber-500/30 space-y-1 py-1 animate-in fade-in slide-in-from-top-2">
+                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
                         {ESTACIONES_MARINAS_DATA.map((item, idx) => (
-                          <div 
+                          <button
                             key={idx}
-                            onClick={() => handleSelectTransportItem(item.coords, item.name, 'transporteES')}
-                            className="p-1.5 rounded-xl bg-slate-900/60 hover:bg-amber-950/70 border border-white/5 hover:border-amber-500/40 cursor-pointer transition-all group flex flex-col gap-0.5"
+                            onClick={() => {
+                              if (!layersVisible.transporteES && !layersVisible.transporteGeneral) onToggle('transporteES');
+                              flyToTransportPoint(item.coords, item.name);
+                            }}
+                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
+                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                            }`}
                           >
-                            <div className="flex items-center justify-between gap-1">
-                              <span className="text-[10px] font-bold text-white group-hover:text-amber-300 truncate">
-                                ⛽ {item.name}
-                              </span>
-                              <span className="text-[8px] font-mono text-amber-400 bg-amber-500/10 px-1.5 py-0.2 rounded border border-amber-500/30 shrink-0">
-                                {item.badge}
-                              </span>
+                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
+                              <img src="/icons/estacion-marina.svg" className="w-4.5 h-4.5 object-contain" alt={item.name} />
                             </div>
-                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-300 leading-tight">
-                              {item.ruta}
-                            </span>
-                          </div>
+                            <div className="flex flex-col text-left truncate">
+                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{item.name}</span>
+                              <span className="text-[8px] text-amber-400 font-mono truncate">{item.ruta}</span>
+                            </div>
+                          </button>
                         ))}
                       </div>
                     )}
                   </div>
 
-                  {/* 4. SUBMÓDULO: TERMINALES Y PARADAS TERRESTRES */}
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between group">
-                      <div className="flex-1" onClick={() => setShowTransTerrestreSub(!showTransTerrestreSub)}>
-                        <MenuItem 
-                          theme={theme} 
-                          iconSrc="/icons/terminal-icon.png" 
-                          label="TERMINALES TERRESTRES (16)" 
-                          active={layersVisible.transporteTerrestre || layersVisible.transporteGeneral} 
-                          accentColor="#3b82f6" 
-                          isHovered={isMenuOpen} 
-                          onClick={() => {}} 
-                        />
-                      </div>
-                      <div className="flex items-center gap-1 pl-1">
-                        <button
-                          onClick={() => onToggle('transporteTerrestre')}
-                          className={`px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all border ${
-                            layersVisible.transporteTerrestre
-                              ? 'bg-blue-500 text-white border-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.4)]'
-                              : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
-                          }`}
-                          title="Activar/Desactivar capa en mapa"
-                        >
-                          {layersVisible.transporteTerrestre ? 'ON' : 'CAPA'}
-                        </button>
-                        <button
-                          onClick={() => setShowTransTerrestreSub(!showTransTerrestreSub)}
-                          className="p-1 text-slate-400 hover:text-white transition-colors"
-                        >
-                          <ChevronDown size={14} className={`transition-transform duration-200 ${showTransTerrestreSub ? 'rotate-180' : ''}`} />
-                        </button>
-                      </div>
+                  {/* TERMINALES TERRESTRES */}
+                  <div>
+                    <div onClick={() => setShowTransTerrestreSub(!showTransTerrestreSub)} className="cursor-pointer">
+                      <MenuItem 
+                        theme={theme} 
+                        iconSrc="/icons/terminal-icon.png" 
+                        label="TERMINALES TERRESTRES" 
+                        active={layersVisible.transporteTerrestre} 
+                        accentColor="#3b82f6" 
+                        isHovered={isMenuOpen} 
+                        onClick={() => onToggle('transporteTerrestre')} 
+                      />
                     </div>
-
                     {showTransTerrestreSub && (
-                      <div className="ml-5 pl-2 border-l border-blue-500/30 space-y-1 py-1 animate-in fade-in slide-in-from-top-2">
+                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
                         {TERMINALES_TERRESTRES_DATA.map((item, idx) => (
-                          <div 
+                          <button
                             key={idx}
-                            onClick={() => handleSelectTransportItem(item.coords, item.name, 'transporteTerrestre')}
-                            className="p-1.5 rounded-xl bg-slate-900/60 hover:bg-blue-950/70 border border-white/5 hover:border-blue-500/40 cursor-pointer transition-all group flex flex-col gap-0.5"
+                            onClick={() => {
+                              if (!layersVisible.transporteTerrestre && !layersVisible.transporteGeneral) onToggle('transporteTerrestre');
+                              flyToTransportPoint(item.coords, item.name);
+                            }}
+                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
+                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                            }`}
                           >
-                            <div className="flex items-center justify-between gap-1">
-                              <span className="text-[10px] font-bold text-white group-hover:text-blue-300 truncate">
-                                🚌 {item.name}
-                              </span>
-                              <span className="text-[8px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.2 rounded border border-blue-500/30 shrink-0">
-                                {item.badge}
-                              </span>
+                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
+                              <img src="/icons/terminal-icon.png" className="w-4.5 h-4.5 object-contain" alt={item.name} />
                             </div>
-                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-300 leading-tight">
-                              {item.ruta}
-                            </span>
-                          </div>
+                            <div className="flex flex-col text-left truncate">
+                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{item.name}</span>
+                              <span className="text-[8px] text-blue-400 font-mono truncate">{item.ruta}</span>
+                            </div>
+                          </button>
                         ))}
                       </div>
                     )}
                   </div>
 
-                  {/* 5. SUBMÓDULO: RUTAS DE PASAJEROS Y CARGA */}
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between group">
-                      <div className="flex-1" onClick={() => setShowTransporteRutas(!showTransporteRutas)}>
-                        <MenuItem 
-                          theme={theme} 
-                          iconSrc="/icons/ruta-maritima.svg" 
-                          label="RUTAS DE PASAJEROS Y CARGA" 
-                          active={showTransporteRutas} 
-                          accentColor="#10b981" 
-                          isHovered={isMenuOpen} 
-                          onClick={() => {}} 
-                        />
-                      </div>
-                      <button
-                        onClick={() => setShowTransporteRutas(!showTransporteRutas)}
-                        className="p-1 text-slate-400 hover:text-white transition-colors"
-                      >
-                        <ChevronDown size={14} className={`transition-transform duration-200 ${showTransporteRutas ? 'rotate-180' : ''}`} />
-                      </button>
+                  {/* RUTAS DE TRANSPORTE */}
+                  <div>
+                    <div onClick={() => setShowTransporteRutas(!showTransporteRutas)} className="cursor-pointer">
+                      <MenuItem 
+                        theme={theme} 
+                        iconSrc="/icons/ruta-maritima.svg" 
+                        label="RUTAS DE TRANSPORTE" 
+                        active={showTransporteRutas} 
+                        accentColor="#10b981" 
+                        isHovered={isMenuOpen} 
+                        onClick={() => {}} 
+                      />
                     </div>
-
                     {showTransporteRutas && (
-                      <div className="ml-5 pl-2 border-l border-emerald-500/30 space-y-1.5 py-1 animate-in fade-in slide-in-from-top-2">
+                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
                         {RUTAS_ESTRATEGICAS_DATA.map((ruta) => (
-                          <div 
+                          <button
                             key={ruta.id}
-                            onClick={() => handleSelectTransportItem(ruta.coords, ruta.pointName)}
-                            className="p-2 rounded-xl bg-slate-900/80 hover:bg-emerald-950/70 border border-white/10 hover:border-emerald-500/50 cursor-pointer transition-all group flex flex-col gap-1 shadow-sm"
+                            onClick={() => {
+                              if (!layersVisible.transporteGeneral && !layersVisible.transporteMaritimo) onToggle('transporteGeneral');
+                              flyToTransportPoint(ruta.coords, ruta.pointName);
+                            }}
+                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
+                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                            }`}
                           >
-                            <div className="flex items-center justify-between gap-1">
-                              <span className="text-[10px] font-black text-white group-hover:text-emerald-300 leading-tight">
-                                🧭 {ruta.name}
-                              </span>
+                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
+                              <img src="/icons/ruta-maritima.svg" className="w-4.5 h-4.5 object-contain" alt={ruta.name} />
                             </div>
-                            <span className="text-[8.5px] text-slate-400 group-hover:text-slate-200 leading-tight">
-                              {ruta.desc}
-                            </span>
-                            <div className="flex items-center justify-between pt-1 border-t border-white/5 text-[8px] font-mono text-emerald-400">
-                              <span>Terminal: {ruta.pointName.replace('Aeropuerto Internacional ', '')}</span>
-                              <span className="group-hover:translate-x-0.5 transition-transform font-bold">&rarr;</span>
+                            <div className="flex flex-col text-left truncate">
+                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{ruta.name}</span>
+                              <span className="text-[8px] text-emerald-400 font-mono truncate">{ruta.desc}</span>
                             </div>
-                          </div>
+                          </button>
                         ))}
                       </div>
                     )}
                   </div>
 
-                  {/* 6. APARTADO COMPLEMENTARIO: TRANSPORTE PRIVADO Y FLOTAS (MODAL EN PROCESO) */}
+                  {/* TRANSPORTE PRIVADO (EN PROCESO) */}
                   <div 
                     onClick={() => setModalEnProcesoData({
                       isOpen: true,
-                      modulo: 'Transporte Privado, Líneas Suburbanas y Flotas',
-                      descripcion: 'El sistema de telemetría y geocercas para unidades privadas y suburbanas se incorporará en la próxima actualización de SOGNE REDIMAIN.'
+                      modulo: 'Transporte Privado y Flotas',
+                      descripcion: 'El módulo de telemetría para unidades privadas y suburbanas se encuentra en proceso para la próxima actualización.'
                     })}
-                    className="cursor-pointer opacity-75 hover:opacity-100 transition-opacity pt-1"
+                    className="cursor-pointer"
                   >
                     <MenuItem 
                       theme={theme} 
                       iconSrc="/icons/minibus-transporte.png" 
-                      label="TRANSPORTE PRIVADO & FLOTAS" 
+                      label="TRANSPORTE PRIVADO" 
                       active={false} 
-                      accentColor="#94a3b8" 
+                      accentColor="#64748b" 
                       isHovered={isMenuOpen} 
                       onClick={() => {}} 
                     />
@@ -1070,7 +974,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
             <div className="px-6"><hr className="border-white/10" /></div>
 
-            {/* ==================== GESTIÃ“N ==================== */}
+            {/* ==================== GESTIÓN ==================== */}
             <div className="space-y-3">
               <button onClick={() => isMenuOpen && setShowGestion(!showGestion)} className={`w-full flex items-center transition-all duration-500 group relative overflow-hidden ${isMenuOpen ? 'gap-4 p-4 rounded-3xl mx-1' : 'justify-center py-4'} ${showGestion ? 'bg-white/10 shadow-xl' : 'hover:bg-white/5'}`}>
                 <div className={`relative shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isMenuOpen ? 'w-11 h-11' : 'w-14 h-14'} bg-white/90 group-hover:bg-white group-hover:scale-105 shadow-lg`}>
@@ -1078,7 +982,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                 </div>
                 {isMenuOpen && (
                   <div className="flex-1 flex items-center justify-between animate-in fade-in slide-in-from-left-4 duration-500">
-                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>GESTIÃ“N</span>
+                    <span className={`text-[13px] font-black tracking-[0.15em] transition-colors ${theme === 'light' ? 'text-[#172554] group-hover:text-[#172554]' : 'text-slate-400 group-hover:text-white'}`}>GESTIÓN</span>
                     <ChevronDown size={18} className={`transition-transform duration-300 text-slate-500 ${showGestion ? 'rotate-180' : ''}`} />
                   </div>
                 )}
@@ -1086,16 +990,16 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               {isMenuOpen && showGestion && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
                   <MenuItem theme={theme} iconSrc="/usuario.png" label="CREAR USUARIO" active={showModalUsuario} accentColor="#10b981" isHovered={isMenuOpen} onClick={handleOpenCrearUsuario} />
-                  <MenuItem theme={theme} iconSrc="/codigo.png" label="GENERAR CÃ“DIGO" active={layersVisible.generarClave} accentColor="#06b6d4" isHovered={isMenuOpen} onClick={() => { if (userRol === 'REDES') onToggle('generarClave'); else setShowAccesoDenegado(true); }} />
+                  <MenuItem theme={theme} iconSrc="/codigo.png" label="GENERAR CÓDIGO" active={layersVisible.generarClave} accentColor="#06b6d4" isHovered={isMenuOpen} onClick={() => { if (userRol === 'REDES') onToggle('generarClave'); else setShowAccesoDenegado(true); }} />
                   <MenuItem theme={theme} iconSrc="/pdf.png" label={isGenerating ? "SINCRONIZANDO..." : "GENERAR REPORTE"} active={false} accentColor="#f59e0b" isHovered={isMenuOpen} onClick={() => setShowModalExportPDF(true)} />
                   <MenuItem theme={theme} iconSrc="/cuadrantes.png" label="IMPORTADOR GIS (GEOJSON.IO)" active={showModalGisEditor} accentColor="#00f0ff" isHovered={isMenuOpen} onClick={() => setShowModalGisEditor(true)} />
 
-                  {/* Lista de MÃ³dulos Personalizados Creados por el Usuario */}
+                  {/* Lista de Módulos Personalizados Creados por el Usuario */}
                   {customModules.length > 0 && (
                     <div className="pt-3 border-t border-white/10 space-y-2">
                       <div className="text-[10px] font-black uppercase text-cyan-400 tracking-widest flex items-center gap-1.5">
                         <Layers size={12} />
-                        <span>MÃ³dulos de Usuario ({customModules.length})</span>
+                        <span>Módulos de Usuario ({customModules.length})</span>
                       </div>
                       {customModules.map((mod: any) => {
                         const isActive = !!activeCustomModules[mod.id];
@@ -1114,14 +1018,14 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                                   {mod.name}
                                 </span>
                                 <span className="text-[9px] text-slate-400 font-mono block">
-                                  {mod.featuresCount || 0} elem â€¢ {mod.category}
+                                  {mod.featuresCount || 0} elem • {mod.category}
                                 </span>
                               </div>
                             </button>
                             <button
                               onClick={() => setModuleToDelete(mod)}
                               className="text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
-                              title="Eliminar mÃ³dulo del proyecto"
+                              title="Eliminar módulo del proyecto"
                             >
                               <Trash2 size={13} />
                             </button>
@@ -1188,7 +1092,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         showErrorModal={showErrorModal}
       />
 
-      {/* Modal de Doble ConfirmaciÃ³n para Eliminar un MÃ³dulo */}
+      {/* Modal de Doble Confirmación para Eliminar un Módulo */}
       {moduleToDelete && (
         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md animate-in fade-in duration-200">
           <div className="w-full max-w-md bg-slate-900 border-2 border-red-500/50 rounded-3xl p-6 space-y-5 shadow-[0_0_50px_rgba(239,68,68,0.3)] text-slate-100">
@@ -1198,19 +1102,19 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               </div>
               <div>
                 <h3 className="text-sm font-black uppercase text-red-400 tracking-wider">
-                  ELIMINAR MÃ“DULO DEL PROYECTO
+                  ELIMINAR MÓDULO DEL PROYECTO
                 </h3>
                 <p className="text-[10px] text-slate-400 font-mono">
-                  Esta acciÃ³n desinstalarÃ¡ la capa del sistema SOGNE
+                  Esta acción desinstalará la capa del sistema SOGNE
                 </p>
               </div>
             </div>
 
             <p className="text-xs text-slate-300 font-mono leading-relaxed">
-              Â¿EstÃ¡s seguro de que deseas eliminar permanentemente el mÃ³dulo <strong className="text-white">"{moduleToDelete.name}"</strong>?
+              Â¿Estás seguro de que deseas eliminar permanentemente el módulo <strong className="text-white">"{moduleToDelete.name}"</strong>?
               <br />
               <span className="text-slate-400 text-[11px] block mt-2">
-                Se borrarÃ¡ el archivo <code>{moduleToDelete.id}.geojson</code> del proyecto y se removerÃ¡ del menÃº.
+                Se borrará el archivo <code>{moduleToDelete.id}.geojson</code> del proyecto y se removerá del menú.
               </span>
             </p>
 
@@ -1225,7 +1129,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                 onClick={confirmDeleteCustomModule}
                 className="px-5 py-2.5 rounded-xl bg-red-500 hover:bg-red-400 text-white font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all cursor-pointer"
               >
-                SÃ­, Eliminar MÃ³dulo
+                Sí, Eliminar Módulo
               </button>
             </div>
           </div>

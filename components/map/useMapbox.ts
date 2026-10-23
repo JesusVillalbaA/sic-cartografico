@@ -42,12 +42,12 @@ export const useMapbox = (
   const [mapReady, setMapReady] = useState(false);
   const [loadingStage, setLoadingStage] = useState<{ progress: number; message: string }>({
     progress: 20,
-    message: 'Iniciando motor cartogrÃƒÂ¡fico vectorial...'
+    message: 'Iniciando motor cartográfico vectorial...'
   });
 
-  // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
-  // INICIALIZACIÃƒâ€œN DEL MAPA (solo una vez)
-  // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
+  // INICIALIZACIƒ—œN DEL MAPA (solo una vez)
+  // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
   useEffect(() => {
     if (!mapContainer.current || mapInitialized.current) return;
     mapInitialized.current = true;
@@ -67,7 +67,7 @@ export const useMapbox = (
     });
 
     m.on('style.load', () => {
-      setLoadingStage({ progress: 55, message: 'Cargando cartografÃƒÂ­a satelital y simbologÃƒÂ­a tÃƒÂ¡ctica...' });
+      setLoadingStage({ progress: 55, message: 'Cargando cartografía satelital y simbología táctica...' });
     });
 
     m.on('load', async () => {
@@ -75,7 +75,7 @@ export const useMapbox = (
       if (typeof window !== 'undefined') {
         (window as any)._mapboxMapInstance = m;
       }
-      setLoadingStage({ progress: 80, message: 'Montando 68 Cuadrantes de Paz y divisiÃƒÂ³n territorial...' });
+      setLoadingStage({ progress: 80, message: 'Montando 68 Cuadrantes de Paz y división territorial...' });
 
       // Ocultar capas de salud del basemap
       m.getStyle().layers.forEach(layer => {
@@ -86,7 +86,7 @@ export const useMapbox = (
         }
       });
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ FUENTES ESTÃƒÂTICAS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— FUENTES ESTÁTICAS ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       m.addSource('municipios-source', { type: 'geojson', data: '/api/map/capas?nombre=ven_admin2', generateId: true });
       m.addSource('salud-source',      { type: 'geojson', data: '/api/map/capas?nombre=centrossalud', generateId: true });
       m.addSource('cuadrantes-source', { type: 'geojson', data: '/api/map/capas?nombre=cuadrantes', generateId: true });
@@ -113,7 +113,7 @@ export const useMapbox = (
         m.addSource(`${res.id}-source`, { type: 'geojson', data: res.src, generateId: true });
       });
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ FUENTE DE PREVISUALIZACIÃƒâ€œN GIS (geojson.io) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— FUENTE DE PREVISUALIZACIƒ—œN GIS (geojson.io) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       m.addSource('imported-preview-source', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
 
       m.addLayer({
@@ -138,7 +138,7 @@ export const useMapbox = (
         paint: { 'circle-radius': 8, 'circle-color': '#00f0ff', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff' }
       });
 
-      // MÃƒÂ©todos globales en window para interactuar con la EstaciÃƒÂ³n GIS y MÃƒÂ³dulos
+      // Métodos globales en window para interactuar con la Estación GIS y Módulos
       if (typeof window !== 'undefined') {
         (window as any)._previewGisGeojson = (geojson: any, bbox: number[] | null) => {
           if (!map.current) return;
@@ -211,7 +211,7 @@ export const useMapbox = (
         };
       }
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ FUENTES DINÃƒÂMICAS (Supabase via API) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— FUENTES DINÁMICAS (Supabase via API) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       const empty: any = { type: 'FeatureCollection', features: [] };
       m.addSource('incidencias-riesgo',       { type: 'geojson', data: empty });
       m.addSource('cibernetica-incidente',     { type: 'geojson', data: empty });
@@ -221,7 +221,7 @@ export const useMapbox = (
       m.addSource('grupos-bandas',             { type: 'geojson', data: empty });
       m.addSource('puntos-interes',            { type: 'geojson', data: empty });
 
-      // IAPOLENE (polÃƒÂ­gonos)
+      // IAPOLENE (polígonos)
       m.addSource('iapollene-polygons', { type: 'geojson', data: empty });
       fetch('/api/map/capas?nombre=IAPOLENE')
         .then(r => r.json())
@@ -235,7 +235,7 @@ export const useMapbox = (
         })
         .catch(err => console.error('Error IAPOLENE:', err));
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ CONFIGURACIÃƒâ€œN DE TERRENO Y EDIFICIOS EN 3D Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— CONFIGURACIƒ—œN DE TERRENO Y EDIFICIOS EN 3D ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       try {
         if (!m.getSource('mapbox-dem')) {
           m.addSource('mapbox-dem', {
@@ -245,12 +245,12 @@ export const useMapbox = (
             maxzoom: 14
           });
         }
-        // Terreno inicialmente plano (2D) para mÃƒÂ¡xima nitidez y rendimiento satelital
+        // Terreno inicialmente plano (2D) para máxima nitidez y rendimiento satelital
       } catch (err) {
-        console.warn('[SIGDI] No se pudo cargar el mapa de elevaciÃƒÂ³n 3D DEM:', err);
+        console.warn('[SIGDI] No se pudo cargar el mapa de elevación 3D DEM:', err);
       }
 
-      // Capa de ExtrusiÃƒÂ³n 3D de Casas y Edificaciones
+      // Capa de Extrusión 3D de Casas y Edificaciones
       try {
         if (!m.getLayer('3d-buildings')) {
           const layers = m.getStyle().layers;
@@ -320,26 +320,26 @@ export const useMapbox = (
         }
       } catch (err) {}
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ CAPAS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— CAPAS ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
 
-      // IAPOLENE Ã¢â‚¬â€ AZUL OPERATIVO (#2563eb)
+      // IAPOLENE — AZUL OPERATIVO (#2563eb)
       m.addLayer({ id: 'iapollene-fill', type: 'fill', source: 'iapollene-polygons', layout: { visibility: 'visible' }, paint: { 'fill-color': '#2563eb', 'fill-opacity': 0.35, 'fill-outline-color': '#1e3a8a' } });
       m.addLayer({ id: 'iapollene-polygon-line', type: 'line', source: 'iapollene-polygons', layout: { visibility: 'visible' }, paint: { 'line-color': '#1e3a8a', 'line-width': 2.5, 'line-opacity': 1 } });
       m.addLayer({ id: 'iapollene-labels', type: 'symbol', source: 'iapollene-polygons', layout: { visibility: 'visible', 'text-field': ['get', 'NAME'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 0.8], 'text-anchor': 'center' }, paint: { 'text-color': '#1e3a8a', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
 
-      // Municipios Ã¢â‚¬â€ NEÃƒâ€œN CYAN (#00f0ff)
+      // Municipios — NEƒ—œN CYAN (#00f0ff)
       m.addLayer({ id: 'municipios-fill', type: 'fill', source: 'municipios-source', filter: ['==', ['get', 'adm1_name'], 'Nueva Esparta'], paint: { 'fill-color': 'rgba(6, 182, 212, 0.03)' } });
       m.addLayer({ id: 'municipios-local', type: 'line', source: 'municipios-source', filter: ['==', ['get', 'adm1_name'], 'Nueva Esparta'], paint: { 'line-color': '#06b6d4', 'line-width': 1.8, 'line-opacity': 0.8 } });
 
-      // Sectores Ã¢â‚¬â€ VERDE ESMERALDA (#10b981)
+      // Sectores — VERDE ESMERALDA (#10b981)
       m.addLayer({ id: 'sectores-api', type: 'circle', source: 'composite', 'source-layer': 'place_label', filter: ['match', ['get', 'class'], ['settlement', 'suburb', 'neighbourhood'], true, false], layout: { visibility: 'none' }, paint: { 'circle-radius': 5.5, 'circle-color': '#10b981', 'circle-stroke-width': 1.5, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.9 } });
 
-      // Cuadrantes polÃƒÂ­gonos Ã¢â‚¬â€ ORO BRILLANTE (#fbbf24)
+      // Cuadrantes polígonos — ORO BRILLANTE (#fbbf24)
       m.addLayer({ id: 'poligonos-fill',   type: 'fill',   source: 'poligonos-source', layout: { visibility: 'none' }, paint: { 'fill-color': '#fbbf24', 'fill-opacity': 0.2, 'fill-outline-color': '#b45309' } });
       m.addLayer({ id: 'poligonos-line',   type: 'line',   source: 'poligonos-source', layout: { visibility: 'none' }, paint: { 'line-color': '#b45309', 'line-width': 2 } });
       m.addLayer({ id: 'poligonos-labels', type: 'symbol', source: 'poligonos-source', layout: { ...MAP_LAYERS.cuadrantesPoligonos.label.layout, 'text-field': ['coalesce', ['get', 'comuna'], ['concat', 'C-', ['get', 'cuadrante']]] } as any, paint: { 'text-color': '#b45309', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // Cuadrantes de Paz Ã¢â‚¬â€ PolÃƒÂ­gonos Detallados Rojo Vinotinto (compas-source)
+      // Cuadrantes de Paz — Polígonos Detallados Rojo Vinotinto (compas-source)
       m.addLayer({ id: 'compas-fill',   type: 'fill',   source: 'compas-source', layout: { visibility: 'none' }, paint: { 'fill-color': '#800020', 'fill-opacity': 0.35, 'fill-outline-color': '#b91c1c' } });
       m.addLayer({ id: 'compas-line',   type: 'line',   source: 'compas-source', layout: { visibility: 'none', 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#991b1b', 'line-width': 2.5, 'line-opacity': 0.95 } });
       m.addLayer({ id: 'compas-labels', type: 'symbol', source: 'compas-source', layout: { visibility: 'none' }, paint: {} });
@@ -377,7 +377,7 @@ export const useMapbox = (
         }
       });
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ CARGAR ÃƒÂCONOS PERSONALIZADOS Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— CARGAR ÁCONOS PERSONALIZADOS ─—─—
       const customIcons = [
         { id: 'icon-hospitales', url: '/hospital.png' },
         { id: 'icon-clinicas', url: '/clinica.png' },
@@ -427,8 +427,8 @@ export const useMapbox = (
       m.addLayer({ id: 'parroquias-fill', type: 'fill', source: 'parroquias-source', layout: { visibility: 'none' }, paint: { 'fill-color': '#ff00ff', 'fill-opacity': 0.15, 'fill-outline-color': '#ff00ff' } });
       m.addLayer({ id: 'parroquias-line', type: 'line', source: 'parroquias-source', filter: ['==', ['get', 'adm1_name'], 'Nueva Esparta'], layout: { visibility: 'none' }, paint: { 'line-color': '#ff00ff', 'line-width': 2, 'line-opacity': 0.8 } });
       m.addLayer({ id: 'vialidad-layer',  type: 'line', source: 'vialidad-source',   layout: { visibility: 'none' }, paint: { 'line-color': '#adff2f', 'line-width': 2.5, 'line-opacity': 0.9 } });
-      m.addLayer({ id: 'estaciones-layer',  type: 'circle', source: 'estaciones-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': ['match', ['get', 'TIPO_SERVICIO'], 'MarÃƒÂ­tima', '#0ea5e9', '#ff4500'], 'circle-opacity': 1 } });
-      m.addLayer({ id: 'estaciones-labels', type: 'symbol', source: 'estaciones-source', layout: { visibility: 'none', 'icon-image': 'icon-estaciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'NAME'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': ['match', ['get', 'TIPO_SERVICIO'], 'MarÃƒÂ­tima', '#0ea5e9', '#ff4500'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
+      m.addLayer({ id: 'estaciones-layer',  type: 'circle', source: 'estaciones-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': ['match', ['get', 'TIPO_SERVICIO'], 'Marítima', '#0ea5e9', '#ff4500'], 'circle-opacity': 1 } });
+      m.addLayer({ id: 'estaciones-labels', type: 'symbol', source: 'estaciones-source', layout: { visibility: 'none', 'icon-image': 'icon-estaciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'NAME'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': ['match', ['get', 'TIPO_SERVICIO'], 'Marítima', '#0ea5e9', '#ff4500'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
       // TRANSPORTE
       m.addLayer({ id: 'transporte-layer',  type: 'circle', source: 'transporte-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 9, 'circle-color': ['match', ['coalesce', ['get', 'categoria'], 'terrestre'], 'maritimo', '#06b6d4', 'aereo', '#a855f7', 'estacion', '#f59e0b', '#3b82f6'], 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
       m.addLayer({ id: 'transporte-labels', type: 'symbol', source: 'transporte-source', layout: { visibility: 'none', 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'], 'text-size': 10, 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true }, paint: { 'text-color': ['match', ['coalesce', ['get', 'categoria'], 'terrestre'], 'maritimo', '#06b6d4', 'aereo', '#a855f7', 'estacion', '#f59e0b', '#3b82f6'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
@@ -438,16 +438,16 @@ export const useMapbox = (
       m.addLayer({ id: 'conppas-layer',  type: 'circle', source: 'conppas-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#0284c7', 'circle-opacity': 1 } });
       m.addLayer({ id: 'conppas-labels', type: 'symbol', source: 'conppas-source', layout: { visibility: 'none', 'icon-image': 'icon-conppas', 'icon-size': 0.045, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['coalesce', ['get', 'nombre_sitio'], ['get', 'nombre']], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0284c7', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // Antenas Ã¢â‚¬â€ DIGITEL (#9400d3), MOVILNET (#00ff7f), MOVISTAR (#00bfff)
+      // Antenas — DIGITEL (#9400d3), MOVILNET (#00ff7f), MOVISTAR (#00bfff)
       m.addLayer({ id: 'antenas-digitel-layer', type: 'circle', source: 'antenas-digitel-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': '#9400d3', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
       m.addLayer({ id: 'antenas-movilnet-layer', type: 'circle', source: 'antenas-movilnet-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': '#00ff7f', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
       m.addLayer({ id: 'antenas-movistar-layer', type: 'circle', source: 'antenas-movistar-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': '#00bfff', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
 
-      // Sistemas ElÃƒÂ©ctricos Ã¢â‚¬â€ NEÃƒâ€œN AMARILLO ELÃƒâ€°CTRICO (#ffff00)
+      // Sistemas Eléctricos — NEƒ—œN AMARILLO ELƒ—°CTRICO (#ffff00)
       m.addLayer({ id: 'sistemas-electricos-layer', type: 'circle', source: 'sistemas-electricos-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 16, 'circle-color': '#ffffff', 'circle-stroke-width': 3, 'circle-stroke-color': '#eab308', 'circle-opacity': 1 } });
       m.addLayer({ id: 'sistemas-electricos-icons', type: 'symbol', source: 'sistemas-electricos-source', layout: { visibility: 'none', 'icon-image': 'icon-electricos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // Servicio de Agua Ã¢â‚¬â€ SubcategorÃƒÂ­as
+      // Servicio de Agua — Subcategorías
       const waterSubcats = [
         { id: 'desalinizadoras', color: '#0284c7' },
         { id: 'tratamiento',     color: '#0d9488' },
@@ -480,43 +480,43 @@ export const useMapbox = (
         });
       });
 
-      // Estaciones de Gas Ã¢â‚¬â€ NARANJA INTENSO (#ff8c00)
+      // Estaciones de Gas — NARANJA INTENSO (#ff8c00)
       m.addLayer({ id: 'estaciones-gas-layer', type: 'circle', source: 'estaciones-gas-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff8c00', 'circle-opacity': 1 } });
       m.addLayer({ id: 'estaciones-gas-labels', type: 'symbol', source: 'estaciones-gas-source', layout: { visibility: 'none', 'icon-image': 'icon-gas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff8c00', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ CAPAS DINÃƒÂMICAS (Supabase) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
-      // 1. Delitos comunes Ã¢â‚¬â€ ROJO BRILLANTE (#ff003c)
+      // ─—─— CAPAS DINÁMICAS (Supabase) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
+      // 1. Delitos comunes — ROJO BRILLANTE (#ff003c)
       m.addLayer({ id: 'incidencias-riesgo-layer', type: 'circle', source: 'incidencias-riesgo', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff003c', 'circle-opacity': 1 } });
       m.addLayer({ id: 'incidencias-riesgo-icons', type: 'symbol', source: 'incidencias-riesgo', layout: { visibility: 'none', 'icon-image': 'icon-delitos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff003c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // 2. CibernÃƒÂ©tica Ã¢â‚¬â€ VIOLETA ELECTRICO (#7b2cbf)
+      // 2. Cibernética — VIOLETA ELECTRICO (#7b2cbf)
       m.addLayer({ id: 'cibernetica-incidente-layer', type: 'circle', source: 'cibernetica-incidente', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#7b2cbf', 'circle-opacity': 1 } });
       m.addLayer({ id: 'cibernetica-incidente-icons', type: 'symbol', source: 'cibernetica-incidente', layout: { visibility: 'none', 'icon-image': 'icon-cibernetica', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#7b2cbf', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // 3. Concentraciones Ã¢â‚¬â€ ORO BRILLANTE (#ffd700)
+      // 3. Concentraciones — ORO BRILLANTE (#ffd700)
       m.addLayer({ id: 'concentraciones-incidente-layer', type: 'circle', source: 'concentraciones-incidente', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ffd700', 'circle-opacity': 1 } });
       m.addLayer({ id: 'concentraciones-incidente-icons', type: 'symbol', source: 'concentraciones-incidente', layout: { visibility: 'none', 'icon-image': 'icon-concentraciones', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'tipo_incidente'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // 4. Drogas Ã¢â‚¬â€ VERDE NEON (#39ff14)
+      // 4. Drogas — VERDE NEON (#39ff14)
       m.addLayer({ id: 'drogas-trafico-layer', type: 'circle', source: 'drogas-trafico', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#39ff14', 'circle-opacity': 1 } });
       m.addLayer({ id: 'drogas-trafico-icons', type: 'symbol', source: 'drogas-trafico', layout: { visibility: 'none', 'icon-image': 'icon-drogas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-anchor': 'top' } });
 
-      // 5. Actores de interÃƒÂ©s Ã¢â‚¬â€ ROSA MEXICANO (#ff007f)
+      // 5. Actores de interés — ROSA MEXICANO (#ff007f)
       m.addLayer({ id: 'actores-layer', type: 'circle', source: 'actores', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ff007f', 'circle-opacity': 1 } });
       m.addLayer({ id: 'actores-icons', type: 'symbol', source: 'actores', layout: { visibility: 'none', 'icon-image': 'icon-actores', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'alias'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#ff007f', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // 6. Grupos delictivos Ã¢â‚¬â€ AZUL ZAFIRO (#0f52ba)
+      // 6. Grupos delictivos — AZUL ZAFIRO (#0f52ba)
       m.addLayer({ id: 'grupos-bandas-layer', type: 'circle', source: 'grupos-bandas', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#0f52ba', 'circle-opacity': 1 } });
       m.addLayer({ id: 'grupos-bandas-icons', type: 'symbol', source: 'grupos-bandas', layout: { visibility: 'none', 'icon-image': 'icon-bandas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre_banda'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0f52ba', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // 7. Puntos de interÃƒÂ©s Ã¢â‚¬â€ TURQUESA ELÃƒâ€°CTRICO (#00f5ff)
+      // 7. Puntos de interés — TURQUESA ELƒ—°CTRICO (#00f5ff)
       m.addLayer({ id: 'puntos-interes-layer', type: 'circle', source: 'puntos-interes', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#00f5ff', 'circle-opacity': 1 } });
       m.addLayer({ id: 'puntos-interes-icons', type: 'symbol', source: 'puntos-interes', layout: { visibility: 'none', 'icon-image': 'icon-puntos-interes', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre_punto'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#00f5ff', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ BÃƒÅ¡SQUEDA GLOBAL / RESALTADO (Siempre visible) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— BƒÅ¡SQUEDA GLOBAL / RESALTADO (Siempre visible) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       m.addSource('search-highlight-source', { type: 'geojson', data: empty });
       
-      // Capa para polÃƒÂ­gonos (ej. Municipios, Parroquias) resaltados
+      // Capa para polígonos (ej. Municipios, Parroquias) resaltados
       m.addLayer({ 
         id: 'search-highlight-fill', 
         type: 'fill', 
@@ -545,7 +545,7 @@ export const useMapbox = (
         } 
       });
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ FOCUS MASK (Oscurecimiento del entorno para enfocar ÃƒÂ¡rea trazada) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— FOCUS MASK (Oscurecimiento del entorno para enfocar área trazada) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       m.addSource('focus-mask-source', { type: 'geojson', data: empty });
       m.addLayer({
         id: 'focus-mask-layer',
@@ -558,7 +558,7 @@ export const useMapbox = (
         }
       });
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ CARGA DE DATOS DESDE LA API Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— CARGA DE DATOS DESDE LA API ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       fetchAndSetData(m, 'incidencias-riesgo',       '/api/map/incidencias');
       fetchAndSetData(m, 'cibernetica-incidente',     '/api/map/cibernetica');
       fetchAndSetData(m, 'concentraciones-incidente', '/api/map/concentraciones');
@@ -567,7 +567,7 @@ export const useMapbox = (
       fetchAndSetData(m, 'grupos-bandas',             '/api/map/grupos');
       fetchAndSetData(m, 'puntos-interes',            '/api/map/puntoInteres');
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ CARGA COMBINADA PARA MAPA DE CALOR (Delitos Comunes + CibernÃƒÂ©ticos) Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— CARGA COMBINADA PARA MAPA DE CALOR (Delitos Comunes + Cibernéticos) ─—─—
       const loadHeatmapData = async () => {
         try {
           const [resInc, resCiber] = await Promise.all([
@@ -588,7 +588,7 @@ export const useMapbox = (
       };
       loadHeatmapData();
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ CARGA DE ANTENAS DESDE ARCHIVOS SEPARADOS POR OPERADORA Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— CARGA DE ANTENAS DESDE ARCHIVOS SEPARADOS POR OPERADORA ─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       const loadAntenaFile = async (file: string, operadora: string, sourceId: string) => {
         try {
           const r = await fetch(file).catch(() => null);
@@ -637,7 +637,7 @@ export const useMapbox = (
       loadAntenaFile('/api/map/capas?nombre=movistar', 'MOVISTAR', 'antenas-movistar-source');
 
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ CARGA DE ESTACIONES DE AGUA DESDE estacionesagua.geojson Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— CARGA DE ESTACIONES DE AGUA DESDE estacionesagua.geojson ─—─—─—─—─—─—─—─—─—─—
       const loadEstacionesAgua = async () => {
         try {
           const r = await fetch('/api/map/capas?nombre=estacionagua');
@@ -676,7 +676,7 @@ export const useMapbox = (
                 type: 'Feature',
                 geometry: { type: 'Point', coordinates: item.coordinates || [0, 0] },
                 properties: {
-                  name: item.name || item.NAME || 'EstaciÃƒÂ³n de Agua',
+                  name: item.name || item.NAME || 'Estación de Agua',
                   subcategoria,
                   institution: item.institution || '',
                   status: item.status || '',
@@ -700,7 +700,7 @@ export const useMapbox = (
 
       await fetchZonasDeRiesgo();
 
-      // Ã¢â€â‚¬Ã¢â€â‚¬ EVENTOS CLICK Y HOVER Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+      // ─—─— EVENTOS CLICK Y HOVER ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       const capasSalud = RECURSOS_SALUD.map(r => `${r.id}-layer`);
       const capasInf   = RECURSOS_INFRAESTRUCTURA.map(r => `${r.id}-layer`);
       const waterLayers = ['desalinizadoras', 'tratamiento', 'bombeoServidas', 'bombeoPotable', 'tanques', 'diques', 'pozos', 'clorado', 'parales', 'embalses'].map(s => `agua-${s}-point`);
@@ -719,7 +719,7 @@ export const useMapbox = (
       ];
 
       m.on('click', (e) => {
-        // Evitar que el clic en herramientas tÃƒÂ¡cticas (medidor o radio de cobertura) reseteen el mapa o la inclinaciÃƒÂ³n 3D
+        // Evitar que el clic en herramientas tácticas (medidor o radio de cobertura) reseteen el mapa o la inclinación 3D
         if (typeof window !== 'undefined' && (window as any)._activeTacticalTool && (window as any)._activeTacticalTool !== 'none') {
           return;
         }
@@ -782,8 +782,8 @@ export const useMapbox = (
         m.getCanvas().style.cursor = features.length ? 'pointer' : '';
       });
 
-      // Ã¢Å“â€¦ AVISAR que el mapa estÃƒÂ¡ listo Ã¢â‚¬â€ esto dispara el useEffect de visibilidad
-      setLoadingStage({ progress: 100, message: 'Ã‚Â¡Geointeligencia SOGNE lista y operativa!' });
+      // ¢Å“—¦ AVISAR que el mapa está listo — esto dispara el useEffect de visibilidad
+      setLoadingStage({ progress: 100, message: '‚Â¡Geointeligencia SOGNE lista y operativa!' });
       setMapReady(true);
     });
 
@@ -795,12 +795,12 @@ export const useMapbox = (
     };
   }, []);
 
-  // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
   // CONTROL DE VISIBILIDAD
   // Depende de `layersVisible` Y `mapReady` para que se ejecute:
   //   - cada vez que el usuario activa/desactiva una capa
-  //   - tambiÃƒÂ©n justo cuando el mapa termina de cargar (por si ya habÃƒÂ­a toggles pendientes)
-  // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  //   - también justo cuando el mapa termina de cargar (por si ya había toggles pendientes)
+  // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
   useEffect(() => {
     const m = map.current;
     if (!m || !mapReady) return;
@@ -842,7 +842,7 @@ export const useMapbox = (
     set('incidentes-glow',  incVisible);
     set('incidentes-icons', incVisible);
 
-    // Ã¢â€â‚¬Ã¢â€â‚¬ ZONAS DE RIESGO Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+    // ─—─— ZONAS DE RIESGO ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
     set('incidencias-riesgo-layer',       !!layersVisible.zonasDeRiesgo?.delitosComunes);
     set('incidencias-riesgo-icons',       !!layersVisible.zonasDeRiesgo?.delitosComunes);
     set('cibernetica-incidente-layer',    !!layersVisible.zonasDeRiesgo?.areaCibernetica);
@@ -850,7 +850,7 @@ export const useMapbox = (
     set('concentraciones-incidente-layer',!!layersVisible.zonasDeRiesgo?.concentraciones);
     set('concentraciones-incidente-icons',!!layersVisible.zonasDeRiesgo?.concentraciones);
 
-    // Ã¢â€â‚¬Ã¢â€â‚¬ GEOCALIZACIONES Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+    // ─—─— GEOCALIZACIONES ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
     set('drogas-trafico-layer',   !!layersVisible.geocalizaciones?.drogas);
     set('drogas-trafico-icons',   !!layersVisible.geocalizaciones?.drogas);
     set('actores-layer',          !!layersVisible.geocalizaciones?.actorInteres);
@@ -858,16 +858,16 @@ export const useMapbox = (
     set('puntos-interes-layer',   !!layersVisible.geocalizaciones?.puntoInteres);
     set('puntos-interes-icons',   !!layersVisible.geocalizaciones?.puntoInteres);
 
-    // Ã¢â€â‚¬Ã¢â€â‚¬ GRUPOS DELICTIVOS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+    // ─—─— GRUPOS DELICTIVOS ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
     set('grupos-bandas-layer',    !!layersVisible.bandasDelictivas);
     set('grupos-bandas-icons',    !!layersVisible.bandasDelictivas);
 
-    // Ã¢â€â‚¬Ã¢â€â‚¬ ANTENAS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+    // ─—─— ANTENAS ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
     set('antenas-digitel-layer',  !!layersVisible.antenasDigitel);
     set('antenas-movilnet-layer', !!layersVisible.antenasMovilnet);
     set('antenas-movistar-layer', !!layersVisible.antenasMovistar);
 
-    // Ã¢â€â‚¬Ã¢â€â‚¬ SERVICIOS BÃƒÂSICOS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+    // ─—─— SERVICIOS BÁSICOS ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
     set('sistemas-electricos-layer', !!layersVisible.sistemasElectricos);
     set('sistemas-electricos-icons', !!layersVisible.sistemasElectricos);
     
@@ -893,7 +893,7 @@ export const useMapbox = (
       }
     }
 
-    // â”€â”€ TRANSPORTE (FILTRADO POR SUBCATEGORÃA O RED GENERAL) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── TRANSPORTE (FILTRADO POR SUBCATEGORÍA O RED GENERAL) ────────────────
     const isTransGeneral = !!layersVisible.transporteGeneral;
     const isTransMar = !!layersVisible.transporteMaritimo;
     const isTransAir = !!layersVisible.transporteAereo;
@@ -912,14 +912,14 @@ export const useMapbox = (
         set('transporte-labels', true);
       } else {
         const activeTypes: string[] = [];
-        if (isTransMar) activeTypes.push('Terminal MarÃ­timo');
-        if (isTransAir) activeTypes.push('Terminal AÃ©reo');
-        if (isTransES) activeTypes.push('EstaciÃ³n de Servicio Marina');
+        if (isTransMar) activeTypes.push('Terminal Marítimo');
+        if (isTransAir) activeTypes.push('Terminal Aéreo');
+        if (isTransES) activeTypes.push('Estación de Servicio Marina');
         if (isTransTerr) {
           activeTypes.push(
             'Terminal Principal',
             'Terminal de Autobuses',
-            'HistÃ³rico / Antiguo Terminal',
+            'Histórico / Antiguo Terminal',
             'Terminal de Pasajeros',
             'Parada'
           );
@@ -932,17 +932,17 @@ export const useMapbox = (
       }
     }
 
-    // Ã¢â€â‚¬Ã¢â€â‚¬ CONPPAS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+    // ─—─— CONPPAS ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
     set('conppas-layer',     !!layersVisible.conppas);
     set('conppas-glow',      !!layersVisible.conppas);
     set('conppas-labels',    !!layersVisible.conppas);
 
   }, [layersVisible, mapReady]); // <-- mapReady asegura que corra al terminar de cargar
 
-  // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
-  // SINCRONIZACIÃƒâ€œN DE FEATURES SELECCIONADOS AL HIGHLIGHT SOURCE
-  // Asegura que "se active ÃƒÂºnicamente lo que se busque" mostrÃƒÂ¡ndose siempre
-  // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
+  // SINCRONIZACIƒ—œN DE FEATURES SELECCIONADOS AL HIGHLIGHT SOURCE
+  // Asegura que "se active únicamente lo que se busque" mostrándose siempre
+  // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
   useEffect(() => {
     if (!mapReady || !map.current) return;
     const source = map.current.getSource('search-highlight-source') as mapboxgl.GeoJSONSource;
@@ -954,10 +954,10 @@ export const useMapbox = (
     }
   }, [selectedFeatures, mapReady]);
 
-  // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
-  // RESIZE OBSERVER Ã¢â‚¬â€ Fuerza al mapa a redibujarse al cambiar el tamaÃƒÂ±o del contenedor
-  // (elimina el espacio negro cuando el menÃƒÂº lateral se expande/contrae)
-  // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
+  // RESIZE OBSERVER — Fuerza al mapa a redibujarse al cambiar el tamaño del contenedor
+  // (elimina el espacio negro cuando el menú lateral se expande/contrae)
+  // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
   useEffect(() => {
     const container = mapContainer.current;
     if (!container) return;
