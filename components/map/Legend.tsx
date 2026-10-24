@@ -53,6 +53,7 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
       if (itemId === 'electricidad') layerKey = 'electricidad';
       if (itemId.startsWith('agua_')) layerKey = 'agua';
       if (itemId === 'estaciones_combustible') layerKey = 'estaciones_combustible';
+      if (itemId.startsWith('trans_')) layerKey = 'transporte';
       
       await exportLayerToPDF({ layerKey });
     } catch (err: any) {
@@ -166,7 +167,11 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
       icon: Bus,
       color: '#06b6d4',
       items: [
-        { id: 'trans_publico', label: 'Terminales y Paradas', iconSrc: '/transporte_publico.png', colorDot: '#06b6d4', glowColor: 'rgba(6, 182, 212, 0.5)', desc: 'Rutas urbanas y suburbanas', toggleKey: 'transporteGeneral' },
+        { id: 'trans_general', label: 'Toda la Red de Transporte', iconSrc: '/transporte_publico.png', colorDot: '#0ea5e9', glowColor: 'rgba(14, 165, 233, 0.5)', desc: 'Terminales y paradas generales', toggleKey: 'transporteGeneral' },
+        { id: 'trans_maritimo', label: 'Terminales Marítimos & Muelles', iconSrc: '/icons/terminal-maritimo.svg', colorDot: '#06b6d4', glowColor: 'rgba(6, 182, 212, 0.5)', desc: 'Puertos, muelles y conexiones marítimas', toggleKey: 'transporteMaritimo' },
+        { id: 'trans_aereo', label: 'Terminales Aéreos', iconSrc: '/icons/terminal-aereo.svg', colorDot: '#a855f7', glowColor: 'rgba(168, 85, 247, 0.5)', desc: 'Aeropuerto Internacional Santiago Mariño', toggleKey: 'transporteAereo' },
+        { id: 'trans_es', label: 'E/S Marinas de Combustible', iconSrc: '/icons/estacion-marina.svg', colorDot: '#f59e0b', glowColor: 'rgba(245, 158, 11, 0.5)', desc: 'Suministro marítimo y pesquero', toggleKey: 'transporteES' },
+        { id: 'trans_terrestre', label: 'Terminales Terrestres', iconSrc: '/icons/terminal-icon.png', colorDot: '#3b82f6', glowColor: 'rgba(59, 130, 246, 0.5)', desc: 'Terminales urbanos e interurbanos', toggleKey: 'transporteTerrestre' },
       ]
     },
     {

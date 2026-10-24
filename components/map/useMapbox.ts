@@ -46,7 +46,7 @@ export const useMapbox = (
   });
 
   // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
-  // INICIALIZACIƒ—œN DEL MAPA (solo una vez)
+  // INICIALIZACIÓN DEL MAPA (solo una vez)
   // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
   useEffect(() => {
     if (!mapContainer.current || mapInitialized.current) return;
@@ -113,7 +113,7 @@ export const useMapbox = (
         m.addSource(`${res.id}-source`, { type: 'geojson', data: res.src, generateId: true });
       });
 
-      // ─—─— FUENTE DE PREVISUALIZACIƒ—œN GIS (geojson.io) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
+      // ─—─— FUENTE DE PREVISUALIZACIÓN GIS (geojson.io) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       m.addSource('imported-preview-source', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
 
       m.addLayer({
@@ -235,7 +235,7 @@ export const useMapbox = (
         })
         .catch(err => console.error('Error IAPOLENE:', err));
 
-      // ─—─— CONFIGURACIƒ—œN DE TERRENO Y EDIFICIOS EN 3D ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
+      // ─—─— CONFIGURACIÓN DE TERRENO Y EDIFICIOS EN 3D ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       try {
         if (!m.getSource('mapbox-dem')) {
           m.addSource('mapbox-dem', {
@@ -327,7 +327,7 @@ export const useMapbox = (
       m.addLayer({ id: 'iapollene-polygon-line', type: 'line', source: 'iapollene-polygons', layout: { visibility: 'visible' }, paint: { 'line-color': '#1e3a8a', 'line-width': 2.5, 'line-opacity': 1 } });
       m.addLayer({ id: 'iapollene-labels', type: 'symbol', source: 'iapollene-polygons', layout: { visibility: 'visible', 'text-field': ['get', 'NAME'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 0.8], 'text-anchor': 'center' }, paint: { 'text-color': '#1e3a8a', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
 
-      // Municipios — NEƒ—œN CYAN (#00f0ff)
+      // Municipios — NEÓN CYAN (#00f0ff)
       m.addLayer({ id: 'municipios-fill', type: 'fill', source: 'municipios-source', filter: ['==', ['get', 'adm1_name'], 'Nueva Esparta'], paint: { 'fill-color': 'rgba(6, 182, 212, 0.03)' } });
       m.addLayer({ id: 'municipios-local', type: 'line', source: 'municipios-source', filter: ['==', ['get', 'adm1_name'], 'Nueva Esparta'], paint: { 'line-color': '#06b6d4', 'line-width': 1.8, 'line-opacity': 0.8 } });
 
@@ -443,7 +443,7 @@ export const useMapbox = (
       m.addLayer({ id: 'antenas-movilnet-layer', type: 'circle', source: 'antenas-movilnet-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': '#00ff7f', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
       m.addLayer({ id: 'antenas-movistar-layer', type: 'circle', source: 'antenas-movistar-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 8, 'circle-color': '#00bfff', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-opacity': 0.95 } });
 
-      // Sistemas Eléctricos — NEƒ—œN AMARILLO ELƒ—°CTRICO (#ffff00)
+      // Sistemas Eléctricos — NEÓN AMARILLO ELÉCTRICO (#ffff00)
       m.addLayer({ id: 'sistemas-electricos-layer', type: 'circle', source: 'sistemas-electricos-source', layout: { visibility: 'none' }, paint: { 'circle-radius': 16, 'circle-color': '#ffffff', 'circle-stroke-width': 3, 'circle-stroke-color': '#eab308', 'circle-opacity': 1 } });
       m.addLayer({ id: 'sistemas-electricos-icons', type: 'symbol', source: 'sistemas-electricos-source', layout: { visibility: 'none', 'icon-image': 'icon-electricos', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#eab308', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
@@ -509,11 +509,11 @@ export const useMapbox = (
       m.addLayer({ id: 'grupos-bandas-layer', type: 'circle', source: 'grupos-bandas', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#0f52ba', 'circle-opacity': 1 } });
       m.addLayer({ id: 'grupos-bandas-icons', type: 'symbol', source: 'grupos-bandas', layout: { visibility: 'none', 'icon-image': 'icon-bandas', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre_banda'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#0f52ba', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // 7. Puntos de interés — TURQUESA ELƒ—°CTRICO (#00f5ff)
+      // 7. Puntos de interés — TURQUESA ELÉCTRICO (#00f5ff)
       m.addLayer({ id: 'puntos-interes-layer', type: 'circle', source: 'puntos-interes', layout: { visibility: 'none' }, paint: { 'circle-radius': 12, 'circle-color': '#ffffff', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#00f5ff', 'circle-opacity': 1 } });
       m.addLayer({ id: 'puntos-interes-icons', type: 'symbol', source: 'puntos-interes', layout: { visibility: 'none', 'icon-image': 'icon-puntos-interes', 'icon-size': 0.04, 'icon-allow-overlap': true, 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-optional': true, 'text-field': ['get', 'nombre_punto'], 'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], 'text-size': 10, 'text-offset': [0, 1.6], 'text-anchor': 'top' }, paint: { 'text-color': '#00f5ff', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 } });
 
-      // ─—─— BƒÅ¡SQUEDA GLOBAL / RESALTADO (Siempre visible) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
+      // ─—─— BÚSQUEDA GLOBAL / RESALTADO (Siempre visible) ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
       m.addSource('search-highlight-source', { type: 'geojson', data: empty });
       
       // Capa para polígonos (ej. Municipios, Parroquias) resaltados
@@ -783,7 +783,7 @@ export const useMapbox = (
       });
 
       // ¢Å“—¦ AVISAR que el mapa está listo — esto dispara el useEffect de visibilidad
-      setLoadingStage({ progress: 100, message: '‚Â¡Geointeligencia SOGNE lista y operativa!' });
+      setLoadingStage({ progress: 100, message: '¡Geointeligencia SOGNE lista y operativa!' });
       setMapReady(true);
     });
 
@@ -940,7 +940,7 @@ export const useMapbox = (
   }, [layersVisible, mapReady]); // <-- mapReady asegura que corra al terminar de cargar
 
   // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
-  // SINCRONIZACIƒ—œN DE FEATURES SELECCIONADOS AL HIGHLIGHT SOURCE
+  // SINCRONIZACIÓN DE FEATURES SELECCIONADOS AL HIGHLIGHT SOURCE
   // Asegura que "se active únicamente lo que se busque" mostrándose siempre
   // ─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—─—
   useEffect(() => {

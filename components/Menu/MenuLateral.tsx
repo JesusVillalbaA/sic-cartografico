@@ -13,55 +13,6 @@ import { ModalGeoJsonEditor } from './ModalGeoJsonEditor';
 import { ModalEnProceso } from './ModalEnProceso';
 
 
-// ─── DATOS DE TERMINALES, MUELLES, E/S MARINAS Y RUTAS (SOGNE) ───────────────
-const TERMINALES_MARITIMOS_DATA = [
-  { name: "Terminal de Pasajeros La Isleta", coords: [-63.931178, 10.892533] as [number, number], ruta: "Solo personas hacia Isla de Coche (Muelle San Pedro)", badge: "Lanchas / Pasajeros" },
-  { name: "Terminal Muelle de La Puntilla", coords: [-63.848244, 10.949675] as [number, number], ruta: "Destinos: Chacopata, Carúpano e Isla de Coche", badge: "Pasajeros" },
-  { name: "Muelle Conferry Punta de Piedras", coords: [-64.095028, 10.898533] as [number, number], ruta: "Cumaná, Coche, Guanta, Pto La Cruz, La Guaira (Carga y Pasajeros)", badge: "Ferry Principal" },
-  { name: "Muelle Naviarca Punta de Piedras", coords: [-64.098456, 10.899458] as [number, number], ruta: "Pto La Cruz, Guanta, Cumaná (Vehículos y Carga)", badge: "Ferry / Carga" },
-  { name: "Muelle Navibus Punta de Piedras", coords: [-64.097483, 10.899289] as [number, number], ruta: "Pto La Cruz, Cumaná, Guanta, Isla de Coche", badge: "Ferry / Vehículos" },
-  { name: "Muelle Internacional El Guamache", coords: [-64.060656, 10.865239] as [number, number], ruta: "Carga liviana y pesada: Puerto La Cruz, Guanta, La Guaira", badge: "Puerto Carga" },
-  { name: "Muelle Crucero Internacional El Guamache", coords: [-64.063139, 10.864661] as [number, number], ruta: "Destinos y buques de cruceros internacionales", badge: "Cruceros Internacionales" },
-  { name: "Muelle Naviarca Turismo Punta de Piedras", coords: [-64.098456, 10.899458] as [number, number], ruta: "Catamaranes turísticos hacia Isla de Cubagua e Isla de Coche", badge: "Turismo Catamarán" },
-  { name: "Muelle San Pedro de Coche", coords: [-63.991578, 10.790581] as [number, number], ruta: "Conexión Punta de Piedras, La Isleta y La Puntilla", badge: "Isla de Coche" },
-  { name: "Muelle Charagato Isla de Cubagua", coords: [-64.158767, 10.833181] as [number, number], ruta: "Solo turismo en catamaranes", badge: "Isla de Cubagua" },
-  { name: "Muelle Antigua Salle de Cubagua", coords: [-64.163017, 10.825747] as [number, number], ruta: "Solo turismo en catamaranes", badge: "Isla de Cubagua" }
-];
-
-const TERMINALES_AEREOS_DATA = [
-  { name: "Aeropuerto Internacional Santiago Mariño - Terminal Nacional", coords: [-63.968994, 10.916489] as [number, number], ruta: "Vuelos comerciales nacionales y transporte de carga aérea", badge: "Terminal Nacional" },
-  { name: "Aeropuerto Internacional Santiago Mariño - Terminal Internacional", coords: [-63.967758, 10.91715] as [number, number], ruta: "Vuelos comerciales internacionales y vuelos chárter turísticos", badge: "Terminal Internacional" }
-];
-
-const ESTACIONES_MARINAS_DATA = [
-  { name: "E/S Marina Faro La Puntilla", coords: [-63.849511, 10.948133] as [number, number], ruta: "Suministro marino para embarcaciones pesqueras y de pasajeros", badge: "Porlamar" },
-  { name: "E/S Marina Planta de Hielo Punta de Piedras", coords: [-64.094319, 10.897675] as [number, number], ruta: "Suministro marino para ferris y barcos pesqueros", badge: "Punta de Piedras" },
-  { name: "E/S Marina Robledal", coords: [-64.374667, 11.024842] as [number, number], ruta: "Flota artesanal e industrial de Macanao", badge: "Macanao" },
-  { name: "E/S Marina Lonja Pesquera Juan Griego", coords: [-63.976344, 11.085431] as [number, number], ruta: "Embarcaciones de pesca y turismo en el norte", badge: "Juan Griego" },
-  { name: "E/S Marina Terrestre La Guardia", coords: [-64.022294, 10.997406] as [number, number], ruta: "Suministro dual: embarcaciones marinas y transporte terrestre", badge: "La Guardia" },
-  { name: "E/S Marina El Tirano", coords: [-63.845989, 11.118825] as [number, number], ruta: "Lanchas turísticas y pescadores artesanales", badge: "El Tirano" },
-  { name: "E/S Marina Muelle Chacachacare (Servicio Privado)", coords: [-64.157917, 10.958261] as [number, number], ruta: "Suministro marino para flota e instalaciones privadas", badge: "Privada" }
-];
-
-const TERMINALES_TERRESTRES_DATA = [
-  { name: "Terminal de pasajeros de Porlamar", coords: [-63.856361, 10.95937] as [number, number], ruta: "Eje central metropolitano hacia toda la isla", badge: "Porlamar" },
-  { name: "Terminal de Pasajeros 'Ciudad de Juangriego'", coords: [-63.964515, 11.081176] as [number, number], ruta: "Conexión norte con Porlamar y La Asunción", badge: "Juan Griego" },
-  { name: "Terminal Pasajeros Bus Margarita", coords: [-63.863156, 10.954203] as [number, number], ruta: "Líneas troncales y alimentadoras Bus Margarita", badge: "Bus Margarita" },
-  { name: "Parada Línea Matasiete", coords: [-63.860128, 10.95689] as [number, number], ruta: "Ruta La Asunción - Porlamar - Pampatar", badge: "Línea Matasiete" },
-  { name: "Parada de Bus Playa El Agua", coords: [-63.850531, 10.957908] as [number, number], ruta: "Ruta turística hacia Playa El Agua y Manzanillo", badge: "Antolín del Campo" },
-  { name: "Parada Porlamar-Pampatar", coords: [-63.85801, 10.95811] as [number, number], ruta: "Ruta interurbana Porlamar - Pampatar", badge: "Maneiro" }
-];
-
-const RUTAS_ESTRATEGICAS_DATA = [
-  { id: "ruta_isleta_coche", name: "Ruta La Isleta ↔ Isla de Coche", coords: [-63.931178, 10.892533] as [number, number], pointName: "Terminal de Pasajeros La Isleta", desc: "Lanchas de pasajeros hacia Muelle San Pedro de Coche", color: "#06b6d4" },
-  { id: "ruta_puntilla_chacopata", name: "Ruta La Puntilla ↔ Chacopata / Carúpano / Coche", coords: [-63.848244, 10.949675] as [number, number], pointName: "Terminal Muelle de La Puntilla", desc: "Zarpe de pasajeros hacia tierra firme (Sucre) e Isla de Coche", color: "#0284c7" },
-  { id: "ruta_punta_piedras", name: "Ruta Ferrys Punta de Piedras ↔ Puerto La Cruz / Cumaná / Guanta / La Guaira", coords: [-64.095028, 10.898533] as [number, number], pointName: "Muelle Conferry Punta de Piedras", desc: "Conferry, Naviarca y Navibus: pasajeros, vehículos y carga pesada", color: "#38bdf8" },
-  { id: "ruta_guamache_carga", name: "Ruta Carga El Guamache ↔ Puerto La Cruz / Guanta / La Guaira", coords: [-64.060656, 10.865239] as [number, number], pointName: "Muelle Internacional El Guamache", desc: "Terminal de carga intermodal y abastecimiento insular", color: "#0ea5e9" },
-  { id: "ruta_guamache_cruceros", name: "Ruta Internacional Cruceros El Guamache", coords: [-64.063139, 10.864661] as [number, number], pointName: "Muelle Crucero Internacional El Guamache", desc: "Buques de turismo internacional y cruceros del Caribe", color: "#818cf8" },
-  { id: "ruta_turismo_catamaranes", name: "Rutas Turísticas Catamaranes Cubagua y Coche", coords: [-64.098456, 10.899458] as [number, number], pointName: "Muelle Naviarca Turismo Punta de Piedras", desc: "Catamaranes turísticos hacia Charagato, La Salle y Coche", color: "#10b981" },
-  { id: "ruta_aerea_santiago_marino", name: "Rutas Aéreas Santiago Mariño (Nacional e Internacional)", coords: [-63.968994, 10.916489] as [number, number], pointName: "Aeropuerto Internacional Santiago Mariño - Terminal Nacional", desc: "Conexión aérea regular nacional e internacional", color: "#a855f7" }
-];
-
 export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, isMobileMenuOpen, setIsMobileMenuOpen }: any) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -150,13 +101,6 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
   const [showZonasRiesgoSub, setShowZonasRiesgoSub] = useState(false);
   const [showGeocalizacionesSub, setShowGeocalizacionesSub] = useState(false);
-  const [showTransportePublicoSub, setShowTransportePublicoSub] = useState(false);
-  const [showTransportePrivadoSub, setShowTransportePrivadoSub] = useState(false);
-  const [showTransporteRutas, setShowTransporteRutas] = useState(false);
-  const [showTransMaritimoSub, setShowTransMaritimoSub] = useState(false);
-  const [showTransAereoSub, setShowTransAereoSub] = useState(false);
-  const [showTransESSub, setShowTransESSub] = useState(false);
-  const [showTransTerrestreSub, setShowTransTerrestreSub] = useState(false);
   const [modalEnProcesoData, setModalEnProcesoData] = useState<{ isOpen: boolean; modulo: string; descripcion?: string }>({ isOpen: false, modulo: '', descripcion: '' });
   const [showServicioAguaSub, setShowServicioAguaSub] = useState(false);
 
@@ -341,8 +285,6 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
     setShowGestion(false);
     setShowZonasRiesgoSub(false);
     setShowGeocalizacionesSub(false);
-    setShowTransportePublicoSub(false);
-    setShowTransportePrivadoSub(false);
     setShowServicioAguaSub(false);
   };
 
@@ -360,25 +302,9 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
     setShowGestion(false);
     setShowZonasRiesgoSub(false);
     setShowGeocalizacionesSub(false);
-    setShowTransportePublicoSub(false);
-    setShowTransportePrivadoSub(false);
     setShowServicioAguaSub(false);
   };
 
-  const flyToTransportPoint = (coords: [number, number], name: string) => {
-    window.dispatchEvent(new CustomEvent('sigdi_focus_transport', {
-      detail: { coords, name }
-    }));
-  };
-
-  const handleSelectTransportItem = (coords: [number, number], name: string, sublayerKey?: string) => {
-    if (sublayerKey && !layersVisible[sublayerKey] && !layersVisible.transporteGeneral) {
-      onToggle(sublayerKey);
-    } else if (!layersVisible.transporteGeneral && !layersVisible.transporteMaritimo && !layersVisible.transporteAereo && !layersVisible.transporteES && !layersVisible.transporteTerrestre) {
-      onToggle('transporteGeneral');
-    }
-    flyToTransportPoint(coords, name);
-  };
 
   return (
     <>
@@ -711,8 +637,6 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
               </button>
               {isMenuOpen && showTransporte && (
                 <div className="ml-8 space-y-3 border-l-2 border-white/5 pl-4 mt-2">
-                  
-                  {/* RED GENERAL */}
                   <MenuItem 
                     theme={theme} 
                     iconSrc="/transporte_publico.png" 
@@ -722,203 +646,42 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                     isHovered={isMenuOpen} 
                     onClick={() => onToggle('transporteGeneral')} 
                   />
-
-                  {/* TERMINALES MARÍTIMOS */}
-                  <div>
-                    <div onClick={() => setShowTransMaritimoSub(!showTransMaritimoSub)} className="cursor-pointer">
-                      <MenuItem 
-                        theme={theme} 
-                        iconSrc="/icons/terminal-maritimo.svg" 
-                        label="TERMINALES MARÍTIMOS" 
-                        active={layersVisible.transporteMaritimo} 
-                        accentColor="#06b6d4" 
-                        isHovered={isMenuOpen} 
-                        onClick={() => onToggle('transporteMaritimo')} 
-                      />
-                    </div>
-                    {showTransMaritimoSub && (
-                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
-                        {TERMINALES_MARITIMOS_DATA.map((item, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => {
-                              if (!layersVisible.transporteMaritimo && !layersVisible.transporteGeneral) onToggle('transporteMaritimo');
-                              flyToTransportPoint(item.coords, item.name);
-                            }}
-                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
-                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
-                            }`}
-                          >
-                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
-                              <img src="/icons/terminal-maritimo.svg" className="w-4.5 h-4.5 object-contain" alt={item.name} />
-                            </div>
-                            <div className="flex flex-col text-left truncate">
-                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{item.name}</span>
-                              <span className="text-[8px] text-cyan-400 font-mono truncate">{item.ruta}</span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* TERMINALES AÉREOS */}
-                  <div>
-                    <div onClick={() => setShowTransAereoSub(!showTransAereoSub)} className="cursor-pointer">
-                      <MenuItem 
-                        theme={theme} 
-                        iconSrc="/icons/terminal-aereo.svg" 
-                        label="TERMINALES AÉREOS" 
-                        active={layersVisible.transporteAereo} 
-                        accentColor="#a855f7" 
-                        isHovered={isMenuOpen} 
-                        onClick={() => onToggle('transporteAereo')} 
-                      />
-                    </div>
-                    {showTransAereoSub && (
-                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
-                        {TERMINALES_AEREOS_DATA.map((item, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => {
-                              if (!layersVisible.transporteAereo && !layersVisible.transporteGeneral) onToggle('transporteAereo');
-                              flyToTransportPoint(item.coords, item.name);
-                            }}
-                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
-                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
-                            }`}
-                          >
-                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
-                              <img src="/icons/terminal-aereo.svg" className="w-4.5 h-4.5 object-contain" alt={item.name} />
-                            </div>
-                            <div className="flex flex-col text-left truncate">
-                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{item.name}</span>
-                              <span className="text-[8px] text-purple-400 font-mono truncate">{item.ruta}</span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* ESTACIONES DE SERVICIO MARINAS */}
-                  <div>
-                    <div onClick={() => setShowTransESSub(!showTransESSub)} className="cursor-pointer">
-                      <MenuItem 
-                        theme={theme} 
-                        iconSrc="/icons/estacion-marina.svg" 
-                        label="E/S MARINAS" 
-                        active={layersVisible.transporteES} 
-                        accentColor="#f59e0b" 
-                        isHovered={isMenuOpen} 
-                        onClick={() => onToggle('transporteES')} 
-                      />
-                    </div>
-                    {showTransESSub && (
-                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
-                        {ESTACIONES_MARINAS_DATA.map((item, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => {
-                              if (!layersVisible.transporteES && !layersVisible.transporteGeneral) onToggle('transporteES');
-                              flyToTransportPoint(item.coords, item.name);
-                            }}
-                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
-                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
-                            }`}
-                          >
-                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
-                              <img src="/icons/estacion-marina.svg" className="w-4.5 h-4.5 object-contain" alt={item.name} />
-                            </div>
-                            <div className="flex flex-col text-left truncate">
-                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{item.name}</span>
-                              <span className="text-[8px] text-amber-400 font-mono truncate">{item.ruta}</span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* TERMINALES TERRESTRES */}
-                  <div>
-                    <div onClick={() => setShowTransTerrestreSub(!showTransTerrestreSub)} className="cursor-pointer">
-                      <MenuItem 
-                        theme={theme} 
-                        iconSrc="/icons/terminal-icon.png" 
-                        label="TERMINALES TERRESTRES" 
-                        active={layersVisible.transporteTerrestre} 
-                        accentColor="#3b82f6" 
-                        isHovered={isMenuOpen} 
-                        onClick={() => onToggle('transporteTerrestre')} 
-                      />
-                    </div>
-                    {showTransTerrestreSub && (
-                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
-                        {TERMINALES_TERRESTRES_DATA.map((item, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => {
-                              if (!layersVisible.transporteTerrestre && !layersVisible.transporteGeneral) onToggle('transporteTerrestre');
-                              flyToTransportPoint(item.coords, item.name);
-                            }}
-                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
-                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
-                            }`}
-                          >
-                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
-                              <img src="/icons/terminal-icon.png" className="w-4.5 h-4.5 object-contain" alt={item.name} />
-                            </div>
-                            <div className="flex flex-col text-left truncate">
-                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{item.name}</span>
-                              <span className="text-[8px] text-blue-400 font-mono truncate">{item.ruta}</span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* RUTAS DE TRANSPORTE */}
-                  <div>
-                    <div onClick={() => setShowTransporteRutas(!showTransporteRutas)} className="cursor-pointer">
-                      <MenuItem 
-                        theme={theme} 
-                        iconSrc="/icons/ruta-maritima.svg" 
-                        label="RUTAS DE TRANSPORTE" 
-                        active={showTransporteRutas} 
-                        accentColor="#10b981" 
-                        isHovered={isMenuOpen} 
-                        onClick={() => {}} 
-                      />
-                    </div>
-                    {showTransporteRutas && (
-                      <div className="ml-6 space-y-2 animate-in slide-in-from-left-2 duration-300">
-                        {RUTAS_ESTRATEGICAS_DATA.map((ruta) => (
-                          <button
-                            key={ruta.id}
-                            onClick={() => {
-                              if (!layersVisible.transporteGeneral && !layersVisible.transporteMaritimo) onToggle('transporteGeneral');
-                              flyToTransportPoint(ruta.coords, ruta.pointName);
-                            }}
-                            className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
-                              theme === 'light' ? 'text-[#172554]/80 hover:text-[#172554] hover:bg-black/5' : 'text-slate-400 hover:text-white hover:bg-white/5'
-                            }`}
-                          >
-                            <div className="relative w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-md">
-                              <img src="/icons/ruta-maritima.svg" className="w-4.5 h-4.5 object-contain" alt={ruta.name} />
-                            </div>
-                            <div className="flex flex-col text-left truncate">
-                              <span className="text-[10px] font-bold tracking-widest uppercase truncate">{ruta.name}</span>
-                              <span className="text-[8px] text-emerald-400 font-mono truncate">{ruta.desc}</span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* TRANSPORTE PRIVADO (EN PROCESO) */}
+                  <MenuItem 
+                    theme={theme} 
+                    iconSrc="/icons/terminal-maritimo.svg" 
+                    label="TERMINALES MARÍTIMOS" 
+                    active={layersVisible.transporteMaritimo} 
+                    accentColor="#06b6d4" 
+                    isHovered={isMenuOpen} 
+                    onClick={() => onToggle('transporteMaritimo')} 
+                  />
+                  <MenuItem 
+                    theme={theme} 
+                    iconSrc="/icons/terminal-aereo.svg" 
+                    label="TERMINALES AÉREOS" 
+                    active={layersVisible.transporteAereo} 
+                    accentColor="#a855f7" 
+                    isHovered={isMenuOpen} 
+                    onClick={() => onToggle('transporteAereo')} 
+                  />
+                  <MenuItem 
+                    theme={theme} 
+                    iconSrc="/icons/estacion-marina.svg" 
+                    label="ESTACIONES DE SERVICIO MARINAS" 
+                    active={layersVisible.transporteES} 
+                    accentColor="#f59e0b" 
+                    isHovered={isMenuOpen} 
+                    onClick={() => onToggle('transporteES')} 
+                  />
+                  <MenuItem 
+                    theme={theme} 
+                    iconSrc="/icons/terminal-icon.png" 
+                    label="TERMINALES TERRESTRES" 
+                    active={layersVisible.transporteTerrestre} 
+                    accentColor="#3b82f6" 
+                    isHovered={isMenuOpen} 
+                    onClick={() => onToggle('transporteTerrestre')} 
+                  />
                   <div 
                     onClick={() => setModalEnProcesoData({
                       isOpen: true,
@@ -937,7 +700,6 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                       onClick={() => {}} 
                     />
                   </div>
-
                 </div>
               )}
             </div>
@@ -1111,7 +873,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
             </div>
 
             <p className="text-xs text-slate-300 font-mono leading-relaxed">
-              Â¿Estás seguro de que deseas eliminar permanentemente el módulo <strong className="text-white">"{moduleToDelete.name}"</strong>?
+              ¿Estás seguro de que deseas eliminar permanentemente el módulo <strong className="text-white">"{moduleToDelete.name}"</strong>?
               <br />
               <span className="text-slate-400 text-[11px] block mt-2">
                 Se borrará el archivo <code>{moduleToDelete.id}.geojson</code> del proyecto y se removerá del menú.
