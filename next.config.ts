@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_SUPABASE_URL: "https://glbxqcbcjudzxxqawbhg.supabase.co",
     NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_3Jf5_v73whez5a9lkju7uA_3hCFLvDt",
   },
+  images: {
+    dangerouslyAllowSVG: true,
+  },
   serverExternalPackages: ['pg', 'bcryptjs', '@turf/turf', 'html2canvas', 'jspdf'],
   experimental: {
     serverActions: {

@@ -171,7 +171,7 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
         { id: 'trans_maritimo', label: 'Terminales Marítimos & Muelles', iconSrc: '/icons/terminal-maritimo.svg', colorDot: '#06b6d4', glowColor: 'rgba(6, 182, 212, 0.5)', desc: 'Puertos, muelles y conexiones marítimas', toggleKey: 'transporteMaritimo' },
         { id: 'trans_aereo', label: 'Terminales Aéreos', iconSrc: '/icons/terminal-aereo.svg', colorDot: '#a855f7', glowColor: 'rgba(168, 85, 247, 0.5)', desc: 'Aeropuerto Internacional Santiago Mariño', toggleKey: 'transporteAereo' },
         { id: 'trans_es', label: 'E/S Marinas de Combustible', iconSrc: '/icons/estacion-marina.svg', colorDot: '#f59e0b', glowColor: 'rgba(245, 158, 11, 0.5)', desc: 'Suministro marítimo y pesquero', toggleKey: 'transporteES' },
-        { id: 'trans_terrestre', label: 'Terminales Terrestres', iconSrc: '/icons/terminal-icon.png', colorDot: '#3b82f6', glowColor: 'rgba(59, 130, 246, 0.5)', desc: 'Terminales urbanos e interurbanos', toggleKey: 'transporteTerrestre' },
+        { id: 'trans_terrestre', label: 'Terminales Terrestres', iconSrc: '/terminal.png', colorDot: '#3b82f6', glowColor: 'rgba(59, 130, 246, 0.5)', desc: 'Terminales urbanos e interurbanos', toggleKey: 'transporteTerrestre' },
       ]
     },
     {

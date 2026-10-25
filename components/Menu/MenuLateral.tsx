@@ -675,7 +675,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                   />
                   <MenuItem 
                     theme={theme} 
-                    iconSrc="/icons/terminal-icon.png" 
+                    iconSrc="/terminal.png" 
                     label="TERMINALES TERRESTRES" 
                     active={layersVisible.transporteTerrestre} 
                     accentColor="#3b82f6" 
@@ -692,7 +692,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                   >
                     <MenuItem 
                       theme={theme} 
-                      iconSrc="/icons/minibus-transporte.png" 
+                      iconSrc="/transporte_privado.png" 
                       label="TRANSPORTE PRIVADO" 
                       active={false} 
                       accentColor="#64748b" 
