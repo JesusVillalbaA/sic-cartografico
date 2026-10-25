@@ -64,6 +64,7 @@ export default function DespachadorPage() {
     cdi: false,
     estaciones: false,
     escuelas: false,
+    escuelasFiltroMunicipio: null as string[] | null,
     centrosVotacion: false,
 
     // Servicios básicos
@@ -108,8 +109,24 @@ export default function DespachadorPage() {
   });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleToggle = (layer: string) => {
+  const handleToggle = (layer: string, extraData?: any) => {
     setLayersVisible(prev => {
+      // Manejo de filtro dinámico para escuelas (todas o por municipio)
+      if (layer === 'escuelas') {
+        if (extraData && typeof extraData === 'object') {
+          return {
+            ...prev,
+            escuelas: extraData.active !== undefined ? !!extraData.active : true,
+            escuelasFiltroMunicipio: extraData.municipios !== undefined ? extraData.municipios : null,
+          };
+        }
+        const nextVal = !prev.escuelas;
+        return {
+          ...prev,
+          escuelas: nextVal,
+          escuelasFiltroMunicipio: nextVal ? prev.escuelasFiltroMunicipio : null,
+        };
+      }
       // Sincronización de Cuadrantes de Paz (Nuevos Polígonos + Puntos + COMPAS)
       if (layer === 'cuadrantes' || layer === 'cuadrantesPoligonos' || layer === 'compas') {
         const nextVal = !(prev.cuadrantesPoligonos || prev.cuadrantes || prev.compas);

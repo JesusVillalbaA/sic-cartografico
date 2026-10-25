@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { MenuLogo } from './MenuLogo';
 import { MenuItem } from './MenuItem';
-import { ChevronDown, KeyRound, Sun, Moon, FileCode, Trash2, Layers, Globe } from 'lucide-react';
+import { ChevronDown, KeyRound, Sun, Moon, FileCode, Trash2, Layers, Globe, SlidersHorizontal } from 'lucide-react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ModalExito, ModalError, ModalCarga, ModalAccesoDenegado } from './ModalsBasicos';
@@ -11,6 +11,7 @@ import { ModalGenerarCodigo } from './ModalGenerarCodigo';
 import { ModalExportarPDF } from './ModalExportarPDF';
 import { ModalGeoJsonEditor } from './ModalGeoJsonEditor';
 import { ModalEnProceso } from './ModalEnProceso';
+import { ModalFiltroEscuelas } from './ModalFiltroEscuelas';
 
 
 export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, isMobileMenuOpen, setIsMobileMenuOpen }: any) => {
@@ -101,6 +102,7 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
 
   const [showZonasRiesgoSub, setShowZonasRiesgoSub] = useState(false);
   const [showGeocalizacionesSub, setShowGeocalizacionesSub] = useState(false);
+  const [showModalFiltroEscuelas, setShowModalFiltroEscuelas] = useState(false);
   const [modalEnProcesoData, setModalEnProcesoData] = useState<{ isOpen: boolean; modulo: string; descripcion?: string }>({ isOpen: false, modulo: '', descripcion: '' });
   const [showServicioAguaSub, setShowServicioAguaSub] = useState(false);
 
@@ -503,7 +505,40 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
                   <MenuItem theme={theme} iconSrc="/ambulatorio.png" label="AMBULATORIOS" active={layersVisible.ambulatorios} accentColor="#f43f5e" isHovered={isMenuOpen} onClick={() => onToggle('ambulatorios')} />
                   <MenuItem theme={theme} iconSrc="/dispensario.png" label="CDI" active={layersVisible.cdi} accentColor="#d946ef" isHovered={isMenuOpen} onClick={() => onToggle('cdi')} />
                   <MenuItem theme={theme} iconSrc="/gasolinera.png" label="ESTACIONES DE SERVICIO" active={layersVisible.estaciones} accentColor="#f97316" isHovered={isMenuOpen} onClick={() => onToggle('estaciones')} />
-                  <MenuItem theme={theme} iconSrc="/social.png" label="ESCUELAS" active={layersVisible.escuelas} accentColor="#d946ef" isHovered={isMenuOpen} onClick={() => onToggle('escuelas')} />
+                  <div className="relative group/escuela">
+                    <MenuItem 
+                      theme={theme} 
+                      iconSrc="/social.png" 
+                      label="ESCUELAS" 
+                      active={layersVisible.escuelas} 
+                      accentColor="#d946ef" 
+                      isHovered={isMenuOpen} 
+                      onClick={() => {
+                        if (!layersVisible.escuelas) {
+                          setShowModalFiltroEscuelas(true);
+                        } else {
+                          onToggle('escuelas');
+                        }
+                      }} 
+                    />
+                    {layersVisible.escuelas && isMenuOpen && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowModalFiltroEscuelas(true);
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-xl bg-fuchsia-500/25 hover:bg-fuchsia-500/40 text-fuchsia-300 border border-fuchsia-500/40 text-[9px] font-bold font-mono tracking-wider transition-all flex items-center gap-1 shadow-sm z-20 cursor-pointer"
+                        title="Cambiar filtro de municipios de escuelas"
+                      >
+                        <SlidersHorizontal size={10} />
+                        <span>
+                          {layersVisible.escuelasFiltroMunicipio && layersVisible.escuelasFiltroMunicipio.length > 0 && !layersVisible.escuelasFiltroMunicipio.includes('TODOS')
+                            ? `${layersVisible.escuelasFiltroMunicipio.length} Mun.`
+                            : 'Todas'}
+                        </span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -902,6 +937,27 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
         onClose={() => setModalEnProcesoData({ isOpen: false, modulo: '' })}
         modulo={modalEnProcesoData.modulo}
         descripcion={modalEnProcesoData.descripcion}
+      />
+      <ModalFiltroEscuelas
+        isOpen={showModalFiltroEscuelas}
+        onClose={() => setShowModalFiltroEscuelas(false)}
+        isLayerActive={layersVisible.escuelas}
+        currentFilter={layersVisible.escuelasFiltroMunicipio}
+        theme={theme}
+        onApplyFilter={(municipios) => {
+          onToggle('escuelas', { active: true, municipios });
+          if (!municipios || municipios.length === 0 || municipios.includes('TODOS')) {
+            showExitoModal('Visualizando todas las escuelas (251) en el mapa');
+          } else {
+            showExitoModal(`Visualizando escuelas de ${municipios.length} municipio(s)`);
+          }
+        }}
+        onDeactivate={() => {
+          if (layersVisible.escuelas) {
+            onToggle('escuelas', { active: false, municipios: null });
+            showExitoModal('Capa de escuelas desactivada');
+          }
+        }}
       />
     </>
   );

@@ -28,6 +28,20 @@ const fetchAndSetData = async (map: mapboxgl.Map | null | undefined, sourceId: s
   }
 };
 
+const MUNICIPIO_CENTERS: Record<string, { center: [number, number]; zoom: number }> = {
+  'MP. ARISMENDI': { center: [-63.856965, 11.032194], zoom: 13 },
+  'MP. MARIÑO': { center: [-63.854415, 10.959658], zoom: 13 },
+  'MP. DIAZ': { center: [-63.983623, 10.981426], zoom: 12 },
+  'MP. GARCIA': { center: [-63.917378, 10.955469], zoom: 13 },
+  'MP. TUBORES': { center: [-64.078807, 10.925366], zoom: 12 },
+  'MP. GOMEZ': { center: [-63.932245, 11.083338], zoom: 12.5 },
+  'MP. MARCANO': { center: [-63.965586, 11.070929], zoom: 13 },
+  'MP. MANEIRO': { center: [-63.816815, 11.000615], zoom: 13 },
+  'MP.ANTOLIN DEL CAMPO': { center: [-63.860024, 11.105576], zoom: 12.5 },
+  'MP.PENIN. DE MACANAO': { center: [-64.295923, 10.990526], zoom: 11.5 },
+  'MP.VILLALBA(I.COCHE)': { center: [-63.96065, 10.766548], zoom: 12.5 }
+};
+
 export const useMapbox = (
   layersVisible: any,
   fetchZonasDeRiesgo: () => Promise<void>,
@@ -38,6 +52,7 @@ export const useMapbox = (
 ) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
+  const prevEscuelasFilterRef = useRef<string | null>(null);
   const mapInitialized = useRef(false);
   const [mapReady, setMapReady] = useState(false);
   const [loadingStage, setLoadingStage] = useState<{ progress: number; message: string }>({
@@ -816,9 +831,49 @@ export const useMapbox = (
       set(`${res.id}-icons`, !!layersVisible[res.id]);
     });
     RECURSOS_INFRAESTRUCTURA.forEach(res => {
+      if (res.id === 'escuelas') return; // Se gestiona abajo con filtro dinámico por municipio
       set(`${res.id}-layer`, !!layersVisible[res.id]);
       set(`${res.id}-icons`, !!layersVisible[res.id]);
     });
+
+    // ── GESTIÓN DE ESCUELAS (TODAS O FILTRADAS POR MUNICIPIO) ─────────────
+    const isEscuelasActive = !!layersVisible.escuelas;
+    const escuelasMunFilter: string[] | null | undefined = layersVisible.escuelasFiltroMunicipio;
+
+    if (!isEscuelasActive) {
+      set('escuelas-layer', false);
+      set('escuelas-icons', false);
+      prevEscuelasFilterRef.current = null;
+    } else {
+      if (m.getLayer('escuelas-layer')) {
+        if (!escuelasMunFilter || escuelasMunFilter.length === 0 || escuelasMunFilter.includes('TODOS')) {
+          m.setFilter('escuelas-layer', null);
+          if (m.getLayer('escuelas-icons')) m.setFilter('escuelas-icons', null);
+        } else if (escuelasMunFilter.length === 1) {
+          const filterExp = ['==', ['get', 'municipio'], escuelasMunFilter[0]];
+          m.setFilter('escuelas-layer', filterExp);
+          if (m.getLayer('escuelas-icons')) m.setFilter('escuelas-icons', filterExp);
+        } else {
+          const filterExp = ['in', ['get', 'municipio'], ['literal', escuelasMunFilter]];
+          m.setFilter('escuelas-layer', filterExp);
+          if (m.getLayer('escuelas-icons')) m.setFilter('escuelas-icons', filterExp);
+        }
+        set('escuelas-layer', true);
+        set('escuelas-icons', true);
+
+        // Enfoque táctico suave al cambiar el filtro
+        const filterKey = escuelasMunFilter ? escuelasMunFilter.slice().sort().join(',') : 'TODOS';
+        if (prevEscuelasFilterRef.current !== filterKey) {
+          prevEscuelasFilterRef.current = filterKey;
+          if (escuelasMunFilter && escuelasMunFilter.length === 1) {
+            const target = MUNICIPIO_CENTERS[escuelasMunFilter[0]];
+            if (target) {
+              m.flyTo({ center: target.center, zoom: target.zoom, speed: 1.2, essential: true });
+            }
+          }
+        }
+      }
+    }
     set('parroquias-fill',   !!layersVisible.parroquias);
     set('parroquias-line',   !!layersVisible.parroquias);
     set('vialidad-layer',    !!layersVisible.vialidad);

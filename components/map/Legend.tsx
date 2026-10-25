@@ -158,7 +158,17 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
         { id: 'ambulatorios', label: 'Ambulatorios y CPT', iconSrc: '/ambulatorio.png', colorDot: '#ec4899', glowColor: 'rgba(236, 72, 153, 0.5)', desc: 'Consultorios populares', toggleKey: 'ambulatorios' },
         { id: 'cdi', label: 'CDI y Salas de Rehabilitación', iconSrc: '/dispensario.png', colorDot: '#a855f7', glowColor: 'rgba(168, 85, 247, 0.5)', desc: 'Diagnóstico integral', toggleKey: 'cdi' },
         { id: 'estaciones_combustible', label: 'Estaciones de Combustible', iconSrc: '/bombagasolina.png', colorDot: '#f97316', glowColor: 'rgba(249, 115, 22, 0.5)', desc: 'Gasolina y diésel', toggleKey: 'estaciones' },
-        { id: 'escuelas', label: 'Escuelas & Circuitos', iconSrc: '/social.png', colorDot: '#d946ef', glowColor: 'rgba(217, 70, 239, 0.5)', desc: 'Instituciones educativas', toggleKey: 'escuelas' },
+        { 
+          id: 'escuelas', 
+          label: 'Escuelas & Circuitos', 
+          iconSrc: '/social.png', 
+          colorDot: '#d946ef', 
+          glowColor: 'rgba(217, 70, 239, 0.5)', 
+          desc: layersVisible?.escuelas && layersVisible?.escuelasFiltroMunicipio && layersVisible.escuelasFiltroMunicipio.length > 0 && !layersVisible.escuelasFiltroMunicipio.includes('TODOS')
+            ? `Filtro: ${layersVisible.escuelasFiltroMunicipio.length} municipio(s)`
+            : 'Instituciones educativas', 
+          toggleKey: 'escuelas' 
+        },
       ]
     },
     {
@@ -183,7 +193,7 @@ export const Legend = ({ theme = 'dark', layersVisible = {}, onToggle }: LegendP
         { id: 'conppas_item', label: 'CONPPAS y Puertos Pesqueros (52)', iconSrc: '/conppa.png', colorDot: '#0284c7', glowColor: 'rgba(2, 132, 199, 0.5)', desc: 'Consejos de pescadores y acuicultores', toggleKey: 'conppas' }
       ]
     }
-  ], []);
+  ], [layersVisible]);
 
   const isLayerActive = (item: LegendItem): boolean => {
     if (typeof item.activeKey === 'function') return item.activeKey(layersVisible);
