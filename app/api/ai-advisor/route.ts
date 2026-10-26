@@ -464,6 +464,10 @@ function parseVoiceCommand(command: string) {
     actions.push('toggle_heatmap');
     responseText += "Desplegando Mapa de Calor Táctico. ";
   }
+  if (text.includes('herramienta de radio') || text.includes('buffer') || text.includes('radio de cobertura')) {
+    actions.push('activate_buffer');
+    responseText += "Activando herramienta de Radio de Cobertura. ";
+  }
   
   if ((text.includes('trazar area') || text.includes('trazar polígono') || text.includes('herramienta de trazado'))  && !traceMatch) {
     actions.push('activate_polygon');

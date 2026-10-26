@@ -70,6 +70,12 @@ export class SogneVoiceController {
         description: 'Activa la herramienta manual para trazar un área'
       },
       {
+        intent: 'crear_radio',
+        keywords: ['crear radio', 'radio de cobertura', 'crear buffer', 'activar radio', 'radio cobertura', /radio\s*(cobertura|buffer)/i],
+        actionKey: 'activate_buffer',
+        description: 'Activa el círculo o radio de cobertura'
+      },
+      {
         intent: 'limpiar_mapa',
         keywords: ['limpiar mapa', 'limpiar todo', 'borrar trazado', 'resetear mapa', 'limpiar herramientas', /limpiar\s*(mapa|todo|trazado)/i],
         actionKey: 'clear_tools',
