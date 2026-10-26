@@ -593,56 +593,56 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
       ) : (
         <>
           {/* HEADER TÁCTICO EXPANDIDO */}
-          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/80 p-4 sm:p-5 relative overflow-hidden border-b border-white/10 shrink-0">
+          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/80 p-3 sm:p-5 relative overflow-hidden border-b border-white/10 shrink-0">
             <div className="absolute top-0 right-0 p-4 opacity-15 pointer-events-none">
-              <img src="/Municipios.png" className="w-24 sm:w-28 h-24 sm:h-28 object-contain" alt="Fondo" />
+              <img src="/Municipios.png" className="w-20 sm:w-28 h-20 sm:h-28 object-contain" alt="Fondo" />
             </div>
             
             <div className="flex items-center justify-between relative z-10 mb-2 sm:mb-3">
-              <div className="flex items-center gap-2 bg-cyan-500/20 border border-cyan-500/40 px-3 py-1 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-                <img src="/Municipios.png" alt="Municipio" className="w-4 h-4 object-contain" />
-                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-cyan-300">
-                  FICHA DE INTELIGENCIA TERRITORIAL
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-cyan-500/20 border border-cyan-500/40 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                <img src="/Municipios.png" alt="Municipio" className="w-3.5 sm:w-4 h-3.5 sm:h-4 object-contain" />
+                <span className="text-[8.5px] sm:text-[10px] font-black uppercase tracking-widest text-cyan-300">
+                  FICHA TERRITORIAL
                 </span>
               </div>
 
               {/* Botones de Minimizar y Cerrar */}
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1 sm:gap-1.5">
                 <button
                   onClick={() => setIsMinimized(true)}
-                  className="p-2 rounded-xl bg-white/10 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 transition-all border border-white/10 hover:border-cyan-500/40 cursor-pointer shadow-sm"
+                  className="p-1.5 sm:p-2 rounded-xl bg-white/10 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 transition-all border border-white/10 hover:border-cyan-500/40 cursor-pointer shadow-sm"
                   title="Minimizar Ficha"
                 >
-                  <Minimize2 size={15} />
+                  <Minimize2 size={13} />
                 </button>
 
                 {onClose && (
                   <button 
                     onClick={onClose}
-                    className="p-2 rounded-xl bg-white/10 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 transition-all border border-white/10 hover:border-rose-500/40 cursor-pointer shadow-sm"
+                    className="p-1.5 sm:p-2 rounded-xl bg-white/10 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 transition-all border border-white/10 hover:border-rose-500/40 cursor-pointer shadow-sm"
                     title="Cerrar Ficha"
                   >
-                    <X size={15} />
+                    <X size={13} />
                   </button>
                 )}
               </div>
             </div>
 
-            <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight italic leading-tight">
+            <h2 className="text-lg sm:text-2xl font-black text-white uppercase tracking-tight italic leading-tight">
               MUNICIPIO {stats.nombre}
             </h2>
-            <p className="text-[11px] sm:text-xs font-mono text-cyan-400/90 mt-0.5">
+            <p className="text-[10px] sm:text-xs font-mono text-cyan-400/90 mt-0.5">
               Estado Nueva Esparta • Centro de Comando y Control Geointeligente
             </p>
           </div>
 
           {/* CONTENIDO PRINCIPAL SCROLLEABLE */}
-          <div className="p-3.5 sm:p-5 space-y-4">
+          <div className="p-2.5 sm:p-4 space-y-3 sm:space-y-4">
             
             {/* =========================================================================
                 SECCIÓN: INFRAESTRUCTURA ESTRATÉGICA Y SERVICIOS CON CLICK INTERACTIVO
                 ========================================================================= */}
-            <div className="bg-slate-950/85 p-4 sm:p-5 rounded-3xl border border-cyan-500/30 shadow-[0_0_25px_rgba(6,182,212,0.12)] space-y-3.5">
+            <div className="bg-slate-950/85 p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-cyan-500/30 shadow-[0_0_25px_rgba(6,182,212,0.12)] space-y-2.5 sm:space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="p-1.5 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-cyan-400">
@@ -676,194 +676,215 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
                   </div>
                 </div>
               ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+              <div className="flex flex-col gap-2 pt-1">
                 
                 {/* 1. ESCUELAS */}
                 <button
                   onClick={() => { setModalCategory('escuelas'); setModalSearch(''); }}
-                  className="group flex flex-col justify-between p-3.5 rounded-2xl bg-slate-900/90 hover:bg-blue-950/80 border border-blue-500/30 hover:border-blue-400/80 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-blue-500/20 min-h-[105px]"
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/90 hover:bg-blue-950/80 border border-blue-500/30 hover:border-blue-400/80 transition-all hover:scale-[1.01] text-left cursor-pointer shadow-md w-full"
                 >
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[10px] sm:text-[11px] font-black text-slate-200 group-hover:text-blue-300 transition-colors uppercase tracking-wider">
-                      Escuelas
-                    </span>
-                    <div className="p-1.5 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all shadow-sm">
-                      <Building2 size={14} className="group-hover:scale-110 transition-transform" />
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="p-2 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all shadow-sm shrink-0">
+                      <Building2 size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10.5px] sm:text-[11px] font-black text-slate-200 group-hover:text-blue-300 transition-colors uppercase tracking-wider block truncate">
+                        Escuelas
+                      </span>
+                      <span className="text-[8.5px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-tight block">
+                        {infraItems.escuelas.length === 1 ? 'Plantel' : 'Planteles'}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="my-1.5 flex items-baseline gap-1.5">
-                    <span className="text-2xl sm:text-3xl font-black text-blue-400 group-hover:text-blue-200 leading-none">
+                  <div className="flex items-center gap-2 shrink-0 pl-2">
+                    <span className="text-xl sm:text-2xl font-black text-blue-400 group-hover:text-blue-200 leading-none">
                       {infraItems.escuelas.length}
                     </span>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Planteles</span>
-                  </div>
-
-                  <div className="w-full pt-1.5 border-t border-white/10 flex items-center justify-between text-blue-300 group-hover:text-white text-[9px] font-bold uppercase tracking-wider bg-blue-500/10 group-hover:bg-blue-500/30 py-1 px-2.5 rounded-xl border border-blue-500/20 group-hover:border-blue-400/50 transition-all">
-                    <span>Ver Desglose</span>
-                    <span className="transition-transform group-hover:translate-x-1 font-black">&rarr;</span>
+                    <div className="px-2 py-1 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/30 text-blue-300 group-hover:text-white border border-blue-500/20 group-hover:border-blue-400/50 transition-all flex items-center gap-0.5 text-[8.5px] font-bold uppercase tracking-wider">
+                      <span className="hidden xs:inline">Desglose</span>
+                      <span className="font-black group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                    </div>
                   </div>
                 </button>
 
                 {/* 2. SUBESTACIONES */}
                 <button
                   onClick={() => { setModalCategory('subestaciones'); setModalSearch(''); }}
-                  className="group flex flex-col justify-between p-3.5 rounded-2xl bg-slate-900/90 hover:bg-amber-950/80 border border-amber-500/30 hover:border-amber-400/80 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-amber-500/20 min-h-[105px]"
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/90 hover:bg-amber-950/80 border border-amber-500/30 hover:border-amber-400/80 transition-all hover:scale-[1.01] text-left cursor-pointer shadow-md w-full"
                 >
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[10px] sm:text-[11px] font-black text-slate-200 group-hover:text-amber-300 transition-colors uppercase tracking-wider">
-                      Subestaciones
-                    </span>
-                    <div className="p-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400 group-hover:bg-amber-500 group-hover:text-white transition-all shadow-sm">
-                      <Zap size={14} className="group-hover:scale-110 transition-transform" />
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="p-2 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400 group-hover:bg-amber-500 group-hover:text-white transition-all shadow-sm shrink-0">
+                      <Zap size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10.5px] sm:text-[11px] font-black text-slate-200 group-hover:text-amber-300 transition-colors uppercase tracking-wider block truncate">
+                        Subestaciones
+                      </span>
+                      <span className="text-[8.5px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-tight block">
+                        {infraItems.subestaciones.length === 1 ? 'Instalación' : 'Instalaciones'}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="my-1.5 flex items-baseline gap-1.5">
-                    <span className="text-2xl sm:text-3xl font-black text-amber-400 group-hover:text-amber-200 leading-none">
+                  <div className="flex items-center gap-2 shrink-0 pl-2">
+                    <span className="text-xl sm:text-2xl font-black text-amber-400 group-hover:text-amber-200 leading-none">
                       {infraItems.subestaciones.length}
                     </span>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Instalaciones</span>
-                  </div>
-
-                  <div className="w-full pt-1.5 border-t border-white/10 flex items-center justify-between text-amber-300 group-hover:text-white text-[9px] font-bold uppercase tracking-wider bg-amber-500/10 group-hover:bg-amber-500/30 py-1 px-2.5 rounded-xl border border-amber-500/20 group-hover:border-amber-400/50 transition-all">
-                    <span>Ver Desglose</span>
-                    <span className="transition-transform group-hover:translate-x-1 font-black">&rarr;</span>
+                    <div className="px-2 py-1 rounded-lg bg-amber-500/10 group-hover:bg-amber-500/30 text-amber-300 group-hover:text-white border border-amber-500/20 group-hover:border-amber-400/50 transition-all flex items-center gap-0.5 text-[8.5px] font-bold uppercase tracking-wider">
+                      <span className="hidden xs:inline">Desglose</span>
+                      <span className="font-black group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                    </div>
                   </div>
                 </button>
 
                 {/* 3. ESTACIONES DE GAS */}
                 <button
                   onClick={() => { setModalCategory('gas'); setModalSearch(''); }}
-                  className="group flex flex-col justify-between p-3.5 rounded-2xl bg-slate-900/90 hover:bg-orange-950/80 border border-orange-500/30 hover:border-orange-400/80 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-orange-500/20 min-h-[105px]"
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/90 hover:bg-orange-950/80 border border-orange-500/30 hover:border-orange-400/80 transition-all hover:scale-[1.01] text-left cursor-pointer shadow-md w-full"
                 >
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[10px] sm:text-[11px] font-black text-slate-200 group-hover:text-orange-300 transition-colors uppercase tracking-wider">
-                      Est. de Gas
-                    </span>
-                    <div className="p-1.5 rounded-xl bg-orange-500/15 border border-orange-500/30 text-orange-400 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-sm">
-                      <Flame size={14} className="group-hover:scale-110 transition-transform" />
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="p-2 rounded-xl bg-orange-500/15 border border-orange-500/30 text-orange-400 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-sm shrink-0">
+                      <Flame size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10.5px] sm:text-[11px] font-black text-slate-200 group-hover:text-orange-300 transition-colors uppercase tracking-wider block truncate">
+                        Est. de Gas
+                      </span>
+                      <span className="text-[8.5px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-tight block">
+                        Plantas / EMR
+                      </span>
                     </div>
                   </div>
 
-                  <div className="my-1.5 flex items-baseline gap-1.5">
-                    <span className="text-2xl sm:text-3xl font-black text-orange-400 group-hover:text-orange-200 leading-none">
+                  <div className="flex items-center gap-2 shrink-0 pl-2">
+                    <span className="text-xl sm:text-2xl font-black text-orange-400 group-hover:text-orange-200 leading-none">
                       {infraItems.estacionesGas.length}
                     </span>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Plantas / EMR</span>
-                  </div>
-
-                  <div className="w-full pt-1.5 border-t border-white/10 flex items-center justify-between text-orange-300 group-hover:text-white text-[9px] font-bold uppercase tracking-wider bg-orange-500/10 group-hover:bg-orange-500/30 py-1 px-2.5 rounded-xl border border-orange-500/20 group-hover:border-orange-400/50 transition-all">
-                    <span>Ver Desglose</span>
-                    <span className="transition-transform group-hover:translate-x-1 font-black">&rarr;</span>
+                    <div className="px-2 py-1 rounded-lg bg-orange-500/10 group-hover:bg-orange-500/30 text-orange-300 group-hover:text-white border border-orange-500/20 group-hover:border-orange-400/50 transition-all flex items-center gap-0.5 text-[8.5px] font-bold uppercase tracking-wider">
+                      <span className="hidden xs:inline">Desglose</span>
+                      <span className="font-black group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                    </div>
                   </div>
                 </button>
 
                 {/* 4. SERVICIOS DE AGUA */}
                 <button
                   onClick={() => { setModalCategory('agua'); setModalSearch(''); }}
-                  className="group flex flex-col justify-between p-3.5 rounded-2xl bg-slate-900/90 hover:bg-cyan-950/80 border border-cyan-500/30 hover:border-cyan-400/80 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-cyan-500/20 min-h-[105px]"
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/90 hover:bg-cyan-950/80 border border-cyan-500/30 hover:border-cyan-400/80 transition-all hover:scale-[1.01] text-left cursor-pointer shadow-md w-full"
                 >
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[10px] sm:text-[11px] font-black text-slate-200 group-hover:text-cyan-300 transition-colors uppercase tracking-wider">
-                      Servicios Agua
-                    </span>
-                    <div className="p-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-all shadow-sm">
-                      <Droplets size={14} className="group-hover:scale-110 transition-transform" />
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="p-2 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-all shadow-sm shrink-0">
+                      <Droplets size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10.5px] sm:text-[11px] font-black text-slate-200 group-hover:text-cyan-300 transition-colors uppercase tracking-wider block truncate">
+                        Servicios Agua
+                      </span>
+                      <span className="text-[8.5px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-tight block">
+                        {infraItems.serviciosAgua.length === 1 ? 'Estación' : 'Estaciones'}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="my-1.5 flex items-baseline gap-1.5">
-                    <span className="text-2xl sm:text-3xl font-black text-cyan-400 group-hover:text-cyan-200 leading-none">
+                  <div className="flex items-center gap-2 shrink-0 pl-2">
+                    <span className="text-xl sm:text-2xl font-black text-cyan-400 group-hover:text-cyan-200 leading-none">
                       {infraItems.serviciosAgua.length}
                     </span>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Estaciones</span>
-                  </div>
-
-                  <div className="w-full pt-1.5 border-t border-white/10 flex items-center justify-between text-cyan-300 group-hover:text-white text-[9px] font-bold uppercase tracking-wider bg-cyan-500/10 group-hover:bg-cyan-500/30 py-1 px-2.5 rounded-xl border border-cyan-500/20 group-hover:border-cyan-400/50 transition-all">
-                    <span>Ver Desglose</span>
-                    <span className="transition-transform group-hover:translate-x-1 font-black">&rarr;</span>
+                    <div className="px-2 py-1 rounded-lg bg-cyan-500/10 group-hover:bg-cyan-500/30 text-cyan-300 group-hover:text-white border border-cyan-500/20 group-hover:border-cyan-400/50 transition-all flex items-center gap-0.5 text-[8.5px] font-bold uppercase tracking-wider">
+                      <span className="hidden xs:inline">Desglose</span>
+                      <span className="font-black group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                    </div>
                   </div>
                 </button>
 
                 {/* 5. PARADAS / TRANSPORTE */}
                 <button
                   onClick={() => { setModalCategory('transporte'); setModalSearch(''); }}
-                  className="group flex flex-col justify-between p-3.5 rounded-2xl bg-slate-900/90 hover:bg-purple-950/80 border border-purple-500/30 hover:border-purple-400/80 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-purple-500/20 min-h-[105px]"
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/90 hover:bg-purple-950/80 border border-purple-500/30 hover:border-purple-400/80 transition-all hover:scale-[1.01] text-left cursor-pointer shadow-md w-full"
                 >
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[10px] sm:text-[11px] font-black text-slate-200 group-hover:text-purple-300 transition-colors uppercase tracking-wider">
-                      Paradas / Rutas
-                    </span>
-                    <div className="p-1.5 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all shadow-sm">
-                      <Bus size={14} className="group-hover:scale-110 transition-transform" />
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="p-2 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all shadow-sm shrink-0">
+                      <Bus size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10.5px] sm:text-[11px] font-black text-slate-200 group-hover:text-purple-300 transition-colors uppercase tracking-wider block truncate">
+                        Paradas / Rutas
+                      </span>
+                      <span className="text-[8.5px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-tight block">
+                        {infraItems.paradas.length === 1 ? 'Punto' : 'Puntos'}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="my-1.5 flex items-baseline gap-1.5">
-                    <span className="text-2xl sm:text-3xl font-black text-purple-400 group-hover:text-purple-200 leading-none">
+                  <div className="flex items-center gap-2 shrink-0 pl-2">
+                    <span className="text-xl sm:text-2xl font-black text-purple-400 group-hover:text-purple-200 leading-none">
                       {infraItems.paradas.length}
                     </span>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Puntos</span>
-                  </div>
-
-                  <div className="w-full pt-1.5 border-t border-white/10 flex items-center justify-between text-purple-300 group-hover:text-white text-[9px] font-bold uppercase tracking-wider bg-purple-500/10 group-hover:bg-purple-500/30 py-1 px-2.5 rounded-xl border border-purple-500/20 group-hover:border-purple-400/50 transition-all">
-                    <span>Ver Desglose</span>
-                    <span className="transition-transform group-hover:translate-x-1 font-black">&rarr;</span>
+                    <div className="px-2 py-1 rounded-lg bg-purple-500/10 group-hover:bg-purple-500/30 text-purple-300 group-hover:text-white border border-purple-500/20 group-hover:border-purple-400/50 transition-all flex items-center gap-0.5 text-[8.5px] font-bold uppercase tracking-wider">
+                      <span className="hidden xs:inline">Desglose</span>
+                      <span className="font-black group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                    </div>
                   </div>
                 </button>
 
                 {/* 6. ESTACIONES DE SERVICIO */}
                 <button
                   onClick={() => { setModalCategory('estacionesServicio'); setModalSearch(''); }}
-                  className="group flex flex-col justify-between p-3.5 rounded-2xl bg-slate-900/90 hover:bg-emerald-950/80 border border-emerald-500/30 hover:border-emerald-400/80 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-emerald-500/20 min-h-[105px]"
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/90 hover:bg-emerald-950/80 border border-emerald-500/30 hover:border-emerald-400/80 transition-all hover:scale-[1.01] text-left cursor-pointer shadow-md w-full"
                 >
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[10px] sm:text-[11px] font-black text-slate-200 group-hover:text-emerald-300 transition-colors uppercase tracking-wider">
-                      E/S Combustible
-                    </span>
-                    <div className="p-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-sm">
-                      <Fuel size={14} className="group-hover:scale-110 transition-transform" />
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="p-2 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-sm shrink-0">
+                      <Fuel size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10.5px] sm:text-[11px] font-black text-slate-200 group-hover:text-emerald-300 transition-colors uppercase tracking-wider block truncate">
+                        E/S Combustible
+                      </span>
+                      <span className="text-[8.5px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-tight block">
+                        {infraItems.estacionesServicio.length === 1 ? 'Estación' : 'Estaciones'}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="my-1.5 flex items-baseline gap-1.5">
-                    <span className="text-2xl sm:text-3xl font-black text-emerald-400 group-hover:text-emerald-200 leading-none">
+                  <div className="flex items-center gap-2 shrink-0 pl-2">
+                    <span className="text-xl sm:text-2xl font-black text-emerald-400 group-hover:text-emerald-200 leading-none">
                       {infraItems.estacionesServicio.length}
                     </span>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Estaciones</span>
-                  </div>
-
-                  <div className="w-full pt-1.5 border-t border-white/10 flex items-center justify-between text-emerald-300 group-hover:text-white text-[9px] font-bold uppercase tracking-wider bg-emerald-500/10 group-hover:bg-emerald-500/30 py-1 px-2.5 rounded-xl border border-emerald-500/20 group-hover:border-emerald-400/50 transition-all">
-                    <span>Ver Desglose</span>
-                    <span className="transition-transform group-hover:translate-x-1 font-black">&rarr;</span>
+                    <div className="px-2 py-1 rounded-lg bg-emerald-500/10 group-hover:bg-emerald-500/30 text-emerald-300 group-hover:text-white border border-emerald-500/20 group-hover:border-emerald-400/50 transition-all flex items-center gap-0.5 text-[8.5px] font-bold uppercase tracking-wider">
+                      <span className="hidden xs:inline">Desglose</span>
+                      <span className="font-black group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                    </div>
                   </div>
                 </button>
 
                 {/* 7. ANTENAS TELECOM */}
                 <button
                   onClick={() => { setModalCategory('antenas'); setModalSearch(''); }}
-                  className="group flex flex-col justify-between p-3.5 rounded-2xl bg-slate-900/90 hover:bg-rose-950/80 border border-rose-500/30 hover:border-rose-400/80 transition-all hover:scale-[1.02] text-left cursor-pointer shadow-md hover:shadow-rose-500/20 min-h-[105px] col-span-2 sm:col-span-2 lg:col-span-1 xl:col-span-2"
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-900/90 hover:bg-rose-950/80 border border-rose-500/30 hover:border-rose-400/80 transition-all hover:scale-[1.01] text-left cursor-pointer shadow-md w-full"
                 >
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[10px] sm:text-[11px] font-black text-slate-200 group-hover:text-rose-300 transition-colors uppercase tracking-wider">
-                      Antenas Telecom
-                    </span>
-                    <div className="p-1.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-all shadow-sm">
-                      <Radio size={14} className="group-hover:scale-110 transition-transform" />
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-all shadow-sm shrink-0">
+                      <Radio size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10.5px] sm:text-[11px] font-black text-slate-200 group-hover:text-rose-300 transition-colors uppercase tracking-wider block truncate">
+                        Antenas Telecom
+                      </span>
+                      <span className="text-[8.5px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-tight block">
+                        {infraItems.antenas.length === 1 ? 'Radiobase' : 'Radiobases'}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="my-1.5 flex items-baseline gap-1.5">
-                    <span className="text-2xl sm:text-3xl font-black text-rose-400 group-hover:text-rose-200 leading-none">
+                  <div className="flex items-center gap-2 shrink-0 pl-2">
+                    <span className="text-xl sm:text-2xl font-black text-rose-400 group-hover:text-rose-200 leading-none">
                       {infraItems.antenas.length}
                     </span>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Radiobases</span>
-                  </div>
-
-                  <div className="w-full pt-1.5 border-t border-white/10 flex items-center justify-between text-rose-300 group-hover:text-white text-[9px] font-bold uppercase tracking-wider bg-rose-500/10 group-hover:bg-rose-500/30 py-1 px-2.5 rounded-xl border border-rose-500/20 group-hover:border-rose-400/50 transition-all">
-                    <span>Ver Desglose por Operadora</span>
-                    <span className="transition-transform group-hover:translate-x-1 font-black">&rarr;</span>
+                    <div className="px-2 py-1 rounded-lg bg-rose-500/10 group-hover:bg-rose-500/30 text-rose-300 group-hover:text-white border border-rose-500/20 group-hover:border-rose-400/50 transition-all flex items-center gap-0.5 text-[8.5px] font-bold uppercase tracking-wider">
+                      <span className="hidden xs:inline">Desglose</span>
+                      <span className="font-black group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                    </div>
                   </div>
                 </button>
 
@@ -872,7 +893,7 @@ export const MunicipioCard: React.FC<MunicipioCardProps> = ({
             </div>
 
             {/* OPERACIONES Y SEGURIDAD (CON CLICK INTERACTIVO A CUADRANTES) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3.5">
               {/* CUADRANTES DE PAZ CON MODAL */}
               <button
                 onClick={() => { setModalCategory('cuadrantes'); setModalSearch(''); }}

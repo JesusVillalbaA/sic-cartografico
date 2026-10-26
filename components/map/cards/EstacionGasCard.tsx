@@ -97,7 +97,7 @@ export const EstacionGasCard = ({ f, onRemove, onOpenDiagramaGas }: any) => {
       <div className="absolute top-0 right-0 w-44 h-44 blur-[100px] opacity-25 bg-orange-500 pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-32 h-32 blur-[80px] opacity-15 bg-amber-600 pointer-events-none" />
 
-      <div className="p-5 pl-7">
+      <div className="p-3.5 sm:p-5 pl-4 sm:pl-7">
         {/* Header Badges */}
         <div className="flex items-center justify-between gap-2 mb-4">
           <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-orange-500/30 shadow-md">

@@ -327,9 +327,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
 
   // ── MODO CONTENEDOR EXPANDIDO ──
   return (
-    <div className={`fixed bottom-2 left-2 right-2 max-w-[calc(100vw-1rem)] mx-auto max-h-[72vh] rounded-3xl md:fixed md:top-14 md:bottom-4 md:right-6 md:left-auto md:max-h-[90vh] ${
-      hasMunicipio ? 'w-full md:w-[26rem] lg:w-[28rem] xl:w-[32rem]' : 'w-full md:w-[24rem] lg:w-[26rem]'
-    } md:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col z-40 transition-all duration-500 border ${
+    <div className={`fixed bottom-2 right-2 left-auto w-[82%] xs:w-[78%] sm:w-[70%] max-w-[310px] sm:max-w-md md:w-[26rem] lg:w-[28rem] xl:w-[32rem] max-h-[68dvh] sm:max-h-[76dvh] md:max-h-[90vh] md:top-14 md:bottom-4 md:right-6 rounded-3xl md:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col z-40 transition-all duration-500 border ${
       theme === 'light' ? 'bg-white/95 border-slate-300 light-theme' : 'bg-slate-950/95 border-white/10 backdrop-blur-2xl'
     }`}>
 
@@ -337,7 +335,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       <div className="w-12 h-1.5 rounded-full bg-white/25 mx-auto mt-2 mb-0.5 md:hidden shrink-0" />
 
       {/* Header Táctico con Botón de Minimizar Contenedor */}
-      <div className="p-4 sm:p-5 border-b border-white/5 flex justify-between items-center bg-slate-900/70 shrink-0">
+      <div className="p-3 sm:p-4 md:p-5 border-b border-white/5 flex justify-between items-center bg-slate-900/70 shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-2.5 h-2.5 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_12px_cyan]" />
           <h3 className="text-xs font-black text-white uppercase tracking-[0.2em]">
@@ -380,7 +378,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       <div 
         ref={scrollContainerRef}
         id="analysis-panel-content" 
-        className="p-[3%] sm:p-[4%] space-y-3 sm:space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth touch-pan-y overscroll-contain"
+        className="p-2 sm:p-3 md:p-4 space-y-2.5 sm:space-y-4 overflow-y-auto flex-1 custom-scrollbar scroll-smooth touch-pan-y overscroll-contain"
       >
         {/* Banner Táctico Informativo durante Cargas */}
         {isLoadingAny && (
@@ -512,7 +510,7 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       </div>
 
       {/* Footer */}
-      <div className="p-4 bg-slate-900/50 border-t border-white/5 shrink-0 flex items-center gap-3">
+      <div className="p-2.5 sm:p-3 md:p-4 bg-slate-900/50 border-t border-white/5 shrink-0 flex items-center gap-3">
         <button
           onClick={onClear}
           className="w-full py-3 bg-rose-500/10 hover:bg-rose-600 text-rose-400 hover:text-white text-[10px] font-black rounded-2xl uppercase tracking-[0.2em] transition-all border border-rose-500/20 shadow-md cursor-pointer"
@@ -522,17 +520,19 @@ export const AnalysisPanel = ({ features, onRemove, onClear, mapRef, theme, onOp
       </div>
 
       <style jsx>{`
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(6, 182, 212, 0.4) transparent;
+        }
         .custom-scrollbar::-webkit-scrollbar { 
-          width: 6px; 
+          width: 4px; 
         }
         .custom-scrollbar::-webkit-scrollbar-track { 
-          background: rgba(15, 23, 42, 0.5); 
-          border-radius: 9999px; 
+          background: transparent; 
         }
         .custom-scrollbar::-webkit-scrollbar-thumb { 
           background: rgba(6, 182, 212, 0.35); 
           border-radius: 9999px; 
-          border: 1px solid rgba(6, 182, 212, 0.2); 
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { 
           background: rgba(6, 182, 212, 0.7); 

@@ -70,7 +70,7 @@ export const ParroquiaCard = ({ feature, onClose, incidenciasDB = [], puntosDB =
     <div className="bg-slate-950/90 rounded-[2.5rem] border border-emerald-500/30 shadow-2xl overflow-hidden backdrop-blur-xl animate-in fade-in slide-in-from-right-4 duration-500 max-h-[85vh] flex flex-col ring-1 ring-emerald-500/10">
       
       {/* CABECERA */}
-      <div className="bg-linear-to-b from-emerald-500/10 to-transparent p-6 pb-4 relative border-b border-white/5 shrink-0">
+      <div className="bg-linear-to-b from-emerald-500/10 to-transparent p-3.5 sm:p-6 pb-3 sm:pb-4 relative border-b border-white/5 shrink-0">
         <button onClick={onClose} className="absolute top-6 right-6 p-2 bg-white/5 text-white/20 hover:text-emerald-500 hover:bg-emerald-500/10 rounded-2xl transition-all border border-white/5">
           <X size={18} strokeWidth={3} />
         </button>

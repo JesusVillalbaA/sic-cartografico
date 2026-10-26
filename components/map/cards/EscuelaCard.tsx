@@ -24,7 +24,7 @@ export const EscuelaCard = ({ f, onRemove }: any) => {
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-fuchsia-500" />
       <div className="absolute top-0 right-0 w-36 h-36 blur-[90px] opacity-25 bg-fuchsia-500" />
 
-      <div className="p-5 pl-7">
+      <div className="p-3.5 sm:p-5 pl-4 sm:pl-7">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-fuchsia-500/20">

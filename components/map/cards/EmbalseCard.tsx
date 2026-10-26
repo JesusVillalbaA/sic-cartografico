@@ -42,7 +42,7 @@ export const EmbalseCard: React.FC<EmbalseCardProps> = ({ f, onRemove }) => {
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-teal-400" />
       <div className="absolute top-0 right-0 w-36 h-36 blur-[90px] opacity-20 bg-teal-500" />
 
-      <div className="p-5 pl-7">
+      <div className="p-3.5 sm:p-5 pl-4 sm:pl-7">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-teal-500/20 shadow-sm">

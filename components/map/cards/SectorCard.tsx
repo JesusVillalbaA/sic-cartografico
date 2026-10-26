@@ -53,7 +53,7 @@ export const SectorCard = ({ f, incidenciasDB = [], bandasDB = [], bandasOrganiz
     <div className="bg-slate-950/90 rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden backdrop-blur-xl animate-in fade-in slide-in-from-right-4 duration-500 max-h-[85vh] flex flex-col">
       
       {/* CABECERA TÁCTICA */}
-      <div className="bg-linear-to-r from-slate-900 to-slate-800 p-6 pb-4 relative border-b border-white/5 shrink-0">
+      <div className="bg-linear-to-r from-slate-900 to-slate-800 p-3.5 sm:p-6 pb-3 sm:pb-4 relative border-b border-white/5 shrink-0">
         <button onClick={() => onRemove(f)} className="absolute top-6 right-6 text-white/20 hover:text-rose-500 transition-colors">
           <XIcon />
         </button>

@@ -53,7 +53,7 @@ export const ElectricoCard: React.FC<ElectricoCardProps> = ({ f, onRemove, onOpe
       <div className="absolute top-0 right-0 w-48 h-48 blur-[100px] opacity-20 bg-yellow-400 mix-blend-screen pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-32 h-32 blur-[80px] opacity-20 bg-orange-500 mix-blend-screen pointer-events-none" />
 
-      <div className="p-5 pl-7 relative z-10">
+      <div className="p-3.5 sm:p-5 pl-4 sm:pl-7 relative z-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-yellow-500/30 shadow-md">
