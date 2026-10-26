@@ -1,6 +1,9 @@
 "use client";
 import React, { useState, useMemo, useEffect } from 'react';
-import { X, Search, Check, Layers, SlidersHorizontal, School, Sparkles, MapPin, EyeOff } from 'lucide-react';
+import { 
+  X, Search, Check, Layers, SlidersHorizontal, School, 
+  MapPin, EyeOff, RotateCcw, CheckCheck, Sparkles 
+} from 'lucide-react';
 
 export interface MunicipioEscuelaInfo {
   id: string;
@@ -9,6 +12,7 @@ export interface MunicipioEscuelaInfo {
   escuelas: number;
   center: [number, number];
   bbox: [number, number, number, number];
+  isIsland?: boolean;
 }
 
 export const MUNICIPIOS_ESCUELAS: MunicipioEscuelaInfo[] = [
@@ -22,7 +26,7 @@ export const MUNICIPIOS_ESCUELAS: MunicipioEscuelaInfo[] = [
   { id: 'MP. MANEIRO', nombre: 'Maneiro', cabecera: 'Pampatar', escuelas: 17, center: [-63.816815, 11.000615], bbox: [-63.83854, 10.98331, -63.79263, 11.02503] },
   { id: 'MP.ANTOLIN DEL CAMPO', nombre: 'Antolín del Campo', cabecera: 'Paraguachí', escuelas: 14, center: [-63.860024, 11.105576], bbox: [-63.8846, 11.07277, -63.82998, 11.15356] },
   { id: 'MP.PENIN. DE MACANAO', nombre: 'Península de Macanao', cabecera: 'Boca de Río', escuelas: 14, center: [-64.295923, 10.990526], bbox: [-64.39923, 10.93834, -64.17921, 11.05761] },
-  { id: 'MP.VILLALBA(I.COCHE)', nombre: 'Villalba (Isla de Coche)', cabecera: 'San Pedro', escuelas: 6, center: [-63.96065, 10.766548], bbox: [-63.99545, 10.74062, -63.90043, 10.78548] }
+  { id: 'MP.VILLALBA(I.COCHE)', nombre: 'Villalba (Isla de Coche)', cabecera: 'San Pedro de Coche', escuelas: 6, center: [-63.96065, 10.766548], bbox: [-63.99545, 10.74062, -63.90043, 10.78548], isIsland: true }
 ];
 
 export const TOTAL_ESCUELAS_ESTADO = MUNICIPIOS_ESCUELAS.reduce((acc, m) => acc + m.escuelas, 0);
@@ -53,7 +57,6 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
   useEffect(() => {
     if (isOpen) {
       if (!currentFilter || currentFilter.length === 0 || currentFilter.includes('TODOS')) {
-        // Si no hay filtro o están todos seleccionados, preseleccionamos todos
         setSelectedMunicipios(MUNICIPIOS_ESCUELAS.map(m => m.id));
       } else {
         setSelectedMunicipios(currentFilter);
@@ -104,16 +107,16 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
   };
 
   const handleShowAllAndActivate = () => {
-    onApplyFilter(null); // null indica mostrar todas
+    selectAll();
+    onApplyFilter(null);
     onClose();
   };
 
   const handleApplySelected = () => {
     if (selectedMunicipios.length === 0) {
-      // Si no seleccionó ninguno, desactivar
       onDeactivate();
     } else if (selectedMunicipios.length === MUNICIPIOS_ESCUELAS.length) {
-      onApplyFilter(null); // Todos
+      onApplyFilter(null);
     } else {
       onApplyFilter(selectedMunicipios);
     }
@@ -125,21 +128,21 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
   const isLight = theme === 'light';
 
   return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[120] flex items-center justify-center p-2.5 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div 
-        className={`relative w-full max-w-lg max-h-[92vh] flex flex-col rounded-3xl border shadow-[0_0_50px_rgba(217,70,239,0.25)] overflow-hidden transition-all animate-in zoom-in-95 duration-200 ${
-          isLight ? 'bg-slate-50 border-fuchsia-300 text-slate-800' : 'bg-slate-950 border-fuchsia-500/40 text-slate-100'
+        className={`relative w-[95%] sm:w-[90%] md:w-[85%] max-w-xl max-h-[88dvh] flex flex-col rounded-3xl border shadow-[0_0_60px_rgba(217,70,239,0.25)] overflow-hidden transition-all animate-in zoom-in-95 duration-200 ${
+          isLight ? 'bg-slate-50 border-fuchsia-300 text-slate-800' : 'bg-slate-950/95 border-fuchsia-500/40 text-slate-100'
         }`}
       >
         {/* Glow decorativo de fondo */}
-        <div className="absolute -top-16 -right-16 w-48 h-48 bg-fuchsia-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-purple-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-16 -right-16 w-56 h-56 bg-fuchsia-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-purple-500/15 rounded-full blur-3xl pointer-events-none" />
 
-        {/* ── HEADER ── */}
-        <div className="relative p-5 sm:p-6 border-b border-white/10 shrink-0">
+        {/* ── HEADER RESPONSIVO ── */}
+        <div className="relative p-4 sm:p-6 border-b border-white/10 shrink-0">
           <button 
             onClick={onClose}
-            className={`absolute top-4 right-4 p-2 rounded-full transition-colors ${
+            className={`absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-full transition-colors z-10 ${
               isLight ? 'text-slate-400 hover:text-slate-700 hover:bg-slate-200' : 'text-slate-400 hover:text-white hover:bg-white/10'
             }`}
             title="Cerrar modal"
@@ -147,72 +150,74 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
             <X size={18} />
           </button>
 
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-fuchsia-500/20 border border-fuchsia-500/40 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(217,70,239,0.3)]">
-              <img src="/social.png" alt="Escuelas" className="w-7 h-7 object-contain" />
+          <div className="flex items-center gap-3 sm:gap-4 pr-8">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-fuchsia-500/20 border border-fuchsia-500/40 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(217,70,239,0.3)]">
+              <School className="w-6 h-6 text-fuchsia-400" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-fuchsia-400">
-                  INFRAESTRUCTURA SOCIAL
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-widest uppercase text-fuchsia-400">
+                  INFRAESTRUCTURA • CIRCUITO EDUCATIVO
                 </span>
                 {isLayerActive && (
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/40">
                     <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-pulse" />
-                    Activa en Mapa
+                    Activa
                   </span>
                 )}
               </div>
-              <h2 className="text-base sm:text-lg font-black tracking-wider uppercase text-white">
+              <h2 className="text-sm sm:text-base md:text-lg font-black tracking-wider uppercase text-white truncate">
                 PLANTELES EDUCATIVOS Y ESCUELAS
               </h2>
-              <p className="text-[11px] text-slate-400 font-mono">
+              <p className="text-[10px] sm:text-[11px] text-slate-400 font-mono truncate">
                 {TOTAL_ESCUELAS_ESTADO} instituciones registradas • 11 Municipios
               </p>
             </div>
           </div>
         </div>
 
-        {/* ── CONTENIDO PRINCIPAL SCROLLABLE ── */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 mini-menu-scrollbar">
+        {/* ── CONTENIDO SCROLLABLE CON SCROLLBAR DISCRETO ── */}
+        <div className="flex-1 overflow-y-auto p-3.5 sm:p-5 md:p-6 space-y-3 sm:space-y-4 custom-scrollbar">
           
-          {/* Opción rápida: Mostrar TODAS */}
+          {/* Tarjeta Hero: Mostrar TODAS */}
           <button
             onClick={handleShowAllAndActivate}
-            className={`w-full group p-3.5 rounded-2xl border transition-all text-left flex items-center justify-between ${
+            className={`w-full group p-3 sm:p-4 rounded-2xl border transition-all text-left flex items-center justify-between gap-3 cursor-pointer ${
               areAllSelected 
-                ? 'bg-gradient-to-r from-fuchsia-500/20 to-purple-500/20 border-fuchsia-500/50 shadow-[0_0_20px_rgba(217,70,239,0.2)]' 
-                : (isLight ? 'bg-white border-slate-200 hover:border-fuchsia-400' : 'bg-slate-900/60 border-white/10 hover:border-fuchsia-500/40 hover:bg-slate-900')
+                ? 'bg-gradient-to-r from-fuchsia-500/20 via-purple-500/15 to-transparent border-fuchsia-500/50 shadow-[0_0_20px_rgba(217,70,239,0.15)] ring-1 ring-fuchsia-500/30' 
+                : (isLight ? 'bg-white border-slate-200 hover:border-fuchsia-400' : 'bg-slate-900/60 border-white/10 hover:border-fuchsia-500/40 hover:bg-slate-900/90')
             }`}
           >
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                <Layers size={18} />
+            <div className="flex items-center gap-3 min-w-0">
+              <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
+                areAllSelected ? 'bg-fuchsia-500 text-white shadow-[0_0_12px_rgba(217,70,239,0.6)]' : 'bg-fuchsia-500/20 text-fuchsia-400'
+              }`}>
+                {areAllSelected ? <CheckCheck size={20} strokeWidth={2.5} /> : <Layers size={19} />}
               </div>
-              <div>
-                <span className="text-xs sm:text-sm font-black uppercase text-white block tracking-wide">
+              <div className="truncate">
+                <span className="text-xs sm:text-sm font-black uppercase text-white block tracking-wide truncate">
                   MOSTRAR TODAS LAS ESCUELAS
                 </span>
-                <span className="text-[10px] text-slate-400 block font-mono">
+                <span className="text-[10px] sm:text-[11px] text-slate-400 block font-mono truncate">
                   Activar los 251 planteles de toda la entidad insular
                 </span>
               </div>
             </div>
-            <div className="px-3 py-1 rounded-xl bg-fuchsia-500 text-white font-mono text-[10px] font-bold shadow-md shrink-0">
+            <div className="px-2.5 py-1 sm:px-3 sm:py-1 rounded-xl bg-fuchsia-500 text-white font-mono text-[10px] sm:text-xs font-bold shadow-md shrink-0">
               {TOTAL_ESCUELAS_ESTADO} Total
             </div>
           </button>
 
-          {/* Separador */}
-          <div className="flex items-center gap-3 my-2">
+          {/* Separador táctico */}
+          <div className="flex items-center gap-3 my-1">
             <hr className="flex-1 border-white/10" />
-            <span className="text-[10px] uppercase font-mono font-bold text-slate-400 tracking-wider">
+            <span className="text-[9px] sm:text-[10px] uppercase font-mono font-bold text-slate-400 tracking-wider">
               O seleccionar por municipio
             </span>
             <hr className="flex-1 border-white/10" />
           </div>
 
-          {/* Barra de búsqueda y acciones rápidas */}
+          {/* Barra de búsqueda y selectores rápidos */}
           <div className="space-y-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
@@ -221,7 +226,7 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
                 placeholder="Buscar municipio (ej: Arismendi, Mariño, Díaz)..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-8 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-fuchsia-500/60 font-mono transition-colors"
+                className="w-full pl-9 pr-8 py-2 sm:py-2.5 rounded-xl bg-slate-900/80 border border-white/10 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-fuchsia-500/60 font-mono transition-colors"
               />
               {searchTerm && (
                 <button
@@ -235,19 +240,19 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
 
             <div className="flex items-center justify-between text-[10px] font-mono px-1">
               <span className="text-slate-400">
-                Seleccionados: <strong className="text-fuchsia-400">{selectedMunicipios.length}</strong> de 11 municipios ({totalSelectedEscuelas} escuelas)
+                Seleccionados: <strong className="text-fuchsia-400">{selectedMunicipios.length}</strong> de 11 ({totalSelectedEscuelas} escuelas)
               </span>
               <div className="flex items-center gap-2">
                 <button
                   onClick={selectAll}
-                  className="text-fuchsia-400 hover:text-fuchsia-300 underline font-bold transition-colors"
+                  className="text-fuchsia-400 hover:text-fuchsia-300 font-bold transition-colors cursor-pointer"
                 >
-                  Todos
+                  Seleccionar Todos
                 </button>
                 <span className="text-slate-600">•</span>
                 <button
                   onClick={clearAll}
-                  className="text-slate-400 hover:text-slate-200 underline transition-colors"
+                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
                 >
                   Limpiar
                 </button>
@@ -255,15 +260,20 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
             </div>
           </div>
 
-          {/* Grid de Municipios */}
+          {/* Grid Responsivo de Municipios (1 columna en móvil, 2 columnas equilibradas en tablet/desktop) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {filteredMunicipios.map(m => {
+            {filteredMunicipios.map((m, idx) => {
               const isSelected = selectedMunicipios.includes(m.id);
+              // Si es el último elemento en lista impar (Villalba), lo estilizamos para que abarque ambas columnas de forma elegante
+              const isLastOdd = filteredMunicipios.length % 2 !== 0 && idx === filteredMunicipios.length - 1;
+              
               return (
                 <button
                   key={m.id}
                   onClick={() => toggleMunicipio(m.id)}
-                  className={`p-2.5 rounded-2xl border text-left transition-all flex items-center justify-between gap-2 cursor-pointer ${
+                  className={`p-2.5 sm:p-3 rounded-2xl border text-left transition-all flex items-center justify-between gap-2.5 cursor-pointer ${
+                    isLastOdd ? 'sm:col-span-2' : ''
+                  } ${
                     isSelected
                       ? 'bg-fuchsia-500/15 border-fuchsia-500/50 shadow-sm'
                       : (isLight ? 'bg-white border-slate-200 hover:bg-slate-50' : 'bg-slate-900/40 border-white/5 hover:bg-slate-900 hover:border-white/10')
@@ -273,7 +283,7 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
                     <div 
                       className={`w-5 h-5 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
                         isSelected 
-                          ? 'bg-fuchsia-500 border-fuchsia-400 text-white' 
+                          ? 'bg-fuchsia-500 border-fuchsia-400 text-white shadow-[0_0_8px_rgba(217,70,239,0.5)]' 
                           : 'border-slate-600 bg-transparent'
                       }`}
                     >
@@ -291,7 +301,7 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
                   <div className={`px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold shrink-0 ${
                     isSelected ? 'bg-fuchsia-500/30 text-fuchsia-300' : 'bg-white/5 text-slate-400'
                   }`}>
-                    {m.escuelas}
+                    {m.escuelas} planteles
                   </div>
                 </button>
               );
@@ -300,55 +310,46 @@ export const ModalFiltroEscuelas: React.FC<ModalFiltroEscuelasProps> = ({
 
         </div>
 
-        {/* ── FOOTER DE ACCIONES ── */}
-        <div className="p-4 sm:p-5 border-t border-white/10 bg-slate-950/80 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3">
+        {/* ── FOOTER TOTALMENTE RESPONSIVO (SIN TEXTO SOBRANTE) ── */}
+        <div className="p-3.5 sm:p-4 md:p-5 border-t border-white/10 bg-slate-950/90 shrink-0 flex flex-col sm:flex-row items-center justify-end gap-2.5 sm:gap-3">
           
-          <div className="text-center sm:text-left text-xs font-mono">
-            {selectedMunicipios.length === 0 ? (
-              <span className="text-amber-400 flex items-center gap-1.5 justify-center sm:justify-start">
-                <span>Ningún municipio seleccionado</span>
-              </span>
-            ) : areAllSelected ? (
-              <span className="text-emerald-400 flex items-center gap-1.5 justify-center sm:justify-start">
-                <Sparkles size={13} />
-                <span>Mostrando red completa ({TOTAL_ESCUELAS_ESTADO} escuelas)</span>
-              </span>
-            ) : (
-              <span className="text-fuchsia-400 flex items-center gap-1.5 justify-center sm:justify-start">
-                <MapPin size={13} />
-                <span>{totalSelectedEscuelas} escuelas en {selectedMunicipios.length} municipios</span>
-              </span>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            {isLayerActive && (
-              <button
-                onClick={() => {
-                  onDeactivate();
-                  onClose();
-                }}
-                className="flex-1 sm:flex-none px-3.5 py-2.5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/20 text-xs font-bold font-mono flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-                title="Desactivar visualización de escuelas"
-              >
-                <EyeOff size={14} />
-                <span>Desactivar</span>
-              </button>
-            )}
-
+          {isLayerActive && (
             <button
-              onClick={handleApplySelected}
-              disabled={selectedMunicipios.length === 0}
-              className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer ${
-                selectedMunicipios.length > 0
-                  ? 'bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-400 hover:to-purple-500 text-white shadow-[0_0_20px_rgba(217,70,239,0.4)]'
-                  : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-white/5'
-              }`}
+              onClick={() => {
+                onDeactivate();
+                onClose();
+              }}
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/20 text-xs font-bold font-mono flex items-center justify-center gap-2 transition-colors cursor-pointer"
+              title="Desactivar visualización de escuelas en el mapa"
             >
-              <Check size={14} strokeWidth={3} />
-              <span>{isLayerActive ? 'Aplicar Filtro' : 'Activar en el Mapa'}</span>
+              <EyeOff size={14} />
+              <span>Desactivar Capa</span>
             </button>
-          </div>
+          )}
+
+          <button
+            onClick={onClose}
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-bold font-mono transition-colors cursor-pointer"
+          >
+            Cancelar
+          </button>
+
+          <button
+            onClick={handleApplySelected}
+            disabled={selectedMunicipios.length === 0}
+            className={`w-full sm:w-auto px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer ${
+              selectedMunicipios.length > 0
+                ? 'bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-400 hover:to-purple-500 text-white shadow-[0_0_20px_rgba(217,70,239,0.4)]'
+                : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-white/5'
+            }`}
+          >
+            <Check size={14} strokeWidth={3} />
+            <span>
+              {isLayerActive 
+                ? `Aplicar Filtro (${totalSelectedEscuelas})` 
+                : `Activar en el Mapa (${totalSelectedEscuelas})`}
+            </span>
+          </button>
 
         </div>
 
