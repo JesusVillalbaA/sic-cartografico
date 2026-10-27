@@ -11,7 +11,7 @@ import { APP_VERSION } from '@/lib/version';
 interface AsistenteIAProps {
   layersVisible: any;
   selectedFeatures?: any[];
-  onToggle: (layerKey: string) => void;
+  onToggle: (layerKey: string, extraData?: any) => void;
   theme?: string;
 }
 
@@ -112,6 +112,97 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
     setIsOpen(prev => !prev);
   };
 
+  // Ejecutor centralizado de acciones del asistente táctico (voz o chat)
+  const executeActions = async (actions: string[]) => {
+    if (!actions || actions.length === 0) return;
+
+    for (const actionKey of actions) {
+      if (actionKey === 'turn_off_all') {
+        if (layersVisible) {
+          Object.keys(layersVisible).forEach(k => {
+            if (typeof layersVisible[k] === 'boolean' && layersVisible[k]) {
+              onToggle(k);
+            } else if (typeof layersVisible[k] === 'object' && layersVisible[k] !== null) {
+              Object.keys(layersVisible[k]).forEach(subK => {
+                if (layersVisible[k][subK]) onToggle(`${k}.${subK}`);
+              });
+            }
+          });
+        }
+      } else if (actionKey === 'turn_on_all') {
+        if (layersVisible) {
+          Object.keys(layersVisible).forEach(k => {
+            if (typeof layersVisible[k] === 'boolean' && !layersVisible[k]) {
+              onToggle(k);
+            } else if (typeof layersVisible[k] === 'object' && layersVisible[k] !== null) {
+              Object.keys(layersVisible[k]).forEach(subK => {
+                if (!layersVisible[k][subK]) onToggle(`${k}.${subK}`);
+              });
+            }
+          });
+        }
+      } else if (actionKey.startsWith('turn_off:')) {
+        const layerKey = actionKey.split(':')[1];
+        if (isLayerActive(layersVisible, layerKey)) {
+          onToggle(layerKey);
+        }
+      } else if (actionKey.startsWith('turn_on:')) {
+        const layerKey = actionKey.split(':')[1];
+        if (!isLayerActive(layersVisible, layerKey)) {
+          onToggle(layerKey);
+        }
+      } else if (actionKey.startsWith('filter_escuelas:')) {
+        const target = actionKey.slice('filter_escuelas:'.length).trim();
+        const munList = target === 'TODOS' ? null : target.split(',').map(s => s.trim()).filter(Boolean);
+        onToggle('escuelas', { active: true, municipios: munList });
+        window.dispatchEvent(new CustomEvent('sogne_filter_escuelas', { detail: { municipios: munList } }));
+      } else if (actionKey === 'open_filtro_escuelas') {
+        if (!isLayerActive(layersVisible, 'escuelas')) {
+          onToggle('escuelas', { active: true });
+        }
+        window.dispatchEvent(new CustomEvent('sogne_open_filtro_escuelas'));
+      } else if (actionKey.startsWith('export_pdf:')) {
+        let layerToExport = actionKey.split(':')[1];
+        if (layerToExport === 'auto' || layerToExport === 'general') {
+          if (layersVisible?.conppas) layerToExport = 'conppas';
+          else if (layersVisible?.compas || layersVisible?.cuadrantesPoligonos || layersVisible?.cuadrantes) layerToExport = 'compas';
+          else if (layersVisible?.antenasDigitel || layersVisible?.antenasMovistar || layersVisible?.antenasMovilnet) layerToExport = 'antenas';
+          else if (layersVisible?.hospitales || layersVisible?.clinicas || layersVisible?.ambulatorios || layersVisible?.cdi) layerToExport = 'hospitales';
+          else if (layersVisible?.sistemasElectricos) layerToExport = 'electricidad';
+          else if (layersVisible?.estacionesGas) layerToExport = 'estaciongas';
+          else if (layersVisible?.municipios) layerToExport = 'municipios';
+          else if (layersVisible?.sectores) layerToExport = 'sectores';
+          else layerToExport = 'compas';
+        }
+        try {
+          await exportLayerToPDF({ layerKey: layerToExport });
+        } catch (e: any) {
+          console.warn("Error al exportar PDF por voz:", e);
+        }
+      } else if (actionKey.startsWith('trace_place:')) {
+        const parts = actionKey.split(':');
+        const mode = parts[1];
+        const radiusKm = parseInt(parts[2]) || 2;
+        const placeName = parts.slice(3).join(':');
+        window.dispatchEvent(new CustomEvent('sogne_voice_trace_place', { detail: { placeName, mode, radiusKm } }));
+      } else if (actionKey.startsWith('trace_municipality:')) {
+        const muni = actionKey.split(':')[1];
+        window.dispatchEvent(new CustomEvent('sogne_voice_trace_municipality', { detail: { municipality: muni } }));
+      } else if (actionKey.startsWith('open_feature:')) {
+        const featName = actionKey.split(':')[1];
+        window.dispatchEvent(new CustomEvent('sogne_voice_open_feature', { detail: { name: featName } }));
+      } else if (actionKey === 'open_ia_panel') {
+        setIsOpen(true);
+      } else if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {
+        window.dispatchEvent(new CustomEvent('sogne_voice_action', { detail: { action: actionKey } }));
+      } else {
+        if (layersVisible && !isLayerActive(layersVisible, actionKey)) {
+          onToggle(actionKey);
+        }
+      }
+    }
+  };
+
   // Procesar comandos de voz y ejecutar acciones en el mapa
   const handleSendVoiceCommand = async (commandText: string) => {
     if (!commandText.trim()) return;
@@ -140,81 +231,7 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
       const data = await res.json();
       if (data.success) {
         if (data.voiceActions && data.voiceActions.length > 0) {
-          for (const actionKey of data.voiceActions) {
-            if (actionKey === 'turn_off_all') {
-              if (layersVisible) {
-                Object.keys(layersVisible).forEach(k => {
-                  if (typeof layersVisible[k] === 'boolean' && layersVisible[k]) {
-                    onToggle(k);
-                  } else if (typeof layersVisible[k] === 'object' && layersVisible[k] !== null) {
-                    Object.keys(layersVisible[k]).forEach(subK => {
-                      if (layersVisible[k][subK]) onToggle(`${k}.${subK}`);
-                    });
-                  }
-                });
-              }
-            } else if (actionKey === 'turn_on_all') {
-              if (layersVisible) {
-                Object.keys(layersVisible).forEach(k => {
-                  if (typeof layersVisible[k] === 'boolean' && !layersVisible[k]) {
-                    onToggle(k);
-                  } else if (typeof layersVisible[k] === 'object' && layersVisible[k] !== null) {
-                    Object.keys(layersVisible[k]).forEach(subK => {
-                      if (!layersVisible[k][subK]) onToggle(`${k}.${subK}`);
-                    });
-                  }
-                });
-              }
-            } else if (actionKey.startsWith('turn_off:')) {
-              const layerKey = actionKey.split(':')[1];
-              if (isLayerActive(layersVisible, layerKey)) {
-                onToggle(layerKey);
-              }
-            } else if (actionKey.startsWith('turn_on:')) {
-              const layerKey = actionKey.split(':')[1];
-              if (!isLayerActive(layersVisible, layerKey)) {
-                onToggle(layerKey);
-              }
-            } else if (actionKey.startsWith('export_pdf:')) {
-              let layerToExport = actionKey.split(':')[1];
-              if (layerToExport === 'auto' || layerToExport === 'general') {
-                if (layersVisible?.conppas) layerToExport = 'conppas';
-                else if (layersVisible?.compas || layersVisible?.cuadrantesPoligonos || layersVisible?.cuadrantes) layerToExport = 'compas';
-                else if (layersVisible?.antenasDigitel || layersVisible?.antenasMovistar || layersVisible?.antenasMovilnet) layerToExport = 'antenas';
-                else if (layersVisible?.hospitales || layersVisible?.clinicas || layersVisible?.ambulatorios || layersVisible?.cdi) layerToExport = 'hospitales';
-                else if (layersVisible?.sistemasElectricos) layerToExport = 'electricidad';
-                else if (layersVisible?.estacionesGas) layerToExport = 'estaciongas';
-                else if (layersVisible?.municipios) layerToExport = 'municipios';
-                else if (layersVisible?.sectores) layerToExport = 'sectores';
-                else layerToExport = 'compas';
-              }
-              try {
-                await exportLayerToPDF({ layerKey: layerToExport });
-              } catch (e: any) {
-                console.warn("Error al exportar PDF por voz:", e);
-              }
-            } else if (actionKey.startsWith('trace_place:')) {
-              const parts = actionKey.split(':');
-              const mode = parts[1];
-              const radiusKm = parseInt(parts[2]) || 2;
-              const placeName = parts.slice(3).join(':');
-              window.dispatchEvent(new CustomEvent('sogne_voice_trace_place', { detail: { placeName, mode, radiusKm } }));
-            } else if (actionKey.startsWith('trace_municipality:')) {
-              const muni = actionKey.split(':')[1];
-              window.dispatchEvent(new CustomEvent('sogne_voice_trace_municipality', { detail: { municipality: muni } }));
-            } else if (actionKey.startsWith('open_feature:')) {
-              const featName = actionKey.split(':')[1];
-              window.dispatchEvent(new CustomEvent('sogne_voice_open_feature', { detail: { name: featName } }));
-            } else if (actionKey === 'open_ia_panel') {
-              setIsOpen(true);
-            } else if (actionKey.startsWith('toggle_') || actionKey.startsWith('activate_') || actionKey === 'clear_tools') {
-              window.dispatchEvent(new CustomEvent('sogne_voice_action', { detail: { action: actionKey } }));
-            } else {
-              if (layersVisible && !isLayerActive(layersVisible, actionKey)) {
-                onToggle(actionKey);
-              }
-            }
-          }
+          await executeActions(data.voiceActions);
         }
 
         setMessages(prev => [
@@ -282,16 +299,21 @@ export const AsistenteIA: React.FC<AsistenteIAProps> = ({
       });
 
       const data = await res.json();
-      if (data.success && data.response) {
-        setMessages(prev => [
-          ...prev,
-          {
-            id: Date.now().toString(),
-            sender: 'ai',
-            text: data.response,
-            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-          }
-        ]);
+      if (data.success) {
+        if (data.voiceActions && data.voiceActions.length > 0) {
+          await executeActions(data.voiceActions);
+        }
+        if (data.response) {
+          setMessages(prev => [
+            ...prev,
+            {
+              id: Date.now().toString(),
+              sender: 'ai',
+              text: data.response,
+              timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            }
+          ]);
+        }
       }
     } catch (err) {
       console.error("Error obteniendo respuesta de SOGNE IA:", err);

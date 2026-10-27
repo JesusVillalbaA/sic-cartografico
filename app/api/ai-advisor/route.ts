@@ -15,13 +15,18 @@ export async function POST(req: Request) {
       });
     }
 
-    // 2. Si es un Comando por Voz
+    // 2. Si es un Comando por Voz o Mensaje de Acción Táctica
     let voiceActions: string[] = [];
     let voiceResponseText = "";
-    if (voiceCommand && voiceCommand.trim().length > 0) {
-      const voiceResult = parseVoiceCommand(voiceCommand);
-      voiceActions = voiceResult.actions;
-      voiceResponseText = voiceResult.responseText;
+    const rawCommand = (voiceCommand && voiceCommand.trim().length > 0) ? voiceCommand : message;
+    if (rawCommand && rawCommand.trim().length > 0) {
+      const voiceResult = parseVoiceCommand(rawCommand);
+      if (voiceResult.actions.length > 0) {
+        voiceActions = voiceResult.actions;
+        voiceResponseText = voiceResult.responseText;
+      } else if (voiceCommand && voiceCommand.trim().length > 0) {
+        voiceResponseText = voiceResult.responseText;
+      }
     }
 
     // Análisis de estado de capas activas
@@ -267,9 +272,10 @@ function parseVoiceCommand(command: string) {
   }
 
   // ── 3. ABRIR PANELES Y FICHAS SITUACIONALES POR VOZ ──────────────────────────────
+  const isSchoolRelatedCommand = text.includes('escuela') || text.includes('escuelas') || text.includes('colegio') || text.includes('colegios') || text.includes('educaci') || text.includes('filtro');
   const openRegex = /(?:abrir|abre|ábreme|abreme|panel|ficha|ver|mostrar)\s+(?:el\s+)?(?:panel\s+de\s+|ficha\s+de\s+|municipio\s+|sector\s+)?(.+)/i;
   const openMatch = text.match(openRegex);
-  if (openMatch && !text.includes('reporte') && !text.includes('pdf') && !text.includes('activar') && !text.includes('desactivar') && !text.includes('trazar') && !text.includes('crear')) {
+  if (openMatch && !isSchoolRelatedCommand && !text.includes('reporte') && !text.includes('pdf') && !text.includes('activar') && !text.includes('desactivar') && !text.includes('trazar') && !text.includes('crear')) {
     const rawTarget = openMatch[1].trim();
     if (rawTarget.length > 1 && !['todo', 'todas', '3d', 'mapa', 'calor'].includes(rawTarget)) {
       actions.push(`open_feature:${rawTarget}`);
@@ -306,7 +312,7 @@ function parseVoiceCommand(command: string) {
   };
 
   Object.keys(municipiosMap).forEach(key => {
-    if (text.includes(key) && (text.includes('abre') || text.includes('abrir') || text.includes('ver') || text.includes('panel') || text.includes('ficha'))) {
+    if (!isSchoolRelatedCommand && text.includes(key) && (text.includes('abre') || text.includes('abrir') || text.includes('ver') || text.includes('panel') || text.includes('ficha'))) {
       const muniName = municipiosMap[key];
       if (!actions.some(a => a.startsWith('open_feature:'))) {
         actions.push(`open_feature:${muniName}`);
@@ -401,7 +407,66 @@ function parseVoiceCommand(command: string) {
     ['hospitales', 'clinicas', 'ambulatorios', 'cdi'].forEach(l => actions.push(`${turnPrefix}${l}`));
     responseText += `${verbLabel} Red Integrada de Salud. `;
   }
-  if (text.includes('escuela') || text.includes('escuelas') || text.includes('colegio') || text.includes('educacion')) toggleLayer('escuelas', 'Centros Educativos');
+  // ── GESTIÓN Y FILTRADO TÁCTICO DE CENTROS EDUCATIVOS POR MUNICIPIO POR VOZ ──
+  const isEscuelasMention = text.includes('escuela') || text.includes('escuelas') || text.includes('colegio') || text.includes('colegios') || text.includes('educacion') || text.includes('educación') || text.includes('educativo') || text.includes('educativos');
+
+  if (isEscuelasMention && !text.includes('reporte') && !text.includes('pdf')) {
+    const isFilterClear = text.includes('quitar filtro') || text.includes('limpiar filtro') || text.includes('borrar filtro') || text.includes('sin filtro') || text.includes('restablecer');
+    const isShowAll = isFilterClear || text.includes('todas') || text.includes('todo') || text.includes('completa');
+
+    if (isShowAll) {
+      actions.push('turn_on:escuelas');
+      actions.push('filter_escuelas:TODOS');
+      responseText += "Mostrando la red completa de centros educativos (251 escuelas de Nueva Esparta) sin filtros. ";
+    } else if (isDeactivate) {
+      actions.push('turn_off:escuelas');
+      responseText += "Desactivando capa de Centros Educativos. ";
+    } else {
+
+      // Mapeo exhaustivo de municipios de Nueva Esparta para GeoJSON escuelas
+      const MUNICIPIOS_ESCUELAS_VOICE_MAP: { id: string; name: string; keys: string[] }[] = [
+        { id: 'MP. ARISMENDI', name: 'Arismendi (La Asunción)', keys: ['arismendi', 'asunción', 'asuncion', 'la asunción', 'la asuncion'] },
+        { id: 'MP. MARIÑO', name: 'Mariño (Porlamar)', keys: ['mariño', 'marino', 'porlamar', 'santiago mariño'] },
+        { id: 'MP. DIAZ', name: 'Díaz (San Juan)', keys: ['díaz', 'diaz', 'san juan', 'san juan bautista'] },
+        { id: 'MP. GARCIA', name: 'García (El Valle)', keys: ['garcía', 'garcia', 'el valle', 'valle del espiritu santo'] },
+        { id: 'MP. TUBORES', name: 'Tubores (Punta de Piedras)', keys: ['tubores', 'punta de piedras', 'punta de piedra'] },
+        { id: 'MP. GOMEZ', name: 'Gómez (Santa Ana)', keys: ['gómez', 'gomez', 'santa ana'] },
+        { id: 'MP. MARCANO', name: 'Marcano (Juan Griego)', keys: ['marcano', 'juan griego', 'juangriego'] },
+        { id: 'MP. MANEIRO', name: 'Maneiro (Pampatar)', keys: ['maneiro', 'pampatar', 'los robles'] },
+        { id: 'MP.ANTOLIN DEL CAMPO', name: 'Antolín del Campo', keys: ['antolín del campo', 'antolin del campo', 'antolín', 'antolin', 'paraguachí', 'paraguachi'] },
+        { id: 'MP.PENIN. DE MACANAO', name: 'Península de Macanao', keys: ['península de macanao', 'peninsula de macanao', 'macanao', 'boca de río', 'boca de rio'] },
+        { id: 'MP.VILLALBA(I.COCHE)', name: 'Villalba (Isla de Coche)', keys: ['villalba', 'isla de coche', 'isla coche', 'coche', 'san pedro de coche'] }
+      ];
+
+      const matchedIds: string[] = [];
+      const matchedNames: string[] = [];
+
+      for (const mun of MUNICIPIOS_ESCUELAS_VOICE_MAP) {
+        if (mun.keys.some(k => text.includes(k))) {
+          if (!matchedIds.includes(mun.id)) {
+            matchedIds.push(mun.id);
+            matchedNames.push(mun.name);
+          }
+        }
+      }
+
+      if (isShowAll) {
+        actions.push('turn_on:escuelas');
+        actions.push('filter_escuelas:TODOS');
+        responseText += "Mostrando la red completa de centros educativos (251 escuelas de Nueva Esparta) sin filtros. ";
+      } else if (matchedIds.length > 0) {
+        actions.push('turn_on:escuelas');
+        actions.push(`filter_escuelas:${matchedIds.join(',')}`);
+        responseText += `Filtrando centros educativos de: ${matchedNames.join(', ')} y enfocando en el mapa. `;
+      } else if (text.includes('filtrar') || text.includes('filtro') || text.includes('seleccionar') || text.includes('modal') || text.includes('panel')) {
+        actions.push('turn_on:escuelas');
+        actions.push('open_filtro_escuelas');
+        responseText += "Abriendo panel interactivo de selección y filtrado de escuelas por municipio. ";
+      } else {
+        toggleLayer('escuelas', 'Centros Educativos');
+      }
+    }
+  }
   if (text.includes('votacion') || text.includes('votación') || text.includes('electoral')) toggleLayer('centrosVotacion', 'Centros de Votación');
 
   // ── 9. DIVISIÓN POLÍTICO TERRITORIAL ─────────────────────────────────────────────
@@ -627,6 +692,9 @@ function generateAnswerToUser(query: string, layers: any, selectedFeatures: any[
   }
   if (q.includes('agua') || q.includes('luz') || q.includes('electr') || q.includes('servicio')) {
     return "En cuanto a Servicios Básicos: Puedes presionar el botón **Ver Diagrama Unifilar** para entender la red eléctrica de Nueva Esparta, o activar la capa de **Desalinizadoras y Embalses** para seguimiento hídrico.";
+  }
+  if (q.includes('escuela') || q.includes('colegio') || q.includes('filtro') || q.includes('educaci')) {
+    return "Para gestionar y filtrar centros educativos: Puedes dictar comandos por voz como **'Filtrar escuelas de Mariño'**, **'Mostrar escuelas de Arismendi'**, **'Ver todas las escuelas'** o **'Abrir filtro de escuelas'**. También puedes pulsar el botón de ajustes/embudo junto a 'Centros Educativos' en el menú lateral para abrir el selector táctico de municipios.";
   }
   if (q.includes('pdf') || q.includes('reporte') || q.includes('imprimir')) {
     return "Para exportar tu informe: Haz clic en el botón de **Reporte PDF** en el menú de herramientas. La IA incluirá las métricas de las capas actualmente visibles.";

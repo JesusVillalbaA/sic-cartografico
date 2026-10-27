@@ -103,6 +103,13 @@ export const MenuLateral = ({ layersVisible, onToggle, mapRef, theme, setTheme, 
   const [showZonasRiesgoSub, setShowZonasRiesgoSub] = useState(false);
   const [showGeocalizacionesSub, setShowGeocalizacionesSub] = useState(false);
   const [showModalFiltroEscuelas, setShowModalFiltroEscuelas] = useState(false);
+
+  // Escuchar evento para abrir modal de filtro de escuelas desde asistente de voz o atajo táctico
+  useEffect(() => {
+    const handleOpenFiltro = () => setShowModalFiltroEscuelas(true);
+    window.addEventListener('sogne_open_filtro_escuelas', handleOpenFiltro);
+    return () => window.removeEventListener('sogne_open_filtro_escuelas', handleOpenFiltro);
+  }, []);
   const [modalEnProcesoData, setModalEnProcesoData] = useState<{ isOpen: boolean; modulo: string; descripcion?: string }>({ isOpen: false, modulo: '', descripcion: '' });
   const [showServicioAguaSub, setShowServicioAguaSub] = useState(false);
 

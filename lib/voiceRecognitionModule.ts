@@ -146,6 +146,48 @@ export class SogneVoiceController {
         keywords: ['calor', 'heatmap', 'incidencias', 'mapa de calor', /mapa\s*de\s*calor/i],
         actionKey: 'toggle_heatmap',
         description: 'Despliega mapa de calor'
+      },
+      {
+        intent: 'filtrar_escuelas_municipio',
+        keywords: [
+          /escuelas?\s+(?:de|del|en)\s+(?:el\s+municipio\s+)?(mariño|porlamar|arismendi|asunci[oó]n|d[ií]az|garc[ií]a|tubores|g[oó]mez|marcano|juan\s*griego|maneiro|pampatar|antol[ií]n|macanao|villalba|coche)/i,
+          /filtrar\s+(?:las\s+)?escuelas/i,
+          /mostrar\s+(?:las\s+)?escuelas\s+(?:de|en)/i
+        ],
+        actionKey: 'filter_escuelas',
+        description: 'Filtra y visualiza escuelas por municipio'
+      },
+      {
+        intent: 'todas_las_escuelas',
+        keywords: [
+          'todas las escuelas',
+          'mostrar todas las escuelas',
+          'ver todas las escuelas',
+          'red completa de escuelas',
+          'quitar filtro escuelas',
+          'limpiar filtro escuelas',
+          /todas\s*las\s*escuelas/i
+        ],
+        actionKey: 'filter_escuelas:TODOS',
+        description: 'Muestra todas las escuelas de Nueva Esparta'
+      },
+      {
+        intent: 'abrir_filtro_escuelas',
+        keywords: [
+          'abrir filtro escuelas',
+          'abrir filtro de escuelas',
+          'filtro de escuelas',
+          'panel filtro escuelas',
+          /filtro\s*(?:de\s*)?escuelas/i
+        ],
+        actionKey: 'open_filtro_escuelas',
+        description: 'Abre el panel interactivo de selección de municipios para escuelas'
+      },
+      {
+        intent: 'activar_escuelas',
+        keywords: ['escuelas', 'colegios', 'centros educativos', 'educacion', 'educación', /activar\s*escuelas/i],
+        actionKey: 'escuelas',
+        description: 'Activa la capa de centros educativos'
       }
     ];
   }

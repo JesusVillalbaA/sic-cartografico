@@ -864,12 +864,21 @@ export const useMapbox = (
         // Enfoque táctico suave al cambiar el filtro
         const filterKey = escuelasMunFilter ? escuelasMunFilter.slice().sort().join(',') : 'TODOS';
         if (prevEscuelasFilterRef.current !== filterKey) {
+          const wasSpecific = prevEscuelasFilterRef.current !== null && prevEscuelasFilterRef.current !== 'TODOS';
           prevEscuelasFilterRef.current = filterKey;
           if (escuelasMunFilter && escuelasMunFilter.length === 1) {
             const target = MUNICIPIO_CENTERS[escuelasMunFilter[0]];
             if (target) {
               m.flyTo({ center: target.center, zoom: target.zoom, speed: 1.2, essential: true });
             }
+          } else if (escuelasMunFilter && escuelasMunFilter.length > 1) {
+            const firstTarget = MUNICIPIO_CENTERS[escuelasMunFilter[0]];
+            if (firstTarget) {
+              m.flyTo({ center: firstTarget.center, zoom: 11, speed: 1.2, essential: true });
+            }
+          } else if (wasSpecific && (!escuelasMunFilter || escuelasMunFilter.length === 0 || escuelasMunFilter.includes('TODOS'))) {
+            // Regresar suavemente a la perspectiva completa del estado
+            m.flyTo({ center: [-63.9, 10.98], zoom: 10.5, speed: 1.2, essential: true });
           }
         }
       }

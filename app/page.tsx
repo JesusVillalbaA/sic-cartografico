@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { MenuLateral } from '../components/Menu/MenuLateral';
 
@@ -108,6 +108,16 @@ export default function DespachadorPage() {
     generarClave: false
   });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Sincronización de eventos globales de filtro de escuelas emitidos por el asistente de voz
+  useEffect(() => {
+    const handleFilterEscuelasEvent = (e: any) => {
+      const municipios = e.detail?.municipios !== undefined ? e.detail.municipios : null;
+      handleToggle('escuelas', { active: true, municipios });
+    };
+    window.addEventListener('sogne_filter_escuelas', handleFilterEscuelasEvent);
+    return () => window.removeEventListener('sogne_filter_escuelas', handleFilterEscuelasEvent);
+  }, []);
 
   const handleToggle = (layer: string, extraData?: any) => {
     setLayersVisible(prev => {
